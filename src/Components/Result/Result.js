@@ -1,8 +1,9 @@
 import React from "react";
+import "./Result.css";
 
 const Result = () => {
   return (
-    <div>
+    <div className="result">
       <h1>You won!</h1>
     </div>
   );

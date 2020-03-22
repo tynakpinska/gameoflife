@@ -1,0 +1,10 @@
+.challenge {
+    border: 1px solid lightseagreen;
+    border-radius: 5px;
+    background: rgb(200, 236, 235);
+    margin: 20px auto;
+    padding: 10px;
+    width: 40%;
+    box-shadow: 5px 5px 10px rgb(20, 114, 109);
+    text-align: center;
+}
