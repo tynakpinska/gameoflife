@@ -1,10 +1,27 @@
+.challElement {
+    display: flex;
+    margin: 10px;
+}
+
 .challenge {
-    border: 1px solid lightseagreen;
-    border-radius: 5px;
-    background: rgb(200, 236, 235);
-    margin: 20px auto;
+    border: 1px solid #9B3800;
+    border-radius: 20px;
+    background: #FF9C64;
+    color: #9B3800;
     padding: 10px;
-    width: 40%;
-    box-shadow: 5px 5px 10px rgb(20, 114, 109);
-    text-align: center;
+    margin: 10px;
+    box-shadow: 5px 5px 10px #9B3800;
+}
+
+.challenge:hover {
+    cursor: no-drop;
+}
+
+.fist {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    height: 40px;
 }

@@ -1,9 +1,12 @@
 .set {
     width: 40%;
-    border: 5px solid lightskyblue;
-    margin: 100px auto;
-    padding: 20px;
+    min-height: 65vh;
+    margin: 200px auto;
+    padding: 100px;
     text-align: center;
+    background: #FF5D00;
+    color: #FFCFB3;
+    border-right: 20px solid #9B3800;
 }
 
 input, button {
@@ -11,4 +14,24 @@ input, button {
     border-radius: 15px;
     padding: 10px;
     display: block;
+    font: inherit;
+    cursor: pointer;
+}
+
+input {
+    background: #FFCFB3;
+}
+
+input:hover {
+    cursor: text;
+}
+
+button {
+    background: #9B3800;
+    color: #FFCFB3;
+    border: none;
+}
+
+button:hover {
+    border: 2px solid #FFCFB3;
 }

@@ -1,7 +1,22 @@
 .start {
     width: 40%;
-    border: 5px solid lightslategrey;
-    margin: 100px auto;
-    padding: 20px;
+    height: 65vh;
+    margin: 200px auto;
+    padding: 100px;
     text-align: center;
+    background: #FF5D00;
+    color: #FFCFB3;
+}
+
+.timer {
+    font-size: 1.2rem;
+    margin: 20px;
+}
+
+span {
+    color: #fff;
+    background: #9B3800;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-weight: bolder;
 }

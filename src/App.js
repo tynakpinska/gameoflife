@@ -9,11 +9,7 @@ class App extends Component {
     this.state = {
       step: "set",
       challenges: [],
-      leftParts: {
-        hours: "00",
-        minutes: "00",
-        seconds: "00"
-      }
+      leftParts: {}
     };
   }
 
@@ -21,33 +17,32 @@ class App extends Component {
     this.setState({ challenges: [...this.state.challenges, challenge] });
   };
 
+  removeChallenge = challenge => {
+    this.setState({
+      challenges: this.state.challenges.filter(c => c !== challenge)
+    });
+  };
+
   startingTheGame = isStarted => {
     this.setState({ step: "start" });
-    setInterval(() => {
-      const initDate = new Date();
-      const initYear = initDate.getFullYear();
-      const initMonth = `0${initDate.getMonth() + 1}`;
-      const initDay = initDate.getDate();
-      const nextDay = `${initYear}-${initMonth}-${initDay + 1}`;
-      const nextDate = new Date(nextDay).setHours(0);
-      const left = nextDate - initDate;
-      this.setState({
-        leftParts: {
-          hours:
-            Math.floor((left / (1000 * 60 * 60)) % 24) > 9
-              ? Math.floor((left / (1000 * 60 * 60)) % 24)
-              : `0${Math.floor((left / (1000 * 60 * 60)) % 24)}`,
-          minutes:
-            Math.floor((left / 1000 / 60) % 60) > 9
-              ? Math.floor((left / 1000 / 60) % 60)
-              : `0${Math.floor((left / 1000 / 60) % 60)}`,
-          seconds:
-            Math.floor((left / 1000) % 60) > 9
-              ? Math.floor((left / 1000) % 60)
-              : `0${Math.floor((left / 1000) % 60)}`
-        }
-      });
-    }, 1000);
+  };
+
+  handleDone = e => {
+    console.log(e.target);
+  };
+
+  gettingTimeLeft = (hours, minutes, seconds) => {
+    this.setState({
+      leftParts: {
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds
+      }
+    });
+  };
+
+  endingGame = end => {
+    if (end === "end") return this.setState({ step: "end" });
   };
 
   render() {
@@ -57,6 +52,7 @@ class App extends Component {
           addChallenge={this.addChallenge}
           challenges={this.state.challenges}
           startingTheGame={this.startingTheGame}
+          removeChallenge={this.removeChallenge}
         />
       );
     } else if (this.state.step === "start") {
@@ -64,6 +60,9 @@ class App extends Component {
         <Start
           challenges={this.state.challenges}
           leftParts={this.state.leftParts}
+          gettingTimeLeft={this.gettingTimeLeft}
+          endingGame={this.endingGame}
+          handleDone={this.handleDone}
         />
       );
     } else {
