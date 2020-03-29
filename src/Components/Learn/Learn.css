@@ -8,6 +8,7 @@
     border-bottom: 10px solid #808080;
     padding: 10px 10px 10px 300px;
     z-index: -1;
+    animation: show 2s ease-out;
 }
 
 .learn p {

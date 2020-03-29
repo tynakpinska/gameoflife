@@ -10,7 +10,7 @@ function Challenge(props) {
     <div className="challElement" onClick={props.handleChallClick}>
       <div className="fist"><img src={fist} alt="fist" /></div>
       <div className="challenge">
-        <p>{props.challenge}</p>
+        {Object.keys(props.challenge)}
       </div>
     </div>
   );

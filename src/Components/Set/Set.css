@@ -1,12 +1,13 @@
 .set {
     width: 40%;
     min-height: 65vh;
-    margin: 200px auto;
+    margin: 220px auto;
     padding: 100px;
     text-align: center;
     background: #FF5D00;
     color: #FFCFB3;
     border-right: 20px solid #9B3800;
+    z-index: 1;
 }
 
 input, button {

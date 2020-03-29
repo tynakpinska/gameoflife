@@ -13,10 +13,22 @@
 .frisella {
     font-size: 1.4rem;
     text-align: right;
-    padding: 20px 20px 0 20px;
+    padding: 20px;
     width: 30%;
     font-style: italic;
     background:rgba(128, 128, 128, 0.8);
+    position: fixed;
+    animation: slidein 2s ease-out;
+}
+
+@keyframes slidein {
+    0% {
+        left: -500px;
+    }
+
+    100% {
+        left: 0;
+    }
 }
 
 h3 {
@@ -28,5 +40,7 @@ h3 {
     width: 100vw;
     color: #FF5D00;
     text-align: left;
+    animation: slidein 2s ease-out;
+    animation: show 2s ease-out;
 }
 
