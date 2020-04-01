@@ -5,7 +5,7 @@
     margin: 220px auto;
     padding: 50px;
     text-align: center;
-    background: #FF5D00;
+    background: linear-gradient(to top, #FF5D00, #9B3800) ;
     color: #FFCFB3;
     border: 1px solid #9B3800;
     box-shadow: -10px 10px 20px #9B3800;

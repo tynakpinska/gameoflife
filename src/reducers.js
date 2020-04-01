@@ -23,7 +23,7 @@ export const setChallenges = (state = initialState, action = {}) => {
     case REMOVE_CHALLENGE:
       return Object.assign({}, state, {
         challenges: [
-          ...state.challenges.filter(ch => !ch[action.payload.target.innerHTML])
+          ...state.challenges.filter(ch => ch.name !== action.payload.target.innerHTML)
         ]
       });
     case DO_CHALLENGE:

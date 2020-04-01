@@ -2,7 +2,7 @@
     position: fixed;
     top: 50px;
     right: 0;
-    background:#9B3800;
+    background:linear-gradient(to right, #FF5C00, #9B3800);
     width: 50%;
     height: 30%;
     border-bottom: 10px solid #808080;
