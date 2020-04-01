@@ -7,7 +7,9 @@ import Frisella from "./Components/Frisella/Frisella";
 import Learn from "./Components/Learn/Learn";
 import Victories from "./Components/Victories/Victories";
 import Timer from "./Components/Timer/Timer";
-import cursor from "./img/checkmark.png";
+import cursorCheck from "./img/checkmark.png";
+import cursorDelete from "./img/delete.png";
+import tiger from "./img/tiger.jpg";
 
 import {
   setChallenge,
@@ -43,7 +45,11 @@ class App extends Component {
   };
 
   handleMouseOver = e => {
-    e.target.style.cursor = `url("${cursor}"), auto`;
+    if (this.props.step === "set") {
+      e.target.style.cursor = `url("${cursorDelete}"), auto`;
+    } else {
+      e.target.style.cursor = `url("${cursorCheck}"), auto`;
+    }
   };
 
   handleChallClick = e => {
@@ -68,6 +74,7 @@ class App extends Component {
                   challenge={c.name}
                   key={uuidv4()}
                   handleChallClick={this.props.removeChallenge}
+                  handleMouseOver={this.handleMouseOver}
                 />
               ))}
               <button onClick={this.props.startTheGame}>Start the game!</button>
@@ -88,10 +95,12 @@ class App extends Component {
               <Timer />
             </div>
           ) : (
-            <div>
+            <div className="end">
               <p>You won today!</p>
-              <p>Well done</p>
-              <p>Congratulations</p>
+              <p>Well done!</p>
+              <p>Take a rest.</p>
+              <img src={tiger} alt="tiger"/>
+              <p>See you tomorrow!</p>
             </div>
           )}
         </div>

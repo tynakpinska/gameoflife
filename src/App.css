@@ -50,3 +50,16 @@ button:hover {
 .container p {
     padding: 10px;
 }
+
+.end {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.end img {
+    border: 3px solid orange;
+    padding: 20px;
+
+}
