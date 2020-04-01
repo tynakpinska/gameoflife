@@ -1,16 +1,7 @@
-.start {
-    width: 40%;
-    height: 65vh;
-    margin: 200px auto;
-    padding: 20px;
-    text-align: center;
-    background: #FF5D00;
-    color: #FFCFB3;
-}
-
 .timer {
     font-size: 1.2rem;
     margin: 20px;
+    line-height: 30px;
 }
 
 span {
@@ -19,4 +10,6 @@ span {
     padding: 5px 15px;
     border-radius: 15px;
     font-weight: bolder;
+    display: inline-block;
+    width: 150px;
 }

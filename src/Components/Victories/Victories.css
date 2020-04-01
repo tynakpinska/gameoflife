@@ -1,8 +1,9 @@
-.learn {
+.victories {
     position: fixed;
-    top: 50px;
+    bottom: 50px;
     right: 0;
-    background:#9B3800;
+    background-image: url(../../img/victory.jpg);
+    background-size: cover;
     width: 50%;
     height: 30%;
     border-bottom: 10px solid #808080;
@@ -11,7 +12,8 @@
     animation: show 2s ease-out;
 }
 
-.learn p {
-    font-size: 4vw;
+.victories p {
+    color: #170a01;
     text-align: right;
+    font-size: 2vw;
 }

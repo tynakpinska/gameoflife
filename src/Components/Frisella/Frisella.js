@@ -3,7 +3,7 @@ import "./Frisella.css";
 
 function Frisella() {
   return (
-    <div className="container">
+    <div className="box">
       <aside className="frisella">
         <p>
           “It’s not luck, it’s not magic, it’s not circumstances. It’s

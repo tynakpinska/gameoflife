@@ -6,7 +6,7 @@
 }
 
 body {
-    background: #FFCFB3;
+    background: rgb(19, 7, 0);
 }
 
 
@@ -17,5 +17,14 @@ body {
     }
     100% {
         opacity: 1;
+    }
+}
+@keyframes slidein {
+    0% {
+        left: -500px;
+    }
+
+    100% {
+        left: 0;
     }
 }

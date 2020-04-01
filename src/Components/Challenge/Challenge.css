@@ -18,9 +18,16 @@
     cursor: no-drop;
 }
 
+.done {
+    font-size: 0.8rem;
+    color: #9B3800;
+    text-decoration: line-through;
+}
+
 .fist {
     display: flex;
     align-items: center;
+    animation: slidein 2s ease-out;
 }
 
 img {

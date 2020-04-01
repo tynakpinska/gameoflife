@@ -1,12 +1,14 @@
-.set {
+.container {
     width: 40%;
+    max-width: 650px;
     min-height: 65vh;
     margin: 220px auto;
-    padding: 100px;
+    padding: 50px;
     text-align: center;
     background: #FF5D00;
     color: #FFCFB3;
-    border-right: 20px solid #9B3800;
+    border: 1px solid #9B3800;
+    box-shadow: -10px 10px 20px #9B3800;
     z-index: 1;
 }
 
@@ -21,10 +23,18 @@ input, button {
 
 input {
     background: #FFCFB3;
+    color: rgb(110, 41, 1);
+    border: none;
 }
 
 input:hover {
     cursor: text;
+}
+
+input:hover, input:focus {
+    border: 1px solid #9B3800;
+    box-shadow: 0 0 10px #9B3800;
+    outline: none;
 }
 
 button {
@@ -34,5 +44,9 @@ button {
 }
 
 button:hover {
-    border: 2px solid #FFCFB3;
+    color: #FF5C00;
+}
+
+.container p {
+    padding: 10px;
 }
