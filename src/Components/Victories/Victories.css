@@ -1,12 +1,12 @@
 .victories {
     position: fixed;
-    bottom: 50px;
+    bottom: 90px;
     right: 0;
     background-image: url(../../img/victory.jpg);
     background-size: cover;
     width: 50%;
     height: 30%;
-    border-bottom: 10px solid #808080;
+    border-radius: 0 0 0 50px;
     padding: 10px 10px 10px 300px;
     z-index: -1;
     animation: show 2s ease-out;

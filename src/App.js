@@ -7,6 +7,8 @@ import Frisella from "./Components/Frisella/Frisella";
 import Learn from "./Components/Learn/Learn";
 import Victories from "./Components/Victories/Victories";
 import Timer from "./Components/Timer/Timer";
+import Nav from "./Components/Nav/Nav";
+import Footer from "./Components/Footer/Footer";
 import cursorCheck from "./img/checkmark.png";
 import cursorDelete from "./img/delete.png";
 import tiger from "./img/tiger.jpg";
@@ -61,6 +63,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Nav isLogged={this.props.isLogged}/>
         <Frisella />
         <Learn />
         <Victories />
@@ -99,11 +102,12 @@ class App extends Component {
               <p>You won today!</p>
               <p>Well done!</p>
               <p>Take a rest.</p>
-              <img src={tiger} alt="tiger"/>
+              <img src={tiger} alt="tiger" />
               <p>See you tomorrow!</p>
             </div>
           )}
         </div>
+        <Footer />
       </div>
     );
   }

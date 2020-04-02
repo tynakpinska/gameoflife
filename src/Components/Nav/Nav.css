@@ -1,0 +1,23 @@
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px;
+}
+
+.nav p {
+background: none;
+border: none;
+color: #FF5C00;
+font-size: 0.9em;
+padding: 0 10px 0 10px;
+border-left: 1px solid #fff;
+}
+
+.nav p:hover {
+    font-weight: bold;;
+    font-size: 1em;
+    cursor: pointer;
+}

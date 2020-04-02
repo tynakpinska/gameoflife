@@ -1,0 +1,21 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.footer button {
+background: none;
+border: none;
+color: #fff;
+font-size: 0.9em;
+}
+
+.footer button:hover {
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+}
