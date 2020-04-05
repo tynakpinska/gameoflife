@@ -1,6 +1,6 @@
 import React from "react";
 import "./Challenge.css";
-import fist from "../../img/fist.png";
+import fist from "../../../../img/fist.png";
 
 function Challenge(props) {
   return (

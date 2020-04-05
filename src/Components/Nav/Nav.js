@@ -8,7 +8,7 @@ function Nav(props) {
     </div>
   ) : (
     <div className="nav">
-      <p>LOG IN</p>
+      <p onClick={props.signIn}>LOG IN</p>
       <p>REGISTER</p>
     </div>
   );

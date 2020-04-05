@@ -1,14 +1,14 @@
-import { SET_CHALLENGE, REMOVE_CHALLENGE, START_THE_GAME, END_THE_GAME, DO_CHALLENGE } from './constants';
+import { SIGN_IN, SET_CHALLENGE, REMOVE_CHALLENGE, START_THE_GAME, END_THE_GAME, DO_CHALLENGE } from './constants';
 
 
-export const setChallenge = chall => ({
+export const setChallenge = (challenge, key) => ({
     type: SET_CHALLENGE,
-    payload: chall
+    payload: [challenge, key]
 })
 
-export const removeChallenge = chall => ({
+export const removeChallenge = key => ({
     type: REMOVE_CHALLENGE,
-    payload: chall
+    payload: key
 })
 
 export const startTheGame = chall => ({
@@ -21,7 +21,12 @@ export const endTheGame = () => ({
     payload: false
 })
 
-export const doChallenge = chall => ({
+export const doChallenge = key => ({
     type: DO_CHALLENGE,
-    payload: chall
+    payload: key
+})
+
+export const signIn = isTrue => ({
+    type: SIGN_IN,
+    payload: isTrue
 })
