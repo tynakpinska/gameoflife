@@ -24,7 +24,7 @@ function Set(props) {
   return (
     <div>
       <h1>What are you playing today?</h1>
-      <input type="text" onKeyUp={handleEnter}></input>
+      <input type="text" placeholder="Enter your challenges for today" onKeyUp={handleEnter}></input>
       {props.challenges.map(c => {
         const { name, key } = c;
         return (

@@ -1,10 +1,12 @@
 import {
-  SIGN_IN,
+  VIEW_GAME,
+  LOG_IN,
   SET_CHALLENGE,
   REMOVE_CHALLENGE,
   START_THE_GAME,
   END_THE_GAME,
-  DO_CHALLENGE
+  DO_CHALLENGE,
+  REGISTER
 } from "./constants";
 
 const initialState = {
@@ -64,9 +66,17 @@ export const setStep = (state = initialState, action = {}) => {
 
 export const setRoute = (state = initialState, action = false) => {
   switch (action.type) {
-    case SIGN_IN:
+    case VIEW_GAME:
       return Object.assign({}, state, {
-        route: "signin"
+        route: "game"
+      });
+    case LOG_IN:
+      return Object.assign({}, state, {
+        route: "login"
+      });
+      case REGISTER:
+      return Object.assign({}, state, {
+        route: "register"
       });
     default:
       return state;

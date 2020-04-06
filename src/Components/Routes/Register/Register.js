@@ -5,11 +5,14 @@ function Register(props) {
   return (
     <div className="container">
         <h1>Register</h1>
-        <form>
-            <label for="username" name="username">Username</label>
+        <form className ="register">
+            <label htmlFor="username" name="username">Username</label>
             <input type="text" name="username"></input>
-            <label for="password" name="password">Password</label>
+            <label htmlFor="email" name="email">Email</label>
+            <input type="email" name="email"></input>
+            <label htmlFor="password" name="password">Password</label>
             <input type="password" name="password"></input>
+            <input type="submit" value="Register"></input>
         </form>
     </div>
   );

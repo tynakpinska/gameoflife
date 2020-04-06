@@ -7,6 +7,8 @@ import Victories from "./Components/Visual/Victories/Victories";
 import Nav from "./Components/Nav/Nav";
 import Game from "./Components/Routes/Game/Game.js";
 import Footer from "./Components/Footer/Footer";
+import LogIn from "./Components/Routes/LogIn/LogIn";
+import Register from "./Components/Routes/Register/Register";
 
 import {
   setChallenge,
@@ -14,7 +16,9 @@ import {
   startTheGame,
   endTheGame,
   doChallenge,
-  signIn,
+  viewGame,
+  logIn,
+  register
 } from "./actions";
 
 const mapStateToProps = (state) => {
@@ -32,23 +36,31 @@ const mapDispatchToProps = (dispatch) => {
     startTheGame: (start) => dispatch(startTheGame(start)),
     endTheGame: (end) => dispatch(endTheGame(end)),
     doChallenge: (key) => dispatch(doChallenge(key)),
-    signIn: (isTrue) => dispatch(signIn(isTrue)),
+    viewGame: (isTrue) => dispatch(viewGame(isTrue)),
+    logIn: (isTrue) => dispatch(logIn(isTrue)),
+    register: (isTrue) => dispatch(register(isTrue))
   };
 };
 
 class App extends Component {
-  handlesignIn = () => {
-    this.props.signIn(true);
-    console.log(this.props.route);
+
+  handleLogIn = () => {
+    this.props.logIn(true);
+  };
+
+  handleRegister = () => {
+    this.props.register(true);
   };
 
   render() {
     return (
-      <div>
-        <Nav signIn={this.handlesignIn} />
+      <div basename="/gameoflife">
+        <Nav viewGame={this.props.viewGame} logIn={this.handleLogIn} register={this.handleRegister} route={this.props.route}/>
         <Frisella />
         <Learn />
         <Victories />
+        {this.props.route === "login" ? <LogIn /> :
+        this.props.route === "register" ? <Register /> :
         <Game
           step={this.props.step}
           challenges={this.props.challenges}
@@ -57,7 +69,7 @@ class App extends Component {
           startTheGame={this.props.startTheGame}
           endTheGame={this.props.endTheGame}
           doChallenge={(key) => this.props.doChallenge(key)}
-        />
+        />}
         <Footer />
       </div>
     );
