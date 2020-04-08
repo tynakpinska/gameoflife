@@ -16,60 +16,82 @@ import {
   startTheGame,
   endTheGame,
   doChallenge,
-  viewGame,
-  logIn,
-  register
+  setRoute,
+  logInAndOut,
+  setUser
 } from "./actions";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     route: state.setRoute.route,
     step: state.setStep.step,
     challenges: state.setChallenges.challenges,
+    isLoged: state.logInAndOut.isLoged,
+    user: state.setUser.user
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     addChallenge: (challenge, key) => dispatch(setChallenge(challenge, key)),
     removeChallenge: (key) => dispatch(removeChallenge(key)),
     startTheGame: (start) => dispatch(startTheGame(start)),
     endTheGame: (end) => dispatch(endTheGame(end)),
     doChallenge: (key) => dispatch(doChallenge(key)),
-    viewGame: (isTrue) => dispatch(viewGame(isTrue)),
-    logIn: (isTrue) => dispatch(logIn(isTrue)),
-    register: (isTrue) => dispatch(register(isTrue))
+    setRoute: (route) => dispatch(setRoute(route)),
+    logInAndOut: (boolean) => dispatch(logInAndOut(boolean)),
+    setUser: user => dispatch(setUser(user))
   };
 };
 
 class App extends Component {
-
   handleLogIn = () => {
-    this.props.logIn(true);
+    this.props.setRoute("login");
   };
 
   handleRegister = () => {
-    this.props.register(true);
+    this.props.setRoute("register");
+  };
+
+  handleViewGame = () => {
+    this.props.setRoute("game");
   };
 
   render() {
     return (
       <div basename="/gameoflife">
-        <Nav viewGame={this.props.viewGame} logIn={this.handleLogIn} register={this.handleRegister} route={this.props.route}/>
+        <Nav
+          isLoged={this.props.isLoged}
+          viewGame={this.handleViewGame}
+          logIn={this.handleLogIn}
+          register={this.handleRegister}
+          route={this.props.route}
+          logInAndOut={this.props.logInAndOut}
+          user={this.props.user}
+        />
         <Frisella />
         <Learn />
         <Victories />
-        {this.props.route === "login" ? <LogIn /> :
-        this.props.route === "register" ? <Register /> :
-        <Game
-          step={this.props.step}
-          challenges={this.props.challenges}
-          addChallenge={this.props.addChallenge}
-          removeChallenge={this.props.removeChallenge}
-          startTheGame={this.props.startTheGame}
-          endTheGame={this.props.endTheGame}
-          doChallenge={(key) => this.props.doChallenge(key)}
-        />}
+        {this.props.route === "login" ? (
+          <LogIn
+          setUser={this.props.setUser}
+          logInAndOut={this.props.logInAndOut}
+            setRoute={this.props.setRoute}
+          />
+        ) : this.props.route === "register" ? (
+          <Register />
+        ) : (
+          <Game
+          user={this.props.user}
+            step={this.props.step}
+            challenges={this.props.challenges}
+            addChallenge={this.props.addChallenge}
+            removeChallenge={this.props.removeChallenge}
+            startTheGame={this.props.startTheGame}
+            endTheGame={this.props.endTheGame}
+            doChallenge={(key) => this.props.doChallenge(key)}
+          />
+        )}
         <Footer />
       </div>
     );

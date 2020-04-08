@@ -10,14 +10,13 @@ class LogIn extends Component {
     };
   }
 
-  handleUsernameChange = e => {
-    this.setState({username: e.target.value});
-  }
+  handleUsernameChange = (e) => {
+    this.setState({ username: e.target.value });
+  };
 
-  handlePasswordChange = e => {
-    this.setState({password: e.target.value});
-  }
-
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
+  };
 
   handleSubmit = (e) => {
     fetch("http://localhost:3000/signin", {
@@ -25,9 +24,17 @@ class LogIn extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: this.state.username,
-        password: this.state.password
+        password: this.state.password,
       }),
-    });
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp !== "error logging in") {
+          this.props.setUser(resp);
+          this.props.logInAndOut(true);
+          this.props.setRoute("game");
+        }
+      });
   };
 
   render() {
@@ -38,12 +45,24 @@ class LogIn extends Component {
           <label htmlFor="username" name="username">
             Username
           </label>
-          <input type="text" name="username" onChange={this.handleUsernameChange}></input>
+          <input
+            type="text"
+            name="username"
+            onChange={this.handleUsernameChange}
+          ></input>
           <label htmlFor="password" name="password">
             Password
           </label>
-          <input type="password" name="password" onChange={this.handlePasswordChange}></input>
-          <input type="submit" value="Log in" onClick={this.handleSubmit}></input>
+          <input
+            type="password"
+            name="password"
+            onChange={this.handlePasswordChange}
+          ></input>
+          <input
+            type="submit"
+            value="Log in"
+            onClick={this.handleSubmit}
+          ></input>
         </div>
       </div>
     );

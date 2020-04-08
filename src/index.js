@@ -5,9 +5,9 @@ import { createStore, combineReducers } from "redux";
 import App from "./App";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import { setChallenges, setStep, setRoute } from "./reducers";
+import { setChallenges, setStep, setRoute, logInAndOut, setUser } from "./reducers";
 
-const rootReducer = combineReducers({setChallenges, setStep, setRoute});
+const rootReducer = combineReducers({setChallenges, setStep, setRoute, logInAndOut, setUser});
 
 const store = createStore(rootReducer);
 

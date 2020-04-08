@@ -1,10 +1,41 @@
 import React from "react";
 import "./Nav.css";
+import user from "../../img/user.png";
 
 function Nav(props) {
+  const handleLogOut = (e) => {
+    fetch("http://localhost:3000/signout", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        logOut: true,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp === "logged out") {
+          props.logInAndOut(false);
+        }
+      });
+  };
+
   return props.isLoged ? (
     <div className="nav">
-      <p>LOG OUT</p>
+      <p
+        onClick={props.viewGame}
+        className={props.route === "game" ? "navItemHover" : ""}
+        style={{
+          borderBottom: props.route === "game" ? "1px solid #fff" : "",
+          cursor: props.route === "game" ? "default" : "pointer",
+        }}
+      >
+        GAME
+      </p>
+      <div className="user">
+        <img src={user} alt="avatar" />
+        <p>{props.user.username}</p>
+      </div>
+      <p onClick={handleLogOut}>LOG OUT</p>
     </div>
   ) : (
     <div className="nav">

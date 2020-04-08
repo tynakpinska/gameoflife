@@ -23,7 +23,7 @@ function Set(props) {
 
   return (
     <div>
-      <h1>What are you playing today?</h1>
+      <h1>{props.user.username ? `${props.user.username}, what are you playing today?` : "What are you playing today?"}</h1>
       <input type="text" placeholder="Enter your challenges for today" onKeyUp={handleEnter}></input>
       {props.challenges.map(c => {
         const { name, key } = c;

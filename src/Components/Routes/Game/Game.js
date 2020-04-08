@@ -10,6 +10,7 @@ function Game(props) {
     <div className="container">
       {props.step === "set" ? (
         <Set
+        user={props.user}
           challenges={props.challenges}
           addChallenge={(challenge, key) => props.addChallenge(challenge, key)}
           removeChallenge={props.removeChallenge}

@@ -36,3 +36,19 @@ border-left: 1px solid #fff;
     font-weight: bold;
     cursor: auto;
 }
+
+.user {
+    display: flex;
+    align-items: center;
+    border-left: 1px solid #fff;
+}
+
+.user img {
+    width: 30px;
+    margin-left: 10px;
+}
+
+.user p {
+    border: none;
+    color: #fff;
+}
