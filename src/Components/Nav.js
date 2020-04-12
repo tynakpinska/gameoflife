@@ -1,6 +1,5 @@
 import React from "react";
-import "./Nav.css";
-import user from "../../img/user.png";
+import user from "../img/user.png";
 
 function Nav(props) {
   const handleLogOut = (e) => {
@@ -14,7 +13,8 @@ function Nav(props) {
       .then((resp) => resp.json())
       .then((resp) => {
         if (resp === "logged out") {
-          props.logInAndOut(false);
+          props.logOut();
+          props.setUser({});
         }
       });
   };
@@ -50,7 +50,7 @@ function Nav(props) {
         GAME
       </p>
       <p
-        onClick={props.logIn}
+        onClick={props.handleLogIn}
         className={props.route === "login" ? "navItemHover" : ""}
         style={{
           borderBottom: props.route === "login" ? "1px solid #ff5c00" : "",

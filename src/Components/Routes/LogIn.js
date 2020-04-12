@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./LogIn.css";
 
 class LogIn extends Component {
   constructor(props) {
@@ -7,6 +6,7 @@ class LogIn extends Component {
     this.state = {
       username: "",
       password: "",
+      loginFailed: false
     };
   }
 
@@ -29,12 +29,15 @@ class LogIn extends Component {
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        if (resp !== "error logging in") {
+        if (resp === "Unable to log in" || resp === "No such user" || resp === "Incorrect form submission") {
+          this.setState({loginFailed: true})
+        } else {
           this.props.setUser(resp);
-          this.props.logInAndOut(true);
+          this.props.logIn();
           this.props.setRoute("game");
         }
-      });
+      })
+      .catch(console.log);
   };
 
   render() {
@@ -58,6 +61,7 @@ class LogIn extends Component {
             name="password"
             onChange={this.handlePasswordChange}
           ></input>
+          <p className={!this.state.loginFailed ? "hide" : ""}>Oooops... Something went wrong. Please try again.</p>
           <input
             type="submit"
             value="Log in"

@@ -1,7 +1,8 @@
 // ACTION - AN OBJECT DESCRIBING WHAT HAPPENED
 
 import {
-  IS_LOGED,
+  LOG_IN,
+  LOG_OUT,
   SET_ROUTE,
   SET_CHALLENGE,
   REMOVE_CHALLENGE,
@@ -41,9 +42,12 @@ export const setRoute = route => ({
   payload: route
 });
 
-export const logInAndOut = boolean => ({
-  type: IS_LOGED,
-  payload: boolean
+export const logIn = boolean => ({
+  type: LOG_IN
+});
+
+export const logOut = boolean => ({
+  type: LOG_OUT
 });
 
 export const setUser = user => ({

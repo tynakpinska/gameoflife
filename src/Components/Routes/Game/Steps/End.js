@@ -1,10 +1,9 @@
 import React from "react";
-import "./End.css";
 import tiger from "./../../../../img/tiger.jpg";
 
 function End(props) {
   return (
-    <div className="end">
+    <div className="container end">
       <p>You won today!</p>
       <p>Well done!</p>
       <p>Take a rest.</p>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Register.css";
 
 class Register extends Component {
   constructor(props) {
@@ -8,38 +7,56 @@ class Register extends Component {
       username: "",
       email: "",
       password: "",
+      registerAttempt: "",
     };
   }
 
-  handleUsernameChange = (e) => {
+  handleUsernameChange = e => {
     this.setState({ username: e.target.value });
   };
 
-  handleEmailChange = (e) => {
+  handleEmailChange = e => {
     this.setState({ email: e.target.value });
   };
 
-  handlePasswordChange = (e) => {
+  handlePasswordChange = e => {
     this.setState({ password: e.target.value });
   };
 
-  handleSubmit = (e) => {
-    console.log(e);
+  handleSubmit = e => {
+    const { username, email, password } = this.state;
     fetch("http://localhost:3000/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password,
+        username,
+        email,
+        password
       }),
     })
-      .then((resp) => resp.json())
-      .then((resp) => console.log(resp));
+      .then(resp => resp.json())
+      .then(resp => {
+        if (resp === "Unable to register" || resp === "Incorrect form submission") {
+          this.setState({ registerAttempt: "failure" });
+        } else {
+          this.setState({
+            registerAttempt: "success",
+          });
+          console.log(resp);
+        }
+      })
+      .catch(console.log);
   };
 
-  render() {
-    return (
+  render({ registerAttempt } = this.state) {
+    return registerAttempt === "success" ? (
+      <div className="container">
+        <div className="register success">
+          <p>Account created!</p>
+          <p>You may log in now.</p>
+        </div>
+      </div>
+    ) : (
       <div className="container">
         <h1>Register</h1>
         <div className="register">
@@ -67,6 +84,10 @@ class Register extends Component {
             name="password"
             onChange={this.handlePasswordChange}
           ></input>
+          <p className={registerAttempt === "failure" ? "" : "hide"}>
+            Unable to register. Please try again.
+          </p>
+
           <input
             type="submit"
             value="Register"

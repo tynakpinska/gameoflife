@@ -1,5 +1,6 @@
 export const SET_USER = "SET_USER";
-export const IS_LOGED = "IS_LOGED";
+export const LOG_IN = "LOG_IN";
+export const LOG_OUT = "LOG_OUT";
 export const SET_ROUTE = "SET_ROUTE";
 export const SET_CHALLENGE = "SET_CHALLENGE";
 export const REMOVE_CHALLENGE = "REMOVE_CHALLENGE";

@@ -1,5 +1,4 @@
 import React from "react";
-import "./Victories.css";
 
 function Victories() {
   return (

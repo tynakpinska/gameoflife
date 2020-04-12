@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background: rgb(19, 7, 0);
+}
+
 .container {
   width: 40%;
   max-width: 650px;
@@ -59,6 +70,276 @@ input:focus {
   color: #ff5c00;
 }
 
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.nav p {
+  background: none;
+  border: none;
+  color: #ff5c00;
+  font-size: 0.9em;
+  padding: 0 10px 5px 10px;
+  border-left: 1px solid #fff;
+}
+
+.nav p:first-child {
+  color: #fff;
+  border: none;
+}
+
+.nav p:hover {
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.navItemHover {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.navItemHover:hover {
+  font-weight: bold;
+  cursor: auto;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #fff;
+}
+
+.user img {
+  width: 30px;
+  margin-left: 10px;
+}
+
+.user p {
+  border: none;
+  color: #fff;
+}
+
+.box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("./img/mountain.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: -1;
+  width: 60%;
+  height: 80%;
+  border-bottom: 10px solid #9b3800;
+}
+
+.frisella {
+  font-size: 1.4rem;
+  text-align: right;
+  padding: 20px;
+  width: 30%;
+  font-style: italic;
+  background: rgba(173, 173, 173, 0.8);
+  position: fixed;
+  animation: slideinleft 2s ease-out;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: normal;
+  background: rgb(128, 128, 128);
+  margin-top: 10px;
+  padding: 20px 50px;
+  width: 60vw;
+  color: rgba(207, 206, 206, 0.9);
+  text-align: left;
+  animation: show 2s ease-out, slideinleft 2s ease-out;
+  border-left: 20px solid #ff5d00;
+}
+
+.learn {
+  position: fixed;
+  top: 90px;
+  right: 0;
+  background: linear-gradient(to right, #ff5c00, #9b3800);
+  width: 45%;
+  height: 30%;
+  border-radius: 50px 0 0 50px;
+  padding: 10px;
+  z-index: -1;
+  animation: show 2s ease-in, slideinright 2s ease-in;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.learn p {
+  width: 50%;
+  font-size: 3vw;
+  text-align: right;
+  font-style: italic;
+}
+
+.victories {
+  position: fixed;
+  bottom: 90px;
+  right: 0;
+  background-image: url(./img/victory.jpg);
+  background-size: cover;
+  width: 50%;
+  height: 30%;
+  border-radius: 50px 0 0 50px;
+  padding: 10px;
+  z-index: -1;
+  animation: show 2s ease-in, slideinright 2s ease-in;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.victories p {
+  width: 50%;
+  color: #170a01;
+  text-align: right;
+  font-size: 1.8vw;
+  font-style: italic;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login label {
+  align-self: start;
+  margin: 30px 0 3px 0;
+  padding: 5px 50px 5px 10px;
+  border-top: 2px solid #ffcfb3;
+  border-left: 5px solid #ffcfb3;
+}
+
+.login input {
+  margin: 0;
+}
+
+.login input[type="submit"] {
+  margin-top: 50px;
+  background: #9b3800;
+  color: #ffcfb3;
+  border: none;
+}
+
+.login input[type="submit"]:hover {
+  color: #ff5c00;
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+
+.login p {
+  color: rgb(155, 5, 5);
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register label {
+  align-self: start;
+  margin: 30px 0 3px 0;
+  padding: 5px 50px 5px 10px;
+  border-top: 2px solid #ffcfb3;
+  border-left: 5px solid #ffcfb3;
+}
+
+.register input {
+  margin: 0;
+}
+
+.register input[type="submit"] {
+  margin-top: 50px;
+  background: #9b3800;
+  color: #ffcfb3;
+  border: none;
+}
+
+.register input[type="submit"]:hover {
+  color: #ff5c00;
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+
+.register p {
+  color: #fff;
+  font-weight: bold;
+}
+
+.challElement {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.challElement:last-of-type .challenge {
+  animation: appear 0.5s ease-in-out forwards;
+}
+
+.challenge {
+  border: 1px solid #9b3800;
+  border-radius: 20px;
+  background: #ff9c64;
+  color: #9b3800;
+  font-weight: bolder;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 5px 5px 10px #9b3800;
+}
+
+.challenge:hover {
+  cursor: no-drop;
+}
+
+.done {
+  font-size: 0.8rem;
+  color: #9b3800;
+  text-decoration: line-through;
+}
+
+.fist {
+  display: flex;
+  align-items: center;
+}
+
+.fist img {
+  height: 40px;
+}
+
+.timer {
+  font-size: 1.2rem;
+  margin: 20px;
+  line-height: 30px;
+}
+
+span {
+  color: #fff;
+  background: #9b3800;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-weight: bolder;
+  display: inline-block;
+  width: 150px;
+}
+
 .end {
   display: flex;
   flex-direction: column;
@@ -68,4 +349,102 @@ input:focus {
 .end img {
   border: 3px solid orange;
   padding: 20px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: black;
+  color: #fff;
+}
+
+.footer button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 0.9em;
+}
+
+.footer button:hover {
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 20% auto;
+  }
+
+  .nav {
+    background-color: black;
+  }
+
+  .box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .frisella {
+    display: none;
+  }
+
+  .learn {
+    display: none;
+  }
+
+  .victories {
+    display: none;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideinleft {
+  0% {
+    left: -500px;
+  }
+
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slideinright {
+  0% {
+    right: -500px;
+  }
+
+  100% {
+    right: 0;
+  }
+}
+
+@keyframes appear {
+  0% {
+    padding: 10px;
+    font-weight: 500;
+  }
+  50% {
+    padding: 12px;
+  }
+  100% {
+    padding: 10px;
+    font-weight: bolder;
+  }
 }

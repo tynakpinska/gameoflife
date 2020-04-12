@@ -1,5 +1,4 @@
 import React from "react";
-import "./Frisella.css";
 
 function Frisella() {
   return (

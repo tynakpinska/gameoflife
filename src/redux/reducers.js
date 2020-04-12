@@ -1,14 +1,15 @@
 // REDUCERS specify how the actions transform the state tree
 
 import {
-  IS_LOGED,
+  LOG_IN,
+  LOG_OUT,
   SET_ROUTE,
   SET_CHALLENGE,
   REMOVE_CHALLENGE,
   START_THE_GAME,
   END_THE_GAME,
   DO_CHALLENGE,
-  SET_USER
+  SET_USER,
 } from "./constants";
 
 const initialState = {
@@ -20,7 +21,7 @@ const initialState = {
     id: "",
     username: "",
     email: "",
-    joined: ""
+    joined: "",
   }
 };
 
@@ -40,13 +41,13 @@ export const setChallenges = (state = initialState, action = {}) => {
     case REMOVE_CHALLENGE:
       return Object.assign({}, state, {
         challenges: [
-          ...state.challenges.filter((ch) => ch.key !== action.payload),
+          ...state.challenges.filter(ch => ch.key !== action.payload),
         ],
       });
     case DO_CHALLENGE:
       return Object.assign({}, state, {
         challenges: [
-          ...state.challenges.map((ch) => {
+          ...state.challenges.map(ch => {
             if (ch.key === action.payload) {
               return { name: ch.name, key: ch.key, isDone: true };
             } else {
@@ -88,9 +89,19 @@ export const setRoute = (state = initialState, action = false) => {
 
 export const logInAndOut = (state = initialState, action = false) => {
   switch (action.type) {
-    case IS_LOGED:
+    case LOG_IN:
       return Object.assign({}, state, {
-        isLoged: action.payload
+        isLoged: true,
+      });
+    case LOG_OUT:
+      return Object.assign({}, state, {
+        isLoged: false,
+        user: {
+          id: "",
+          username: "",
+          email: "",
+          joined: "",
+        }
       });
     default:
       return state;
@@ -101,7 +112,7 @@ export const setUser = (state = initialState, action = false) => {
   switch (action.type) {
     case SET_USER:
       return Object.assign({}, state, {
-        user: action.payload
+        user: action.payload,
       });
     default:
       return state;

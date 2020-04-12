@@ -1,10 +1,9 @@
 import React from "react";
-import "./Start.css";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
 
-import Challenge from "./../Challenge/Challenge";
-import Timer from "./../Timer/Timer";
+import Challenge from "../Challenge";
+import Timer from "../Timer";
 import cursorCheck from "./../../../../img/checkmark.png";
 
 function Start(props) {
@@ -22,7 +21,7 @@ function Start(props) {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Let's do it!</h1>
       {props.challenges.map((c) => {
         return (

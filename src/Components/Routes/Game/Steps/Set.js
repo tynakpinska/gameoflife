@@ -1,8 +1,7 @@
 import React from "react";
-import "./Set.css";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
-import Challenge from "./../Challenge/Challenge";
+import Challenge from "../Challenge";
 import cursorDelete from "./../../../../img/delete.png";
 
 function Set(props) {
@@ -22,9 +21,9 @@ function Set(props) {
     }
 
   return (
-    <div>
+    <div className="container">
       <h1>{props.user.username ? `${props.user.username}, what are you playing today?` : "What are you playing today?"}</h1>
-      <input type="text" placeholder="Enter your challenges for today" onKeyUp={handleEnter}></input>
+      <input type="text" placeholder="Enter your challenges" onKeyUp={handleEnter}></input>
       {props.challenges.map(c => {
         const { name, key } = c;
         return (
