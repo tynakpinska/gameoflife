@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./App.css";
+import "./fontello/css/fontello.css";
 import Frisella from "./Components/Visual/Frisella";
 import Learn from "./Components/Visual/Learn";
 import Victories from "./Components/Visual/Victories";
