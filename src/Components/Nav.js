@@ -23,7 +23,7 @@ function Nav(props) {
     <div className="nav">
       <p
         onClick={props.viewGame}
-        className={props.route === "game" ? "navItemHover" : ""}
+        className={props.route === "game" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "game" ? "1px solid #fff" : "",
           cursor: props.route === "game" ? "default" : "pointer",
@@ -41,7 +41,7 @@ function Nav(props) {
     <div className="nav">
       <p
         onClick={props.viewGame}
-        className={props.route === "game" ? "navItemHover" : ""}
+        className={props.route === "game" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "game" ? "1px solid #fff" : "",
           cursor: props.route === "game" ? "default" : "pointer",
@@ -51,7 +51,7 @@ function Nav(props) {
       </p>
       <p
         onClick={props.handleLogIn}
-        className={props.route === "login" ? "navItemHover" : ""}
+        className={props.route === "login" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "login" ? "1px solid #ff5c00" : "",
           cursor: props.route === "login" ? "default" : "pointer",
@@ -61,7 +61,7 @@ function Nav(props) {
       </p>
       <p
         onClick={props.register}
-        className={props.route === "register" ? "navItemHover" : ""}
+        className={props.route === "register" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "register" ? "1px solid #ff5c00" : "",
           cursor: props.route === "register" ? "default" : "pointer",

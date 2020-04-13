@@ -55,8 +55,8 @@ input:hover {
 
 input:hover,
 input:focus {
-  border: 1px solid #9b3800;
-  box-shadow: 0 0 10px #9b3800;
+  border: 1px solid #ffcfb3;
+  box-shadow: 0 0 10px #ffcfb3;
   outline: none;
 }
 
@@ -67,7 +67,7 @@ input:focus {
 }
 
 .container button:hover {
-  color: #ff5c00;
+  box-shadow: 0 0 10px #ffcfb3;
 }
 
 .nav {
@@ -80,8 +80,6 @@ input:focus {
 }
 
 .nav p {
-  background: none;
-  border: none;
   color: #ff5c00;
   font-size: 0.9em;
   padding: 0 10px 5px 10px;
@@ -99,12 +97,12 @@ input:focus {
   letter-spacing: 2px;
 }
 
-.navItemHover {
+.navItemClicked {
   font-weight: bold;
   letter-spacing: 2px;
 }
 
-.navItemHover:hover {
+.navItemClicked:hover {
   font-weight: bold;
   cursor: auto;
 }
@@ -310,6 +308,10 @@ h3 {
   overflow-wrap: anywhere;
 }
 
+.challenge i:hover {
+cursor: pointer;
+}
+
 .done {
   font-size: 0.8rem;
   color: #9b3800;
@@ -357,29 +359,56 @@ span {
   bottom: 0;
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 15px;
   background-color: black;
   color: #fff;
 }
 
+.footer i {
+  font-size: 1.3em;
+  color: #fff;
+}
+
+.footer i:hover {
+  color: orange;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .info {
-  width: 80%;
-  padding: 20px 50px;
-  text-align: justify;
+  display: flex;
+  border-top: 1px solid white;
+  margin-top: 10px;
+  padding-top: 20px;
+  align-items: center;
+}
+
+.info p {
+  width: 20%;
+  display: block;
+  margin: 0 10px;
+}
+
+.info div {
+  width: 20%;
+  margin: 0 10px;
+}
+
+.info div p {
+  width: 100%;
+}
+
+.info li {
+  margin: 0 40px;
 }
 
 .hide {
   display: none;
-}
-
-.info p {
-  margin: 10px 0;
-}
-
-.info ol {
-  margin-left: 50px;
 }
 
 .footer span {
