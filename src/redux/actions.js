@@ -22,14 +22,12 @@ export const removeChallenge = (key) => ({
   payload: key
 });
 
-export const startTheGame = (chall) => ({
-  type: START_THE_GAME,
-  payload: false
+export const startTheGame = () => ({
+  type: START_THE_GAME
 });
 
 export const endTheGame = () => ({
-  type: END_THE_GAME,
-  payload: false
+  type: END_THE_GAME
 });
 
 export const doChallenge = (key) => ({

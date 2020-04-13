@@ -25,7 +25,7 @@ function Game(
       removeChallenge={removeChallenge}
       startTheGame={startTheGame}
     />
-  ) : step === "start" && !Object.values(challenges).every(ch => ch.isDone) ? (
+  ) : step === "start" ? (
     <Start
       step={step}
       challenges={challenges}

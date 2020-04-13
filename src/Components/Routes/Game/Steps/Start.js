@@ -7,12 +7,12 @@ import Timer from "../Timer";
 
 class Start extends Component {
 
-  componentDidUpdate({ challenges, endTheGame } = this.props) {
-    if (challenges.every(ch => ch.isDone)) setTimeout(() => endTheGame, 5000);
-    }
 
-  handleChallClick = (e, key) => {
-    this.props.doChallenge(key);
+  handleChallClick = async (e, key) => {
+    await this.props.doChallenge(key);
+    if (this.props.challenges.every(ch => ch.isDone)) {
+      setTimeout(this.props.endTheGame, 1000);
+    }
   };
 
   render({ challenges, step } = this.props) {
