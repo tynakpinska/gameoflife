@@ -2,7 +2,6 @@ import React from "react";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
 import Challenge from "../Challenge";
-import cursorDelete from "./../../../../img/delete.png";
 
 function Set(props) {
   const handleEnter = e => {
@@ -16,10 +15,6 @@ function Set(props) {
     props.removeChallenge(key);
   }
 
-  const handleMouseOver = e => {
-      e.target.style.cursor = `url("${cursorDelete}"), auto`;
-    }
-
   return (
     <div className="container">
       <h1>{props.user.username ? `${props.user.username}, what are you playing today?` : "What are you playing today?"}</h1>
@@ -28,10 +23,10 @@ function Set(props) {
         const { name, key } = c;
         return (
         <Challenge
+        step={props.step}
           challenge={name}
           key={key}
           handleChallClick={(e, {key} = c) => handleChallClick(e, key)}
-          handleMouseOver={handleMouseOver}
         />
       )})}
       <button onClick={props.startTheGame}>Start the game!</button>

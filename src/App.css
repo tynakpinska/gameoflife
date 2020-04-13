@@ -303,10 +303,11 @@ h3 {
   padding: 10px;
   margin: 10px;
   box-shadow: 5px 5px 10px #9b3800;
-}
-
-.challenge:hover {
-  cursor: no-drop;
+  min-width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-wrap: anywhere;
 }
 
 .done {

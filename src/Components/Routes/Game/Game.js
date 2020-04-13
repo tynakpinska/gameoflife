@@ -19,6 +19,7 @@ function Game(
   return step === "set" ? (
     <Set
       user={user}
+      step={step}
       challenges={challenges}
       addChallenge={(chall, key) => addChallenge(chall, key)}
       removeChallenge={removeChallenge}
@@ -26,6 +27,7 @@ function Game(
     />
   ) : step === "start" && !Object.values(challenges).every(ch => ch.isDone) ? (
     <Start
+      step={step}
       challenges={challenges}
       endTheGame={endTheGame}
       doChallenge={key => doChallenge(key)}
