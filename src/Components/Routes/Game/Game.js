@@ -14,6 +14,7 @@ function Game(
     startTheGame,
     endTheGame,
     doChallenge,
+    editChallenge
   } = this.props
 ) {
   return step === "set" ? (
@@ -24,6 +25,7 @@ function Game(
       addChallenge={(chall, key) => addChallenge(chall, key)}
       removeChallenge={removeChallenge}
       startTheGame={startTheGame}
+      editChallenge={editChallenge}
     />
   ) : step === "start" ? (
     <Start

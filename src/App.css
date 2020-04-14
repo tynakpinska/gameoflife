@@ -320,6 +320,11 @@ h3 {
 cursor: pointer;
 }
 
+.challenge input {
+  margin: 0;
+  width: 100%;
+}
+
 .done {
   font-size: 0.8rem;
   color: #9b3800;

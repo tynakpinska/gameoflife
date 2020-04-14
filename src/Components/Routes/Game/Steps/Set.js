@@ -29,7 +29,7 @@ class Set extends Component {
       : this.setState({ startFailed: true });
   };
 
-  render({ user, challenges, step } = this.props) {
+  render({ user, challenges, step, editChallenge } = this.props) {
     return (
       <div className="container">
         <h1>
@@ -43,15 +43,15 @@ class Set extends Component {
           onKeyUp={this.handleEnter}
         ></input>
         {challenges.map(c => {
-          const { name, key } = c;
           return (
             <Challenge
               step={step}
-              challenge={name}
-              key={key}
+              challenge={c.name}
+              key={c.key}
               handleChallClick={(e, { key } = c) =>
                 this.handleChallClick(e, key)
               }
+              editChallenge={e => editChallenge(e, c.key)}
             />
           );
         })}

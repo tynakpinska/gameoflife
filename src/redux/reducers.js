@@ -10,6 +10,7 @@ import {
   END_THE_GAME,
   DO_CHALLENGE,
   SET_USER,
+  EDIT_CHALLENGE,
 } from "./constants";
 
 const initialState = {
@@ -22,7 +23,7 @@ const initialState = {
     username: "",
     email: "",
     joined: "",
-  }
+  },
 };
 
 export const setChallenges = (state = initialState, action = {}) => {
@@ -36,6 +37,22 @@ export const setChallenges = (state = initialState, action = {}) => {
             key: action.payload[1],
             isDone: false,
           },
+        ],
+      });
+    case EDIT_CHALLENGE:
+      return Object.assign({}, state, {
+        challenges: [
+          ...state.challenges.map(ch => {
+            if (ch.key === action.payload[1]) {
+              return {
+                name: `${action.payload[0]}`,
+                key: `${action.payload[1]}`,
+                isDone: false,
+              };
+            } else {
+              return ch;
+            }
+          }),
         ],
       });
     case REMOVE_CHALLENGE:
@@ -102,7 +119,7 @@ export const logInAndOut = (state = initialState, action = false) => {
           username: "",
           email: "",
           joined: "",
-        }
+        },
       });
     default:
       return state;

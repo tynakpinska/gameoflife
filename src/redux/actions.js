@@ -9,7 +9,8 @@ import {
   START_THE_GAME,
   END_THE_GAME,
   DO_CHALLENGE,
-  SET_USER
+  SET_USER,
+  EDIT_CHALLENGE
 } from "./constants";
 
 export const setChallenge = (challenge, key) => ({
@@ -20,6 +21,11 @@ export const setChallenge = (challenge, key) => ({
 export const removeChallenge = (key) => ({
   type: REMOVE_CHALLENGE,
   payload: key
+});
+
+export const editChallenge = (newChall, key) => ({
+  type: EDIT_CHALLENGE,
+  payload: [newChall, key]
 });
 
 export const startTheGame = () => ({

@@ -23,11 +23,18 @@ class Challenge extends Component {
   };
 
   handleEdit = e => {
-    console.log(e.target.parentNode.previousSibling);
     this.setState({ isEditable: true });
   };
 
-  render({ isDone, handleChallClick, challenge, step } = this.props) {
+  handleEnter = e => {
+    if (e.key === "Enter" && e.target.value !== "") {
+      console.log(e.target);
+      this.props.editChallenge(e.target.value);
+      this.setState({ isEditable: false });
+    }
+  };
+
+  render({ isDone, handleChallClick, challenge, step, id } = this.props) {
     return (
       <div className={isDone ? "challElement done" : "challElement"}>
         {isDone ? (
@@ -37,32 +44,48 @@ class Challenge extends Component {
         ) : (
           <div></div>
         )}
-        <div className="challenge">
-          {this.state.isEditable ? <input type="text"></input> : `${challenge}`}
-          {step === "set" ? (
-            <div>
-              <i
-                onMouseOver={this.handleOnMouseOver}
-                onMouseLeave={this.handleOnMouseLeave}
-                onClick={this.handleEdit}
-                className="demo-icon icon-pencil"
-              ></i>
+        {step === "set" ? (
+          this.state.isEditable ? (
+            <div className="challenge">
+              <input
+                type="text"
+                defaultValue={challenge}
+                onKeyPress={this.handleEnter}
+                autofocus
+              ></input>
+            </div>
+          ) : (
+            <div className="challenge">
+              {challenge}
+              <div className="icons">
+                <i
+                  onMouseOver={this.handleOnMouseOver}
+                  onMouseLeave={this.handleOnMouseLeave}
+                  onClick={this.handleEdit}
+                  className="demo-icon icon-pencil"
+                ></i>
+                <i
+                  onMouseOver={this.handleOnMouseOver}
+                  onMouseLeave={this.handleOnMouseLeave}
+                  onClick={handleChallClick}
+                  className="demo-icon icon-trash"
+                ></i>
+              </div>
+            </div>
+          )
+        ) : (
+          <div className="challenge">
+            {challenge}
+            <div className="icons">
               <i
                 onMouseOver={this.handleOnMouseOver}
                 onMouseLeave={this.handleOnMouseLeave}
                 onClick={handleChallClick}
-                className="demo-icon icon-trash"
+                className={isDone ? "" : "demo-icon icon-ok"}
               ></i>
             </div>
-          ) : (
-            <i
-              onMouseOver={this.handleOnMouseOver}
-              onMouseLeave={this.handleOnMouseLeave}
-              onClick={handleChallClick}
-              className={isDone ? "" : "demo-icon icon-ok"}
-            ></i>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }

@@ -21,6 +21,7 @@ import {
   logIn,
   logOut,
   setUser,
+  editChallenge
 } from "./redux/actions";
 
 const mapStateToProps = state => {
@@ -44,6 +45,7 @@ const mapDispatchToProps = dispatch => {
     logIn: () => dispatch(logIn()),
     logOut: () => dispatch(logOut()),
     setUser: user => dispatch(setUser(user)),
+    editChallenge: (chall, key) => dispatch(editChallenge(chall, key))
   };
 };
 
@@ -96,6 +98,7 @@ class App extends Component {
             startTheGame={this.props.startTheGame}
             endTheGame={this.props.endTheGame}
             doChallenge={key => this.props.doChallenge(key)}
+            editChallenge={(chall, key) => this.props.editChallenge(chall, key)}
           />
         )}
         <Footer />
