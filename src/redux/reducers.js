@@ -64,7 +64,6 @@ export const setChallenges = (state = initialState, action = {}) => {
 export const setStep = (state = initialState, action = {}) => {
   switch (action.type) {
     case START_THE_GAME:
-      console.log("start");
       return Object.assign({}, state, {
         step: "start",
       });

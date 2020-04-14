@@ -6,7 +6,7 @@
 }
 
 body {
-  background: rgb(19, 7, 0);
+  background: #000;
 }
 
 .container {
@@ -19,7 +19,7 @@ body {
   background: linear-gradient(to top, #ff5d00, #9b3800);
   color: #ffcfb3;
   border: 1px solid #9b3800;
-  box-shadow: -10px 10px 20px #9b3800;
+  box-shadow: -5px 5px 10px #9b3800;
   z-index: 1;
 }
 
@@ -128,12 +128,12 @@ input:focus {
   top: 0;
   left: 0;
   background-image: url("./img/mountain.jpg");
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -1;
   width: 60%;
   height: 80%;
-  border-bottom: 10px solid #9b3800;
 }
 
 .frisella {
@@ -145,6 +145,7 @@ input:focus {
   background: rgba(173, 173, 173, 0.8);
   position: fixed;
   animation: slideinleft 2s ease-out;
+  color: #f3efed;
 }
 
 h3 {
@@ -163,13 +164,14 @@ h3 {
 
 .learn {
   position: fixed;
-  top: 90px;
+  top: 60px;
   right: 0;
-  background: linear-gradient(to right, #ff5c00, #9b3800);
-  width: 45%;
-  height: 30%;
-  border-radius: 50px 0 0 50px;
-  padding: 10px;
+  background: url("./img/learn.jpg") center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 40%;
+  height: 60%;
   z-index: -1;
   animation: show 2s ease-in, slideinright 2s ease-in;
   display: flex;
@@ -177,10 +179,15 @@ h3 {
 }
 
 .learn p {
-  width: 50%;
-  font-size: 3vw;
+  padding: 0 5% 0 25%;
+  font-family: Chango;
+  font-size: 5vw;
+  font-weight: 900;
   text-align: right;
   font-style: italic;
+  mix-blend-mode: multiply;
+  color: white;
+  background: black;
 }
 
 .victories {
@@ -188,6 +195,7 @@ h3 {
   bottom: 90px;
   right: 0;
   background-image: url(./img/victory.jpg);
+  background-position: center;
   background-size: cover;
   width: 50%;
   height: 30%;

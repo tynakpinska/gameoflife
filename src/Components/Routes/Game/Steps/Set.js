@@ -39,7 +39,7 @@ class Set extends Component {
         </h1>
         <input
           type="text"
-          placeholder="Enter your challenges"
+          placeholder="Type in challenge and press Enter"
           onKeyUp={this.handleEnter}
         ></input>
         {challenges.map(c => {
