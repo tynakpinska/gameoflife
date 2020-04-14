@@ -42,7 +42,7 @@ class Register extends Component {
           this.setState({
             registerAttempt: "success",
           });
-          console.log(resp);
+          this.props.resetChallenges()
         }
       })
       .catch(console.log);

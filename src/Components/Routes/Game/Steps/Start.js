@@ -11,7 +11,7 @@ class Start extends Component {
   handleChallClick = async (e, key) => {
     await this.props.doChallenge(key);
     if (this.props.challenges.every(ch => ch.isDone)) {
-      setTimeout(this.props.endTheGame, 1000);
+      setTimeout(() => this.props.setStep("end"), 1000);
     }
   };
 
@@ -32,7 +32,7 @@ class Start extends Component {
             />
           );
         })}
-        <Timer />
+        <Timer setStep={this.props.setStep}/>
       </div>
     );
   }

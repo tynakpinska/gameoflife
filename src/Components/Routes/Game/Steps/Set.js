@@ -25,7 +25,7 @@ class Set extends Component {
 
   handleStartClick = () => {
     this.props.challenges.length
-      ? this.props.startTheGame()
+      ? this.props.setStep("start")
       : this.setState({ startFailed: true });
   };
 

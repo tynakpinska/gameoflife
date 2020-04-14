@@ -40,7 +40,7 @@ class Timer extends Component {
         leftParts.minutes === "00" &&
         leftParts.seconds === "00"
       ) {
-        this.props.endTheGame("end");
+        this.props.setStep("end");
       }
     }, 1000);
   }

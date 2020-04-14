@@ -4,13 +4,12 @@ import {
   LOG_IN,
   LOG_OUT,
   SET_ROUTE,
-  SET_CHALLENGE,
+  ADD_CHALLENGE,
   REMOVE_CHALLENGE,
-  START_THE_GAME,
-  END_THE_GAME,
+  SET_STEP,
   DO_CHALLENGE,
-  SET_USER,
   EDIT_CHALLENGE,
+  RESET_CHALLENGES
 } from "./constants";
 
 const initialState = {
@@ -28,7 +27,7 @@ const initialState = {
 
 export const setChallenges = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_CHALLENGE:
+    case ADD_CHALLENGE:
       return Object.assign({}, state, {
         challenges: [
           ...state.challenges.slice(0),
@@ -73,6 +72,10 @@ export const setChallenges = (state = initialState, action = {}) => {
           }),
         ],
       });
+      case RESET_CHALLENGES:
+      return Object.assign({}, state, {
+        challenges: []
+      });
     default:
       return state;
   }
@@ -80,14 +83,9 @@ export const setChallenges = (state = initialState, action = {}) => {
 
 export const setStep = (state = initialState, action = {}) => {
   switch (action.type) {
-    case START_THE_GAME:
+    case SET_STEP:
       return Object.assign({}, state, {
-        step: "start",
-      });
-    case END_THE_GAME:
-      console.log("end");
-      return Object.assign({}, state, {
-        step: "end",
+        step: action.payload,
       });
     default:
       return state;
@@ -110,6 +108,7 @@ export const logInAndOut = (state = initialState, action = false) => {
     case LOG_IN:
       return Object.assign({}, state, {
         isLoged: true,
+        user: action.payload
       });
     case LOG_OUT:
       return Object.assign({}, state, {
@@ -120,17 +119,6 @@ export const logInAndOut = (state = initialState, action = false) => {
           email: "",
           joined: "",
         },
-      });
-    default:
-      return state;
-  }
-};
-
-export const setUser = (state = initialState, action = false) => {
-  switch (action.type) {
-    case SET_USER:
-      return Object.assign({}, state, {
-        user: action.payload,
       });
     default:
       return state;

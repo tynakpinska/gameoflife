@@ -14,7 +14,9 @@ function Nav(props) {
       .then((resp) => {
         if (resp === "logged out") {
           props.logOut();
-          props.setUser({});
+          props.setRoute("game");
+          props.setStep("set");
+          props.resetChallenges()
         }
       });
   };
@@ -22,7 +24,7 @@ function Nav(props) {
   return props.isLoged ? (
     <div className="nav">
       <p
-        onClick={props.viewGame}
+        onClick={() => props.setRoute("game")}
         className={props.route === "game" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "game" ? "1px solid #fff" : "",
@@ -40,7 +42,7 @@ function Nav(props) {
   ) : (
     <div className="nav">
       <p
-        onClick={props.viewGame}
+        onClick={() => props.setRoute("game")}
         className={props.route === "game" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "game" ? "1px solid #fff" : "",
@@ -50,7 +52,7 @@ function Nav(props) {
         GAME
       </p>
       <p
-        onClick={props.handleLogIn}
+        onClick={() => props.setRoute("login")}
         className={props.route === "login" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "login" ? "1px solid #ff5c00" : "",
@@ -60,7 +62,7 @@ function Nav(props) {
         LOG IN
       </p>
       <p
-        onClick={props.register}
+        onClick={() => props.setRoute("register")}
         className={props.route === "register" ? "navItemClicked" : ""}
         style={{
           borderBottom: props.route === "register" ? "1px solid #ff5c00" : "",

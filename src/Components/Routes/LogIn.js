@@ -32,9 +32,10 @@ class LogIn extends Component {
         if (resp === "Unable to log in" || resp === "No such user" || resp === "Incorrect form submission") {
           this.setState({loginFailed: true})
         } else {
-          this.props.setUser(resp);
-          this.props.logIn();
+          this.props.logIn(resp);
           this.props.setRoute("game");
+          this.props.setStep("set");
+          this.props.resetChallenges()
         }
       })
       .catch(console.log);

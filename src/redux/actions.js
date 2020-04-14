@@ -4,17 +4,16 @@ import {
   LOG_IN,
   LOG_OUT,
   SET_ROUTE,
-  SET_CHALLENGE,
+  ADD_CHALLENGE,
   REMOVE_CHALLENGE,
-  START_THE_GAME,
-  END_THE_GAME,
+  SET_STEP,
   DO_CHALLENGE,
-  SET_USER,
-  EDIT_CHALLENGE
+  EDIT_CHALLENGE,
+  RESET_CHALLENGES
 } from "./constants";
 
-export const setChallenge = (challenge, key) => ({
-  type: SET_CHALLENGE,
+export const addChallenge = (challenge, key) => ({
+  type: ADD_CHALLENGE,
   payload: [challenge, key]
 });
 
@@ -28,17 +27,13 @@ export const editChallenge = (newChall, key) => ({
   payload: [newChall, key]
 });
 
-export const startTheGame = () => ({
-  type: START_THE_GAME
-});
-
-export const endTheGame = () => ({
-  type: END_THE_GAME
-});
-
 export const doChallenge = (key) => ({
   type: DO_CHALLENGE,
   payload: key
+});
+
+export const resetChallenges = (key) => ({
+  type: RESET_CHALLENGES
 });
 
 export const setRoute = route => ({
@@ -46,17 +41,18 @@ export const setRoute = route => ({
   payload: route
 });
 
-export const logIn = boolean => ({
-  type: LOG_IN
+export const setStep = step => ({
+  type: SET_STEP,
+  payload: step
+});
+
+export const logIn = user => ({
+  type: LOG_IN,
+  payload: user
 });
 
 export const logOut = boolean => ({
   type: LOG_OUT
-});
-
-export const setUser = user => ({
-  type: SET_USER,
-  payload: user
 });
 
 

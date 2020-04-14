@@ -28,7 +28,6 @@ class Challenge extends Component {
 
   handleEnter = e => {
     if (e.key === "Enter" && e.target.value !== "") {
-      console.log(e.target);
       this.props.editChallenge(e.target.value);
       this.setState({ isEditable: false });
     }
@@ -51,7 +50,7 @@ class Challenge extends Component {
                 type="text"
                 defaultValue={challenge}
                 onKeyPress={this.handleEnter}
-                autofocus
+                autoFocus
               ></input>
             </div>
           ) : (
