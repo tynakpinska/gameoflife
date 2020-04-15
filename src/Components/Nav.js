@@ -2,6 +2,7 @@ import React from "react";
 import user from "../img/user.png";
 
 function Nav(props) {
+
   const handleLogOut = (e) => {
     fetch("http://localhost:3000/signout", {
       method: "post",
@@ -21,7 +22,7 @@ function Nav(props) {
       });
   };
 
-  return props.isLoged ? (
+  return props.user.username ? (
     <div className="nav">
       <p
         onClick={() => props.setRoute("game")}

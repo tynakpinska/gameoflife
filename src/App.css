@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 body {
@@ -10,28 +10,33 @@ body {
 }
 
 .container {
-  width: 40%;
-  max-width: 650px;
-  min-height: 65vh;
-  margin: 180px auto;
-  padding: 50px;
+  width: 50vw;
+  height: 50vw;
+  position: fixed;
+  top: 5vw;
+  left: 27vw;
+  padding: 3%;
   text-align: center;
   background: linear-gradient(to top, #ff5d00, #9b3800);
   color: #ffcfb3;
-  border: 1px solid #9b3800;
-  box-shadow: -5px 5px 10px #9b3800;
+  box-shadow: 0 0 1.5rem #792d01;
+  border-radius: 100%;
   z-index: 1;
 }
 
 .container p {
-  padding: 10px;
+  padding: 2rem;
+}
+
+.typeChall {
+  min-width: 275px;
 }
 
 .container input,
 .container button {
-  margin: 20px auto 0 auto;
+  margin: 2rem auto 0 auto;
   border-radius: 15px;
-  padding: 10px;
+  padding: 0.7rem;
   display: block;
   font: inherit;
   cursor: pointer;
@@ -39,14 +44,14 @@ body {
 
 .container button:hover {
   font-weight: bold;
-  letter-spacing: 1px;
+  letter-spacing: 0.1rem;
 }
 
 input {
   background: #ffcfb3;
   color: rgb(110, 41, 1);
   border: none;
-  width: 90%;
+  width: 70%;
 }
 
 input:hover {
@@ -55,8 +60,8 @@ input:hover {
 
 input:hover,
 input:focus {
-  border: 1px solid #ffcfb3;
-  box-shadow: 0 0 10px #ffcfb3;
+  border: 0.2rem solid #ffcfb3;
+  box-shadow: 0 0 1rem #ffcfb3;
   outline: none;
 }
 
@@ -67,7 +72,7 @@ input:focus {
 }
 
 .container button:hover {
-  box-shadow: 0 0 10px #ffcfb3;
+  box-shadow: 0 0 1rem #ffcfb3;
 }
 
 .nav {
@@ -76,14 +81,14 @@ input:focus {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
+  padding: 0.5rem;
 }
 
 .nav p {
   color: #ff5c00;
   font-size: 0.9em;
-  padding: 0 10px 5px 10px;
-  border-left: 1px solid #fff;
+  padding: 0 1rem 0.5rem 1rem;
+  border-left: 0.1rem solid #fff;
 }
 
 .nav p:first-child {
@@ -99,7 +104,7 @@ input:focus {
 
 .navItemClicked {
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 0.2rem;
 }
 
 .navItemClicked:hover {
@@ -110,7 +115,7 @@ input:focus {
 .user {
   display: flex;
   align-items: center;
-  border-left: 1px solid #fff;
+  border-left: 0.1rem solid #fff;
 }
 
 .user img {
@@ -121,6 +126,7 @@ input:focus {
 .user p {
   border: none;
   color: #fff;
+  margin-top: 0.2rem;
 }
 
 .box {
@@ -139,7 +145,7 @@ input:focus {
 .frisella {
   font-size: 1.4rem;
   text-align: right;
-  padding: 20px;
+  padding: 1.5rem;
   width: 30%;
   font-style: italic;
   background: rgba(173, 173, 173, 0.8);
@@ -153,18 +159,18 @@ h3 {
   font-weight: 500;
   font-style: normal;
   background: rgb(128, 128, 128);
+  border-radius: 0 0 150px 150px;
   margin-top: 10px;
-  padding: 20px 50px;
-  width: 60vw;
+  padding: 10px 50px;
   color: rgba(207, 206, 206, 0.9);
-  text-align: left;
+  text-align: right;
   animation: show 2s ease-out, slideinleft 2s ease-out;
   border-left: 20px solid #ff5d00;
 }
 
 .learn {
   position: fixed;
-  top: 60px;
+  top: 5%;
   right: 0;
   background: url("./img/learn.jpg") center;
   background-position: center;
@@ -180,11 +186,10 @@ h3 {
 
 .learn p {
   padding: 0 5% 0 25%;
-  font-family: Chango;
-  font-size: 5vw;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 5.5vw;
   font-weight: 900;
   text-align: right;
-  font-style: italic;
   mix-blend-mode: multiply;
   color: white;
   background: black;
@@ -192,7 +197,7 @@ h3 {
 
 .victories {
   position: fixed;
-  bottom: 90px;
+  bottom: 50px;
   right: 0;
   background-image: url(./img/victory.jpg);
   background-position: center;
@@ -212,17 +217,17 @@ h3 {
   color: #170a01;
   text-align: right;
   font-size: 1.8vw;
-  font-style: italic;
 }
 
 .login {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top:70px;
 }
 .login label {
   align-self: start;
-  margin: 30px 0 3px 0;
+  margin: 30px 0 3px 60px;
   padding: 5px 50px 5px 10px;
   border-top: 2px solid #ffcfb3;
   border-left: 5px solid #ffcfb3;
@@ -230,6 +235,8 @@ h3 {
 
 .login input {
   margin: 0;
+  background: url(./img/challenge.jpg);
+  color: #ffcfb3;
 }
 
 .login input[type="submit"] {
@@ -248,7 +255,8 @@ h3 {
   display: none;
 }
 
-.login p {
+.warning {
+  margin: 40px 0 0 0;
   color: rgb(155, 5, 5);
 }
 
@@ -256,10 +264,11 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20px
 }
 .register label {
   align-self: start;
-  margin: 30px 0 3px 0;
+  margin: 30px 0 3px 60px;
   padding: 5px 50px 5px 10px;
   border-top: 2px solid #ffcfb3;
   border-left: 5px solid #ffcfb3;
@@ -267,6 +276,8 @@ h3 {
 
 .register input {
   margin: 0;
+  background: url(./img/challenge.jpg);
+  color: #ffcfb3;
 }
 
 .register input[type="submit"] {
@@ -285,11 +296,6 @@ h3 {
   display: none;
 }
 
-.register p {
-  color: #fff;
-  font-weight: bold;
-}
-
 .challElement {
   display: flex;
   justify-content: center;
@@ -302,14 +308,14 @@ h3 {
 
 .challenge {
   border: 1px solid #9b3800;
-  border-radius: 20px;
-  background: #ff9c64;
-  color: #9b3800;
+  background: url(./img/challenge.jpg);
+  background-size: cover;
+  color: rgb(199, 194, 194);
   font-weight: bolder;
   padding: 10px;
   margin: 10px;
   box-shadow: 5px 5px 10px #9b3800;
-  min-width: 50%;
+  min-width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -323,12 +329,18 @@ cursor: pointer;
 .challenge input {
   margin: 0;
   width: 100%;
+  background: none;
+  color: rgb(199, 194, 194);
 }
 
 .done {
   font-size: 0.8rem;
   color: #9b3800;
   text-decoration: line-through;
+}
+
+.fade {
+  opacity: 0.8;
 }
 
 .fist {
@@ -362,7 +374,13 @@ span {
   align-items: center;
 }
 
+.end p {
+  padding: 1rem;
+}
+
 .end img {
+  width: 90%;
+  height: auto;
   border: 3px solid orange;
   padding: 20px;
 }
@@ -376,6 +394,7 @@ span {
   padding: 15px;
   background-color: black;
   color: #fff;
+  z-index: 1;
 }
 
 .footer i {
@@ -455,33 +474,82 @@ span {
 }
 
 @media (max-width: 800px) {
+
   .container {
     width: 100%;
-    max-width: 100%;
-    margin: 20% auto;
+    min-height: 100%;
+    position: static;
+    border-radius: 0;
+    background-position: top;
   }
 
   .nav {
     background-color: black;
+    position: static;
   }
 
   .box {
     width: 100%;
-    height: 100%;
-    position: fixed;
-    bottom: 0;
+    height: 15rem;
+    position: static;
   }
 
   .frisella {
+    display:none;
+  }
+
+  .frisella p {
     display: none;
   }
 
   .learn {
-    display: none;
+    position: static;
+    width: 100%;
+  }
+
+  .learn p {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
   }
 
   .victories {
+    position: static;
+    width: 100%;
+    height: 20rem;
+    border-radius: 0;
+  }
+
+  .victories p {
+    width: 100%;
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .login {
+    padding-top: 0;
+  }
+
+  .end {
+    height: 100%;
+  }
+
+  .footer {
+    position: static;
+  }
+
+  .info {
+    display:block;
+    padding: 0.1rem;
+  }
+
+  .hide {
     display: none;
+  }
+
+  .info p, .info div {
+    width: 100%;
+    margin: 0.5rem 0 0 0;
   }
 }
 
@@ -511,6 +579,16 @@ span {
 
   100% {
     right: 0;
+  }
+}
+
+@keyframes slideinbottom {
+  0% {
+    bottom: -500px;
+  }
+
+  100% {
+    bottom: 0;
   }
 }
 

@@ -73,7 +73,7 @@ class Challenge extends Component {
             </div>
           )
         ) : (
-          <div className="challenge">
+          <div className={isDone ? "challenge fade" : "challenge"}>
             {challenge}
             <div className="icons">
               <i

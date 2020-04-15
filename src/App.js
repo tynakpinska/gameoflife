@@ -28,7 +28,6 @@ const mapStateToProps = state => {
     route: state.setRoute.route,
     step: state.setStep.step,
     challenges: state.setChallenges.challenges,
-    isLoged: state.logInAndOut.isLoged,
     user: state.logInAndOut.user,
   };
 };
@@ -52,7 +51,6 @@ class App extends Component {
     return (
       <div basename="/gameoflife">
         <Nav
-          isLoged={this.props.isLoged}
           route={this.props.route}
           logIn={this.props.logIn}
           logOut={this.props.logOut}
@@ -64,7 +62,6 @@ class App extends Component {
         />
         <Frisella />
         <Learn />
-        <Victories />
         {this.props.route === "login" ? (
           <LogIn
             setUser={this.props.setUser}
@@ -89,6 +86,7 @@ class App extends Component {
             editChallenge={(chall, key) => this.props.editChallenge(chall, key)}
           />
         )}
+        <Victories />
         <Footer />
       </div>
     );

@@ -13,9 +13,26 @@ class Set extends Component {
 
   handleEnter = e => {
     if (e.key === "Enter" && e.target.value !== "") {
-      this.props.addChallenge(e.target.value, uuidv4());
+      const user= this.props.user;
+      const challenge = e.target.value;
+      const id = uuidv4();
+      this.props.addChallenge(challenge, id);
       e.target.value = "";
-      this.setState({startFailed: false})
+      this.setState({ startFailed: false });
+      fetch("http://localhost:3000/saveChallenge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user,
+          challenge,
+          key: id,
+          date: new Date(),
+          isDone: false,
+        }),
+      })
+        .then(resp => resp.json())
+        .then(resp => console.log(resp))
+        .catch(err => console.log(err, "Unable to save challenge"));
     }
   };
 
@@ -38,6 +55,7 @@ class Set extends Component {
             : "What are you playing today?"}
         </h1>
         <input
+        className="typeChall"
           type="text"
           placeholder="Type in challenge and press Enter"
           onKeyUp={this.handleEnter}
@@ -56,7 +74,14 @@ class Set extends Component {
           );
         })}
         <button onClick={this.handleStartClick}>Start the game!</button>
-        <p style={{display: this.state.startFailed ? "" : "none", color: "#3E0000"}}>Set challenges before starting the game!</p>
+        <p
+          style={{
+            display: this.state.startFailed ? "" : "none",
+            color: "#3E0000",
+          }}
+        >
+          Set challenges before starting the game!
+        </p>
       </div>
     );
   }

@@ -42,7 +42,6 @@ class Register extends Component {
           this.setState({
             registerAttempt: "success",
           });
-          this.props.resetChallenges()
         }
       })
       .catch(console.log);
@@ -84,7 +83,7 @@ class Register extends Component {
             name="password"
             onChange={this.handlePasswordChange}
           ></input>
-          <p className={registerAttempt === "failure" ? "" : "hide"}>
+          <p className={registerAttempt === "failure" ? "warning" : "hide"}>
             Unable to register. Please try again.
           </p>
 

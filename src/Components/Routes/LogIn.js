@@ -33,9 +33,6 @@ class LogIn extends Component {
           this.setState({loginFailed: true})
         } else {
           this.props.logIn(resp);
-          this.props.setRoute("game");
-          this.props.setStep("set");
-          this.props.resetChallenges()
         }
       })
       .catch(console.log);
@@ -62,7 +59,7 @@ class LogIn extends Component {
             name="password"
             onChange={this.handlePasswordChange}
           ></input>
-          <p className={!this.state.loginFailed ? "hide" : ""}>Oooops... Something went wrong. Please try again.</p>
+          <p className={!this.state.loginFailed ? "hide" : "warning"}>Oooops... Something went wrong. Please try again.</p>
           <input
             type="submit"
             value="Log in"
