@@ -21,7 +21,7 @@ class Footer extends Component {
           <p>
             2020 &copy; Tyna Kpińska
             <a
-              href="https://tynakpinska.github.io/gameoflife/"
+              href="https://github.com/tynakpinska"
               target="_blank"
               rel="noopener noreferrer"
             >
