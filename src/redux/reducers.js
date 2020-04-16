@@ -19,23 +19,16 @@ const initialState = {
   user: {},
 };
 
-export const setChallenges = (state = initialState, action = {}) => {
+export const setChallenges = (state = initialState.challenges, action = {}) => {
   switch (action.type) {
     case ADD_CHALLENGE:
-      return Object.assign({}, state, {
-        challenges: [
-          ...state.challenges.slice(0),
-          {
+      return [...state, {
             name: `${action.payload[0]}`,
             key: action.payload[1],
             isDone: false,
-          },
-        ],
-      });
+          }];
     case EDIT_CHALLENGE:
-      return Object.assign({}, state, {
-        challenges: [
-          ...state.challenges.map(ch => {
+          return state.map(ch => {
             if (ch.key === action.payload[1]) {
               return {
                 ...ch,
@@ -44,95 +37,58 @@ export const setChallenges = (state = initialState, action = {}) => {
             } else {
               return ch;
             }
-          }),
-        ],
-      });
+          });
     case REMOVE_CHALLENGE:
-      return Object.assign({}, state, {
-        challenges: [
-          ...state.challenges.filter(ch => ch.key !== action.payload),
-        ],
-      });
+      return state.filter(ch => ch.key !== action.payload);
     case DO_CHALLENGE:
-      return Object.assign({}, state, {
-        challenges: [
-          ...state.challenges.map(ch => {
+      return state.map(ch => {
             if (ch.key === action.payload) {
               return { ...ch, isDone: true };
             } else {
               return ch;
             }
-          }),
-        ],
-      });
+          });
     case RESET_CHALLENGES:
-      return Object.assign({}, state, {
-        challenges: [],
-      });
+      return  [];
     case LOG_IN:
-      return Object.assign({}, state, {
-        ...state,
-        challenges: [],
-      });
+      return  [];
     case LOG_OUT:
-      return Object.assign({}, state, {
-        ...state,
-        challenges: [],
-      });
+      return  [];
     default:
       return state;
   }
 };
 
-export const setStep = (state = initialState, action = {}) => {
+export const setStep = (state = initialState.step, action = {}) => {
   switch (action.type) {
     case SET_STEP:
-      return Object.assign({}, state, {
-        step: action.payload,
-      });
+      return action.payload;
     case LOG_IN:
-      return Object.assign({}, state, {
-        ...state,
-        step: "set",
-      });
+      return "set";
     case LOG_OUT:
-      return Object.assign({}, state, {
-        ...state,
-        step: "set",
-      });
+      return "set";
     default:
       return state;
   }
 };
 
-export const setRoute = (state = initialState, action = false) => {
+export const setRoute = (state = initialState.route, action = false) => {
   switch (action.type) {
     case SET_ROUTE:
-      return Object.assign({}, state, {
-        route: action.payload,
-      });
+      return action.payload;
     case LOG_IN:
-      return Object.assign({}, state, {
-        ...state,
-        route: "game",
-      });
+      return "game";
     default:
       return state;
   }
 };
 
-export const logInAndOut = (state = initialState, action = false) => {
+export const logInAndOut = (state = initialState.user, action = false) => {
   switch (action.type) {
     case LOG_IN:
-      return Object.assign({}, state, {
-        ...state,
-        user: action.payload,
-      });
+      return action.payload;
     case LOG_OUT:
-      return Object.assign({}, state, {
-        ...state,
-        user: {},
-      });
+      return {};
     default:
       return state;
   }

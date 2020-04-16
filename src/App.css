@@ -404,6 +404,11 @@ span {
   z-index: 1;
 }
 
+.footer h1 {
+  text-align: center;
+  padding-top: 1rem;
+}
+
 .footer i {
   font-size: 1.3em;
   color: #fff;
@@ -514,6 +519,7 @@ span {
     position: static;
     border-radius: 0;
     background-position: top;
+    padding: 3rem;
   }
 
   .nav {
@@ -542,8 +548,9 @@ span {
 
   .learn p {
     width: 100%;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
+    font-size: 2rem;
   }
 
   .victories {
@@ -582,7 +589,7 @@ span {
 
   .info p, .info div {
     width: 100%;
-    margin: 0.5rem 0 0 0;
+    padding: 0 1rem 2rem 1rem;
   }
 }
 

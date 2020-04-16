@@ -25,16 +25,16 @@ import {
 
 const mapStateToProps = state => {
   return {
-    route: state.setRoute.route,
-    step: state.setStep.step,
-    challenges: state.setChallenges.challenges,
-    user: state.logInAndOut.user,
+    route: state.setRoute,
+    step: state.setStep,
+    challenges: state.setChallenges,
+    user: state.logInAndOut,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addChallenge: (challenge, key) => dispatch(addChallenge(challenge, key)),
+    addChallenge: (chall, key) => dispatch(addChallenge(chall, key)),
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
     doChallenge: key => dispatch(doChallenge(key)),
@@ -52,10 +52,9 @@ class App extends Component {
       <div basename="/gameoflife">
         <Nav
           route={this.props.route}
+          user={this.props.user}
           logIn={this.props.logIn}
           logOut={this.props.logOut}
-          user={this.props.user}
-          setUser={this.props.setUser}
           setRoute={this.props.setRoute}
           setStep={this.props.setStep}
           resetChallenges={this.props.resetChallenges}
@@ -64,9 +63,7 @@ class App extends Component {
         <Learn />
         {this.props.route === "login" ? (
           <LogIn
-            setUser={this.props.setUser}
             logIn={this.props.logIn}
-            logOut={this.props.logOut}
             setRoute={this.props.setRoute}
             setStep={this.props.setStep}
             resetChallenges={this.props.resetChallenges}
@@ -78,10 +75,10 @@ class App extends Component {
           <Game
             user={this.props.user}
             step={this.props.step}
+            setStep={this.props.setStep}
             challenges={this.props.challenges}
             addChallenge={this.props.addChallenge}
             removeChallenge={this.props.removeChallenge}
-            setStep={this.props.setStep}
             doChallenge={key => this.props.doChallenge(key)}
             editChallenge={(chall, key) => this.props.editChallenge(chall, key)}
           />

@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers} from "redux";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { setChallenges, setStep, setRoute, logInAndOut } from "./redux/reducers";
 
 const rootReducer = combineReducers({setChallenges, setStep, setRoute, logInAndOut });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
   <Provider store={store}>

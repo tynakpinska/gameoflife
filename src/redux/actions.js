@@ -32,7 +32,7 @@ export const doChallenge = (key) => ({
   payload: key
 });
 
-export const resetChallenges = (key) => ({
+export const resetChallenges = () => ({
   type: RESET_CHALLENGES
 });
 
@@ -51,7 +51,7 @@ export const logIn = user => ({
   payload: user
 });
 
-export const logOut = boolean => ({
+export const logOut = () => ({
   type: LOG_OUT
 });
 

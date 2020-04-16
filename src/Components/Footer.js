@@ -39,6 +39,7 @@ class Footer extends Component {
         </div>
 
         <div className={this.state.aboutDisplay ? "info" : "info hide"}>
+          <h1>What is the Game of Life?</h1>
           <p>
             The goal of this app is to help you achieve success by motivating
             you to do something small, that closes you to fulfilling your
