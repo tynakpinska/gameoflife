@@ -7,7 +7,7 @@ import {
   ADD_CHALLENGE,
   REMOVE_CHALLENGE,
   SET_STEP,
-  DO_CHALLENGE,
+  TOGGLE_CHALLENGE,
   EDIT_CHALLENGE,
   RESET_CHALLENGES
 } from "./constants";
@@ -27,8 +27,8 @@ export const editChallenge = (newChall, key) => ({
   payload: [newChall, key]
 });
 
-export const doChallenge = (key) => ({
-  type: DO_CHALLENGE,
+export const toggleChallenge = (key) => ({
+  type: TOGGLE_CHALLENGE,
   payload: key
 });
 

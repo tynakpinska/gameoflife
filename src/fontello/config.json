@@ -35,6 +35,12 @@
       "css": "github-circled",
       "code": 61595,
       "src": "fontawesome"
+    },
+    {
+      "uid": "f9c3205df26e7778abac86183aefdc99",
+      "css": "ccw",
+      "code": 59395,
+      "src": "fontawesome"
     }
   ]
 }

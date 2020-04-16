@@ -51,7 +51,7 @@ class Footer extends Component {
             >
               Zen Jaskiniowca
             </a>{" "}
-            podcast, that really helped me see how important every day
+            podcast, that really helped me see how important everyday
             activities are and how powerful doing little tasks can make you
             feel. After some time you'll build a habit of winning and you'll
             start to feel extremely effective.
@@ -77,17 +77,17 @@ class Footer extends Component {
           </div>
           <p>
             <span>Second</span>, every morning think of three to five todos that
-            will significantly close you to your dreams defined in previous
+            will significantly close you to your dreams defined in the previous
             step. Add tasks to your power list by clicking Enter.
           </p>
           <p>
             <span>Finally</span>, start the game and smash every todo! The app
             shows how much time till the end of the day you have left. Consider
-            it a game. If you do all challenges - you won the game. If you don't
+            it a game. If you do all the challenges - you won the game. If you don't
             - you lost.
           </p>
           <p>
-            <b>Additionaly</b>, after a busy day, see your stats. Admire how hard you
+            <b>Additionaly</b>, after a busy day, see your stats. Admire how hard have you 
             worked during a week, a year, and see how far it got you. Try it out
             and see it for yourself!
           </p>

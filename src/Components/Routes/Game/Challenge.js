@@ -80,7 +80,7 @@ class Challenge extends Component {
                 onMouseOver={this.handleOnMouseOver}
                 onMouseLeave={this.handleOnMouseLeave}
                 onClick={handleChallClick}
-                className={isDone ? "" : "demo-icon icon-ok"}
+                className={isDone ? "demo-icon icon-ccw" : "demo-icon icon-ok"}
               ></i>
             </div>
           </div>

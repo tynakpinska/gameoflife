@@ -2,5 +2,6 @@
 .icon-trash:before { content: '\e800'; } /* '' */
 .icon-ok:before { content: '\e801'; } /* '' */
 .icon-pencil:before { content: '\e802'; } /* '' */
+.icon-ccw:before { content: '\e803'; } /* '' */
 .icon-github-circled:before { content: '\f09b'; } /* '' */
 .icon-down:before { content: '\f175'; } /* '' */

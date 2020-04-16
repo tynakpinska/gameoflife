@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import { createStore, combineReducers} from "redux";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { setChallenges, setStep, setRoute, logInAndOut } from "./redux/reducers";
+import { challenges, step, route, user } from "./redux/reducers";
 
-const rootReducer = combineReducers({setChallenges, setStep, setRoute, logInAndOut });
+const rootReducer = combineReducers({ challenges, step, route, user });
 
 const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 

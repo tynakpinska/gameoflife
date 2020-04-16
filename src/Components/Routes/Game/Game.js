@@ -12,7 +12,7 @@ function Game(
     removeChallenge,
     addChallenge,
     setStep,
-    doChallenge,
+    toggleChallenge,
     editChallenge
   } = this.props
 ) {
@@ -31,7 +31,7 @@ function Game(
       step={step}
       challenges={challenges}
       setStep={setStep}
-      doChallenge={key => doChallenge(key)}
+      toggleChallenge={key => toggleChallenge(key)}
     />
   ) : (
     <End user={user}/>

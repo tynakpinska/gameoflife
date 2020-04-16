@@ -14,21 +14,21 @@ import Register from "./Components/Routes/Register";
 import {
   addChallenge,
   removeChallenge,
-  doChallenge,
+  toggleChallenge,
   setRoute,
   setStep,
   logIn,
   logOut,
   editChallenge,
-  resetChallenges
+  resetChallenges,
 } from "./redux/actions";
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ challenges, step, route, user }) => {
   return {
-    route: state.setRoute,
-    step: state.setStep,
-    challenges: state.setChallenges,
-    user: state.logInAndOut,
+    route,
+    step,
+    challenges,
+    user,
   };
 };
 
@@ -37,50 +37,65 @@ const mapDispatchToProps = dispatch => {
     addChallenge: (chall, key) => dispatch(addChallenge(chall, key)),
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
-    doChallenge: key => dispatch(doChallenge(key)),
+    toggleChallenge: key => dispatch(toggleChallenge(key)),
     setRoute: route => dispatch(setRoute(route)),
     setStep: step => dispatch(setStep(step)),
     logIn: user => dispatch(logIn(user)),
     logOut: () => dispatch(logOut()),
-    resetChallenges: () => dispatch(resetChallenges())
+    resetChallenges: () => dispatch(resetChallenges()),
   };
 };
 
 class App extends Component {
-  render() {
+  render(
+    {
+      route,
+      step,
+      user,
+      challenges,
+      logIn,
+      logOut,
+      setRoute,
+      setStep,
+      resetChallenges,
+      removeChallenge,
+      toggleChallenge,
+      editChallenge,
+      addChallenge
+    } = this.props
+  ) {
     return (
       <div basename="/gameoflife">
         <Nav
-          route={this.props.route}
-          user={this.props.user}
-          logIn={this.props.logIn}
-          logOut={this.props.logOut}
-          setRoute={this.props.setRoute}
-          setStep={this.props.setStep}
-          resetChallenges={this.props.resetChallenges}
+          route={route}
+          user={user}
+          logIn={logIn}
+          logOut={logOut}
+          setRoute={setRoute}
+          setStep={setStep}
+          resetChallenges={resetChallenges}
         />
         <Frisella />
         <Learn />
-        {this.props.route === "login" ? (
+        {route === "login" ? (
           <LogIn
-            logIn={this.props.logIn}
-            setRoute={this.props.setRoute}
-            setStep={this.props.setStep}
-            resetChallenges={this.props.resetChallenges}
+            logIn={logIn}
+            setRoute={setRoute}
+            setStep={setStep}
+            resetChallenges={resetChallenges}
           />
-        ) : this.props.route === "register" ? (
-          <Register 
-          resetChallenges={this.props.resetChallenges}/>
+        ) : route === "register" ? (
+          <Register resetChallenges={resetChallenges} />
         ) : (
           <Game
-            user={this.props.user}
-            step={this.props.step}
-            setStep={this.props.setStep}
-            challenges={this.props.challenges}
-            addChallenge={this.props.addChallenge}
-            removeChallenge={this.props.removeChallenge}
-            doChallenge={key => this.props.doChallenge(key)}
-            editChallenge={(chall, key) => this.props.editChallenge(chall, key)}
+            user={user}
+            step={step}
+            setStep={setStep}
+            challenges={challenges}
+            addChallenge={addChallenge}
+            removeChallenge={removeChallenge}
+            toggleChallenge={key => toggleChallenge(key)}
+            editChallenge={(chall, key) => editChallenge(chall, key)}
           />
         )}
         <Victories />
