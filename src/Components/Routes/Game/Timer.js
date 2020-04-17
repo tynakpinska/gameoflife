@@ -1,4 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import { setStep } from "../../../redux/actions"
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setStep: step => dispatch(setStep(step))
+  };
+};
 
 class Timer extends Component {
   constructor(props) {
@@ -66,4 +75,4 @@ class Timer extends Component {
   }
 }
 
-export default Timer;
+export default connect(null, mapDispatchToProps)(Timer);

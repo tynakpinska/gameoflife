@@ -1,8 +1,13 @@
 import React from "react";
+import {connect} from "react-redux";
 import tiger from "./../../../../img/tiger.jpg";
 
-function End(props) {
-  const { username } = props.user;
+const mapStateToProps = ({ user }) => {
+  return {user};
+};
+
+const End = ({user}) => {
+  const { username } = user;
   return (
     <div className="container end">
       <h1>
@@ -18,4 +23,4 @@ function End(props) {
   );
 }
 
-export default End;
+export default connect(mapStateToProps, null)(End);

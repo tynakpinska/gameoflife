@@ -1,41 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import Start from "./Steps/Start";
 import Set from "./Steps/Set";
 import End from "./Steps/End";
 
-function Game(
-  {
-    step,
-    user,
-    challenges,
-    removeChallenge,
-    addChallenge,
-    setStep,
-    toggleChallenge,
-    editChallenge
-  } = this.props
-) {
-  return step === "set" ? (
-    <Set
-      user={user}
-      step={step}
-      challenges={challenges}
-      addChallenge={(chall, key) => addChallenge(chall, key)}
-      removeChallenge={removeChallenge}
-      setStep={setStep}
-      editChallenge={editChallenge}
-    />
-  ) : step === "start" ? (
-    <Start
-      step={step}
-      challenges={challenges}
-      setStep={setStep}
-      toggleChallenge={key => toggleChallenge(key)}
-    />
-  ) : (
-    <End user={user}/>
-  );
-}
+const mapStateToProps = ({ step }) => {
+  return { step };
+};
 
-export default Game;
+const Game = ({ step }) => {
+  return step === "set" ? <Set /> : step === "start" ? <Start /> : <End />;
+};
+
+export default connect(mapStateToProps, null)(Game);

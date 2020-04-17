@@ -1,4 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import {
+  resetChallenges,
+} from "../../redux/actions";
+
+const mapDispatchToProps = dispatch => {
+  return {
+    resetChallenges: () => dispatch(resetChallenges()),
+  };
+};
 
 class Register extends Component {
   constructor(props) {
@@ -39,6 +50,7 @@ class Register extends Component {
         if (resp === "Unable to register" || resp === "Incorrect form submission") {
           this.setState({ registerAttempt: "failure" });
         } else {
+          this.props.resetChallenges();
           this.setState({
             registerAttempt: "success",
           });
@@ -98,4 +110,5 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default connect(null, mapDispatchToProps)(Register);
+

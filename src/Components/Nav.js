@@ -1,5 +1,30 @@
 import React from "react";
+import {connect} from "react-redux";
 import user from "../img/user.png";
+
+import {
+  setRoute,
+  setStep,
+  logOut,
+  resetChallenges
+} from "../redux/actions";
+
+const mapStateToProps = ({ challenges, step, route, user }) => {
+  return {
+    route,
+    step,
+    user,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setRoute: route => dispatch(setRoute(route)),
+    setStep: step => dispatch(setStep(step)),
+    logOut: () => dispatch(logOut()),
+    resetChallenges: () => dispatch(resetChallenges()),
+  };
+};
 
 function Nav(props) {
 
@@ -76,4 +101,4 @@ function Nav(props) {
   );
 }
 
-export default Nav;
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

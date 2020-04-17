@@ -11,92 +11,23 @@ import Footer from "./Components/Footer";
 import LogIn from "./Components/Routes/LogIn";
 import Register from "./Components/Routes/Register";
 
-import {
-  addChallenge,
-  removeChallenge,
-  toggleChallenge,
-  setRoute,
-  setStep,
-  logIn,
-  logOut,
-  editChallenge,
-  resetChallenges,
-} from "./redux/actions";
-
-const mapStateToProps = ({ challenges, step, route, user }) => {
-  return {
-    route,
-    step,
-    challenges,
-    user,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addChallenge: (chall, key) => dispatch(addChallenge(chall, key)),
-    editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
-    removeChallenge: key => dispatch(removeChallenge(key)),
-    toggleChallenge: key => dispatch(toggleChallenge(key)),
-    setRoute: route => dispatch(setRoute(route)),
-    setStep: step => dispatch(setStep(step)),
-    logIn: user => dispatch(logIn(user)),
-    logOut: () => dispatch(logOut()),
-    resetChallenges: () => dispatch(resetChallenges()),
-  };
-};
+const mapStateToProps = ({ route }) => {
+  return {route}
+}
 
 class App extends Component {
-  render(
-    {
-      route,
-      step,
-      user,
-      challenges,
-      logIn,
-      logOut,
-      setRoute,
-      setStep,
-      resetChallenges,
-      removeChallenge,
-      toggleChallenge,
-      editChallenge,
-      addChallenge
-    } = this.props
-  ) {
+  render({ route } = this.props) {
     return (
       <div basename="/gameoflife">
-        <Nav
-          route={route}
-          user={user}
-          logIn={logIn}
-          logOut={logOut}
-          setRoute={setRoute}
-          setStep={setStep}
-          resetChallenges={resetChallenges}
-        />
+        <Nav />
         <Frisella />
         <Learn />
         {route === "login" ? (
-          <LogIn
-            logIn={logIn}
-            setRoute={setRoute}
-            setStep={setStep}
-            resetChallenges={resetChallenges}
-          />
+          <LogIn />
         ) : route === "register" ? (
-          <Register resetChallenges={resetChallenges} />
+          <Register />
         ) : (
-          <Game
-            user={user}
-            step={step}
-            setStep={setStep}
-            challenges={challenges}
-            addChallenge={addChallenge}
-            removeChallenge={removeChallenge}
-            toggleChallenge={key => toggleChallenge(key)}
-            editChallenge={(chall, key) => editChallenge(chall, key)}
-          />
+          <Game />
         )}
         <Victories />
         <Footer />
@@ -105,4 +36,4 @@ class App extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

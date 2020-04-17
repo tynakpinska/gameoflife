@@ -1,7 +1,33 @@
 import React, { Component } from "react";
+import {connect} from "react-redux";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
 import ChallengesList from "../ChallengesList";
+
+import {
+  addChallenge,
+  removeChallenge,
+  setStep,
+  editChallenge
+} from "../../../../redux/actions";
+
+const mapStateToProps = ({ challenges, step, route, user }) => {
+  return {
+    route,
+    step,
+    challenges,
+    user
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addChallenge: (chall, key) => dispatch(addChallenge(chall, key)),
+    editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
+    removeChallenge: key => dispatch(removeChallenge(key)),
+    setStep: step => dispatch(setStep(step)),
+  };
+};
 
 class Set extends Component {
   constructor(props) {
@@ -44,7 +70,7 @@ class Set extends Component {
   };
 
   render(
-    { user, challenges, step, editChallenge, removeChallenge, setStep } = this.props
+    { user } = this.props
   ) {
     return (
       <div className="container">
@@ -59,14 +85,7 @@ class Set extends Component {
           placeholder="Set challenge and press enter"
           onKeyUp={this.handleEnter}
         ></input>
-        <ChallengesList
-          user={user}
-          challenges={challenges}
-          step={step}
-          editChallenge={editChallenge}
-          removeChallenge={removeChallenge}
-          setStep={setStep}
-        />
+        <ChallengesList />
         <button onClick={this.handleStartClick}>Start the game!</button>
         <p
           style={{
@@ -81,4 +100,4 @@ class Set extends Component {
   }
 }
 
-export default Set;
+export default connect(mapStateToProps, mapDispatchToProps)(Set);

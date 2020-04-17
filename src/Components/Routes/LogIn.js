@@ -1,4 +1,17 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import {
+  setStep,
+  logIn
+} from "../../redux/actions";
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setStep: step => dispatch(setStep(step)),
+    logIn: user => dispatch(logIn(user))
+  };
+};
 
 class LogIn extends Component {
   constructor(props) {
@@ -71,4 +84,5 @@ class LogIn extends Component {
   }
 }
 
-export default LogIn;
+
+export default connect(null, mapDispatchToProps)(LogIn);

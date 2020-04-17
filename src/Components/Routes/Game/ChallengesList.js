@@ -1,6 +1,27 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Challenge from "./Challenge";
+
+import {
+  removeChallenge,
+  toggleChallenge,
+  setStep,
+  editChallenge
+} from "../../../redux/actions";
+
+const mapStateToProps = ({ challenges, step, route }) => {
+  return { challenges, step, route };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
+    removeChallenge: key => dispatch(removeChallenge(key)),
+    toggleChallenge: key => dispatch(toggleChallenge(key)),
+    setStep: step => dispatch(setStep(step))
+  };
+};
 
 class ChallengesList extends Component {
   handleChallClick = async (e, key) => {
@@ -28,4 +49,4 @@ class ChallengesList extends Component {
   }
 }
 
-export default ChallengesList;
+export default connect(mapStateToProps, mapDispatchToProps)(ChallengesList);
