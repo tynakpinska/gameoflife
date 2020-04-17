@@ -150,7 +150,6 @@ input:focus {
 
 .frisella {
   font-size: 1.4rem;
-  text-align: right;
   padding: 1.5rem;
   width: 30%;
   font-style: italic;
@@ -491,7 +490,10 @@ span {
 
 @media (max-width: 1100px) {
   .container {
-  top: 20vw;
+  top: 25vw;
+  left: 25vw;
+  width: 50vh;
+  height: 50vh;
   }
   .container input {
     width: 70%;
