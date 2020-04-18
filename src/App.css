@@ -492,8 +492,8 @@ span {
   .container {
   top: 25vw;
   left: 25vw;
-  width: 50vh;
-  height: 50vh;
+  min-width: 50vh;
+  min-height: 50vh;
   }
   .container input {
     width: 70%;

@@ -9,7 +9,8 @@ import {
   SET_STEP,
   TOGGLE_CHALLENGE,
   EDIT_CHALLENGE,
-  RESET_CHALLENGES
+  RESET_CHALLENGES,
+  FETCH_CHALLENGES
 } from "./constants";
 
 export const addChallenge = (challenge, key) => ({
@@ -54,5 +55,11 @@ export const logIn = user => ({
 export const logOut = () => ({
   type: LOG_OUT
 });
+
+export const fetchChallenges = challenges => ({
+  type: FETCH_CHALLENGES,
+  payload: challenges
+});
+
 
 

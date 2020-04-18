@@ -12,7 +12,7 @@ class ChallengesList extends Component {
   render({ challenges } = this.props) {
     return challenges.map(c => (
       <Challenge
-        challenge={c.name}
+        challenge={c.challenge}
         key={c.key}
         id={c.key}
         isDone={c.isDone}

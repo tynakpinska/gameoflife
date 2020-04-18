@@ -3,13 +3,21 @@ import { connect } from "react-redux";
 
 import {
   setStep,
-  logIn
+  logIn,
+  fetchChallenges
 } from "../../redux/actions";
+
+const mapStateToProps = state => {
+  return {
+    challenges: state.challenges
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     setStep: step => dispatch(setStep(step)),
-    logIn: user => dispatch(logIn(user))
+    logIn: user => dispatch(logIn(user)),
+    fetchChallenges: challenges => dispatch(fetchChallenges(challenges))
   };
 };
 
@@ -31,6 +39,29 @@ class LogIn extends Component {
     this.setState({ password: e.target.value });
   };
 
+  fetchChallenges = (username, password) => {
+    fetch("http://localhost:3000/getChallenges", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+        password
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp === "Invalid request" || resp === "Unable to fetch challenges") {
+          console.log(resp);
+        } else {
+          console.log(resp);
+          this.props.fetchChallenges(resp);
+        }
+      })
+      .catch(console.log);
+      
+      
+  }
+
   handleSubmit = (e) => {
     fetch("http://localhost:3000/signin", {
       method: "post",
@@ -46,6 +77,7 @@ class LogIn extends Component {
           this.setState({loginFailed: true})
         } else {
           this.props.logIn(resp);
+          this.fetchChallenges(this.state.username, this.state.password);
         }
       })
       .catch(console.log);
@@ -85,4 +117,4 @@ class LogIn extends Component {
 }
 
 
-export default connect(null, mapDispatchToProps)(LogIn);
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
