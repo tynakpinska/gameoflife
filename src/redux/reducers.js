@@ -36,7 +36,7 @@ export const challenges = (state = initialState.challenges, action = {}) => {
         if (ch.key === action.payload[1]) {
           return {
             ...ch,
-            name: `${action.payload[0]}`,
+            challenge: `${action.payload[0]}`,
           };
         } else {
           return ch;
