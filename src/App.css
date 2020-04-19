@@ -38,12 +38,18 @@ h1 {
 
 .container input,
 .container button {
-  margin: 2rem auto 0 auto;
   border-radius: 15px;
   padding: 0.7rem;
   display: block;
   font: inherit;
   cursor: pointer;
+}
+
+.container input {
+  margin: 0;
+}
+.container button {
+  margin: 2rem auto 0 auto;
 }
 
 .container button:hover {
@@ -67,6 +73,20 @@ input:focus {
   border: 0.2rem solid #ffcfb3;
   box-shadow: 0 0 1rem #ffcfb3;
   outline: none;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addChallButton {
+  font-size: 2rem;
+}
+
+.addChallButton:hover {
+  cursor: pointer;
 }
 
 .container button {
@@ -516,12 +536,16 @@ span {
 @media (max-width: 800px) {
 
   .container {
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
     position: static;
     border-radius: 0;
     background-position: top;
-    padding: 3rem;
+    padding: 3rem 0.2rem;
+  }
+
+  .inputContainer {
+    width: 100vw;
   }
 
   .nav {

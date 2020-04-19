@@ -41,6 +41,12 @@
       "css": "ccw",
       "code": 59395,
       "src": "fontawesome"
+    },
+    {
+      "uid": "4ba33d2607902cf690dd45df09774cb0",
+      "css": "plus-circled",
+      "code": 59396,
+      "src": "fontawesome"
     }
   ]
 }
