@@ -3,30 +3,33 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Noto Sans', sans-serif;
+  overflow:hidden;
 }
 
 body {
-  background: #000;
+  background: #060200;
 }
 
 .container {
-  min-width: 50vw;
-  min-height: 50vw;
+  min-width: 43vw;
+  min-height: 43vw;
   position: fixed;
   top: 5vw;
-  left: 27vw;
+  left: 23vw;
   padding: 3%;
   text-align: center;
-  background: linear-gradient(to top, #ff5d00, #9b3800);
+  background: linear-gradient(to top, #ff5d00, #9B3800);
   color: #ffcfb3;
-  box-shadow: 0 0 1.5rem #792d01;
+  box-shadow: 0 0 1.5rem #9B3800;
   border-radius: 100%;
   z-index: 1;
   animation: grow 2s ease-in-out;
+  overflow: visible;
 }
 
 h1 {
-  padding-bottom: 10px;
+  font-size: 1.5rem;
+  padding: 20px;
 }
 
 .container p {
@@ -60,7 +63,7 @@ h1 {
 
 input {
   background: #ffcfb3;
-  color: rgb(110, 41, 1);
+  color: #9B3800;
   border: none;
   width: 70%;
 }
@@ -71,8 +74,8 @@ input:hover {
 
 input:hover,
 input:focus {
-  border: 0.2rem solid #ffcfb3;
-  box-shadow: 0 0 1rem #ffcfb3;
+  border: 0.2rem solid #FF9C64;
+  box-shadow: 0 0 1rem #FF9C64;
   outline: none;
 }
 
@@ -80,6 +83,8 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .addChallButton {
@@ -95,13 +100,13 @@ input:focus {
 }
 
 .container button {
-  background: #9b3800;
-  color: #ffcfb3;
+  background: #9B3800;
+  color: #FF9C64;
   border: none;
 }
 
 .container button:hover {
-  box-shadow: 0 0 1rem #ffcfb3;
+  box-shadow: 0 0 1rem #FF9C64;
 }
 .container button:active {
   font-size: 0.9em;
@@ -114,13 +119,14 @@ input:focus {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0.5rem;
+  padding-bottom: 0;
+  background: #060200;
 }
 
 .nav p {
-  color: #ff5c00;
-  font-size: 0.9em;
-  padding: 0 1rem 0.5rem 1rem;
+  color: #FF8139;
+  font-size: 0.8em;
+  padding: 0.5rem 1rem;
   border-left: 0.1rem solid #fff;
   text-align: center;
 }
@@ -167,38 +173,46 @@ input:focus {
   position: fixed;
   top: 0;
   left: 0;
-  background-image: url("./img/mountain.jpg");
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url("./img/mountain.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   z-index: -1;
   width: 60%;
-  height: 80%;
+  height: 100%;
 }
 
 .frisella {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   padding: 1.5rem;
-  width: 30%;
+  width: 28%;
+  height: 40%;
   font-style: italic;
-  background: rgba(173, 173, 173, 0.8);
   position: fixed;
-  animation: slideinleft 2s ease-out;
+  bottom: 20px;
+  right: 0;
+  animation: slideinright 2s ease-out;
   color: #f3efed;
+  text-align: right;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 h3 {
   font-size: 1rem;
   font-weight: 500;
   font-style: normal;
-  background: rgb(128, 128, 128);
-  border-radius: 0 0 150px 150px;
-  margin-top: 10px;
-  padding: 10px 50px;
-  color: rgba(207, 206, 206, 0.9);
-  text-align: right;
+  border-radius: 0 0 0 150px;
+  margin: 5%;
+  padding-top: 5%;
+  color: #f3efed;
   animation: show 2s ease-out, slideinleft 2s ease-out;
-  border-left: 20px solid #ff5d00;
+  border-left: 20px solid #FF5C00;
+  width: 70%;
+  text-align: right;
 }
 
 .learn {
@@ -210,7 +224,7 @@ h3 {
   background-repeat: no-repeat;
   background-size: cover;
   width: 40%;
-  height: 60%;
+  height: 50%;
   z-index: -1;
   animation: show 2s ease-in, slideinright 2s ease-in;
   display: flex;
@@ -220,68 +234,44 @@ h3 {
 .learn p {
   padding: 0 5% 0 25%;
   font-family: 'Montserrat', sans-serif;
-  font-size: 5.5vw;
+  font-size: 5.3vw;
   font-weight: 900;
   text-align: right;
   mix-blend-mode: multiply;
   color: white;
-  background: black;
-}
-
-.victories {
-  position: fixed;
-  bottom: 50px;
-  right: 0;
-  background-image: url(./img/road.jpg);
-  background-position: center;
-  background-size: cover;
-  width: 50%;
-  height: 30%;
-  border-radius: 50px 0 0 50px;
-  padding: 10px;
-  z-index: -1;
-  animation: show 2s ease-in, slideinright 2s ease-in;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.victories p {
-  width: 45%;
-  color: #170a01;
-  text-align: center;
-  font-size: 1.8vw;
+  background: #060200;
 }
 
 .login {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top:70px;
+  padding-top:8vw;
 }
 .login label {
   align-self: start;
-  margin: 30px 0 3px 60px;
+  margin: 10px 0 3px 60px;
   padding: 5px 50px 5px 10px;
-  border-top: 2px solid #ffcfb3;
-  border-left: 5px solid #ffcfb3;
+  border-top: 2px solid #FF9C64;
+  border-left: 5px solid #FF9C64;
 }
 
 .login input {
   margin: 0;
-  background: url(./img/challenge.jpg);
-  color: #ffcfb3;
+  background: url(./img/challenge.png);
+  color: #FF9C64;
 }
 
 .login input[type="submit"] {
   margin-top: 50px;
-  background: #9b3800;
-  color: #ffcfb3;
+  background: #9B3800;
+  color: #FF9C64;
   border: none;
   width: 20%;
 }
 
 .login input[type="submit"]:hover {
-  color: #ff5c00;
+  color: #FF5C00;
   font-weight: bold;
 }
 
@@ -291,38 +281,39 @@ h3 {
 
 .warning {
   margin: 40px 0 0 0;
-  color: rgb(155, 5, 5);
+  color: #9B3800;
 }
 
 .register {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px
+  padding-top: 5vw;
 }
 .register label {
   align-self: start;
-  margin: 30px 0 3px 60px;
+  margin: 10px 0 3px 60px;
   padding: 5px 50px 5px 10px;
-  border-top: 2px solid #ffcfb3;
-  border-left: 5px solid #ffcfb3;
+  border-top: 2px solid #FF9C64;
+  border-left: 5px solid #FF9C64;
 }
 
 .register input {
   margin: 0;
-  background: url(./img/challenge.jpg);
-  color: #ffcfb3;
+  background: url(./img/challenge.png);
+  color: #FF9C64;
 }
 
 .register input[type="submit"] {
   margin-top: 50px;
-  background: #9b3800;
-  color: #ffcfb3;
+  background: #9B3800;
+  color: #FF9C64;
   border: none;
+  width: 30%;
 }
 
 .register input[type="submit"]:hover {
-  color: #ff5c00;
+  color: #FF9C64;
   font-weight: bold;
 }
 
@@ -338,14 +329,14 @@ h3 {
 }
 
 .challenge {
-  border: 1px solid #9b3800;
-  background: url(./img/challenge.jpg);
-  background-size: cover;
+  border: 1px solid #9B3800;
+  background: url(./img/challenge.png);
+  background-repeat: repeat;
   color: rgb(199, 194, 194);
   font-weight: bolder;
   padding: 10px;
   margin: 10px;
-  box-shadow: 5px 5px 10px #9b3800;
+  box-shadow: 5px 5px 10px #9B3800;
   min-width: 70%;
   display: flex;
   justify-content: space-between;
@@ -366,7 +357,7 @@ cursor: pointer;
 
 .done {
   font-size: 0.8rem;
-  color: #9b3800;
+  color: #9B3800;
   text-decoration: line-through;
 }
 
@@ -391,7 +382,7 @@ cursor: pointer;
 
 span {
   color: #fff;
-  background: #9b3800;
+  background: #9B3800;
   padding: 5px 15px;
   border-radius: 15px;
   font-weight: bolder;
@@ -412,7 +403,7 @@ span {
 .end img {
   width: 90%;
   height: auto;
-  border: 3px solid orange;
+  border: 3px solid #FF5C00;
   padding: 20px;
 }
 
@@ -426,8 +417,8 @@ span {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  background-color: black;
+  padding: 0.6rem;;
+  background-color: #060200;
   color: #fff;
   z-index: 1;
 }
@@ -443,7 +434,7 @@ span {
 }
 
 .footer i:hover {
-  color: orange;
+  color: #FF5C00;
 }
 
 .top {
@@ -464,6 +455,7 @@ span {
   width: 20%;
   display: block;
   margin: 0 10px;
+  line-height: 1.5rem;
 }
 
 .info div {
@@ -484,16 +476,16 @@ span {
 }
 
 .footer span {
-  background-color: #000;
+  background-color: #060200;
   width: auto;
   padding: 0;
   letter-spacing: 3px;
-  color: orange;
+  color: #FF5C00;
 }
 
 .footer a {
   text-decoration: none;
-  color: orangered;
+  color: #FF5C00;
 }
 
 .footer a:hover {
@@ -544,6 +536,10 @@ span {
   .register {
     padding-top: 0;
   }
+  h3 {
+    font-size: .9rem;
+    padding: 2%;
+  }
 }
 
 @media (max-width: 800px) {
@@ -557,19 +553,17 @@ span {
     padding: 3rem 0.2rem;
   }
 
-  .inputContainer {
-    width: 100vw;
-  }
-
   .nav {
-    background-color: black;
-    position: static;
+    background-color: #060200;
+    position: fixed;
+    top: 0;
   }
 
   .box {
     width: 100%;
-    height: 15rem;
-    position: static;
+    position: fixed;
+    bottom: 0;
+    background-image: url("./img/mountain.jpg");
   }
 
   .frisella {
@@ -581,28 +575,16 @@ span {
   }
 
   .learn {
-    position: static;
+    top: 80%;
+    bottom: 20%;
     width: 100%;
   }
 
   .learn p {
     width: 100%;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     font-size: 2rem;
-  }
-
-  .victories {
-    position: static;
-    width: 100%;
-    height: 20rem;
-    border-radius: 0;
-  }
-
-  .victories p {
-    width: 100%;
-    font-size: 1.5em;
-    text-align: center;
   }
 
   .login {
@@ -614,7 +596,8 @@ span {
   }
 
   .footer {
-    position: static;
+    position: fixed;
+    bottom: 0;
   }
 
   .info {

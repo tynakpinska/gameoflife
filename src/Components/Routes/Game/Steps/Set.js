@@ -72,7 +72,7 @@ class Set extends Component {
   };
 
   handleOnMouseOver = e => {
-    e.target.style.color = "black";
+    e.target.style.color = "orange";
   };
 
   handleOnMouseLeave = e => {

@@ -4,7 +4,7 @@ function Learn() {
   return (
     <div className="learn">
         <p>
-          Either you win or you learn.
+          If you don't win you learn.
         </p>
     </div>
   );

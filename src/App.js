@@ -4,7 +4,6 @@ import "./App.css";
 import "./fontello/css/fontello.css";
 import Frisella from "./Components/Visual/Frisella";
 import Learn from "./Components/Visual/Learn";
-import Victories from "./Components/Visual/Victories";
 import Nav from "./Components/Nav";
 import Game from "./Components/Routes/Game/Game.js";
 import Footer from "./Components/Footer";
@@ -29,7 +28,6 @@ class App extends Component {
         ) : (
           <Game />
         )}
-        <Victories />
         <Footer />
       </div>
     );

@@ -9,7 +9,7 @@ import {
   resetChallenges
 } from "../redux/actions";
 
-const mapStateToProps = ({ challenges, step, route, user }) => {
+const mapStateToProps = ({ step, route, user }) => {
   return {
     route,
     step,
@@ -73,6 +73,7 @@ function Nav(props) {
         style={{
           borderBottom: props.route === "game" ? "1px solid #fff" : "",
           cursor: props.route === "game" ? "default" : "pointer",
+          letterSpacing: props.route === "game" ? "0.2rem" : "default",
         }}
       >
         GAME
@@ -83,6 +84,7 @@ function Nav(props) {
         style={{
           borderBottom: props.route === "login" ? "1px solid #ff5c00" : "",
           cursor: props.route === "login" ? "default" : "pointer",
+          letterSpacing: props.route === "login" ? "0.2rem" : "default",
         }}
       >
         LOG IN
@@ -93,6 +95,7 @@ function Nav(props) {
         style={{
           borderBottom: props.route === "register" ? "1px solid #ff5c00" : "",
           cursor: props.route === "register" ? "default" : "pointer",
+          letterSpacing: props.route === "register" ? "0.2rem" : "default",
         }}
       >
         REGISTER

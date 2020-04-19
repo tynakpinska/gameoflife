@@ -34,10 +34,10 @@ class Challenge extends Component {
   handleOnMouseOver = e => {
     if (this.props.step === "set") {
       e.target.classList[1] === "icon-trash"
-        ? (e.target.style.color = "red")
-        : (e.target.style.color = "blue");
+        ? (e.target.style.color = "#FF5C00")
+        : (e.target.style.color = "#FF9C64");
     } else {
-      e.target.style.color = "green";
+      e.target.style.color = "#48DD00";
     }
   };
 
