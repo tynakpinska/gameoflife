@@ -22,6 +22,7 @@ body {
   box-shadow: 0 0 1.5rem #792d01;
   border-radius: 100%;
   z-index: 1;
+  animation: grow 2s ease-in-out;
 }
 
 h1 {
@@ -333,10 +334,7 @@ h3 {
   display: flex;
   justify-content: center;
   margin: 10px;
-}
-
-.challElement:last-of-type .challenge {
-  animation: appear 0.5s ease-in-out forwards;
+  animation: growABit 1s ease-in-out;
 }
 
 .challenge {
@@ -645,21 +643,21 @@ span {
 
 @keyframes slideinleft {
   0% {
-    left: -500px;
+    transform: translate(-500px);
   }
 
   100% {
-    left: 0;
+    transform: translate(0);
   }
 }
 
 @keyframes slideinright {
   0% {
-    right: -500px;
+    transform: translate(500px);
   }
 
   100% {
-    right: 0;
+    transform: translate(0);
   }
 }
 
@@ -670,6 +668,30 @@ span {
 
   100% {
     bottom: 0;
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(50%);
+  }
+
+  100% {
+    transform: scale(100%);
+  }
+}
+
+@keyframes growABit {
+  0% {
+    transform: scale(95%);
+  }
+
+  50% {
+    transform: scale(103%);
+  }
+
+  100% {
+    transform: scale(100%);
   }
 }
 
