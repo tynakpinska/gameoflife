@@ -47,6 +47,10 @@ function Nav(props) {
       });
   };
 
+  const handleUserClick = () => {
+    props.setRoute("profile")
+  }
+
   return props.user.username ? (
     <div className="nav">
       <p
@@ -59,7 +63,7 @@ function Nav(props) {
       >
         GAME
       </p>
-      <div className="user">
+      <div className="user" onClick={handleUserClick}>
         <img src={user} alt="avatar" />
         <p>{props.user.username}</p>
       </div>

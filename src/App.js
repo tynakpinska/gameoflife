@@ -9,6 +9,7 @@ import Game from "./Components/Routes/Game/Game.js";
 import Footer from "./Components/Footer";
 import LogIn from "./Components/Routes/LogIn";
 import Register from "./Components/Routes/Register";
+import Profile from "./Components/Routes/Profile";
 
 const mapStateToProps = ({ route }) => {
   return {route}
@@ -25,6 +26,8 @@ class App extends Component {
           <LogIn />
         ) : route === "register" ? (
           <Register />
+        ) : route === "profile" ? (
+          <Profile />
         ) : (
           <Game />
         )}

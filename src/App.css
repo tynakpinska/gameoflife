@@ -11,11 +11,11 @@ body {
 }
 
 .container {
-  min-width: 43vw;
-  min-height: 43vw;
+  min-width: 40vw;
+  min-height: 40vw;
   position: fixed;
-  top: 5vw;
-  left: 23vw;
+  top: 10%;
+  left: 25%;
   padding: 3%;
   text-align: center;
   background: linear-gradient(to top, #ff5d00, #9B3800);
@@ -169,6 +169,10 @@ input:focus {
   margin-top: 0.2rem;
 }
 
+.profile img {
+  width: 50%;
+}
+
 .box {
   position: fixed;
   top: 0;
@@ -186,7 +190,6 @@ input:focus {
   font-size: 1.1rem;
   padding: 1.5rem;
   width: 28%;
-  height: 40%;
   font-style: italic;
   position: fixed;
   bottom: 20px;
@@ -224,7 +227,7 @@ h3 {
   background-repeat: no-repeat;
   background-size: cover;
   width: 40%;
-  height: 50%;
+  max-height: 60%;
   z-index: -1;
   animation: show 2s ease-in, slideinright 2s ease-in;
   display: flex;
@@ -234,7 +237,7 @@ h3 {
 .learn p {
   padding: 0 5% 0 25%;
   font-family: 'Montserrat', sans-serif;
-  font-size: 5.3vw;
+  font-size: 10vh;
   font-weight: 900;
   text-align: right;
   mix-blend-mode: multiply;
@@ -329,19 +332,18 @@ h3 {
 }
 
 .challenge {
-  border: 1px solid #9B3800;
   background: url(./img/challenge.png);
   background-repeat: repeat;
   color: rgb(199, 194, 194);
   font-weight: bolder;
   padding: 10px;
   margin: 10px;
-  box-shadow: 5px 5px 10px #9B3800;
   min-width: 70%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow-wrap: anywhere;
+  border-radius: 7px;
 }
 
 .challenge i:hover {
@@ -514,12 +516,12 @@ span {
 }
 
 @media (max-width: 1100px) {
+
   .container {
-  top: 25vw;
-  left: 25vw;
-  min-width: 50vh;
-  min-height: 50vh;
+    top: 22%;
+    height: 40vh;
   }
+
   .container input {
     width: 70%;
     margin-top: 0;
@@ -530,6 +532,15 @@ span {
   .container input[type=submit] {
     margin-top: 1rem;
   }
+
+  .inputContainer {
+    width: 95%;
+  }
+
+  .learn p {
+    font-size: 8vh;
+  }
+
   .login {
     padding-top: 2rem;
   }
@@ -542,7 +553,7 @@ span {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 850px) {
 
   .container {
     min-width: 100%;
@@ -551,6 +562,7 @@ span {
     border-radius: 0;
     background-position: top;
     padding: 3rem 0.2rem;
+    background: linear-gradient(to bottom, rgba(76,27,0, 1), rgba(219,113,54, 0.5));
   }
 
   .nav {
