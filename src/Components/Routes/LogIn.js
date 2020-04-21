@@ -40,12 +40,15 @@ class LogIn extends Component {
   };
 
   fetchChallenges = (username, password) => {
+    const now = new Date();
+  const nowStr =now.toISOString().slice(0,10);
     fetch("http://localhost:3000/getChallenges", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username,
-        password
+        password,
+        nowStr
       }),
     })
       .then((resp) => resp.json())
@@ -54,7 +57,10 @@ class LogIn extends Component {
           console.log(resp);
         } else {
           console.log(resp);
-          this.props.fetchChallenges(resp);
+          if (resp !== []) {
+            this.props.setStep('start');
+            this.props.fetchChallenges(resp);
+          }
         }
       })
       .catch(console.log);

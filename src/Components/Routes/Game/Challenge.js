@@ -80,7 +80,7 @@ class Challenge extends Component {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             user,
-            key: id,
+            key: id
           }),
         })
           .then(resp => resp.json())

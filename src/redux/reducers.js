@@ -61,7 +61,6 @@ export const challenges = (state = initialState.challenges, action = {}) => {
     case LOG_OUT:
       return [];
     case FETCH_CHALLENGES:
-      console.log(action.payload);
       return [...state, ...action.payload];
     default:
       return state;

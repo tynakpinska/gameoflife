@@ -54,7 +54,7 @@ class Set extends Component {
             user,
             challenge,
             key: id,
-            date: new Date(),
+            date: new Date().toISOString().slice(0,10),
             isDone: false,
           }),
         })
