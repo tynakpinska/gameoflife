@@ -89,6 +89,10 @@ input:focus {
   cursor: pointer;
 }
 
+.addChallButton:active {
+  font-size: 1.8rem;
+}
+
 .container button {
   background: #9b3800;
   color: #ffcfb3;
@@ -97,6 +101,9 @@ input:focus {
 
 .container button:hover {
   box-shadow: 0 0 1rem #ffcfb3;
+}
+.container button:active {
+  font-size: 0.9em;
 }
 
 .nav {
@@ -411,6 +418,10 @@ span {
   padding: 20px;
 }
 
+.failure img {
+  width: 70%;
+}
+
 .footer {
   position: fixed;
   bottom: 0;
@@ -502,6 +513,10 @@ span {
   font-weight: bold;
   font-size: 1em;
   cursor: pointer;
+}
+
+.footer button:active {
+  font-size: 0.9em;
 }
 
 .footer button:focus, .footer button:active {

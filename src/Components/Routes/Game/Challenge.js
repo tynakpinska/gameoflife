@@ -7,6 +7,7 @@ import {
   toggleChallenge,
   editChallenge,
   setStep,
+  setResult
 } from "../../../redux/actions";
 
 const mapStateToProps = ({ step, user }) => {
@@ -19,6 +20,7 @@ const mapDispatchToProps = dispatch => {
     removeChallenge: key => dispatch(removeChallenge(key)),
     toggleChallenge: key => dispatch(toggleChallenge(key)),
     setStep: step => dispatch(setStep(step)),
+    setResult: result => dispatch(setResult(result))
   };
 };
 
@@ -102,7 +104,10 @@ class Challenge extends Component {
 
       await this.props.toggleChallenge(id);
       if (this.props.challenges.every(ch => ch.isDone)) {
-        setTimeout(() => this.props.setStep("end"), 1000);
+        setTimeout(() => {
+          this.props.setResult("success");
+          this.props.setStep("end");
+        }, 1000);
       }
     }
   };

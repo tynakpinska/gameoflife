@@ -10,7 +10,8 @@ import {
   TOGGLE_CHALLENGE,
   EDIT_CHALLENGE,
   RESET_CHALLENGES,
-  FETCH_CHALLENGES
+  FETCH_CHALLENGES,
+  SET_RESULT
 } from "./constants";
 
 export const addChallenge = (challenge, key) => ({
@@ -61,5 +62,9 @@ export const fetchChallenges = challenges => ({
   payload: challenges
 });
 
+export const setResult = result => ({
+  type: SET_RESULT,
+  payload: result
+});
 
 

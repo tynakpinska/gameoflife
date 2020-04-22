@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { setStep } from "../../../redux/actions"
+import { setStep, setResult } from "../../../redux/actions"
 
 const mapDispatchToProps = dispatch => {
   return {
-    setStep: step => dispatch(setStep(step))
+    setStep: step => dispatch(setStep(step)),
+    setResult: result => dispatch(setResult(result))
   };
 };
 
@@ -49,6 +50,7 @@ class Timer extends Component {
         leftParts.minutes === "00" &&
         leftParts.seconds === "00"
       ) {
+        this.props.setResult("failure")
         this.props.setStep("end");
       }
     }, 1000);

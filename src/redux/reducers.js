@@ -11,11 +11,13 @@ import {
   EDIT_CHALLENGE,
   RESET_CHALLENGES,
   FETCH_CHALLENGES,
+  SET_RESULT
 } from "./constants";
 
 const initialState = {
   route: "game",
   step: "set",
+  result: "",
   challenges: [],
   user: {},
 };
@@ -96,6 +98,15 @@ export const user = (state = initialState.user, action = false) => {
       return action.payload;
     case LOG_OUT:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const result = (state = initialState.result, action = false) => {
+  switch (action.type) {
+    case SET_RESULT:
+      return action.payload;
     default:
       return state;
   }
