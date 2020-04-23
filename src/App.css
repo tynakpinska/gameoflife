@@ -519,7 +519,7 @@ span {
 
   .container {
     top: 22%;
-    height: 40vh;
+    min-height: 40vh;
   }
 
   .container input {

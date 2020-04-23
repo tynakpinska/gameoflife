@@ -57,7 +57,7 @@ class LogIn extends Component {
           console.log(resp);
         } else {
           console.log(resp);
-          if (resp !== []) {
+          if (resp[0]) {
             this.props.setStep('start');
             this.props.fetchChallenges(resp);
           }

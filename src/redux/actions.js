@@ -14,9 +14,9 @@ import {
   SET_RESULT
 } from "./constants";
 
-export const addChallenge = (challenge, key) => ({
+export const addChallenge = (challenge, key, date) => ({
   type: ADD_CHALLENGE,
-  payload: [challenge, key]
+  payload: [challenge, key, date]
 });
 
 export const removeChallenge = (key) => ({

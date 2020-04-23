@@ -51,42 +51,14 @@ class Challenge extends Component {
 
   handleEnter = (e, { user, id } = this.props) => {
     if (e.key === "Enter" && e.target.value !== "") {
-      if (user.username) {
-        fetch("http://localhost:3000/editChallenge", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user,
-            changedChallenge: e.target.value,
-            key: id,
-          }),
-        })
-          .then(resp => resp.json())
-          .then(resp => console.log(resp))
-          .catch(err => console.log(err));
-      }
-
       this.props.editChallenge(e.target.value, id);
       this.setState({ isEditable: false });
     }
   };
 
-  handleChallClick = async (e, { user, challenges, id } = this.props) => {
-    if (this.props.step === "set") {
-      this.props.removeChallenge(id);
-      if (user.username) {
-        fetch("http://localhost:3000/removeChallenge", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user,
-            key: id
-          }),
-        })
-          .then(resp => resp.json())
-          .then(resp => console.log(resp))
-          .catch(err => console.log(err));
-      }
+  handleChallClick = async (e, { user, challenges, step, removeChallenge, toggleChallenge, setResult, setStep, id } = this.props) => {
+    if (step === "set") {
+      removeChallenge(id);
     } else {
      if (user.username) {
        fetch("http://localhost:3000/toggleChallenge", {
@@ -102,11 +74,11 @@ class Challenge extends Component {
           .catch(err => console.log(err));
         }
 
-      await this.props.toggleChallenge(id);
-      if (this.props.challenges.every(ch => ch.isDone)) {
+      await toggleChallenge(id);
+      if (challenges.every(ch => ch.isDone)) {
         setTimeout(() => {
-          this.props.setResult("success");
-          this.props.setStep("end");
+          setResult("success");
+          setStep("end");
         }, 1000);
       }
     }

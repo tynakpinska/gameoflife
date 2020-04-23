@@ -30,6 +30,7 @@ export const challenges = (state = initialState.challenges, action = {}) => {
         {
           challenge: `${action.payload[0]}`,
           key: action.payload[1],
+          date: action.payload[2],
           isDone: false,
         },
       ];

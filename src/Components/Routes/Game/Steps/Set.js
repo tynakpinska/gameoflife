@@ -22,7 +22,7 @@ const mapStateToProps = ({ challenges, step, route, user }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addChallenge: (chall, key) => dispatch(addChallenge(chall, key)),
+    addChallenge: (chall, key, date) => dispatch(addChallenge(chall, key, date)),
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
     setStep: step => dispatch(setStep(step)),
@@ -40,35 +40,35 @@ class Set extends Component {
 
   handleEnter = e => {
     if (e.key === "Enter" && e.target.value !== "") {
-      const user = this.props.user;
       const challenge = e.target.value;
       const id = uuidv4();
-      this.props.addChallenge(challenge, id);
+      const date = new Date().toISOString().slice(0,10);
+      this.props.addChallenge(challenge, id, date);
       e.target.value = "";
       this.setState({ startFailed: false });
-      if (user.username) {
-        fetch("http://localhost:3000/saveChallenge", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user,
-            challenge,
-            key: id,
-            date: new Date().toISOString().slice(0,10),
-            isDone: false,
-          }),
-        })
-          .then(resp => resp.json())
-          .then(resp => console.log(resp))
-          .catch(err => console.log(err, "Unable to save challenge"));
-      }
     }
   };
 
-  handleStartClick = () => {
-    this.props.challenges.length
-      ? this.props.setStep("start")
-      : this.setState({ startFailed: true });
+  handleStartClick = e => {
+    const {user, challenges} = this.props;
+    if (this.props.challenges.length) {
+          this.props.setStep("start");
+          if (user.username) {
+            fetch("http://localhost:3000/saveChallenges", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                user,
+                challenges
+              }),
+            })
+              .then(resp => resp.json())
+              .then(resp => console.log(resp))
+              .catch(err => console.log(err, "Unable to save challenges"));
+          }
+        } else {
+          this.setState({ startFailed: true });
+        }
   };
 
   handleOnMouseOver = e => {
