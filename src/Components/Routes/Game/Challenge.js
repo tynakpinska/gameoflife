@@ -118,6 +118,7 @@ class Challenge extends Component {
                 onKeyPress={this.handleEnter}
                 onChange={this.handleInputChange}
                 autoFocus
+                aria-label="Challenge"
               ></input>
               <i
                 onMouseOver={this.handleOnMouseOver}

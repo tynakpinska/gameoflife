@@ -124,6 +124,7 @@ class Set extends Component {
             placeholder="e.g. learn javascript"
             onKeyUp={this.handleEnter}
             onChange={this.handleInputChange}
+            aria-label="Challenge"
           ></input>
           <i
             onMouseOver={this.handleOnMouseOver}
