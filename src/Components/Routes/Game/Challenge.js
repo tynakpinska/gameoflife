@@ -7,11 +7,11 @@ import {
   toggleChallenge,
   editChallenge,
   setStep,
-  setResult
+  setResult,
 } from "../../../redux/actions";
 
-const mapStateToProps = ({ step, user }) => {
-  return { step, user };
+const mapStateToProps = ({ step, user, challenges }) => {
+  return { step, user, challenges };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
     removeChallenge: key => dispatch(removeChallenge(key)),
     toggleChallenge: key => dispatch(toggleChallenge(key)),
     setStep: step => dispatch(setStep(step)),
-    setResult: result => dispatch(setResult(result))
+    setResult: result => dispatch(setResult(result)),
   };
 };
 
@@ -29,8 +29,10 @@ class Challenge extends Component {
     super(props);
     this.state = {
       isEditable: false,
+      inputValue: "",
     };
   }
+
   handleOnMouseOver = e => {
     if (this.props.step === "set") {
       e.target.classList[1] === "icon-trash"
@@ -49,19 +51,30 @@ class Challenge extends Component {
     this.setState({ isEditable: true });
   };
 
+  handleInputChange = e => {
+    this.setState({ inputValue: e.target.value });
+  };
+
   handleEnter = (e, { user, id } = this.props) => {
-    if (e.key === "Enter" && e.target.value !== "") {
-      this.props.editChallenge(e.target.value, id);
+    const challenge = this.state.inputValue;
+    if (
+      (e.key === "Enter" && challenge !== "") ||
+      (e.target.classList[1] === "icon-ok" && challenge !== "")
+    ) {
+      this.props.editChallenge(challenge, id);
       this.setState({ isEditable: false });
     }
   };
 
-  handleChallClick = async (e, { user, challenges, step, removeChallenge, toggleChallenge, setResult, setStep, id } = this.props) => {
+  handleChallClick = (
+    e,
+    { user, step, removeChallenge, toggleChallenge, id } = this.props
+  ) => {
     if (step === "set") {
       removeChallenge(id);
     } else {
-     if (user.username) {
-       fetch("http://localhost:3000/toggleChallenge", {
+      if (user.username) {
+        fetch("http://localhost:3000/toggleChallenge", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -72,17 +85,19 @@ class Challenge extends Component {
           .then(resp => resp.json())
           .then(resp => console.log(resp))
           .catch(err => console.log(err));
-        }
-
-      await toggleChallenge(id);
-      if (challenges.every(ch => ch.isDone)) {
-        setTimeout(() => {
-          setResult("success");
-          setStep("end");
-        }, 1000);
       }
+      toggleChallenge(id);
     }
   };
+
+  componentDidUpdate() {
+    if (this.props.challenges.every(ch => ch.isDone)) {
+      setTimeout(() => {
+        this.props.setResult("success");
+        this.props.setStep("end");
+      }, 1000);
+    }
+  }
 
   render({ isDone, challenge, step } = this.props) {
     return (
@@ -101,8 +116,15 @@ class Challenge extends Component {
                 type="text"
                 defaultValue={challenge}
                 onKeyPress={this.handleEnter}
+                onChange={this.handleInputChange}
                 autoFocus
               ></input>
+              <i
+                onMouseOver={this.handleOnMouseOver}
+                onMouseLeave={this.handleOnMouseLeave}
+                onClick={this.handleEnter}
+                className={"demo-icon icon-ok"}
+              ></i>
             </div>
           ) : (
             <div className="challenge">

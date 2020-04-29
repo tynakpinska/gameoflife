@@ -7,7 +7,6 @@ const mapStateToProps = ({ challenges }) => {
   return { challenges };
 };
 
-
 class ChallengesList extends Component {
   render({ challenges } = this.props) {
     return challenges.map(c => (
@@ -16,7 +15,6 @@ class ChallengesList extends Component {
         key={c.key}
         id={c.key}
         isDone={c.isDone}
-        challenges={challenges}
       />
     ));
   }

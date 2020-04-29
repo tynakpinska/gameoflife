@@ -395,7 +395,10 @@ span {
 .end {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  max-width: 40vw;
+  max-height: 40vw;
 }
 
 .end p {
@@ -403,14 +406,10 @@ span {
 }
 
 .end img {
-  width: 90%;
+  max-width: 100%;
   height: auto;
   border: 3px solid #FF5C00;
   padding: 20px;
-}
-
-.failure img {
-  width: 70%;
 }
 
 .footer {
@@ -519,7 +518,8 @@ span {
 
   .container {
     top: 22%;
-    min-height: 40vh;
+    min-height: 45vh;
+    min-width: 45vh;
   }
 
   .container input {
@@ -563,6 +563,12 @@ span {
     background-position: top;
     padding: 3rem 0.2rem;
     background: linear-gradient(to bottom, rgba(76,27,0, 1), rgba(219,113,54, 0.5));
+  }
+
+  .end {
+    max-width: 100%;
+    max-height: 100%;
+
   }
 
   .nav {
