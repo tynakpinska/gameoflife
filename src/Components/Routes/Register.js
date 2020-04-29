@@ -71,28 +71,28 @@ class Register extends Component {
       <div className="container">
         <h1>Register</h1>
         <div className="register">
-          <label htmlFor="username" name="username">
+          <label htmlFor="username">
             Username
           </label>
           <input
             type="text"
-            name="username"
+            id="username"
             onChange={this.handleUsernameChange}
           ></input>
-          <label htmlFor="email" name="email">
+          <label htmlFor="email">
             Email
           </label>
           <input
             type="email"
-            name="email"
+            id="email"
             onChange={this.handleEmailChange}
           ></input>
-          <label htmlFor="password" name="password">
+          <label htmlFor="password">
             Password
           </label>
           <input
             type="password"
-            name="password"
+            id="password"
             onChange={this.handlePasswordChange}
           ></input>
           <p className={registerAttempt === "failure" ? "warning" : "hide"}>
@@ -103,6 +103,7 @@ class Register extends Component {
             type="submit"
             value="Register"
             onClick={this.handleSubmit}
+            aria-label="Register"
           ></input>
         </div>
       </div>

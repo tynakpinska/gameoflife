@@ -94,20 +94,20 @@ class LogIn extends Component {
       <div className="container">
         <h1>Log in</h1>
         <div className="login">
-          <label htmlFor="username" name="username">
+          <label htmlFor="username">
             Username
           </label>
           <input
             type="text"
-            name="username"
+            id="username"
             onChange={this.handleUsernameChange}
           ></input>
-          <label htmlFor="password" name="password">
+          <label htmlFor="password">
             Password
           </label>
           <input
             type="password"
-            name="password"
+            id="password"
             onChange={this.handlePasswordChange}
           ></input>
           <p className={!this.state.loginFailed ? "hide" : "warning"}>Oooops... Something went wrong. Please try again.</p>
@@ -115,6 +115,7 @@ class LogIn extends Component {
             type="submit"
             value="Log in"
             onClick={this.handleSubmit}
+            aria-label="Log in"
           ></input>
         </div>
       </div>
