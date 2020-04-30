@@ -11,11 +11,11 @@ const Success = ({user}) => {
     const { username } = user;
     return (
       <div className="end">
-        <h1>
+        <h2>
             {username
               ? `${username}, you won today!`
               : "You won today!"}
-          </h1>
+          </h2>
         <p>Well done!</p>
         <p>Take a rest.</p>
         <img src={tiger} alt="tiger" />

@@ -24,6 +24,7 @@ class Footer extends Component {
               href="https://github.com/tynakpinska"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Github"
             >
               <i className="demo-icon icon-github-circled"></i>
             </a>
@@ -39,7 +40,7 @@ class Footer extends Component {
         </div>
 
         <div className={this.state.aboutDisplay ? "info" : "info hide"}>
-          <h1>What is the Game of Life?</h1>
+          <h2>What is the Game of Life?</h2>
           <p>
             The goal of this app is to help you achieve success by motivating
             you to do something small, that closes you to fulfilling your

@@ -1,13 +1,9 @@
 import React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import user from "../img/user.png";
+import Logo from "./Logo";
 
-import {
-  setRoute,
-  setStep,
-  logOut,
-  resetChallenges
-} from "../redux/actions";
+import { setRoute, setStep, logOut, resetChallenges } from "../redux/actions";
 
 const mapStateToProps = ({ step, route, user }) => {
   return {
@@ -27,8 +23,7 @@ const mapDispatchToProps = dispatch => {
 };
 
 function Nav(props) {
-
-  const handleLogOut = (e) => {
+  const handleLogOut = e => {
     fetch("http://localhost:3000/signout", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -36,33 +31,26 @@ function Nav(props) {
         logOut: true,
       }),
     })
-      .then((resp) => resp.json())
-      .then((resp) => {
+      .then(resp => resp.json())
+      .then(resp => {
         if (resp === "logged out") {
           props.logOut();
           props.setRoute("game");
           props.setStep("set");
-          props.resetChallenges()
+          props.resetChallenges();
         }
       });
   };
 
   const handleUserClick = () => {
-    props.setRoute("profile")
-  }
+    props.setRoute("profile");
+  };
 
   return props.user.username ? (
     <div className="nav">
-      <p
+      <Logo
         onClick={() => props.setRoute("game")}
-        className={props.route === "game" ? "navItemClicked" : ""}
-        style={{
-          borderBottom: props.route === "game" ? "1px solid #fff" : "",
-          cursor: props.route === "game" ? "default" : "pointer",
-        }}
-      >
-        GAME
-      </p>
+      />
       <div className="user" onClick={handleUserClick}>
         <img src={user} alt="avatar" />
         <p>{props.user.username}</p>
@@ -71,17 +59,9 @@ function Nav(props) {
     </div>
   ) : (
     <div className="nav">
-      <p
+      <Logo
         onClick={() => props.setRoute("game")}
-        className={props.route === "game" ? "navItemClicked" : ""}
-        style={{
-          borderBottom: props.route === "game" ? "1px solid #fff" : "",
-          cursor: props.route === "game" ? "default" : "pointer",
-          letterSpacing: props.route === "game" ? "0.2rem" : "default",
-        }}
-      >
-        GAME
-      </p>
+      />
       <p
         onClick={() => props.setRoute("login")}
         className={props.route === "login" ? "navItemClicked" : ""}

@@ -12,25 +12,27 @@ import Register from "./Components/Routes/Register";
 import Profile from "./Components/Routes/Profile";
 
 const mapStateToProps = ({ route }) => {
-  return {route}
-}
+  return { route };
+};
 
 class App extends Component {
   render({ route } = this.props) {
     return (
       <div basename="/gameoflife">
         <Nav />
-        <Frisella />
-        <Learn />
-        {route === "login" ? (
-          <LogIn />
-        ) : route === "register" ? (
-          <Register />
-        ) : route === "profile" ? (
-          <Profile />
-        ) : (
-          <Game />
-        )}
+        <main>
+          <Frisella />
+          <Learn />
+          {route === "login" ? (
+            <LogIn />
+          ) : route === "register" ? (
+            <Register />
+          ) : route === "profile" ? (
+            <Profile />
+          ) : (
+            <Game />
+          )}
+        </main>
         <Footer />
       </div>
     );

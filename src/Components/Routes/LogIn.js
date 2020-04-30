@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import {
-  setStep,
-  logIn,
-  fetchChallenges
-} from "../../redux/actions";
+import { setStep, logIn, fetchChallenges } from "../../redux/actions";
 
 const mapStateToProps = state => {
   return {
-    challenges: state.challenges
+    challenges: state.challenges,
   };
 };
 
@@ -17,7 +13,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setStep: step => dispatch(setStep(step)),
     logIn: user => dispatch(logIn(user)),
-    fetchChallenges: challenges => dispatch(fetchChallenges(challenges))
+    fetchChallenges: challenges => dispatch(fetchChallenges(challenges)),
   };
 };
 
@@ -27,48 +23,49 @@ class LogIn extends Component {
     this.state = {
       username: "",
       password: "",
-      loginFailed: false
+      loginFailed: false,
     };
   }
 
-  handleUsernameChange = (e) => {
+  handleUsernameChange = e => {
     this.setState({ username: e.target.value });
   };
 
-  handlePasswordChange = (e) => {
+  handlePasswordChange = e => {
     this.setState({ password: e.target.value });
   };
 
   fetchChallenges = (username, password) => {
     const now = new Date();
-  const nowStr =now.toISOString().slice(0,10);
+    const nowStr = now.toISOString().slice(0, 10);
     fetch("http://localhost:3000/getChallenges", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username,
         password,
-        nowStr
+        nowStr,
       }),
     })
-      .then((resp) => resp.json())
-      .then((resp) => {
-        if (resp === "Invalid request" || resp === "Unable to fetch challenges") {
+      .then(resp => resp.json())
+      .then(resp => {
+        if (
+          resp === "Invalid request" ||
+          resp === "Unable to fetch challenges"
+        ) {
           console.log(resp);
         } else {
           console.log(resp);
           if (resp[0]) {
-            this.props.setStep('start');
+            this.props.setStep("start");
             this.props.fetchChallenges(resp);
           }
         }
       })
       .catch(console.log);
-      
-      
-  }
+  };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     fetch("http://localhost:3000/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -77,10 +74,14 @@ class LogIn extends Component {
         password: this.state.password,
       }),
     })
-      .then((resp) => resp.json())
-      .then((resp) => {
-        if (resp === "Unable to log in" || resp === "No such user" || resp === "Incorrect form submission") {
-          this.setState({loginFailed: true})
+      .then(resp => resp.json())
+      .then(resp => {
+        if (
+          resp === "Unable to log in" ||
+          resp === "No such user" ||
+          resp === "Incorrect form submission"
+        ) {
+          this.setState({ loginFailed: true });
         } else {
           this.props.logIn(resp);
           this.fetchChallenges(this.state.username, this.state.password);
@@ -92,25 +93,23 @@ class LogIn extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Log in</h1>
+        <h2>Log in</h2>
         <div className="login">
-          <label htmlFor="username">
-            Username
-          </label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
             onChange={this.handleUsernameChange}
           ></input>
-          <label htmlFor="password">
-            Password
-          </label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             onChange={this.handlePasswordChange}
           ></input>
-          <p className={!this.state.loginFailed ? "hide" : "warning"}>Oooops... Something went wrong. Please try again.</p>
+          <p className={!this.state.loginFailed ? "hide" : "warning"}>
+            Oooops... Something went wrong. Please try again.
+          </p>
           <input
             type="submit"
             value="Log in"
@@ -122,6 +121,5 @@ class LogIn extends Component {
     );
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

@@ -6,7 +6,7 @@ import Timer from "../Timer";
 const Start = () => {
     return (
       <div className="container">
-        <h1>Let's do it!</h1>
+        <h2>Let's do it!</h2>
         <ChallengesList />
         <Timer />
       </div>

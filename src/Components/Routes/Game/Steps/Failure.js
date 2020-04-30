@@ -11,11 +11,11 @@ const Failure = ({user}) => {
     const { username } = user;
     return (
       <div className="end failure">
-        <h1>
+        <h2>
             {username
               ? `${username}, you lost today!`
               : "You lost today!"}
-          </h1>
+          </h2>
         <p>Try harder tommorow!</p>
         <img src={dog} alt="dog" />
         <p>See you then!</p>

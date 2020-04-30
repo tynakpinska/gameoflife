@@ -69,7 +69,7 @@ class Register extends Component {
       </div>
     ) : (
       <div className="container">
-        <h1>Register</h1>
+        <h2>Register</h2>
         <div className="register">
           <label htmlFor="username">
             Username

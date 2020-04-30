@@ -112,11 +112,11 @@ class Set extends Component {
   render({ user } = this.props) {
     return (
       <div className="container">
-        <h1>
+        <h2>
           {user.username
             ? `${user.username}, what are you playing today?`
             : "What are you playing today?"}
-        </h1>
+        </h2>
         <div className="inputContainer">
           <input
             className="typeChall"
