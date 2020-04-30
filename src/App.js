@@ -22,7 +22,6 @@ class App extends Component {
         <Nav />
         <main>
           <Frisella />
-          <Learn />
           {route === "login" ? (
             <LogIn />
           ) : route === "register" ? (
@@ -33,6 +32,7 @@ class App extends Component {
             <Game />
           )}
         </main>
+        <Learn />
         <Footer />
       </div>
     );

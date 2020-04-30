@@ -9,6 +9,10 @@ body {
   background: #060200;
 }
 
+#root {
+  height: 100vh;
+}
+
 .container {
   min-width: 40vw;
   min-height: 40vw;
@@ -23,14 +27,13 @@ body {
   border-radius: 100%;
   z-index: 1;
   animation: grow 2s ease-in-out;
-  overflow: visible;
 }
 
 .logo {
   position: relative;
-  z-index: 1;
   background: url("./img/learn.jpg") center;
   margin-right: auto;
+  width: 370px;
 }
 
 h1 {
@@ -152,7 +155,7 @@ input:focus {
 .nav p {
   color: #ff8139;
   font-size: 0.8em;
-  padding: 0.5rem 1rem;
+  padding: 1px 10px;
   border-left: 0.1rem solid #fff;
   text-align: center;
 }
@@ -305,10 +308,6 @@ h3 {
 
 .login input[type="submit"]:hover {
   font-weight: bold;
-}
-
-.hide {
-  display: none;
 }
 
 .warning {
@@ -588,7 +587,6 @@ span {
 @media (max-width: 850px) {
   .container {
     min-width: 100%;
-    min-height: 100%;
     position: static;
     border-radius: 0;
     background-position: top;
@@ -603,7 +601,6 @@ span {
 
   .end {
     max-width: 100%;
-    max-height: 100%;
   }
 
   .logo {
@@ -618,7 +615,7 @@ span {
   .nav {
     background-color: #060200;
     flex-wrap: wrap;
-    position:relative;
+    position: relative;
   }
 
   .box {
@@ -637,9 +634,9 @@ span {
   }
 
   .learn {
-    top: auto;
-    bottom: 10%;
+    position: static;
     width: 100%;
+    margin-top: 30%;
   }
 
   .learn p {
@@ -660,6 +657,8 @@ span {
   .footer {
     position: fixed;
     bottom: 0;
+    max-height: 100vh;
+    overflow: scroll;
   }
 
   .info {
