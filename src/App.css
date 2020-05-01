@@ -31,9 +31,39 @@ body {
 
 .logo {
   position: relative;
-  background: url("./img/learn.jpg") center;
   margin-right: auto;
   width: 370px;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  background: url("./img/learn.jpg") center;
+}
+
+.dot1,
+.dot2,
+.dot3 {
+  background: #ff5c00;
+  border-radius: 50px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.dot1 {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+}
+
+.dot2 {
+  width: 15px;
+  height: 15px;
+}
+
+.dot3 {
+  width: 10px;
+  height: 10px;
 }
 
 h1 {
@@ -200,6 +230,35 @@ input:focus {
   border: none;
   color: #fff;
   margin-top: 0.2rem;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile label {
+  color: #9b3800;
+}
+
+h4 {
+  margin: 5px;
+}
+
+.profile label:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.profile input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .profile img {
@@ -606,6 +665,7 @@ span {
   .logo {
     margin: auto;
     text-align: center;
+    justify-content: center;
   }
 
   h1 {
