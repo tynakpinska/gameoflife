@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styles from "./Set.module.css";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
 import ChallengesList from "../ChallengesList";
@@ -117,9 +118,9 @@ class Set extends Component {
             ? `${user.username}, what are you playing today?`
             : "What are you playing today?"}
         </h2>
-        <div className="inputContainer">
+        <div className={styles.inputContainer}>
           <input
-            className="typeChall"
+          className={styles.typeChall}
             type="text"
             placeholder="e.g. learn javascript"
             onKeyUp={this.handleEnter}
@@ -130,7 +131,7 @@ class Set extends Component {
             onMouseOver={this.handleOnMouseOver}
             onMouseLeave={this.handleOnMouseLeave}
             onClick={this.handleButtonClick}
-            className="addChallButton demo-icon icon-plus-circled"
+            className={styles.addChallButton + " demo-icon icon-plus-circled"}
           ></i>
         </div>
         <ChallengesList />

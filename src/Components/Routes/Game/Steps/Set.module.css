@@ -1,0 +1,31 @@
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.typeChall {
+  min-width: 275px;
+  background: #ffcfb3;
+  color: #9b3800;
+}
+
+.addChallButton {
+  font-size: 2rem;
+}
+
+.addChallButton:hover {
+  cursor: pointer;
+}
+
+.addChallButton:active {
+  font-size: 1.8rem;
+}
+
+@media (max-width: 1100px) {
+  .inputContainer {
+    width: 95%;
+  }
+}

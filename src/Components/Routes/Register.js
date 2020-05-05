@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styles from "./Register.module.css";
 
-import {
-  resetChallenges,
-} from "../../redux/actions";
+import { resetChallenges } from "../../redux/actions";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -42,12 +41,15 @@ class Register extends Component {
       body: JSON.stringify({
         username,
         email,
-        password
+        password,
       }),
     })
       .then(resp => resp.json())
       .then(resp => {
-        if (resp === "Unable to register" || resp === "Incorrect form submission") {
+        if (
+          resp === "Unable to register" ||
+          resp === "Incorrect form submission"
+        ) {
           this.setState({ registerAttempt: "failure" });
         } else {
           this.props.resetChallenges();
@@ -62,7 +64,7 @@ class Register extends Component {
   render({ registerAttempt } = this.state) {
     return registerAttempt === "success" ? (
       <div className="container">
-        <div className="register success">
+        <div className={styles.register}>
           <p>Account created!</p>
           <p>You may log in now.</p>
         </div>
@@ -70,26 +72,21 @@ class Register extends Component {
     ) : (
       <div className="container">
         <h2>Register</h2>
-        <div className="register">
-          <label htmlFor="username">
-            Username
-          </label>
+        <div className={styles.register}>
+          <label htmlFor="username">Username</label>
           <input
+            className="username"
             type="text"
             id="username"
             onChange={this.handleUsernameChange}
           ></input>
-          <label htmlFor="email">
-            Email
-          </label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
             onChange={this.handleEmailChange}
           ></input>
-          <label htmlFor="password">
-            Password
-          </label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -112,4 +109,3 @@ class Register extends Component {
 }
 
 export default connect(null, mapDispatchToProps)(Register);
-

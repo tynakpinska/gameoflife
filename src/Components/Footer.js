@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./Footer.module.css";
 
 class Footer extends Component {
   constructor(props) {
@@ -16,8 +17,8 @@ class Footer extends Component {
 
   render() {
     return (
-      <div className="footer">
-        <div className="top">
+      <div className={styles.footer}>
+        <div className={styles.top}>
           <p>
             2020 &copy; Tyna Kpińska
             <a
@@ -39,7 +40,7 @@ class Footer extends Component {
           </button>
         </div>
 
-        <div className="info" style={{display: !this.state.aboutDisplay ? "none" : ""}}>
+        <div className={styles.info} style={{display: !this.state.aboutDisplay ? "none" : ""}}>
           <h2>What is the Game of Life?</h2>
           <p>
             The goal of this app is to help you achieve success by motivating

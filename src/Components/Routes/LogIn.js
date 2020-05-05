@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styles from "./LogIn.module.css";
 
 import { setStep, logIn, fetchChallenges } from "../../redux/actions";
 
@@ -94,9 +95,10 @@ class LogIn extends Component {
     return (
       <div className="container">
         <h2>Log in</h2>
-        <div className="login">
+        <div className={styles.login}>
           <label htmlFor="username">Username</label>
           <input
+            className="username"
             type="text"
             id="username"
             onChange={this.handleUsernameChange}

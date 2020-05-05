@@ -1,0 +1,44 @@
+.logo {
+  position: relative;
+  margin-right: auto;
+  width: 370px;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  background: url("../img/learn.jpg") center;
+}
+
+.dot1,
+.dot2,
+.dot3 {
+  background: #ff5c00;
+  border-radius: 50px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
+.dot1 {
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+}
+
+.dot2 {
+  width: 15px;
+  height: 15px;
+}
+
+.dot3 {
+  width: 10px;
+  height: 10px;
+}
+
+@media (max-width: 850px) {
+  .logo {
+    margin: auto;
+    text-align: center;
+    justify-content: center;
+  }
+}

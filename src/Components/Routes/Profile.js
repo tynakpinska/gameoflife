@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styles from "./Profile.module.css";
 import avatar from "../../img/user.png";
 
 const mapStateToProps = ({ user }) => {
@@ -9,10 +10,10 @@ const mapStateToProps = ({ user }) => {
 class Profile extends Component {
   render({ user } = this.props) {
     return (
-      <div className="container profile">
+      <div className={"container " + styles.profile}>
         <h2>{user.username}</h2>
         <img src={avatar} alt="avatar" />
-        <label for="img"><i className="demo-icon icon-upload"></i>Change profile picture</label>
+        <label htmlFor="img"><i className="demo-icon icon-upload"></i>Change profile picture</label>
         <input type="file" id="img" name="img" accept="image/*" />
         <div>
           <h4>Streak</h4>

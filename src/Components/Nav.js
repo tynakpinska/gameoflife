@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import styles from "./Nav.module.css"
 import user from "../img/user.png";
 import Logo from "./Logo";
 
@@ -47,24 +48,24 @@ function Nav(props) {
   };
 
   return props.user.username ? (
-    <div className="nav">
+    <div className={styles.nav}>
       <Logo
         onClick={() => props.setRoute("game")}
       />
-      <div className="user" onClick={handleUserClick}>
+      <div className={styles.user} onClick={handleUserClick}>
         <img src={user} alt="avatar" />
         <p>{props.user.username}</p>
       </div>
       <p onClick={handleLogOut}>LOG OUT</p>
     </div>
   ) : (
-    <div className="nav">
+    <div className={styles.nav}>
       <Logo
         onClick={() => props.setRoute("game")}
       />
       <p
         onClick={() => props.setRoute("login")}
-        className={props.route === "login" ? "navItemClicked" : ""}
+        className={props.route === "login" ? "{styles.navItemClicked}" : ""}
         style={{
           borderBottom: props.route === "login" ? "1px solid #ff5c00" : "",
           cursor: props.route === "login" ? "default" : "pointer",
@@ -75,7 +76,7 @@ function Nav(props) {
       </p>
       <p
         onClick={() => props.setRoute("register")}
-        className={props.route === "register" ? "navItemClicked" : ""}
+        className={props.route === "register" ? "{styles.navItemClicked}" : ""}
         style={{
           borderBottom: props.route === "register" ? "1px solid #ff5c00" : "",
           cursor: props.route === "register" ? "default" : "pointer",
