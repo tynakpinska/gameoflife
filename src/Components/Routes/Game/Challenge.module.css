@@ -1,0 +1,71 @@
+.challElement {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  animation: growABit 1s ease-in-out;
+}
+
+.challenge {
+  background: url(../../../img/challenge.png);
+  background-repeat: repeat;
+  color: rgb(199 194 194);
+  font-weight: bolder;
+  padding: 10px;
+  margin: 10px;
+  min-width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-wrap: anywhere;
+  border-radius: 7px;
+}
+
+.challenge i:hover {
+  cursor: pointer;
+}
+
+.challenge input {
+  margin: 0;
+  width: 100%;
+  background: none;
+  color: rgb(199 194 194);
+}
+
+.done {
+  font-size: 0.8rem;
+  color: #9b3800;
+  text-decoration: line-through;
+}
+
+.fade {
+  opacity: 0.8;
+}
+
+.fist {
+  display: flex;
+  align-items: center;
+}
+
+.fist img {
+  height: 40px;
+}
+
+@media (max-width: 850px) {
+  .challenge {
+    border: 1px solid #ffcfb3;
+  }
+}
+
+@keyframes growABit {
+  0% {
+    transform: scale(95%);
+  }
+
+  50% {
+    transform: scale(103%);
+  }
+
+  100% {
+    transform: scale(100%);
+  }
+}

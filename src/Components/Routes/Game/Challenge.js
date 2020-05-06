@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "./Challenge.module.css";
 import fist from "../../../img/fist.png";
 import { connect } from "react-redux";
 
@@ -101,9 +102,9 @@ class Challenge extends Component {
 
   render({ isDone, challenge, step } = this.props) {
     return (
-      <div className={isDone ? "challElement done" : "challElement"}>
+      <div className={isDone ? styles.challElement + " " + styles.done : styles.challElement}>
         {isDone ? (
-          <div className="fist">
+          <div className={styles.fist}>
             <img src={fist} alt="fist" />
           </div>
         ) : (
@@ -111,7 +112,7 @@ class Challenge extends Component {
         )}
         {step === "set" ? (
           this.state.isEditable ? (
-            <div className="challenge">
+            <div className={styles.challenge}>
               <input
                 type="text"
                 defaultValue={challenge}
@@ -128,9 +129,9 @@ class Challenge extends Component {
               ></i>
             </div>
           ) : (
-            <div className="challenge">
+            <div className={styles.challenge}>
               {challenge}
-              <div className="icons">
+              <div className={styles.icons}>
                 <i
                   onMouseOver={this.handleOnMouseOver}
                   onMouseLeave={this.handleOnMouseLeave}
@@ -147,9 +148,9 @@ class Challenge extends Component {
             </div>
           )
         ) : (
-          <div className={isDone ? "challenge fade" : "challenge"}>
+          <div className={isDone ? styles.challenge + " " + styles.fade : styles.challenge}>
             {challenge}
-            <div className="icons">
+            <div className={styles.icons}>
               <i
                 onMouseOver={this.handleOnMouseOver}
                 onMouseLeave={this.handleOnMouseLeave}

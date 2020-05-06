@@ -1,8 +1,10 @@
 .login {
+  min-width: 30vw;
+  min-height: 30vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding-top: 20px;
 }
 
 .login label {
@@ -23,6 +25,7 @@
 
 .login input[type="submit"]:hover {
   font-weight: bold;
+  cursor: pointer;
 }
 
 @media (max-width: 1100px) {

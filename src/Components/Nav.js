@@ -65,7 +65,7 @@ function Nav(props) {
       />
       <p
         onClick={() => props.setRoute("login")}
-        className={props.route === "login" ? "{styles.navItemClicked}" : ""}
+        className={props.route === "login" ? styles.navItemClicked : ""}
         style={{
           borderBottom: props.route === "login" ? "1px solid #ff5c00" : "",
           cursor: props.route === "login" ? "default" : "pointer",
@@ -76,7 +76,7 @@ function Nav(props) {
       </p>
       <p
         onClick={() => props.setRoute("register")}
-        className={props.route === "register" ? "{styles.navItemClicked}" : ""}
+        className={props.route === "register" ? styles.navItemClicked : ""}
         style={{
           borderBottom: props.route === "register" ? "1px solid #ff5c00" : "",
           cursor: props.route === "register" ? "default" : "pointer",

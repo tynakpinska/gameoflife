@@ -1,0 +1,37 @@
+.frisella {
+  font-size: 1.1rem;
+  padding: 1.5rem;
+  width: 28%;
+  font-style: italic;
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  animation: slideinright 2s ease-in-out;
+  color: #f3efed;
+  text-align: right;
+  line-height: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+@media (max-width: 850px) {
+  .frisella {
+    display: none;
+  }
+
+  .frisella p {
+    display: none;
+  }
+}
+
+@keyframes slideinright {
+  0% {
+    transform: translate(500px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}

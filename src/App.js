@@ -20,8 +20,9 @@ class App extends Component {
     return (
       <div basename="/gameoflife">
         <Nav />
+        <div className="box"></div>
+        <Frisella />
         <main>
-          <Frisella />
           {route === "login" ? (
             <LogIn />
           ) : route === "register" ? (

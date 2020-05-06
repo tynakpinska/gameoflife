@@ -56,20 +56,6 @@ h2 {
   padding: 20px;
 }
 
-h3 {
-  font-size: 1rem;
-  font-weight: 500;
-  font-style: normal;
-  border-radius: 0 0 0 150px;
-  margin: 5%;
-  padding-top: 5%;
-  color: #f3efed;
-  animation: show 2s ease-out, slideinleft 2s ease-out;
-  border-left: 20px solid #ff5c00;
-  width: 70%;
-  text-align: right;
-}
-
 h4 {
   margin: 5px;
 }
@@ -148,105 +134,8 @@ input:focus {
   height: 100%;
 }
 
-.frisella {
-  font-size: 1.1rem;
-  padding: 1.5rem;
-  width: 28%;
-  font-style: italic;
-  position: fixed;
-  bottom: 20px;
-  right: 0;
-  animation: slideinright 2s ease-out;
-  color: #f3efed;
-  text-align: right;
-  line-height: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-}
-
-.learn {
-  position: fixed;
-  top: 5%;
-  right: 0;
-  background: url("./img/learn.jpg") center;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 40%;
-  max-height: 60%;
-  z-index: -1;
-  animation: show 2s ease-in, slideinright 2s ease-in;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.learn p {
-  padding: 0 5% 0 25%;
-  font-family: "Montserrat", sans-serif;
-  font-size: 10vh;
-  font-weight: 900;
-  text-align: right;
-  mix-blend-mode: multiply;
-  color: #ffcfb3;
-  background: #060200;
-}
-
 .hide {
   display: none;
-}
-
-.challElement {
-  display: flex;
-  justify-content: center;
-  margin: 10px;
-  animation: growABit 1s ease-in-out;
-}
-
-.challenge {
-  background: url(./img/challenge.png);
-  background-repeat: repeat;
-  color: rgb(199 194 194);
-  font-weight: bolder;
-  padding: 10px;
-  margin: 10px;
-  min-width: 70%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  overflow-wrap: anywhere;
-  border-radius: 7px;
-}
-
-.challenge i:hover {
-  cursor: pointer;
-}
-
-.challenge input {
-  margin: 0;
-  width: 100%;
-  background: none;
-  color: rgb(199 194 194);
-}
-
-.done {
-  font-size: 0.8rem;
-  color: #9b3800;
-  text-decoration: line-through;
-}
-
-.fade {
-  opacity: 0.8;
-}
-
-.fist {
-  display: flex;
-  align-items: center;
-}
-
-.fist img {
-  height: 40px;
 }
 
 .timer {
@@ -298,10 +187,6 @@ input:focus {
     margin-top: 1rem;
   }
 
-  .learn p {
-    font-size: 3.5rem;
-  }
-
   h3 {
     font-size: 0.9rem;
     padding: 2%;
@@ -309,9 +194,6 @@ input:focus {
 }
 
 @media (max-width: 850px) {
-  .main {
-    min-height: 80vh;
-  }
   .container {
     min-width: 100%;
     position: static;
@@ -321,10 +203,6 @@ input:focus {
     background: none;
     animation: null;
     box-shadow: none;
-  }
-
-  .challenge {
-    border: 1px solid #ffcfb3;
   }
 
   .end {
@@ -342,27 +220,6 @@ input:focus {
     background-size: cover;
   }
 
-  .frisella {
-    display: none;
-  }
-
-  .frisella p {
-    display: none;
-  }
-
-  .learn {
-    position: static;
-    width: 100%;
-    margin-top: 30%;
-  }
-
-  .learn p {
-    width: 100%;
-    padding: 30px;
-    text-align: center;
-    font-size: 2rem;
-  }
-
   .end {
     height: 100%;
   }
@@ -377,70 +234,12 @@ input:focus {
   }
 }
 
-@keyframes slideinleft {
-  0% {
-    transform: translate(-500px);
-  }
-
-  100% {
-    transform: translate(0);
-  }
-}
-
-@keyframes slideinright {
-  0% {
-    transform: translate(500px);
-  }
-
-  100% {
-    transform: translate(0);
-  }
-}
-
-@keyframes slideinbottom {
-  0% {
-    bottom: -500px;
-  }
-
-  100% {
-    bottom: 0;
-  }
-}
-
 @keyframes grow {
   0% {
-    transform: scale(50%);
+    transform: scale(90%);
   }
 
   100% {
     transform: scale(100%);
-  }
-}
-
-@keyframes growABit {
-  0% {
-    transform: scale(95%);
-  }
-
-  50% {
-    transform: scale(103%);
-  }
-
-  100% {
-    transform: scale(100%);
-  }
-}
-
-@keyframes appear {
-  0% {
-    padding: 10px;
-    font-weight: 500;
-  }
-  50% {
-    padding: 12px;
-  }
-  100% {
-    padding: 10px;
-    font-weight: bolder;
   }
 }

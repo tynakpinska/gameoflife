@@ -1,0 +1,67 @@
+.learn {
+  position: fixed;
+  top: 5%;
+  right: 0;
+  background: url("../../img/learn.jpg") center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 40%;
+  max-height: 60%;
+  z-index: -1;
+  animation: show 4s ease-in, slideinright 2s ease-in-out;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.learn p {
+  padding: 0 5% 0 25%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10vh;
+  font-weight: 900;
+  text-align: right;
+  mix-blend-mode: multiply;
+  color: #ffcfb3;
+  background: #060200;
+}
+
+@media (max-width: 1100px) {
+  .learn p {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .learn {
+    position: static;
+    width: 100%;
+    margin-top: 30%;
+  }
+
+  .learn p {
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    font-size: 2rem;
+  }
+}
+
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideinright {
+  0% {
+    transform: translate(500px);
+  }
+
+  100% {
+    transform: translate(0);
+  }
+}

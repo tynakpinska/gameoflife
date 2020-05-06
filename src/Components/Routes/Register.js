@@ -71,7 +71,7 @@ class Register extends Component {
       </div>
     ) : (
       <div className="container">
-        <h2>Register</h2>
+      <h2>Register</h2>
         <div className={styles.register}>
           <label htmlFor="username">Username</label>
           <input
