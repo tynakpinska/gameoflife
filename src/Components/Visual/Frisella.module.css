@@ -16,6 +16,20 @@
   align-items: flex-end;
 }
 
+h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: normal;
+  border-radius: 0 0 0 150px;
+  margin: 5%;
+  padding-top: 5%;
+  color: #f3efed;
+  animation: show 2s ease-out, slideinleft 2s ease-out;
+  border-left: 20px solid #ff5c00;
+  width: 70%;
+  text-align: right;
+}
+
 @media (max-width: 850px) {
   .frisella {
     display: none;

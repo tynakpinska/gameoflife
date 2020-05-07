@@ -144,26 +144,6 @@ input:focus {
   line-height: 30px;
 }
 
-.end {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 40vw;
-  max-height: 40vw;
-}
-
-.end p {
-  padding: 1rem;
-}
-
-.end img {
-  max-width: 100%;
-  height: auto;
-  border: 3px solid #ff5c00;
-  padding: 20px;
-}
-
 .warning {
   margin: 40px 0 0 0;
   color: #9b3800;
@@ -205,10 +185,6 @@ input:focus {
     box-shadow: none;
   }
 
-  .end {
-    max-width: 100%;
-  }
-
   h1 {
     padding: 3px;
   }
@@ -218,10 +194,6 @@ input:focus {
     background: linear-gradient(to top, rgba(0 0 0 / 0), rgba(0 0 0 / 1)),
       url("./img/mountain.jpg");
     background-size: cover;
-  }
-
-  .end {
-    height: 100%;
   }
 }
 

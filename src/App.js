@@ -11,12 +11,12 @@ import LogIn from "./Components/Routes/LogIn";
 import Register from "./Components/Routes/Register";
 import Profile from "./Components/Routes/Profile";
 
-const mapStateToProps = ({ route }) => {
-  return { route };
+const mapStateToProps = ({ route, step }) => {
+  return { route, step };
 };
 
 class App extends Component {
-  render({ route } = this.props) {
+  render({ route, step } = this.props) {
     return (
       <div basename="/gameoflife">
         <Nav />
@@ -33,7 +33,7 @@ class App extends Component {
             <Game />
           )}
         </main>
-        <Learn />
+        {route === "game" && step !== "end" ? <Learn /> : null}
         <Footer />
       </div>
     );

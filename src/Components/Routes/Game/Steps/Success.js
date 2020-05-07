@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import styles from "./End.module.css";
 import tiger from "./../../../../img/tiger.jpg";
 
 const mapStateToProps = ({ user }) => {
@@ -10,7 +11,7 @@ const mapStateToProps = ({ user }) => {
 const Success = ({user}) => {
     const { username } = user;
     return (
-      <div className="end">
+      <div className={styles.end}>
         <h2>
             {username
               ? `${username}, you won today!`
@@ -18,7 +19,7 @@ const Success = ({user}) => {
           </h2>
         <p>Well done!</p>
         <p>Take a rest.</p>
-        <img src={tiger} alt="tiger" />
+        <div><img src={tiger} alt="tiger" /></div>
         <p>See you tomorrow!</p>
       </div>
     );

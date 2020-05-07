@@ -90,7 +90,7 @@ class Set extends Component {
       const user = this.props.user;
       const id = uuidv4();
       this.props.addChallenge(challenge, id);
-      document.querySelector(".typeChall").value = "";
+      document.querySelector(".Set_typeChall__1l0Vq").value = "";
       if (user.username) {
         fetch("http://localhost:3000/saveChallenge", {
           method: "POST",
