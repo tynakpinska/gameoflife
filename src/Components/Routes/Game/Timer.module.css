@@ -1,0 +1,11 @@
+.timer {
+    font-size: 1.2rem;
+    margin: 20px;
+    line-height: 30px;
+  }
+
+  @media (max-width: 400px) {
+    span {
+        display: block;
+    }
+  }

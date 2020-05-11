@@ -102,7 +102,11 @@ class Challenge extends Component {
 
   render({ isDone, challenge, step } = this.props) {
     return (
-      <div className={isDone ? styles.challElement + " " + styles.done : styles.challElement}>
+      <div
+        className={
+          isDone ? styles.challElement + " " + styles.done : styles.challElement
+        }
+      >
         {isDone ? (
           <div className={styles.fist}>
             <img src={fist} alt="fist" />
@@ -112,8 +116,11 @@ class Challenge extends Component {
         )}
         {step === "set" ? (
           this.state.isEditable ? (
-            <div className={styles.challenge}>
+            <div
+              style={{ display: "flex", alignItems: "center", minWidth: "100%", margin: 'auto'}}
+            >
               <input
+                className={styles.challenge}
                 type="text"
                 defaultValue={challenge}
                 onKeyPress={this.handleEnter}
@@ -148,7 +155,11 @@ class Challenge extends Component {
             </div>
           )
         ) : (
-          <div className={isDone ? styles.challenge + " " + styles.fade : styles.challenge}>
+          <div
+            className={
+              isDone ? styles.challenge + " " + styles.fade : styles.challenge
+            }
+          >
             {challenge}
             <div className={styles.icons}>
               <i

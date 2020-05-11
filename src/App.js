@@ -33,7 +33,7 @@ class App extends Component {
             <Game />
           )}
         </main>
-        {route === "game" && step !== "end" ? <Learn /> : null}
+        <Learn />
         <Footer />
       </div>
     );
