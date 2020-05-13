@@ -84,20 +84,27 @@ class Challenge extends Component {
           }),
         })
           .then(resp => resp.json())
-          .then(resp => console.log(resp))
+          .then(resp => toggleChallenge(resp.key))
           .catch(err => console.log(err));
       }
-      toggleChallenge(id);
     }
   };
 
-  componentDidUpdate() {
+  handleEndGame = () => {
     if (this.props.challenges.every(ch => ch.isDone)) {
       setTimeout(() => {
         this.props.setResult("success");
         this.props.setStep("end");
       }, 1000);
     }
+  };
+
+  componentDidMount() {
+    this.handleEndGame();
+  }
+
+  componentDidUpdate() {
+    this.handleEndGame();
   }
 
   render({ isDone, challenge, step } = this.props) {
@@ -117,7 +124,12 @@ class Challenge extends Component {
         {step === "set" ? (
           this.state.isEditable ? (
             <div
-              style={{ display: "flex", alignItems: "center", minWidth: "100%", margin: 'auto'}}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                minWidth: "100%",
+                margin: "auto",
+              }}
             >
               <input
                 className={styles.challenge}

@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styles from "./LogIn.module.css";
 
-import { setStep, logIn, fetchChallenges } from "../../redux/actions";
+import {
+  setStep,
+  setResult,
+  logIn,
+  fetchChallenges,
+} from "../../redux/actions";
 
 const mapStateToProps = state => {
   return {
@@ -13,6 +18,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setStep: step => dispatch(setStep(step)),
+    setResult: result => dispatch(setResult(result)),
     logIn: user => dispatch(logIn(user)),
     fetchChallenges: challenges => dispatch(fetchChallenges(challenges)),
   };
@@ -67,28 +73,29 @@ class LogIn extends Component {
   };
 
   handleSubmit = e => {
-    fetch("http://localhost:3000/signin", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password,
-      }),
-    })
-      .then(resp => resp.json())
-      .then(resp => {
-        if (
-          resp === "Unable to log in" ||
-          resp === "No such user" ||
-          resp === "Incorrect form submission"
-        ) {
-          this.setState({ loginFailed: true });
-        } else {
-          this.props.logIn(resp);
-          this.fetchChallenges(this.state.username, this.state.password);
-        }
+    if (this.state.username && this.state.password) {
+      fetch("http://localhost:3000/signin", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: this.state.username,
+          password: this.state.password,
+        }),
       })
-      .catch(console.log);
+        .then(resp => resp.json())
+        .then(resp => {
+          if (resp === "Unable to log in" || resp === "No such user") {
+            this.setState({ loginFailed: true });
+          } else {
+            sessionStorage.setItem("token", resp.token);
+            this.props.logIn(resp);
+            this.fetchChallenges(this.state.username, this.state.password);
+          }
+        })
+        .catch(console.log);
+    } else {
+      this.setState({ loginFailed: true });
+    }
   };
 
   render() {

@@ -77,10 +77,6 @@ span {
   width: 150px;
 }
 
-.container p {
-  padding: 2rem;
-}
-
 .container input,
 .container button {
   border-radius: 15px;

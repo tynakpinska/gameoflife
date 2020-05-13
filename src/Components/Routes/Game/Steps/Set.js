@@ -135,7 +135,6 @@ class Set extends Component {
           ></i>
         </div>
         <ChallengesList />
-        <button onClick={this.handleStartClick}>Start the game!</button>
         <p
           style={{
             display: this.state.startFailed ? "" : "none",
@@ -144,6 +143,7 @@ class Set extends Component {
         >
           Set challenges before starting the game!
         </p>
+        <button onClick={this.handleStartClick}>Start the game!</button>
       </div>
     );
   }

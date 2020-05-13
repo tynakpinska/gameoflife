@@ -17,13 +17,13 @@
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   font-style: normal;
   border-radius: 0 0 0 150px;
-  margin: 5%;
-  padding-top: 5%;
-  color: #f3efed;
+  margin: 2%;
+  padding-top: 2%;
+  color: #ffcfb3;
   animation: show 2s ease-out, slideinleft 2s ease-out;
   border-left: 20px solid #ff5c00;
   width: 70%;
