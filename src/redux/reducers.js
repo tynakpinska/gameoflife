@@ -10,7 +10,7 @@ import {
   TOGGLE_CHALLENGE,
   EDIT_CHALLENGE,
   RESET_CHALLENGES,
-  FETCH_CHALLENGES,
+  GET_CHALLENGES,
   SET_RESULT
 } from "./constants";
 
@@ -61,7 +61,7 @@ export const challenges = (state = initialState.challenges, action = {}) => {
       return [];
     case LOG_OUT:
       return [];
-    case FETCH_CHALLENGES:
+    case GET_CHALLENGES:
       return [...state, ...action.payload];
     default:
       return state;

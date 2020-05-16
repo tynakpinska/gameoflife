@@ -23,7 +23,8 @@ const mapStateToProps = ({ challenges, step, route, user }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addChallenge: (chall, key, date) => dispatch(addChallenge(chall, key, date)),
+    addChallenge: (chall, key, date) =>
+      dispatch(addChallenge(chall, key, date)),
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
     setStep: step => dispatch(setStep(step)),
@@ -43,7 +44,7 @@ class Set extends Component {
     if (e.key === "Enter" && e.target.value !== "") {
       const challenge = e.target.value;
       const id = uuidv4();
-      const date = new Date().toISOString().slice(0,10);
+      const date = new Date().toISOString().slice(0, 10);
       this.props.addChallenge(challenge, id, date);
       e.target.value = "";
       this.setState({ startFailed: false });
@@ -51,25 +52,28 @@ class Set extends Component {
   };
 
   handleStartClick = e => {
-    const {user, challenges} = this.props;
+    const { user, challenges } = this.props;
     if (this.props.challenges.length) {
-          this.props.setStep("start");
-          if (user.username) {
-            fetch("http://localhost:3000/saveChallenges", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                user,
-                challenges
-              }),
-            })
-              .then(resp => resp.json())
-              .then(resp => console.log(resp))
-              .catch(err => console.log(err, "Unable to save challenges"));
-          }
-        } else {
-          this.setState({ startFailed: true });
-        }
+      this.props.setStep("start");
+      if (user.username) {
+        fetch("http://localhost:3000/saveChallenges", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: sessionStorage.getItem("token"),
+          },
+          body: JSON.stringify({
+            user,
+            challenges,
+          }),
+        })
+          .then(resp => resp.json())
+          .then(resp => console.log(resp))
+          .catch(err => console.log(err, "Unable to save challenges"));
+      }
+    } else {
+      this.setState({ startFailed: true });
+    }
   };
 
   handleOnMouseOver = e => {
@@ -94,7 +98,10 @@ class Set extends Component {
       if (user.username) {
         fetch("http://localhost:3000/saveChallenge", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: sessionStorage.getItem("token"),
+          },
           body: JSON.stringify({
             user,
             challenge,
@@ -113,14 +120,16 @@ class Set extends Component {
   render({ user } = this.props) {
     return (
       <div className="container">
-        <h2>
-          {user.username
-            ? `${user.username}, what are you playing today?`
-            : "What are you playing today?"}
-        </h2>
+        {user.username ? (
+          <h2>
+            {user.username}, <br /> what are you playing today?
+          </h2>
+        ) : (
+          <h2>What are you playing today?</h2>
+        )}
         <div className={styles.inputContainer}>
           <input
-          className={styles.typeChall}
+            className={styles.typeChall}
             type="text"
             placeholder="e.g. learn javascript"
             onKeyUp={this.handleEnter}

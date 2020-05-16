@@ -10,7 +10,7 @@ import {
   TOGGLE_CHALLENGE,
   EDIT_CHALLENGE,
   RESET_CHALLENGES,
-  FETCH_CHALLENGES,
+  GET_CHALLENGES,
   SET_RESULT
 } from "./constants";
 
@@ -57,8 +57,8 @@ export const logOut = () => ({
   type: LOG_OUT
 });
 
-export const fetchChallenges = challenges => ({
-  type: FETCH_CHALLENGES,
+export const getChallenges = challenges => ({
+  type: GET_CHALLENGES,
   payload: challenges
 });
 

@@ -35,6 +35,7 @@ function Nav(props) {
       .then(resp => resp.json())
       .then(resp => {
         if (resp === "logged out") {
+          sessionStorage.removeItem('token');
           props.logOut();
           props.setRoute("game");
           props.setStep("set");

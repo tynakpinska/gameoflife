@@ -6,7 +6,7 @@ import {
   setStep,
   setResult,
   logIn,
-  fetchChallenges,
+  getChallenges,
 } from "../../redux/actions";
 
 const mapStateToProps = state => {
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
     setStep: step => dispatch(setStep(step)),
     setResult: result => dispatch(setResult(result)),
     logIn: user => dispatch(logIn(user)),
-    fetchChallenges: challenges => dispatch(fetchChallenges(challenges)),
+    getChallenges: challenges => dispatch(getChallenges(challenges)),
   };
 };
 
@@ -42,31 +42,28 @@ class LogIn extends Component {
     this.setState({ password: e.target.value });
   };
 
-  fetchChallenges = (username, password) => {
+  fetchChallenges = (id, token) => {
     const now = new Date();
     const nowStr = now.toISOString().slice(0, 10);
     fetch("http://localhost:3000/getChallenges", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": token },
       body: JSON.stringify({
-        username,
-        password,
-        nowStr,
+        id,
+        nowStr
       }),
     })
       .then(resp => resp.json())
       .then(resp => {
         if (
           resp === "Invalid request" ||
-          resp === "Unable to fetch challenges"
+          resp === "Unable to fetch challenges" ||
+          resp === "No todays challenges"
         ) {
           console.log(resp);
-        } else {
-          console.log(resp);
-          if (resp[0]) {
+        } else if (resp[0]) {
             this.props.setStep("start");
-            this.props.fetchChallenges(resp);
-          }
+            this.props.getChallenges(resp);
         }
       })
       .catch(console.log);
@@ -89,7 +86,7 @@ class LogIn extends Component {
           } else {
             sessionStorage.setItem("token", resp.token);
             this.props.logIn(resp);
-            this.fetchChallenges(this.state.username, this.state.password);
+            this.fetchChallenges(resp.id, resp.token);
           }
         })
         .catch(console.log);

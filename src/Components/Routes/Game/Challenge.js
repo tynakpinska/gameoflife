@@ -77,7 +77,7 @@ class Challenge extends Component {
       if (user.username) {
         fetch("http://localhost:3000/toggleChallenge", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": sessionStorage.getItem("token") },
           body: JSON.stringify({
             user,
             key: id,
