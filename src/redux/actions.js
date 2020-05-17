@@ -11,60 +11,102 @@ import {
   EDIT_CHALLENGE,
   RESET_CHALLENGES,
   GET_CHALLENGES,
-  SET_RESULT
+  SET_RESULT,
 } from "./constants";
 
 export const addChallenge = (challenge, key, date) => ({
   type: ADD_CHALLENGE,
-  payload: [challenge, key, date]
+  payload: [challenge, key, date],
 });
 
-export const removeChallenge = (key) => ({
+export const removeChallenge = key => ({
   type: REMOVE_CHALLENGE,
-  payload: key
+  payload: key,
 });
 
 export const editChallenge = (newChall, key) => ({
   type: EDIT_CHALLENGE,
-  payload: [newChall, key]
+  payload: [newChall, key],
 });
 
-export const toggleChallenge = (key) => ({
+export const toggleChallenge = key => ({
   type: TOGGLE_CHALLENGE,
-  payload: key
+  payload: key,
 });
 
 export const resetChallenges = () => ({
-  type: RESET_CHALLENGES
+  type: RESET_CHALLENGES,
 });
 
 export const setRoute = route => ({
   type: SET_ROUTE,
-  payload: route
+  payload: route,
 });
 
 export const setStep = step => ({
   type: SET_STEP,
-  payload: step
-});
-
-export const logIn = user => ({
-  type: LOG_IN,
-  payload: user
+  payload: step,
 });
 
 export const logOut = () => ({
-  type: LOG_OUT
+  type: LOG_OUT,
 });
 
-export const getChallenges = challenges => ({
-  type: GET_CHALLENGES,
-  payload: challenges
-});
+export const getUser = id => dispatch => {
+  fetch(`http://localhost:3000/profile/${id}`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: sessionStorage.getItem("token"),
+    },
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      dispatch({
+        type: LOG_IN,
+        payload: resp,
+      });
+    })
+    .catch(console.log);
+};
+
+export const fetchChallenges = (id, token) => dispatch => {
+  const now = new Date();
+  const nowStr = now.toISOString().slice(0, 10);
+  fetch("http://localhost:3000/getChallenges", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      id,
+      nowStr,
+    }),
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      if (
+        resp === "Invalid request" ||
+        resp === "Unable to fetch challenges" ||
+        resp === "No todays challenges"
+      ) {
+        console.log(resp);
+      } else if (resp[0]) {
+        dispatch({
+          type: SET_STEP,
+          payload: "start",
+        });
+        dispatch({
+          type: GET_CHALLENGES,
+          payload: resp,
+        });
+      }
+    })
+    .catch(err => console.log(err));
+};
 
 export const setResult = result => ({
   type: SET_RESULT,
-  payload: result
+  payload: result,
 });
-
-

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import "./App.css";
 import "./fontello/css/fontello.css";
+
 import Frisella from "./Components/Visual/Frisella";
 import Learn from "./Components/Visual/Learn";
 import Nav from "./Components/Nav";
@@ -11,7 +13,7 @@ import LogIn from "./Components/Routes/LogIn";
 import Register from "./Components/Routes/Register";
 import Profile from "./Components/Routes/Profile";
 
-import { logIn, getChallenges, setStep } from "./redux/actions";
+import { getUser, fetchChallenges, setStep } from "./redux/actions";
 
 const mapStateToProps = ({ route }) => {
   return { route };
@@ -19,51 +21,12 @@ const mapStateToProps = ({ route }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logIn: user => dispatch(logIn(user)),
+    getUser: id => dispatch(getUser(id)),
     setStep: step => dispatch(setStep(step)),
-    getChallenges: challenges => dispatch(getChallenges(challenges)),
+    fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token)),
   };
 };
 class App extends Component {
-  fetchChallenges = id => {
-    const now = new Date();
-    const nowStr = now.toISOString().slice(0, 10);
-    fetch("http://localhost:3000/getChallenges", {
-      method: "post",
-      headers: { "Content-Type": "application/json", "Authorization": sessionStorage.getItem("token") },
-      body: JSON.stringify({
-        id,
-        nowStr,
-      }),
-    })
-      .then(resp => resp.json())
-      .then(resp => {
-        if (
-          resp === "Invalid request" ||
-          resp === "Unable to fetch challenges" ||
-          resp === "No todays challenges"
-        ) {
-          console.log(resp);
-        } else if (resp[0]) {
-            this.props.setStep("start");
-            this.props.getChallenges(resp);
-        }
-      })
-      .catch(console.log);
-  };
-
-  getUser = id => {
-    fetch(`http://localhost:3000/profile/${id}`, {
-      method: "get",
-      headers: { "Content-Type": "application/json", "Authorization": sessionStorage.getItem("token") },
-    })
-      .then(resp => resp.json())
-      .then(resp => {
-        this.props.logIn(resp);
-      })
-      .catch(console.log);
-  };
-
   componentDidMount = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -73,10 +36,12 @@ class App extends Component {
       })
         .then(resp => resp.json())
         .then(resp => {
-          this.getUser(resp);
-          this.fetchChallenges(resp);
+          if (resp !== "Unauthorized") {
+            this.props.getUser(resp);
+            this.props.fetchChallenges(resp, token);
+          }
         })
-        .catch(console.log);
+        .catch(err => console.log(err));
     }
   };
 

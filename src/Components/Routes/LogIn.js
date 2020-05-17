@@ -5,8 +5,8 @@ import styles from "./LogIn.module.css";
 import {
   setStep,
   setResult,
-  logIn,
-  getChallenges,
+  getUser,
+  fetchChallenges,
 } from "../../redux/actions";
 
 const mapStateToProps = state => {
@@ -19,8 +19,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setStep: step => dispatch(setStep(step)),
     setResult: result => dispatch(setResult(result)),
-    logIn: user => dispatch(logIn(user)),
-    getChallenges: challenges => dispatch(getChallenges(challenges)),
+    getUser: id => dispatch(getUser(id)),
+    fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token))
   };
 };
 
@@ -42,41 +42,15 @@ class LogIn extends Component {
     this.setState({ password: e.target.value });
   };
 
-  fetchChallenges = (id, token) => {
-    const now = new Date();
-    const nowStr = now.toISOString().slice(0, 10);
-    fetch("http://localhost:3000/getChallenges", {
-      method: "post",
-      headers: { "Content-Type": "application/json", "Authorization": token },
-      body: JSON.stringify({
-        id,
-        nowStr
-      }),
-    })
-      .then(resp => resp.json())
-      .then(resp => {
-        if (
-          resp === "Invalid request" ||
-          resp === "Unable to fetch challenges" ||
-          resp === "No todays challenges"
-        ) {
-          console.log(resp);
-        } else if (resp[0]) {
-            this.props.setStep("start");
-            this.props.getChallenges(resp);
-        }
-      })
-      .catch(console.log);
-  };
 
-  handleSubmit = e => {
-    if (this.state.username && this.state.password) {
+  handleSubmit = (e, { username, password } = this.state) => {
+    if (username && password) {
       fetch("http://localhost:3000/signin", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username: this.state.username,
-          password: this.state.password,
+          username,
+          password
         }),
       })
         .then(resp => resp.json())
@@ -85,8 +59,8 @@ class LogIn extends Component {
             this.setState({ loginFailed: true });
           } else {
             sessionStorage.setItem("token", resp.token);
-            this.props.logIn(resp);
-            this.fetchChallenges(resp.id, resp.token);
+            this.props.getUser(resp.id);
+            this.props.fetchChallenges(resp.id, resp.token);
           }
         })
         .catch(console.log);

@@ -1,5 +1,6 @@
 {
   "name": "game-of-life",
+  "homepage": "https://tynakpinska.github.io/gameoflife/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,9 +12,13 @@
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.0",
     "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
     "simplebar-react": "^2.2.0",
     "uuid": "^7.0.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0",
+    "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,9 +42,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://tynakpinska.github.io/gameoflife/",
-  "devDependencies": {
-    "gh-pages": "^2.2.0"
   }
 }
