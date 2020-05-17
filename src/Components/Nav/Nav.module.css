@@ -1,68 +1,103 @@
 .nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 0;
-    background: #060200;
-  }
-  
-  .nav p {
-    color: #ff8139;
-    font-size: 0.8em;
-    padding: 10px;
-    border-left: 0.1rem solid #fff;
-    text-align: center;
-  }
-  
-  .nav p:first-child {
-    color: #fff;
-    border: none;
-  }
-  
-  .nav p:hover {
-    font-weight: bold;
-    cursor: pointer;
-    letter-spacing: 2px;
-  }
-  
-  .nav p:focus {
-    border: 0.1rem solid #fff;
-  }
-  
-  .navItemClicked {
-    font-weight: bold;
-    letter-spacing: 0.2rem;
-  }
-  
-  .navItemClicked:hover {
-    font-weight: bold;
-    cursor: auto;
-  }
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0;
+  background: #060200;
+}
 
-  .user {
-    display: flex;
-    align-items: center;
-    border-left: 0.1rem solid #fff;
-  }
-  
-  .user img {
-    width: 30px;
-    margin-left: 10px;
-  }
-  
-  .user p {
-    border: none;
-    color: #fff;
-    margin-top: 0.2rem;
-  }
+.navItem {
+  color: #ff8139;
+  font-size: 0.8em;
+  padding: 10px;
+  border-left: 0.1rem solid #fff;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
 
-  @media (max-width: 850px) {
-    .nav {
-      background-color: #060200;
-      flex-wrap: wrap;
-      position: relative;
-    }
+.navItem:first-child {
+  color: #fff;
+  border: none;
+}
+
+.navItem:hover {
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.navItem:focus {
+  border: 0.1rem solid #fff;
+}
+
+.navItemClicked {
+  color: #ff8139;
+  font-size: 0.8em;
+  padding: 10px;
+  border-left: 0.1rem solid #fff;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #ff5c00;
+  cursor: default;
+}
+
+.userBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 0.1rem solid #fff;
+  color: #ff8139;
+  font-size: 0.8em;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 1px;
+  padding-left: 10px;
+}
+
+.userBox:hover {
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.userBoxClicked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 0.1rem solid #fff;
+  color: #ff8139;
+  font-size: 0.8em;
+  text-align: center;
+  cursor: default;
+  font-weight: bold;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #ff5c00;
+  padding-left: 10px;
+}
+
+.userAv {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.userName {
+  padding: 10px;
+}
+
+.userBox p {
+  border: none;
+  color: #fff;
+}
+
+@media (max-width: 850px) {
+  .nav {
+    background-color: #060200;
+    flex-wrap: wrap;
+    position: relative;
   }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./Footer.module.css";
+import { footer, top, info } from "./Footer.module.css";
 
 class Footer extends Component {
   constructor() {
@@ -16,9 +16,10 @@ class Footer extends Component {
   };
 
   render() {
+    const { aboutDisplay } = this.state;
     return (
-      <div className={styles.footer}>
-        <div className={styles.top}>
+      <div className={footer}>
+        <div className={top}>
           <p>
             2020 &copy; Tyna Kpińska
             <a
@@ -31,16 +32,12 @@ class Footer extends Component {
             </a>
           </p>
           <button onClick={this.handleAboutClick}>
-            {this.state.aboutDisplay ? (
-              <i className="demo-icon icon-down"></i>
-            ) : (
-              ""
-            )}
+            {aboutDisplay ? <i className="demo-icon icon-down"></i> : ""}
             ABOUT
           </button>
         </div>
 
-        <div className={styles.info} style={{display: !this.state.aboutDisplay ? "none" : ""}}>
+        <div className={info} style={{ display: !aboutDisplay ? "none" : "" }}>
           <h2>What is the Game of Life?</h2>
           <p>
             The goal of this app is to help you achieve success by motivating
@@ -53,29 +50,29 @@ class Footer extends Component {
             >
               Zen Jaskiniowca
             </a>{" "}
-            podcast, that really helped me see how important everyday
-            activities are and how powerful doing little tasks can make you
-            feel. After some time you'll build a habit of winning and you'll
-            start to feel extremely effective.
+            podcast, that really helped me see how important everyday activities
+            are and how powerful doing little tasks can make you feel. After
+            some time you'll build a habit of winning and you'll start to feel
+            extremely effective.
           </p>
           <div>
-          <p>
-            <span>First</span>, decide what do you want your life to be like in
-            three main areas (according to{" "}
-            <a
-              href="https://zenjaskiniowca.pl/o-mnie/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Rafał Mazur
-            </a>
-            ):{" "}
-          </p>
-          <ol>
-            <li>body shape</li>
-            <li>state of mind</li>
-            <li>bank balance</li>
-          </ol>
+            <p>
+              <span>First</span>, decide what do you want your life to be like
+              in three main areas (according to{" "}
+              <a
+                href="https://zenjaskiniowca.pl/o-mnie/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Rafał Mazur
+              </a>
+              ):{" "}
+            </p>
+            <ol>
+              <li>body shape</li>
+              <li>state of mind</li>
+              <li>bank balance</li>
+            </ol>
           </div>
           <p>
             <span>Second</span>, every morning think of three to five todos that
@@ -85,13 +82,13 @@ class Footer extends Component {
           <p>
             <span>Finally</span>, start the game and smash every todo! The app
             shows how much time till the end of the day you have left. Consider
-            it a game. If you do all the challenges - you won the game. If you don't
-            - you lost.
+            it a game. If you do all the challenges - you won the game. If you
+            don't - you lost.
           </p>
           <p>
-            <b>Additionaly</b>, after a busy day, see your stats. Admire how hard have you 
-            worked during a week, a year, and see how far it got you. Try it out
-            and see it for yourself!
+            <b>Additionaly</b>, after a busy day, see your stats. Admire how
+            hard have you worked during a week, a year, and see how far it got
+            you. Try it out and see it for yourself!
           </p>
         </div>
       </div>
