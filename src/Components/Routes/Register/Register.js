@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styles from "./Register.module.css";
 
-import { resetChallenges } from "../../redux/actions";
+import { resetChallenges } from "../../../redux/actions";
 
 const mapDispatchToProps = dispatch => {
   return {

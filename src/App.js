@@ -6,14 +6,14 @@ import "./fontello/css/fontello.css";
 
 import Frisella from "./Components/Visual/Frisella";
 import Learn from "./Components/Visual/Learn";
-import Nav from "./Components/Nav";
+import Nav from "./Components/Nav/Nav";
 import Game from "./Components/Routes/Game/Game.js";
-import Footer from "./Components/Footer";
-import LogIn from "./Components/Routes/LogIn";
-import Register from "./Components/Routes/Register";
-import Profile from "./Components/Routes/Profile";
+import Footer from "./Components/Footer/Footer";
+import LogIn from "./Components/Routes/LogIn/LogIn";
+import Register from "./Components/Routes/Register/Register";
+import Profile from "./Components/Routes/Profile/Profile";
 
-import { getUser, fetchChallenges, setStep } from "./redux/actions";
+import { getUser, fetchChallenges } from "./redux/actions";
 
 const mapStateToProps = ({ route }) => {
   return { route };
@@ -22,10 +22,10 @@ const mapStateToProps = ({ route }) => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: id => dispatch(getUser(id)),
-    setStep: step => dispatch(setStep(step)),
     fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token)),
   };
 };
+
 class App extends Component {
   componentDidMount = () => {
     const token = sessionStorage.getItem("token");

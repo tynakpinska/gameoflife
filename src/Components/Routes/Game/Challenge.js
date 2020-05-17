@@ -108,10 +108,6 @@ class Challenge extends Component {
     this.handleEndGame();
   }
 
-  componentDidUpdate() {
-    this.handleEndGame();
-  }
-
   render({ isDone, challenge, step } = this.props) {
     return (
       <div

@@ -7,7 +7,7 @@ import {
   setResult,
   getUser,
   fetchChallenges,
-} from "../../redux/actions";
+} from "../../../redux/actions";
 
 const mapStateToProps = state => {
   return {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styles from "./Profile.module.css";
-import avatar from "../../img/user.png";
+import avatar from "../../../img/user.png";
 
 const mapStateToProps = ({ user }) => {
   return { user };

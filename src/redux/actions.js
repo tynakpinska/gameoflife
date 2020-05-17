@@ -29,10 +29,19 @@ export const editChallenge = (newChall, key) => ({
   payload: [newChall, key],
 });
 
-export const toggleChallenge = key => ({
-  type: TOGGLE_CHALLENGE,
-  payload: key,
-});
+export const toggleChallenge = key => (dispatch, getState) => {
+  dispatch({
+    type: TOGGLE_CHALLENGE,
+    payload: key,
+  });
+  const state = getState();
+  if (state.challenges.every(ch => ch.isDone)) {
+    setTimeout(() => {
+      dispatch(setStep("end"));
+      dispatch(setResult("success"));
+    }, 1000);
+  }
+};
 
 export const resetChallenges = () => ({
   type: RESET_CHALLENGES,
@@ -46,6 +55,11 @@ export const setRoute = route => ({
 export const setStep = step => ({
   type: SET_STEP,
   payload: step,
+});
+
+export const setResult = result => ({
+  type: SET_RESULT,
+  payload: result,
 });
 
 export const logOut = () => ({
@@ -93,10 +107,7 @@ export const fetchChallenges = (id, token) => dispatch => {
       ) {
         console.log(resp);
       } else if (resp[0]) {
-        dispatch({
-          type: SET_STEP,
-          payload: "start",
-        });
+        dispatch(setStep("start"));
         dispatch({
           type: GET_CHALLENGES,
           payload: resp,
@@ -105,8 +116,3 @@ export const fetchChallenges = (id, token) => dispatch => {
     })
     .catch(err => console.log(err));
 };
-
-export const setResult = result => ({
-  type: SET_RESULT,
-  payload: result,
-});
