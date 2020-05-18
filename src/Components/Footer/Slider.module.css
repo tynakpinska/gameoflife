@@ -1,0 +1,76 @@
+.info {
+  width: 100%;
+  min-height: 25vh;
+  border-top: 1px solid white;
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+}
+
+.info h2 {
+  padding-top: 0;
+}
+
+.info p,
+.info div {
+  max-width: 60%;
+  margin: 5px auto;
+  line-height: 1.5rem;
+}
+.info div p {
+  width: 100%;
+}
+
+.info li {
+  margin: 0 40px;
+}
+
+.textSpan {
+  color: #fff;
+  background: #060200;
+  width: auto;
+  padding: 0;
+}
+
+.icon {
+  font-size: 5rem;
+  color: #ff9c64;
+  background: #060200;
+}
+.icon:hover {
+  color: #ff5c00;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: #ff5c00;
+}
+
+a:hover {
+  font-weight: bold;
+}
+
+form {
+  position: fixed;
+  bottom: 5px;
+  width: 50%;
+  left: 25%;
+}
+
+input {
+  margin: 10px;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .info p,
+  .info div {
+    width: 100%;
+  }
+}

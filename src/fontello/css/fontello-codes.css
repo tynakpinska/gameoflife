@@ -4,6 +4,8 @@
 .icon-pencil:before { content: '\e802'; } /* '' */
 .icon-ccw:before { content: '\e803'; } /* '' */
 .icon-plus-circled:before { content: '\e804'; } /* '' */
+.icon-left-open-big:before { content: '\e805'; } /* '' */
+.icon-right-open-big:before { content: '\e806'; } /* '' */
 .icon-upload:before { content: '\f02f'; } /* '' */
 .icon-github-circled:before { content: '\f09b'; } /* '' */
 .icon-down:before { content: '\f175'; } /* '' */
