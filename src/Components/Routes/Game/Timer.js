@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styles from "./Timer.module.css";
+import {timer, time} from "./Timer.module.css";
 
 import { setStep, setResult } from "../../../redux/actions"
 
@@ -65,9 +65,9 @@ class Timer extends Component {
     return leftParts.hours !== "--" &&
       leftParts.minutes !== "--" &&
       leftParts.seconds ? (
-      <p className={styles.timer}>
+      <p className={timer}>
         You've got{" "}
-        <span>
+        <span className={time}>
           {leftParts.hours} : {leftParts.minutes} : {leftParts.seconds}
         </span>{" "}
         left

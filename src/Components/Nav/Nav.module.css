@@ -25,9 +25,8 @@
 }
 
 .navItem:hover {
-  font-weight: bold;
+  animation: onhover .5s ease forwards;
   cursor: pointer;
-  letter-spacing: 2px;
 }
 
 .navItem:focus {
@@ -61,8 +60,7 @@
 }
 
 .userBox:hover {
-  letter-spacing: 2px;
-  font-weight: bold;
+  animation: onhover .5s ease forwards;
 }
 
 .userBoxClicked {
@@ -99,5 +97,16 @@
     background-color: #060200;
     flex-wrap: wrap;
     position: relative;
+  }
+}
+
+@keyframes onhover {
+  from {
+    font-weight: normal;
+    letter-spacing: 1px;
+  }
+  to {
+    letter-spacing: 2px;
+    font-weight: bold;
   }
 }

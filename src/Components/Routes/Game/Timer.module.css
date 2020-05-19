@@ -3,6 +3,17 @@
     margin: 20px;
     line-height: 30px;
   }
+  
+
+.time {
+  color: #fff;
+  background: #9b3800;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-weight: bolder;
+  display: inline-block;
+  width: 150px;
+}
 
   @media (max-width: 400px) {
     .timer span {

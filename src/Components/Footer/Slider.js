@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { info, textSpan, icon } from "./Slider.module.css";
+import { info, slider, textSpan, icon } from "./Slider.module.css";
 
 class Slider extends Component {
   constructor() {
     super();
     this.state = {
-      slideNum: 1
+      slideNum: 1,
     };
   }
 
@@ -27,64 +27,63 @@ class Slider extends Component {
     const { slideNum } = this.state;
     return (
       <div className={info}>
-        {slideNum !== 1 ? (
-          <div>
+        <h2>What is the Game of Life?</h2>
+        <div className={slider}>
+          {slideNum !== 1 ? (
             <span
               onClick={this.handleChangeSlide}
               className={`demo-icon icon-left-open-big ${icon}`}
             ></span>
-          </div>
-        ) : (
-          <div></div>
-        )}
-        {{
-          2: (
-            <div>
+          ) : (
+            <div style={{ flex: "1" }}></div>
+          )}
+          {{
+            2: (
+              <div>
+                <p>
+                  <span className={textSpan}>First</span>, decide what do you
+                  want your life to be like in three main areas (according to{" "}
+                  <a
+                    href="https://zenjaskiniowca.pl/o-mnie/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Rafał Mazur
+                  </a>
+                  ):{" "}
+                </p>
+                <ol>
+                  <li>body shape</li>
+                  <li>state of mind</li>
+                  <li>bank balance</li>
+                </ol>
+              </div>
+            ),
+            3: (
               <p>
-                <span className={textSpan}>First</span>, decide what do you want
-                your life to be like in three main areas (according to{" "}
-                <a
-                  href="https://zenjaskiniowca.pl/o-mnie/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Rafał Mazur
-                </a>
-                ):{" "}
+                <span className={textSpan}>Second</span>, every morning think of
+                three to five todos that will significantly close you to your
+                dreams defined in the previous step. Add tasks to your power
+                list by clicking Enter.
               </p>
-              <ol>
-                <li>body shape</li>
-                <li>state of mind</li>
-                <li>bank balance</li>
-              </ol>
-            </div>
-          ),
-          3: (
-            <p>
-              <span className={textSpan}>Second</span>, every morning think of
-              three to five todos that will significantly close you to your
-              dreams defined in the previous step. Add tasks to your power list
-              by clicking Enter.
-            </p>
-          ),
-          4: (
-            <p>
-              <span className={textSpan}>Finally</span>, start the game and
-              smash every todo! The app shows how much time till the end of the
-              day you have left. Consider it a game. If you do all the
-              challenges - you won the game. If you don't - you lost.
-            </p>
-          ),
-          5: (
-            <p>
-              <b className={textSpan}>Additionaly</b>, after a busy day, see
-              your stats. Admire how hard have you worked during a week, a year,
-              and see how far it got you. Try it out and see it for yourself!
-            </p>
-          ),
-        }[slideNum] || (
-          <div>
-            <h2>What is the Game of Life?</h2>
+            ),
+            4: (
+              <p>
+                <span className={textSpan}>Finally</span>, start the game and
+                smash every todo! The app shows how much time till the end of
+                the day you have left. Consider it a game. If you do all the
+                challenges - you won the game. If you don't - you lost.
+              </p>
+            ),
+            5: (
+              <p>
+                <b className={textSpan}>Additionaly</b>, after a busy day, see
+                your stats. Admire how hard have you worked during a week, a
+                year, and see how far it got you. Try it out and see it for
+                yourself!
+              </p>
+            ),
+          }[slideNum] || (
             <p>
               The goal of this app is to help you achieve success by motivating
               you to do something small, that closes you to fulfilling your
@@ -101,8 +100,18 @@ class Slider extends Component {
               feel. After some time you'll build a habit of winning and you'll
               start to feel extremely effective.
             </p>
-          </div>
-        )}
+          )}
+          {slideNum !== 5 ? (
+            <div>
+              <span
+                onClick={this.handleChangeSlide}
+                className={`demo-icon icon-right-open-big ${icon}`}
+              ></span>
+            </div>
+          ) : (
+            <div style={{ flex: "1" }}></div>
+          )}
+        </div>
         <form>
           <input
             onChange={this.handleInputChange}
@@ -145,16 +154,6 @@ class Slider extends Component {
             checked={slideNum === 5}
           />
         </form>
-        {slideNum !== 5 ? (
-          <div>
-            <span
-              onClick={this.handleChangeSlide}
-              className={`demo-icon icon-right-open-big ${icon}`}
-            ></span>
-          </div>
-        ) : (
-          <div></div>
-        )}
       </div>
     );
   }

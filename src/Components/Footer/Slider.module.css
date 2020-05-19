@@ -1,30 +1,36 @@
 .info {
-  width: 100%;
-  min-height: 25vh;
   border-top: 1px solid white;
-  margin: 15px 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  margin: 10px 0 40px 0;
+  width: 100%;
   text-align: center;
 }
 
+.slider {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .info h2 {
-  padding-top: 0;
+  color: #ffcfb3;
+  padding: 15px 0;
 }
 
 .info p,
 .info div {
   max-width: 60%;
-  margin: 5px auto;
+  margin: auto;
   line-height: 1.5rem;
+  animation: fadein 1s ease forwards;
 }
 .info div p {
   width: 100%;
+  animation: fadein 1s ease forwards;
 }
 
 .info li {
   margin: 0 40px;
+  animation: fadein 1s ease forwards;
 }
 
 .textSpan {
@@ -32,6 +38,7 @@
   background: #060200;
   width: auto;
   padding: 0;
+  animation: fadeinspans 1s ease forwards;
 }
 
 .icon {
@@ -71,6 +78,28 @@ input:hover {
 @media (max-width: 850px) {
   .info p,
   .info div {
-    width: 100%;
+    max-width: 100%;
+    font-size: .9rem;
+  }
+  .icon {
+    font-size: 2rem;
+  }
+}
+
+@keyframes fadein {
+  from {
+    color: #060200;
+  }
+  to {
+    color: #fff;
+  }
+}
+
+@keyframes fadeinspans {
+  from {
+    color: #060200;
+  }
+  to {
+    color: #ff5c00;
   }
 }
