@@ -19,8 +19,7 @@
   letter-spacing: 1px;
 }
 
-.navItem:first-child {
-  color: #fff;
+.navItem:nth-child(2) {
   border: none;
 }
 
@@ -98,6 +97,9 @@
     flex-wrap: wrap;
     position: relative;
   }
+}
+
+@media (max-width: 570) {
 }
 
 @keyframes onhover {

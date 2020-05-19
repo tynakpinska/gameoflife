@@ -28,7 +28,7 @@ class Slider extends Component {
     return (
       <div className={info}>
         <h2>What is the Game of Life?</h2>
-        <div className={slider}>
+        <div className={slider} style={{ flex: "1" }}>
           {slideNum !== 1 ? (
             <span
               onClick={this.handleChangeSlide}
@@ -102,8 +102,8 @@ class Slider extends Component {
             </p>
           )}
           {slideNum !== 5 ? (
-            <div>
-              <span
+            <div style={{ flex: "1" }}>
+              <span 
                 onClick={this.handleChangeSlide}
                 className={`demo-icon icon-right-open-big ${icon}`}
               ></span>

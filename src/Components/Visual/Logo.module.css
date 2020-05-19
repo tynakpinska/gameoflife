@@ -42,3 +42,12 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 570px) {
+  .logo {
+    width: 100%;
+  }
+  .dot1, .dot2, .dot3 {
+    display:none;
+  }
+}
