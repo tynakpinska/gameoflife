@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import styles from "./LogIn.module.css";
 
@@ -20,86 +20,70 @@ const mapDispatchToProps = dispatch => {
     setStep: step => dispatch(setStep(step)),
     setResult: result => dispatch(setResult(result)),
     getUser: id => dispatch(getUser(id)),
-    fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token))
+    fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token)),
   };
 };
 
-class LogIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      loginFailed: false,
-    };
-  }
+const LogIn = props => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginFailed, setLoginFailed] = useState(false);
 
-  handleUsernameChange = e => {
-    this.setState({ username: e.target.value });
-  };
-
-  handlePasswordChange = e => {
-    this.setState({ password: e.target.value });
-  };
-
-
-  handleSubmit = (e, { username, password } = this.state) => {
+  const handleSubmit = () => {
     if (username && password) {
       fetch("http://localhost:3000/signin", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           username,
-          password
+          password,
         }),
       })
         .then(resp => resp.json())
         .then(resp => {
           if (resp === "Unable to log in" || resp === "No such user") {
-            this.setState({ loginFailed: true });
+            setLoginFailed(true);
           } else {
             sessionStorage.setItem("token", resp.token);
-            this.props.getUser(resp.id);
-            this.props.fetchChallenges(resp.id, resp.token);
+            props.getUser(resp.id);
+            props.fetchChallenges(resp.id, resp.token);
           }
         })
         .catch(console.log);
     } else {
-      this.setState({ loginFailed: true });
+      setLoginFailed(true);
     }
   };
 
-  render() {
-    return (
-      <div className="container">
-        <h2>Log in</h2>
-        <div className={styles.login}>
-          <label htmlFor="username">Username</label>
-          <input
-            className="username"
-            type="text"
-            id="username"
-            onChange={this.handleUsernameChange}
-          ></input>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            onChange={this.handlePasswordChange}
-          ></input>
-          <p className={!this.state.loginFailed ? "hide" : "warning"}>
-            Oooops... Something went wrong. Please try again.
-          </p>
-          <input
-            type="submit"
-            value="Log in"
-            onClick={this.handleSubmit}
-            aria-label="Log in"
-          ></input>
-        </div>
+  return (
+    <div className="container">
+      <h2>Log in</h2>
+      <div className={styles.login}>
+        <label htmlFor="username">Username</label>
+        <input
+          className="username"
+          type="text"
+          id="username"
+          onChange={e => setUsername(e.target.value)}
+        ></input>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          onChange={e => setPassword(e.target.value)}
+        ></input>
+        <p className={!loginFailed ? "hide" : "warning"}>
+          Oooops... Something went wrong. Please try again.
+        </p>
+        <input
+          type="submit"
+          value="Log in"
+          onClick={handleSubmit}
+          aria-label="Log in"
+        ></input>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

@@ -21,16 +21,13 @@
   max-width: 60%;
   margin: auto;
   line-height: 1.5rem;
-  animation: fadein 1s ease forwards;
 }
 .info div p {
   width: 100%;
-  animation: fadein 1s ease forwards;
 }
 
 .info li {
   margin: 0 40px;
-  animation: fadein 1s ease forwards;
 }
 
 .textSpan {
@@ -38,7 +35,6 @@
   background: #060200;
   width: auto;
   padding: 0;
-  animation: fadeinspans 1s ease forwards;
 }
 
 .icon {
@@ -83,23 +79,5 @@ input:hover {
   }
   .icon {
     font-size: 2rem;
-  }
-}
-
-@keyframes fadein {
-  from {
-    color: #060200;
-  }
-  to {
-    color: #fff;
-  }
-}
-
-@keyframes fadeinspans {
-  from {
-    color: #060200;
-  }
-  to {
-    color: #ff5c00;
   }
 }

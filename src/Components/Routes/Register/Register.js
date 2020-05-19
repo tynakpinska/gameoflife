@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { register } from "./Register.module.css";
 
@@ -10,32 +10,26 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      registerAttempt: "",
-    };
-  }
+const Register = props => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [registerAttempt, setRegisterAttempt] = useState("");
 
-  handleInputChange = e => {
+  const handleInputChange = e => {
     switch (e.target.id) {
       case "username":
-        return this.setState({ username: e.target.value });
+        return setUsername(e.target.value);
       case "email":
-        return this.setState({ email: e.target.value });
+        return setEmail(e.target.value);
       case "password":
-        return this.setState({ password: e.target.value });
+        return setPassword(e.target.value);
       default:
         return;
     }
   };
 
-  handleSubmit = e => {
-    const { username, email, password } = this.state;
+  const handleSubmit = () => {
     fetch("http://localhost:3000/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -51,62 +45,54 @@ class Register extends Component {
           resp === "Unable to register" ||
           resp === "Incorrect form submission"
         ) {
-          this.setState({ registerAttempt: "failure" });
+          setRegisterAttempt("failure");
         } else {
-          this.props.resetChallenges();
-          this.setState({
-            registerAttempt: "success",
-          });
+          props.resetChallenges();
+          setRegisterAttempt("success");
         }
       })
       .catch(console.log);
   };
 
-  render({ registerAttempt } = this.state) {
-    return registerAttempt === "success" ? (
-      <div className="container">
-        <div className={register}>
-          <p>Account created!</p>
-          <p>You may log in now.</p>
-        </div>
+  return registerAttempt === "success" ? (
+    <div className="container">
+      <div className={register}>
+        <p>Account created!</p>
+        <p>You may log in now.</p>
       </div>
-    ) : (
-      <div className="container">
-        <h2>Register</h2>
-        <div className={register}>
-          <label htmlFor="username">Username</label>
-          <input
-            className="username"
-            type="text"
-            id="username"
-            onChange={this.handleInputChange}
-          ></input>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            onChange={this.handleInputChange}
-          ></input>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            onChange={this.handleInputChange}
-          ></input>
-          <p className={registerAttempt === "failure" ? "warning" : "hide"}>
-            Unable to register. Please try again.
-          </p>
+    </div>
+  ) : (
+    <div className="container">
+      <h2>Register</h2>
+      <div className={register}>
+        <label htmlFor="username">Username</label>
+        <input
+          className="username"
+          type="text"
+          id="username"
+          onChange={handleInputChange}
+        ></input>
+        <label htmlFor="email">Email</label>
+        <input type="email" id="email" onChange={handleInputChange}></input>
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          onChange={handleInputChange}
+        ></input>
+        <p className={registerAttempt === "failure" ? "warning" : "hide"}>
+          Unable to register. Please try again.
+        </p>
 
-          <input
-            type="submit"
-            value="Register"
-            onClick={this.handleSubmit}
-            aria-label="Register"
-          ></input>
-        </div>
+        <input
+          type="submit"
+          value="Register"
+          onClick={handleSubmit}
+          aria-label="Register"
+        ></input>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default connect(null, mapDispatchToProps)(Register);
