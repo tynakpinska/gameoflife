@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { footer, top } from "./Footer.module.css";
-import Slider from "./Slider";
+import Slider from "./Slider/Slider";
 
 const Footer = () => {
   const [aboutDisplay, setAboutDisplay] = useState(false);

@@ -71,6 +71,21 @@ input:hover {
   cursor: pointer;
 }
 
+.slide-enter {
+  width: 0;
+}
+.slide-enter-active {
+  width: 100%;
+  transition: width 2000ms;
+}
+.slide-exit {
+  width: 100%;
+}
+.slide-exit-active {
+  width: 0;
+  transition: width 2000ms;
+}
+
 @media (max-width: 850px) {
   .info p,
   .info div {
