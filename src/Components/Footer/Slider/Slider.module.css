@@ -114,26 +114,14 @@ input:hover {
     max-width: 100%;
     font-size: 0.9rem;
   }
+}
+
+@media (max-width: 400px) {
   .wrapper {
     width: 70vw;
     left: 15vw;
     height: 90vh;
   }
-  .icon {
-    font-size: 3rem;
-  }
-  .iconRight {
-    bottom: 15vh;
-    right: 3vw;
-  }
-
-  .iconLeft {
-    bottom: 15vh;
-    left: 3vw;
-  }
-}
-
-@media (max-width: 400px) {
   .info {
     height: 100vh;
   }
