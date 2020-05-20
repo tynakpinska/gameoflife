@@ -3,6 +3,7 @@
   margin: 10px 0 40px 0;
   width: 100%;
   text-align: center;
+  height: 30vh;
 }
 
 .slider {
@@ -18,7 +19,6 @@
 
 .info p,
 .info div {
-  max-width: 60%;
   margin: auto;
   line-height: 1.5rem;
 }
@@ -41,10 +41,22 @@
   font-size: 5rem;
   color: #ff9c64;
   background: #060200;
+  position: absolute;
 }
+
 .icon:hover {
   color: #ff5c00;
   cursor: pointer;
+}
+
+.iconRight {
+  bottom: 13vh;
+  right: 7vw;
+}
+
+.iconLeft {
+  bottom: 13vh;
+  left: 7vw;
 }
 
 a {
@@ -70,29 +82,72 @@ input {
 input:hover {
   cursor: pointer;
 }
+.wrapper {
+  position: absolute;
+  height: 25vh;
+  width: 60vw;
+  bottom: 40px;
+  left: 20vw;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
 
-.slide-enter {
-  width: 0;
+.enter {
+  opacity: 0;
 }
-.slide-enter-active {
-  width: 100%;
-  transition: width 2000ms;
+.enterActive {
+  opacity: 1;
+  transition: all 1000ms ease-in-out;
 }
-.slide-exit {
-  width: 100%;
+.exit {
+  opacity: 1;
 }
-.slide-exit-active {
-  width: 0;
-  transition: width 2000ms;
+.exitActive {
+  opacity: 0;
+  transition: all 1000ms ease-in-out;
 }
 
 @media (max-width: 850px) {
   .info p,
   .info div {
     max-width: 100%;
-    font-size: .9rem;
+    font-size: 0.9rem;
+  }
+  .wrapper {
+    width: 70vw;
+    left: 15vw;
+    height: 90vh;
   }
   .icon {
-    font-size: 2rem;
+    font-size: 3rem;
+  }
+  .iconRight {
+    bottom: 15vh;
+    right: 3vw;
+  }
+
+  .iconLeft {
+    bottom: 15vh;
+    left: 3vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .info {
+    height: 100vh;
+  }
+  .icon {
+    font-size: 4rem;
+    z-index: 1;
+  }
+  .iconRight {
+    bottom: 45vh;
+    right: -.5vw;
+  }
+
+  .iconLeft {
+    bottom: 45vh;
+    left: -.5vw;
   }
 }
