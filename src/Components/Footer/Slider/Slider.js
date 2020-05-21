@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles, { info, slider, textSpan, icon, iconLeft, iconRight, wrapper } from "./Slider.module.css";
+import styles, { info, slider, textSpan, icon, iconLeft, iconRight, wrapper, input } from "./Slider.module.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const Slider = () => {
@@ -77,7 +77,7 @@ const Slider = () => {
             <p>
               <b className={textSpan}>Additionaly</b>, after a busy day, see
               your stats. Admire how hard have you worked during a week, a year,
-              and see how far it got you. Try it out and see it for yourself!
+              and see how far it got you. Try it out and see it htmlFor yourself!
             </p>
           ),
         }[currentSlide] || (
@@ -113,42 +113,49 @@ const Slider = () => {
         )}
       </div>
       <form>
+        <label htmlFor="1" onClick={e=>console.log(e.target.htmlFor)}></label>
         <input
           onChange={handleInputChange}
           type="radio"
-          name="slide"
+          name="1"
           aria-label="slide 1/6"
           value="1"
           checked={currentSlide === 1}
         />
+        <label htmlFor="2"></label>
         <input
           onChange={handleInputChange}
           type="radio"
-          name="slide"
+          name="2"
           aria-label="slide 2/6"
           value="2"
           checked={currentSlide === 2}
         />
+        
+        <label htmlFor="3"></label>
         <input
           onChange={handleInputChange}
           type="radio"
-          name="slide"
+          name="3"
           aria-label="slide 3/6"
           value="3"
           checked={currentSlide === 3}
         />
+        
+        <label htmlFor="4"></label>
         <input
           onChange={handleInputChange}
           type="radio"
-          name="slide"
+          name="4"
           aria-label="slide 4/6"
           value="4"
           checked={currentSlide === 4}
         />
+        <label htmlFor="5"></label>
         <input
           onChange={handleInputChange}
           type="radio"
-          name="slide"
+          name="5"
           aria-label="slide 5/6"
           value="5"
           checked={currentSlide === 5}

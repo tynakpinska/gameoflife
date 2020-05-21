@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { footer, top } from "./Footer.module.css";
+import styles, { footer, top, hidden } from "./Footer.module.css";
 import Slider from "./Slider/Slider";
+import { CSSTransition } from "react-transition-group";
 
 const Footer = () => {
-  const [aboutDisplay, setAboutDisplay] = useState(false);
+  const [about, setAbout] = useState(false);
 
   const handleAboutClick = () => {
-    aboutDisplay ? setAboutDisplay(false) : setAboutDisplay(true);
+    about ? setAbout(false) : setAbout(true);
   };
 
   return (
-    <div className={footer}>
+    
+    <CSSTransition
+    in={about}
+    timeout={{ enter: 1000, exit: 1000 }}
+    classNames={{ ...styles }}
+  >
+    <div className={`${footer} ${!about ? hidden : null}`}>
       <div className={top}>
         <p>
           2020 &copy; Tyna Kpińska
@@ -24,13 +31,14 @@ const Footer = () => {
           </a>
         </p>
         <button onClick={handleAboutClick}>
-          {aboutDisplay ? <i className="demo-icon icon-down"></i> : ""}
+          {about ? <i className="demo-icon icon-down"></i> : ""}
           ABOUT
         </button>
       </div>
-
-      {aboutDisplay ? <Slider /> : null}
+      <Slider />
+      
     </div>
+      </CSSTransition>
   );
 };
 

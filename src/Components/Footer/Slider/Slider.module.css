@@ -69,14 +69,15 @@ a:hover {
 }
 
 form {
-  position: fixed;
+  position: absolute;
   bottom: 5px;
   width: 50%;
   left: 25%;
+  height: 30px;
 }
 
 input {
-  margin: 10px;
+margin: 5px;
 }
 
 input:hover {
@@ -109,14 +110,30 @@ input:hover {
 }
 
 @media (max-width: 850px) {
+  .info {
+    height: 32vh;
+  }
+  .wrapper {
+    width: 95vw;
+    height: 27vh;
+    left: 10vw;
+  }
   .info p,
   .info div {
-    max-width: 100%;
+    max-width: 80%;
     font-size: 0.9rem;
+  }
+  
+  .iconRight {
+    right: -1vw;
+  }
+
+  .iconLeft {
+    left: -1vw;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .wrapper {
     width: 70vw;
     left: 15vw;
@@ -131,11 +148,11 @@ input:hover {
   }
   .iconRight {
     bottom: 45vh;
-    right: -.5vw;
+    right: -0.5vw;
   }
 
   .iconLeft {
     bottom: 45vh;
-    left: -.5vw;
+    left: -0.5vw;
   }
 }
