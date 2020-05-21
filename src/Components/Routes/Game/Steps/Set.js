@@ -91,29 +91,9 @@ class Set extends Component {
   handleButtonClick = e => {
     const challenge = this.state.inputValue;
     if (challenge !== "") {
-      const user = this.props.user;
       const id = uuidv4();
       this.props.addChallenge(challenge, id);
       document.querySelector(".Set_typeChall__1l0Vq").value = "";
-      if (user.username) {
-        fetch("http://localhost:3000/saveChallenge", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: sessionStorage.getItem("token"),
-          },
-          body: JSON.stringify({
-            user,
-            challenge,
-            key: id,
-            date: new Date(),
-            isDone: false,
-          }),
-        })
-          .then(resp => resp.json())
-          .then(resp => console.log(resp))
-          .catch(err => console.log(err, "Unable to save challenge"));
-      }
     }
   };
 

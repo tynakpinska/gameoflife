@@ -33,9 +33,12 @@
 
 @media (max-width: 850px) {
   .learn {
-    position: static;
+    position: fixed;
+    bottom: 5vh;
+    top: auto;
+    right: auto;
     width: 100%;
-    margin-top: 30%;
+    opacity: 0.6;
   }
 
   .learn p {
