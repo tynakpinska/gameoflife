@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles, { footer, top, hidden } from "./Footer.module.css";
+import styles, { footer, top, visible } from "./Footer.module.css";
 import Slider from "./Slider/Slider";
 import { CSSTransition } from "react-transition-group";
 
@@ -17,7 +17,7 @@ const Footer = () => {
     timeout={{ enter: 1000, exit: 1000 }}
     classNames={{ ...styles }}
   >
-    <div className={`${footer} ${!about ? hidden : null}`}>
+    <div className={`${footer} ${about ? visible : null}`}>
       <div className={top}>
         <p>
           2020 &copy; Tyna Kpińska
@@ -35,7 +35,7 @@ const Footer = () => {
           ABOUT
         </button>
       </div>
-      <Slider />
+      <Slider/>
       
     </div>
       </CSSTransition>

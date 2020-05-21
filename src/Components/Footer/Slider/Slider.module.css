@@ -6,11 +6,11 @@
   height: 30vh;
 }
 
-.slider {
+/* .slider {
   display: flex;
   justify-content: space-around;
   align-items: center;
-}
+} */
 
 .info h2 {
   color: #ffcfb3;
@@ -110,30 +110,7 @@ input:hover {
 }
 
 @media (max-width: 850px) {
-  .info {
-    height: 32vh;
-  }
-  .wrapper {
-    width: 95vw;
-    height: 27vh;
-    left: 10vw;
-  }
-  .info p,
-  .info div {
-    max-width: 80%;
-    font-size: 0.9rem;
-  }
-  
-  .iconRight {
-    right: -1vw;
-  }
 
-  .iconLeft {
-    left: -1vw;
-  }
-}
-
-@media (max-width: 450px) {
   .wrapper {
     width: 70vw;
     left: 15vw;
