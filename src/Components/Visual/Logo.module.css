@@ -1,7 +1,6 @@
 .logo {
   position: relative;
   margin-right: auto;
-  width: 370px;
   display: flex;
   align-items: center;
 }
@@ -17,6 +16,7 @@
   border-radius: 50px;
   margin-left: 10px;
   display: inline-block;
+  transition: all 0.5s;
 }
 
 .dot1 {

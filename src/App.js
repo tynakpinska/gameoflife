@@ -7,13 +7,30 @@ import "./fontello/css/fontello.css";
 import Frisella from "./Components/Visual/Frisella";
 import Learn from "./Components/Visual/Learn";
 import Nav from "./Components/Nav/Nav";
-import Game from "./Components/Routes/Game/Game.js";
+import Game from "./Components/Routes/Game/Game";
 import Footer from "./Components/Footer/Footer";
 import LogIn from "./Components/Routes/LogIn/LogIn";
 import Register from "./Components/Routes/Register/Register";
 import Profile from "./Components/Routes/Profile/Profile";
 
 import { getUser, fetchChallenges } from "./redux/actions";
+
+const ballsMove = e => {
+const dot1 = document.querySelector(".Logo_dot1__2NtYI");
+const dot2 = document.querySelector(".Logo_dot2__1OhRv");
+const dot3 = document.querySelector(".Logo_dot3__1B270");
+dot1.style.setProperty("margin-left", `${e.pageX/5}px`);
+dot2.style.setProperty("margin-left", `${e.pageX/5}px`);
+dot3.style.setProperty("margin-left", `${e.pageX/5}px`);
+dot1.style.setProperty("margin-top", `${e.pageY/50}px`);
+dot2.style.setProperty("margin-top", `${e.pageY/50}px`);
+dot3.style.setProperty("margin-top", `${e.pageY/50}px`);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".container");
+  container.addEventListener("mousemove", ballsMove)
+});
 
 const mapStateToProps = ({ route }) => {
   return { route };
