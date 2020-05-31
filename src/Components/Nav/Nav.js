@@ -69,7 +69,7 @@ const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
             className={route === "profile" ? userBoxClicked : userBox}
             onClick={handleUserClick}
           >
-            <img className={userAv} src={userImg} alt="avatar" />
+            <img className={userAv} src={user.imageUrl || userImg} alt="avatar" />
             <p className={userName}>{user.username}</p>
           </div>
           <p onClick={handleLogOut} className={navItem}>

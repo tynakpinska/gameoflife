@@ -19,12 +19,12 @@ const ballsMove = e => {
 const dot1 = document.querySelector(".Logo_dot1__2NtYI");
 const dot2 = document.querySelector(".Logo_dot2__1OhRv");
 const dot3 = document.querySelector(".Logo_dot3__1B270");
-dot1.style.setProperty("margin-left", `${e.pageX/5}px`);
-dot2.style.setProperty("margin-left", `${e.pageX/5}px`);
-dot3.style.setProperty("margin-left", `${e.pageX/5}px`);
-dot1.style.setProperty("margin-top", `${e.pageY/50}px`);
-dot2.style.setProperty("margin-top", `${e.pageY/50}px`);
-dot3.style.setProperty("margin-top", `${e.pageY/50}px`);
+dot1.style.setProperty("margin-left", `${e.offsetX/70}vw`);
+dot2.style.setProperty("margin-left", `${e.offsetX/70}vw`);
+dot3.style.setProperty("margin-left", `${e.offsetX/70}vw`);
+dot1.style.setProperty("margin-top", `${e.offsetY/45}px`);
+dot2.style.setProperty("margin-top", `${e.offsetY/45}px`);
+dot3.style.setProperty("margin-top", `${e.offsetY/45}px`);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -68,7 +68,7 @@ class App extends Component {
         <Nav />
         <div className="box"></div>
         <Frisella />
-        <main>
+        <main className="container">
           {route === "login" ? (
             <LogIn />
           ) : route === "register" ? (

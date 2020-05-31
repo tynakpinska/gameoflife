@@ -8,12 +8,6 @@ const mapStateToProps = ({ result }) => {
   return {result};
 };
 
-const End = props => {
-  return (
-    <div className="container">
-      {props.result === "success" ? <Success /> : <Failure />}
-    </div>
-  );
-}
+const End = props => props.result === "success" ? <Success /> : <Failure />;
 
 export default connect(mapStateToProps, null)(End);

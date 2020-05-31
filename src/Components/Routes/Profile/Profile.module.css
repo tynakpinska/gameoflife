@@ -1,28 +1,34 @@
 .profile {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .profile label {
-    color: #ff9c64;
-  }
-  
-  .profile label:hover {
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .profile input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
-  
-  .profile img {
-    width: 50%;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.profile label {
+  color: #ff9c64;
+  font-size: 0.9rem;
+}
+
+.changePic {
+  width: 100%;
+}
+
+.profile input {
+  display: inline-block;
+  height: 5px;
+  font-size: 0.7rem;
+  width: 90%;
+}
+
+.profile i {
+  display: inline-block;
+
+}
+
+.profile img {
+  width: 15vh;
+  height: 15vh;
+  border-radius: 500px;
+}

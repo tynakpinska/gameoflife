@@ -78,8 +78,11 @@
 }
 
 .userAv {
-  width: 30px;
+  width: 3vh;
+  height: 3vh;
   margin-right: 10px;
+  background: #ff8139;
+  border-radius: 50px;
 }
 
 .userName {

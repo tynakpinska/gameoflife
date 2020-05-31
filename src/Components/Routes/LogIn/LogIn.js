@@ -29,7 +29,8 @@ const LogIn = props => {
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     if (username && password) {
       fetch("http://localhost:3000/signin", {
         method: "post",
@@ -56,7 +57,7 @@ const LogIn = props => {
   };
 
   return (
-    <div className="container">
+    <>
       <h2>Log in</h2>
       <div className={styles.login}>
         <label htmlFor="username">Username</label>
@@ -77,12 +78,12 @@ const LogIn = props => {
         </p>
         <input
           type="submit"
-          value="Log in"
           onClick={handleSubmit}
           aria-label="Log in"
+          value="Log in"
         ></input>
       </div>
-    </div>
+    </>
   );
 };
 

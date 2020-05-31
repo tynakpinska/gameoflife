@@ -12,6 +12,7 @@ import {
   RESET_CHALLENGES,
   GET_CHALLENGES,
   SET_RESULT,
+  SET_PROFILE_IMAGE,
 } from "./constants";
 
 export const addChallenge = (challenge, key, date) => ({
@@ -82,6 +83,32 @@ export const getUser = id => dispatch => {
       });
     })
     .catch(console.log);
+};
+
+export const setProfileImage = (token, username, url) => dispatch => {
+  fetch("http://localhost:3000/setUserImage", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      username,
+      url,
+    }),
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      if (resp === "Unable to save image") {
+        console.log(resp);
+      } else if (resp[0]) {
+        dispatch({
+          type: SET_PROFILE_IMAGE,
+          payload: resp[0].url,
+        });
+      }
+    })
+    .catch(err => console.log(err));
 };
 
 export const fetchChallenges = (id, token) => dispatch => {

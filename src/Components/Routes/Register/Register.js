@@ -55,14 +55,12 @@ const Register = props => {
   };
 
   return registerAttempt === "success" ? (
-    <div className="container">
-      <div className={register}>
-        <p>Account created!</p>
-        <p>You may log in now.</p>
-      </div>
+    <div className={register}>
+      <p>Account created!</p>
+      <p>You may log in now.</p>
     </div>
   ) : (
-    <div className="container">
+    <>
       <h2>Register</h2>
       <div className={register}>
         <label htmlFor="username">Username</label>
@@ -91,7 +89,7 @@ const Register = props => {
           aria-label="Register"
         ></input>
       </div>
-    </div>
+    </>
   );
 };
 

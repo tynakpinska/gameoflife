@@ -99,7 +99,7 @@ class Set extends Component {
 
   render({ user } = this.props) {
     return (
-      <div className="container">
+      <>
         {user.username ? (
           <h2>
             {user.username}, <br /> what are you playing today?
@@ -133,7 +133,7 @@ class Set extends Component {
           Set challenges before starting the game!
         </p>
         <button onClick={this.handleStartClick}>Start the game!</button>
-      </div>
+      </>
     );
   }
 }
