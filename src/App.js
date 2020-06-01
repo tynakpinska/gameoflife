@@ -16,20 +16,20 @@ import Profile from "./Components/Routes/Profile/Profile";
 import { getUser, fetchChallenges } from "./redux/actions";
 
 const ballsMove = e => {
-const dot1 = document.querySelector(".Logo_dot1__2NtYI");
-const dot2 = document.querySelector(".Logo_dot2__1OhRv");
-const dot3 = document.querySelector(".Logo_dot3__1B270");
-dot1.style.setProperty("margin-left", `${e.offsetX/70}vw`);
-dot2.style.setProperty("margin-left", `${e.offsetX/70}vw`);
-dot3.style.setProperty("margin-left", `${e.offsetX/70}vw`);
-dot1.style.setProperty("margin-top", `${e.offsetY/45}px`);
-dot2.style.setProperty("margin-top", `${e.offsetY/45}px`);
-dot3.style.setProperty("margin-top", `${e.offsetY/45}px`);
-}
+  const dot1 = document.querySelector(".Logo_dot1__2NtYI");
+  const dot2 = document.querySelector(".Logo_dot2__1OhRv");
+  const dot3 = document.querySelector(".Logo_dot3__1B270");
+  dot1.style.setProperty("margin-left", `${e.offsetX / 70}vw`);
+  dot2.style.setProperty("margin-left", `${e.offsetX / 70}vw`);
+  dot3.style.setProperty("margin-left", `${e.offsetX / 70}vw`);
+  dot1.style.setProperty("margin-top", `${e.offsetY / 45}px`);
+  dot2.style.setProperty("margin-top", `${e.offsetY / 45}px`);
+  dot3.style.setProperty("margin-top", `${e.offsetY / 45}px`);
+};
 
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".container");
-  container.addEventListener("mousemove", ballsMove)
+  container.addEventListener("mousemove", ballsMove);
 });
 
 const mapStateToProps = ({ route }) => {

@@ -13,6 +13,7 @@ import {
   GET_CHALLENGES,
   SET_RESULT,
   SET_PROFILE_IMAGE,
+  GET_PROFILE_IMAGE,
 } from "./constants";
 
 export const addChallenge = (challenge, key, date) => ({
@@ -68,11 +69,12 @@ export const logOut = () => ({
 });
 
 export const getUser = id => dispatch => {
+  const token = sessionStorage.getItem("token");
   fetch(`http://localhost:3000/profile/${id}`, {
     method: "get",
     headers: {
       "Content-Type": "application/json",
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: token,
     },
   })
     .then(resp => resp.json())
@@ -81,6 +83,18 @@ export const getUser = id => dispatch => {
         type: LOG_IN,
         payload: resp,
       });
+      fetch(`http://localhost:3000/getUserImage/${resp.username}`, {
+        method: "get",
+        headers: { "Content-Type": "application/json", Authorization: token },
+      })
+        .then(resp => resp.json())
+        .then(resp => {
+          dispatch({
+            type: GET_PROFILE_IMAGE,
+            payload: resp.url,
+          });
+        })
+        .catch(err => console.log(err));
     })
     .catch(console.log);
 };
@@ -100,6 +114,32 @@ export const setProfileImage = (token, username, url) => dispatch => {
     .then(resp => resp.json())
     .then(resp => {
       if (resp === "Unable to save image") {
+        console.log(resp);
+      } else if (resp[0]) {
+        dispatch({
+          type: SET_PROFILE_IMAGE,
+          payload: resp[0].url,
+        });
+      }
+    })
+    .catch(err => console.log(err));
+};
+
+export const updateProfileImage = (token, username, url) => dispatch => {
+  fetch("http://localhost:3000/updateUserImage", {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      username,
+      url,
+    }),
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      if (resp === "Unable to update image") {
         console.log(resp);
       } else if (resp[0]) {
         dispatch({

@@ -13,6 +13,7 @@ import {
   GET_CHALLENGES,
   SET_RESULT,
   SET_PROFILE_IMAGE,
+  GET_PROFILE_IMAGE,
 } from "./constants";
 
 const initialState = {
@@ -100,6 +101,8 @@ export const user = (state = initialState.user, action = false) => {
     case LOG_OUT:
       return {};
     case SET_PROFILE_IMAGE:
+      return { ...state, imageUrl: action.payload };
+    case GET_PROFILE_IMAGE:
       return { ...state, imageUrl: action.payload };
     default:
       return state;

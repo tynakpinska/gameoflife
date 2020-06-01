@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import styles from "./Profile.module.css";
 import avatar from "../../../img/user.png";
 
-import { setProfileImage } from "../../../redux/actions";
+import { setProfileImage, updateProfileImage } from "../../../redux/actions";
 
 const mapStateToProps = ({ user }) => {
   return { user };
@@ -13,6 +13,8 @@ const mapDispatchToProps = dispatch => {
   return {
     setProfileImage: (token, username, url) =>
       dispatch(setProfileImage(token, username, url)),
+    updateProfileImage: (token, username, url) =>
+      dispatch(updateProfileImage(token, username, url)),
   };
 };
 
@@ -30,12 +32,18 @@ class Profile extends Component {
 
   handleImageSubmit = () => {
     const token = sessionStorage.getItem("token");
-    this.props.setProfileImage(
-      token,
-      this.props.user.username,
-      this.state.imageUrl
-    );
-    this.setState({imageUrl: ""})
+    this.props.user.imageUrl
+      ? this.props.updateProfileImage(
+          token,
+          this.props.user.username,
+          this.state.imageUrl
+        )
+      : this.props.setProfileImage(
+          token,
+          this.props.user.username,
+          this.state.imageUrl
+        );
+    this.setState({ imageUrl: "" });
   };
 
   render({ user } = this.props) {
