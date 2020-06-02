@@ -1,34 +1,110 @@
-.profile {
+.user {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
+  position: absolute;
+  margin: 0 auto;
 }
 
-.profile label {
+.username {
+  padding: 0;
+  margin: 0 auto;
+  width: max-content;
+}
+
+.user label {
   color: #ff9c64;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  margin-top: 5px;
 }
 
 .changePic {
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
 }
 
-.profile input {
+.user input {
   display: inline-block;
   height: 5px;
   font-size: 0.7rem;
   width: 90%;
 }
 
-.profile i {
+.user i {
   display: inline-block;
-
 }
 
-.profile img {
+.user img {
   width: 15vh;
   height: 15vh;
   border-radius: 500px;
+  margin: 0 auto;
+}
+
+.parts {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.part {
+  width: 50%;
+  height: 50%;
+}
+
+.part:hover {
+  box-shadow: 0 0 20px #9b3800;
+  cursor: pointer;
+}
+
+.streak {
+  border-radius: 500px 0 0 0;
+
+}
+
+.streak h4 {
+  transform: rotate(-50deg);
+  margin: 0 auto;
+  position: relative;
+  top: 40%;
+  left: -25%;
+}
+
+.state {
+  border-radius: 0 500px 0 0;
+
+}
+
+.state h4 {
+  transform: rotate(50deg);
+  margin: 0 auto;
+  position: relative;
+  top: 35%;
+  right: -15%;
+}
+
+.body {
+  border-radius: 0 0 0 500px;
+
+}
+
+.body h4 {
+  transform: rotate(50deg);
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  left: -20%;
+}
+
+.bank {
+  border-radius: 0 0 500px 0;
+
+}
+
+.bank h4 {
+  transform: rotate(-45deg);
+  margin: 0 auto;
+  position: relative;
+  top: 55%;
+  right: -15%;
 }

@@ -48,39 +48,43 @@ class Profile extends Component {
 
   render({ user } = this.props) {
     return (
-      <div className={styles.profile}>
-        <h2>{user.username}</h2>
-        <img src={user.imageUrl || avatar} alt="avatar" />
-        <label htmlFor="img">
-          Change profile picture - paste picture url below
-        </label>
-        <div className={styles.changePic}>
-          <input
-            type="url"
-            id="img"
-            name="img"
-            placeholder="e.g. shorturl.at/fwW02"
-            onChange={this.handleImageUrlChange}
-            value={this.state.imageUrl}
-          />
-          <i
-            className="demo-icon icon-upload"
-            onClick={this.handleImageSubmit}
-          ></i>
+      <>
+        <div className={styles.user}>
+          <h2 className={styles.username}>{user.username}</h2>
+          <img src={user.imageUrl || avatar} alt="avatar" />
+          <label htmlFor="img">
+            Change profile picture - paste picture url below
+          </label>
+          <div className={styles.changePic}>
+            <input
+              type="url"
+              id="img"
+              name="img"
+              placeholder="e.g. shorturl.at/fwW02"
+              onChange={this.handleImageUrlChange}
+              value={this.state.imageUrl}
+            />
+            <i
+              className="demo-icon icon-upload"
+              onClick={this.handleImageSubmit}
+            ></i>
+          </div>
         </div>
-        <div>
-          <h4>Streak</h4>
+        <div className={styles.parts}>
+          <div className={`${styles.part} ${styles.streak}`}>
+            <h4>Streak</h4>
+          </div>
+          <div className={`${styles.part} ${styles.state}`}>
+            <h4>State of mind</h4>
+          </div>
+          <div className={`${styles.part} ${styles.body}`}>
+            <h4>Body shape</h4>
+          </div>
+          <div className={`${styles.part} ${styles.bank}`}>
+            <h4>Bank balance</h4>
+          </div>
         </div>
-        <div>
-          <h4>State of mind</h4>
-        </div>
-        <div>
-          <h4>Body shape</h4>
-        </div>
-        <div>
-          <h4>Bank balance</h4>
-        </div>
-      </div>
+      </>
     );
   }
 }
