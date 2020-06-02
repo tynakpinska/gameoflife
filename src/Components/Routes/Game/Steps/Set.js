@@ -1,6 +1,11 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import styles from "./Set.module.css";
+import {
+  inputContainer,
+  typeChall,
+  addChallButton,
+  start,
+} from "./Set.module.css";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
 import ChallengesList from "../ChallengesList";
@@ -31,30 +36,24 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Set extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      startFailed: false,
-      inputValue: "",
-    };
-  }
+const Set = ({ challenges, user, addChallenge, setStep }) => {
+  const [startFailed, setStartFailed] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
-  handleEnter = e => {
+  const handleEnter = e => {
     if (e.key === "Enter" && e.target.value !== "") {
       const challenge = e.target.value;
       const id = uuidv4();
       const date = new Date().toISOString().slice(0, 10);
-      this.props.addChallenge(challenge, id, date);
+      addChallenge(challenge, id, date);
       e.target.value = "";
-      this.setState({ startFailed: false });
+      setStartFailed(false);
     }
   };
 
-  handleStartClick = e => {
-    const { user, challenges } = this.props;
-    if (this.props.challenges.length) {
-      this.props.setStep("start");
+  const handleStartClick = e => {
+    if (challenges.length) {
+      setStep("start");
       if (user.username) {
         fetch("http://localhost:3000/saveChallenges", {
           method: "POST",
@@ -72,70 +71,70 @@ class Set extends Component {
           .catch(err => console.log(err, "Unable to save challenges"));
       }
     } else {
-      this.setState({ startFailed: true });
+      setStartFailed(true);
     }
   };
 
-  handleOnMouseOver = e => {
+  const handleOnMouseOver = e => {
     e.target.style.color = "orange";
   };
 
-  handleOnMouseLeave = e => {
+  const handleOnMouseLeave = e => {
     e.target.style.color = "inherit";
   };
 
-  handleInputChange = e => {
-    this.setState({ inputValue: e.target.value });
+  const handleInputChange = e => {
+    setInputValue(e.target.value);
   };
 
-  handleButtonClick = e => {
-    const challenge = this.state.inputValue;
+  const handleButtonClick = e => {
+    const challenge = inputValue;
     if (challenge !== "") {
       const id = uuidv4();
-      this.props.addChallenge(challenge, id);
+      addChallenge(challenge, id);
       document.querySelector(".Set_typeChall__1l0Vq").value = "";
     }
   };
 
-  render({ user } = this.props) {
-    return (
-      <>
-        {user.username ? (
-          <h2>
-            {user.username}, <br /> what are you playing today?
-          </h2>
-        ) : (
-          <h2>What are you playing today?</h2>
-        )}
-        <div className={styles.inputContainer}>
-          <input
-            className={styles.typeChall}
-            type="text"
-            placeholder="e.g. learn javascript"
-            onKeyUp={this.handleEnter}
-            onChange={this.handleInputChange}
-            aria-label="Challenge"
-          ></input>
-          <i
-            onMouseOver={this.handleOnMouseOver}
-            onMouseLeave={this.handleOnMouseLeave}
-            onClick={this.handleButtonClick}
-            className={styles.addChallButton + " demo-icon icon-plus-circled"}
-          ></i>
-        </div>
-        <ChallengesList />
-        <p
-          style={{
-            display: this.state.startFailed ? "" : "none",
-            color: "#3E0000",
-          }}
-        >
-          Set challenges before starting the game!
-        </p>
-        <button className={styles.start} onClick={this.handleStartClick}>Start the game!</button>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {user.username ? (
+        <h2>
+          {user.username}, <br /> what are you playing today?
+        </h2>
+      ) : (
+        <h2>What are you playing today?</h2>
+      )}
+      <div className={inputContainer}>
+        <input
+          className={typeChall}
+          type="text"
+          placeholder="e.g. learn javascript"
+          onKeyUp={handleEnter}
+          onChange={handleInputChange}
+          aria-label="Challenge"
+        ></input>
+        <i
+          onMouseOver={handleOnMouseOver}
+          onMouseLeave={handleOnMouseLeave}
+          onClick={handleButtonClick}
+          className={addChallButton + " demo-icon icon-plus-circled"}
+        ></i>
+      </div>
+      <ChallengesList />
+      <p
+        style={{
+          display: startFailed ? "" : "none",
+          color: "#3E0000",
+        }}
+      >
+        Set challenges before starting the game!
+      </p>
+      <button className={start} onClick={handleStartClick}>
+        Start the game!
+      </button>
+    </>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Set);

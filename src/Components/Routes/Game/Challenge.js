@@ -1,5 +1,10 @@
-import React, { Component } from "react";
-import styles from "./Challenge.module.css";
+import React, { useState, useEffect } from "react";
+import styles, {
+  done,
+  challElement,
+  icons,
+  fade,
+} from "./Challenge.module.css";
 import fist from "../../../img/fist.png";
 import { connect } from "react-redux";
 
@@ -25,17 +30,26 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-class Challenge extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isEditable: false,
-      inputValue: "",
-    };
-  }
+const Challenge = ({
+  isDone,
+  challenge,
+  step,
+  editChallenge,
+  challenges,
+  setResult,
+  setStep,
+  user,
+  removeChallenge,
+  toggleChallenge,
+  id,
+}) => {
+  const [isEditable, setIsEditable] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
-  handleOnMouseOver = e => {
-    if (this.props.step === "set") {
+  useEffect(() => handleEndGame);
+
+  const handleOnMouseOver = e => {
+    if (step === "set") {
       e.target.classList[1] === "icon-trash"
         ? (e.target.style.color = "#FF5C00")
         : (e.target.style.color = "#FF9C64");
@@ -44,33 +58,30 @@ class Challenge extends Component {
     }
   };
 
-  handleOnMouseLeave = e => {
+  const handleOnMouseLeave = e => {
     e.target.style.color = "inherit";
   };
 
-  handleEdit = e => {
-    this.setState({ isEditable: true });
+  const handleEdit = e => {
+    setIsEditable(true);
   };
 
-  handleInputChange = e => {
-    this.setState({ inputValue: e.target.value });
+  const handleInputChange = e => {
+    setInputValue(e.target.value);
   };
 
-  handleEnter = (e, { user, id } = this.props) => {
-    const challenge = this.state.inputValue;
+  const handleEnter = e => {
+    const challenge = inputValue;
     if (
       (e.key === "Enter" && challenge !== "") ||
       (e.target.classList[1] === "icon-ok" && challenge !== "")
     ) {
-      this.props.editChallenge(challenge, id);
-      this.setState({ isEditable: false });
+      editChallenge(challenge, id);
+      setIsEditable(false);
     }
   };
 
-  handleChallClick = (
-    e,
-    { user, step, removeChallenge, toggleChallenge, id } = this.props
-  ) => {
+  const handleChallClick = () => {
     if (step === "set") {
       removeChallenge(id);
     } else {
@@ -95,98 +106,86 @@ class Challenge extends Component {
     }
   };
 
-  handleEndGame = () => {
-    if (this.props.challenges.every(ch => ch.isDone)) {
+  const handleEndGame = () => {
+    if (challenges.every(ch => ch.isDone)) {
       setTimeout(() => {
-        this.props.setResult("success");
-        this.props.setStep("end");
+        setResult("success");
+        setStep("end");
       }, 1000);
     }
   };
 
-  componentDidMount() {
-    this.handleEndGame();
-  }
-
-  render({ isDone, challenge, step } = this.props) {
-    return (
-      <div
-        className={
-          isDone ? styles.challElement + " " + styles.done : styles.challElement
-        }
-      >
-        {isDone ? (
-          <div className={styles.fist}>
-            <img src={fist} alt="fist" />
-          </div>
-        ) : (
-          <div></div>
-        )}
-        {step === "set" ? (
-          this.state.isEditable ? (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                minWidth: "100%",
-                margin: "auto",
-              }}
-            >
-              <input
-                className={styles.challenge}
-                type="text"
-                defaultValue={challenge}
-                onKeyPress={this.handleEnter}
-                onChange={this.handleInputChange}
-                autoFocus
-                aria-label="Challenge"
-              ></input>
-              <i
-                onMouseOver={this.handleOnMouseOver}
-                onMouseLeave={this.handleOnMouseLeave}
-                onClick={this.handleEnter}
-                className={"demo-icon icon-ok"}
-              ></i>
-            </div>
-          ) : (
-            <div className={styles.challenge}>
-              {challenge}
-              <div className={styles.icons}>
-                <i
-                  onMouseOver={this.handleOnMouseOver}
-                  onMouseLeave={this.handleOnMouseLeave}
-                  onClick={this.handleEdit}
-                  className="demo-icon icon-pencil"
-                ></i>
-                <i
-                  onMouseOver={this.handleOnMouseOver}
-                  onMouseLeave={this.handleOnMouseLeave}
-                  onClick={this.handleChallClick}
-                  className="demo-icon icon-trash"
-                ></i>
-              </div>
-            </div>
-          )
-        ) : (
+  return (
+    <div className={isDone ? challElement + " " + done : challElement}>
+      {isDone ? (
+        <div className={styles.fist}>
+          <img src={fist} alt="fist" />
+        </div>
+      ) : (
+        <div></div>
+      )}
+      {step === "set" ? (
+        isEditable ? (
           <div
-            className={
-              isDone ? styles.challenge + " " + styles.fade : styles.challenge
-            }
+            style={{
+              display: "flex",
+              alignItems: "center",
+              minWidth: "100%",
+              margin: "auto",
+            }}
           >
+            <input
+              className={styles.challenge}
+              type="text"
+              defaultValue={challenge}
+              onKeyPress={handleEnter}
+              onChange={handleInputChange}
+              autoFocus
+              aria-label="Challenge"
+            ></input>
+            <i
+              onMouseOver={handleOnMouseOver}
+              onMouseLeave={handleOnMouseLeave}
+              onClick={handleEnter}
+              className={"demo-icon icon-ok"}
+            ></i>
+          </div>
+        ) : (
+          <div className={styles.challenge}>
             {challenge}
-            <div className={styles.icons}>
+            <div className={icons}>
               <i
-                onMouseOver={this.handleOnMouseOver}
-                onMouseLeave={this.handleOnMouseLeave}
-                onClick={this.handleChallClick}
-                className={isDone ? "demo-icon icon-ccw" : "demo-icon icon-ok"}
+                onMouseOver={handleOnMouseOver}
+                onMouseLeave={handleOnMouseLeave}
+                onClick={handleEdit}
+                className="demo-icon icon-pencil"
+              ></i>
+              <i
+                onMouseOver={handleOnMouseOver}
+                onMouseLeave={handleOnMouseLeave}
+                onClick={handleChallClick}
+                className="demo-icon icon-trash"
               ></i>
             </div>
           </div>
-        )}
-      </div>
-    );
-  }
-}
+        )
+      ) : (
+        <div
+          className={isDone ? styles.challenge + " " + fade : styles.challenge}
+        >
+          {challenge}
+          <div className={icons}>
+            <i
+              onMouseOver={handleOnMouseOver}
+              onMouseLeave={handleOnMouseLeave}
+              onClick={handleChallClick}
+              className={isDone ? "demo-icon icon-ccw" : "demo-icon icon-ok"}
+            ></i>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Challenge);
