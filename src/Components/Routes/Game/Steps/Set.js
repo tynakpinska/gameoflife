@@ -132,7 +132,7 @@ class Set extends Component {
         >
           Set challenges before starting the game!
         </p>
-        <button onClick={this.handleStartClick}>Start the game!</button>
+        <button className={styles.start} onClick={this.handleStartClick}>Start the game!</button>
       </>
     );
   }

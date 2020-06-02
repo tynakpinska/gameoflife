@@ -1,43 +1,42 @@
-.user {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  margin: 0 auto;
-}
-
 .username {
+  top: 20%;
   padding: 0;
   margin: 0 auto;
   width: max-content;
+  position: absolute;
 }
 
-.user label {
+.label {
   color: #ff9c64;
   font-size: 0.8rem;
-  margin-top: 5px;
+  margin-top: 150px;
+  position: absolute;
 }
 
-.changePic {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.user input {
-  display: inline-block;
-  height: 5px;
+.input {
+  border: none;
+  padding: 2px;
+  border-radius: 5px;
   font-size: 0.7rem;
-  width: 90%;
+  width: 40%;
+  position: absolute;
+  margin-top: 210px;
 }
 
-.user i {
-  display: inline-block;
+.i {
+  position: absolute;
+  margin-top: 205px;
+  right: 23%;
 }
 
-.user img {
+.image {
   width: 15vh;
   height: 15vh;
   border-radius: 500px;
   margin: 0 auto;
+  box-shadow: 0 0 20px #9b3800;
+  position: absolute;
+  top: 30%;
 }
 
 .parts {
@@ -50,16 +49,21 @@
 .part {
   width: 50%;
   height: 50%;
+  transition: all .5s;
 }
 
-.part:hover {
+.part:hover, .part:focus {
   box-shadow: 0 0 20px #9b3800;
+  cursor: pointer;
+}
+
+.part:active {
+  box-shadow: 0 0 10px #9b3800;
   cursor: pointer;
 }
 
 .streak {
   border-radius: 500px 0 0 0;
-
 }
 
 .streak h4 {
@@ -72,7 +76,6 @@
 
 .state {
   border-radius: 0 500px 0 0;
-
 }
 
 .state h4 {
@@ -85,7 +88,6 @@
 
 .body {
   border-radius: 0 0 0 500px;
-
 }
 
 .body h4 {
@@ -98,7 +100,6 @@
 
 .bank {
   border-radius: 0 0 500px 0;
-
 }
 
 .bank h4 {

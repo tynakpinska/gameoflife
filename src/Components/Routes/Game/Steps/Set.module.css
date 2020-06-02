@@ -10,6 +10,9 @@
   min-width: 275px;
   background: #ffcfb3;
   color: #9b3800;
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .addChallButton {
@@ -22,6 +25,13 @@
 
 .addChallButton:active {
   font-size: 1.8rem;
+}
+
+.start {
+  background: #9b3800;
+  padding: 10px;
+  border-radius: 20px;
+
 }
 
 @media (max-width: 1100px) {

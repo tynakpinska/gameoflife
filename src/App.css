@@ -39,6 +39,9 @@ input[type="email"],
   margin: 0;
   background: url(./img/challenge.png);
   color: #ffcfb3;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 h1 {
@@ -68,20 +71,6 @@ h4 {
   margin: 5px;
 }
 
-.container input,
-.container button {
-  border-radius: 15px;
-  padding: 0.7rem;
-  display: block;
-  font: inherit;
-  cursor: pointer;
-}
-
-.container input {
-  margin: 0;
-  border: none;
-  width: 70%;
-}
 .container button {
   margin: 5px 0 25px 0;
   background: #9b3800;
@@ -144,13 +133,6 @@ input:focus {
     height: 44vw;
     margin-top: -22vw;
     margin-left: -22vw;
-  }
-  .container input {
-    width: 70%;
-    margin-top: 0;
-  }
-  .container label {
-    margin-top: 1rem;
   }
   .container input[type="submit"] {
     margin-top: 1rem;

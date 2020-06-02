@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styles from "./Profile.module.css";
+import {
+  username,
+  image,
+  label,
+  input,
+  i,
+  parts,
+  part,
+  streak,
+  state,
+  body,
+  bank,
+} from "./Profile.module.css";
 import avatar from "../../../img/user.png";
 
 import { setProfileImage, updateProfileImage } from "../../../redux/actions";
@@ -22,65 +34,79 @@ class Profile extends Component {
   constructor() {
     super();
     this.state = {
-      imageUrl: "",
+      newImageUrl: "",
+      imageInput: false,
     };
   }
 
   handleImageUrlChange = e => {
-    this.setState({ imageUrl: e.target.value });
+    this.setState({ newImageUrl: e.target.value });
   };
 
   handleImageSubmit = () => {
+    const { user, updateProfileImage, setProfileImage } = this.props;
+    const { imageUrl, username } = user;
+    const { newImageUrl } = this.state;
     const token = sessionStorage.getItem("token");
-    this.props.user.imageUrl
-      ? this.props.updateProfileImage(
-          token,
-          this.props.user.username,
-          this.state.imageUrl
-        )
-      : this.props.setProfileImage(
-          token,
-          this.props.user.username,
-          this.state.imageUrl
-        );
-    this.setState({ imageUrl: "" });
+    if (newImageUrl) {
+      imageUrl
+        ? updateProfileImage(token, username, newImageUrl)
+        : setProfileImage(token, username, newImageUrl);
+      this.setState({ imageUrl: "", imageInput: false });
+    }
   };
 
   render({ user } = this.props) {
     return (
       <>
-        <div className={styles.user}>
-          <h2 className={styles.username}>{user.username}</h2>
-          <img src={user.imageUrl || avatar} alt="avatar" />
-          <label htmlFor="img">
-            Change profile picture - paste picture url below
-          </label>
-          <div className={styles.changePic}>
+        <h2 className={username}>{user.username}</h2>
+        <img
+          className={image}
+          src={user.imageUrl || avatar}
+          alt="avatar"
+          onClick={() => this.setState({ imageInput: !this.state.imageInput })}
+          title="Click to edit photo"
+        />
+        {this.state.imageInput ? (
+          <>
+            <label className={label} htmlFor="img">
+              To change profile picture paste url below
+            </label>
             <input
               type="url"
               id="img"
               name="img"
-              placeholder="e.g. shorturl.at/fwW02"
+              placeholder="e.g. image.jpg"
               onChange={this.handleImageUrlChange}
-              value={this.state.imageUrl}
+              value={this.state.newImageUrl}
+              className={input}
             />
             <i
-              className="demo-icon icon-upload"
+              className={`demo-icon icon-upload ${i}`}
               onClick={this.handleImageSubmit}
             ></i>
-          </div>
-        </div>
-        <div className={styles.parts}>
-          <div className={`${styles.part} ${styles.streak}`}>
+          </>
+        ) : null}
+        <div className={parts}>
+          <div className={`${part} ${streak}`} title="Click to see more stats">
             <h4>Streak</h4>
           </div>
-          <div className={`${styles.part} ${styles.state}`}>
+          <div
+            className={`${part} ${state}`}
+            title="Click to edit goal in State of mind area"
+          >
             <h4>State of mind</h4>
           </div>
-          <div className={`${styles.part} ${styles.body}`}>
+          <div
+            className={`${part} ${body}`}
+            title="Click to edit goal in Body shape area"
+          >
             <h4>Body shape</h4>
           </div>
-          <div className={`${styles.part} ${styles.bank}`}>
+          <div
+            className={`${part} ${bank}`}
+            title="Click to edit goal in Bank balance area"
+          >
             <h4>Bank balance</h4>
           </div>
         </div>

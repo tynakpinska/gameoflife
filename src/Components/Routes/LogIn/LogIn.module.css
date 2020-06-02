@@ -21,6 +21,8 @@
   color: #ff9c64;
   border: none;
   width: 20%;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 .login input[type="submit"]:hover {
