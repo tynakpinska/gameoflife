@@ -59,7 +59,7 @@ const LogIn = props => {
   return (
     <>
       <h2>Log in</h2>
-      <div className={styles.login}>
+      <form className={styles.login} onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
           className="username"
@@ -82,7 +82,7 @@ const LogIn = props => {
           aria-label="Log in"
           value="Log in"
         ></input>
-      </div>
+      </form>
     </>
   );
 };

@@ -1,5 +1,15 @@
 import React, { useState } from "react";
-import styles, { info, slider, textSpan, icon, iconLeft, iconRight, wrapper, input } from "./Slider.module.css";
+import styles, {
+  info,
+  slider,
+  textSpan,
+  icon,
+  iconLeft,
+  iconRight,
+  wrapper,
+  label,
+  form
+} from "./Slider.module.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const Slider = () => {
@@ -27,79 +37,82 @@ const Slider = () => {
         ) : (
           <div style={{ flex: "1" }}></div>
         )}
-        
-      <TransitionGroup>
-            <CSSTransition
-              key={currentSlide}
-              timeout={{ enter: 1000, exit: 1000 }}
-              classNames={{...styles}}
-            >
-              <div className={wrapper}>
-        {{
-          2: (
-              <div>
+
+        <TransitionGroup>
+          <CSSTransition
+            key={currentSlide}
+            timeout={{ enter: 1000, exit: 1000 }}
+            classNames={{ ...styles }}
+          >
+            <div className={wrapper}>
+              {{
+                2: (
+                  <div>
+                    <p>
+                      <span className={textSpan}>First</span>, decide what do
+                      you want your life to be like in three main areas
+                      (according to{" "}
+                      <a
+                        href="https://zenjaskiniowca.pl/o-mnie/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Rafał Mazur
+                      </a>
+                      ):{" "}
+                    </p>
+                    <ol>
+                      <li>body shape</li>
+                      <li>state of mind</li>
+                      <li>bank balance</li>
+                    </ol>
+                  </div>
+                ),
+                3: (
+                  <p>
+                    <span className={textSpan}>Second</span>, every morning
+                    think of three to five todos that will significantly close
+                    you to your dreams defined in the previous step. Add tasks
+                    to your power list by clicking Enter.
+                  </p>
+                ),
+                4: (
+                  <p>
+                    <span className={textSpan}>Finally</span>, start the game
+                    and smash every todo! The app shows how much time till the
+                    end of the day you have left. Consider it a game. If you do
+                    all the challenges - you won the game. If you don't - you
+                    lost.
+                  </p>
+                ),
+                5: (
+                  <p>
+                    <b className={textSpan}>Additionaly</b>, after a busy day,
+                    see your stats. Admire how hard have you worked during a
+                    week, a year, and see how far it got you. Try it out and see
+                    it htmlFor yourself!
+                  </p>
+                ),
+              }[currentSlide] || (
                 <p>
-                  <span className={textSpan}>First</span>, decide what do you
-                  want your life to be like in three main areas (according to{" "}
+                  The goal of this app is to help you achieve success by
+                  motivating you to do something small, that closes you to
+                  fulfilling your dreams, each day. It was inspired by{" "}
                   <a
-                    href="https://zenjaskiniowca.pl/o-mnie/"
+                    href="https://zenjaskiniowca.pl/jak-wyrobic-nawyk-wygrywania/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Rafał Mazur
-                  </a>
-                  ):{" "}
+                    Zen Jaskiniowca
+                  </a>{" "}
+                  podcast, that really helped me see how important everyday
+                  activities are and how powerful doing little tasks can make
+                  you feel. After some time you'll build a habit of winning and
+                  you'll start to feel extremely effective.
                 </p>
-                <ol>
-                  <li>body shape</li>
-                  <li>state of mind</li>
-                  <li>bank balance</li>
-                </ol>
-              </div>
-          ),
-          3: (
-            <p>
-              <span className={textSpan}>Second</span>, every morning think of
-              three to five todos that will significantly close you to your
-              dreams defined in the previous step. Add tasks to your power list
-              by clicking Enter.
-            </p>
-          ),
-          4: (
-            <p>
-              <span className={textSpan}>Finally</span>, start the game and
-              smash every todo! The app shows how much time till the end of the
-              day you have left. Consider it a game. If you do all the
-              challenges - you won the game. If you don't - you lost.
-            </p>
-          ),
-          5: (
-            <p>
-              <b className={textSpan}>Additionaly</b>, after a busy day, see
-              your stats. Admire how hard have you worked during a week, a year,
-              and see how far it got you. Try it out and see it htmlFor yourself!
-            </p>
-          ),
-        }[currentSlide] || (
-          <p>
-            The goal of this app is to help you achieve success by motivating
-            you to do something small, that closes you to fulfilling your
-            dreams, each day. It was inspired by{" "}
-            <a
-              href="https://zenjaskiniowca.pl/jak-wyrobic-nawyk-wygrywania/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Zen Jaskiniowca
-            </a>{" "}
-            podcast, that really helped me see how important everyday activities
-            are and how powerful doing little tasks can make you feel. After
-            some time you'll build a habit of winning and you'll start to feel
-            extremely effective.
-          </p>
-        )}
-        </div>
-        </CSSTransition>
+              )}
+            </div>
+          </CSSTransition>
         </TransitionGroup>
         {currentSlide !== 5 ? (
           <div style={{ flex: "1" }}>
@@ -112,8 +125,12 @@ const Slider = () => {
           <div style={{ flex: "1" }}></div>
         )}
       </div>
-      <form>
-        <label htmlFor="1" onClick={e=>console.log(e.target.htmlFor)}></label>
+      <form className={form}>
+        <label
+          className={label}
+          htmlFor="1"
+          onClick={e => console.log(e.target.htmlFor)}
+        ></label>
         <input
           onChange={handleInputChange}
           type="radio"
@@ -122,7 +139,7 @@ const Slider = () => {
           value="1"
           checked={currentSlide === 1}
         />
-        <label htmlFor="2"></label>
+        <label className={label} htmlFor="2"></label>
         <input
           onChange={handleInputChange}
           type="radio"
@@ -131,8 +148,8 @@ const Slider = () => {
           value="2"
           checked={currentSlide === 2}
         />
-        
-        <label htmlFor="3"></label>
+
+        <label className={label} htmlFor="3"></label>
         <input
           onChange={handleInputChange}
           type="radio"
@@ -141,8 +158,8 @@ const Slider = () => {
           value="3"
           checked={currentSlide === 3}
         />
-        
-        <label htmlFor="4"></label>
+
+        <label className={label} htmlFor="4"></label>
         <input
           onChange={handleInputChange}
           type="radio"
@@ -151,7 +168,7 @@ const Slider = () => {
           value="4"
           checked={currentSlide === 4}
         />
-        <label htmlFor="5"></label>
+        <label className={label} htmlFor="5"></label>
         <input
           onChange={handleInputChange}
           type="radio"

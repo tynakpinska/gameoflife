@@ -6,7 +6,7 @@
   height: 30vh;
 }
 
-label {
+.label {
   display: none;
 }
 .info h2 {
@@ -65,7 +65,7 @@ a:hover {
   font-weight: bold;
 }
 
-form {
+.form {
   position: absolute;
   bottom: 5px;
   width: 50%;
