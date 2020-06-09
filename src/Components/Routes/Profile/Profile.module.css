@@ -6,11 +6,18 @@
   position: absolute;
 }
 
+.form {
+  position: absolute;
+  top: 68%;
+}
+
 .label {
   color: #ff9c64;
   font-size: 0.8rem;
-  margin-top: 150px;
-  position: absolute;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: block;
 }
 
 .input {
@@ -18,25 +25,24 @@
   padding: 2px;
   border-radius: 5px;
   font-size: 0.7rem;
-  width: 40%;
-  position: absolute;
-  margin-top: 210px;
+  display: inline-block;
 }
 
-.i {
-  position: absolute;
-  margin-top: 205px;
-  right: 23%;
+i {
+  display: inline-block;
 }
 
 .image {
-  width: 15vh;
-  height: 15vh;
+  width: 15vw;
+  height: 15vw;
   border-radius: 500px;
   margin: 0 auto;
   box-shadow: 0 0 20px #9b3800;
   position: absolute;
   top: 30%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .parts {
@@ -49,10 +55,11 @@
 .part {
   width: 50%;
   height: 50%;
-  transition: all .5s;
+  transition: all 0.5s;
 }
 
-.part:hover, .part:focus {
+.part:hover,
+.part:focus {
   box-shadow: 0 0 20px #9b3800;
   cursor: pointer;
 }
@@ -108,4 +115,60 @@
   position: relative;
   top: 55%;
   right: -15%;
+}
+
+@media (max-width: 850px) {
+  .username {
+    position: static;
+  }
+  .image {
+    width: 50vw;
+    height: 50vw;
+    position: static;
+    margin-top: 15px;
+  }
+
+  .form {
+    position: static;
+    margin: 10px 0;
+  }
+
+  .parts {
+    display: flex;
+    flex-wrap: wrap;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .part {
+    width: 45%;
+    transition: all 0.5s;
+    margin: 5px;
+    border-radius: 0;
+    background: rgba(255, 93, 0, 0.2);
+  }
+
+  .streak h4,
+  .state h4,
+  .body h4,
+  .bank h4 {
+    position: static;
+    transform: none;
+    padding: 3vh;
+  }
+}
+
+@media (max-height: 400px) {
+  .image {
+    width: 20vw;
+    height: 20vw;
+    z-index: 2;
+  }
+  .parts {
+    position: absolute;
+    height: 50%;
+    top: 10vh;
+  }
 }

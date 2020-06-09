@@ -33,17 +33,6 @@ body {
   align-items: center;
 }
 
-input[type="password"],
-input[type="email"],
-.username {
-  margin: 0;
-  background: url(./img/challenge.png);
-  color: #ffcfb3;
-  border: none;
-  border-radius: 10px;
-  padding: 5px;
-}
-
 h1 {
   color: #ff5c00;
   font-size: 30px;
@@ -69,6 +58,43 @@ h2 {
 
 h4 {
   margin: 5px;
+}
+
+
+input[type="password"],
+input[type="email"],
+.username {
+  margin: 0;
+  background: url(./img/challenge.png);
+  color: #ffcfb3;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  width: 70%;
+  height: 10%;
+}
+
+input[type="submit"] {
+  margin-top: 50px;
+  background: #9b3800;
+  color: #ff9c64;
+  border: none;
+  min-width: 20%;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+input[type="submit"]:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+label {
+  align-self: start;
+  margin: 10px 0 3px 60px;
+  padding: 5px 50px 5px 10px;
+  border-top: 2px solid #ff9c64;
+  border-left: 5px solid #ff9c64;
 }
 
 .container button {
@@ -171,12 +197,11 @@ input:focus {
 }
 @media (max-width: 480px) {
   .box {
-  background: linear-gradient(to top, rgba(0 0 0 / 0), rgba(0 0 0 / 1)),
-    url("./img/mountain-small.jpg");
+    background: linear-gradient(to top, rgba(0 0 0 / 0), rgba(0 0 0 / 1)),
+      url("./img/mountain-small.jpg");
     background-size: cover;
+  }
 }
-}
-
 
 @keyframes show {
   0% {

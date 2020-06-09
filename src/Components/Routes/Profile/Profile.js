@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
   username,
   image,
+  form,
   label,
   input,
   i,
@@ -38,7 +39,8 @@ const Profile = props => {
     setNewImageUrl(e.target.value);
   };
 
-  const handleImageSubmit = () => {
+  const handleImageSubmit = e => {
+    e.preventDefault();
     const { user, updateProfileImage, setProfileImage } = props;
     const { imageUrl, username } = user;
     const token = sessionStorage.getItem("token");
@@ -54,15 +56,15 @@ const Profile = props => {
   return (
     <>
       <h2 className={username}>{props.user.username}</h2>
-      <img
+      <div
         className={image}
-        src={props.user.imageUrl || avatar}
+        style={{backgroundImage: `url(${props.user.imageUrl || avatar})`}}
         alt="avatar"
         onClick={() => setImageInput(!imageInput)}
         title="Click to edit photo"
       />
       {imageInput ? (
-        <>
+        <form className={form} onSubmit={handleImageSubmit}>
           <label className={label} htmlFor="img">
             To change profile picture paste url below
           </label>
@@ -79,7 +81,7 @@ const Profile = props => {
             className={`demo-icon icon-upload ${i}`}
             onClick={handleImageSubmit}
           ></i>
-        </>
+        </form>
       ) : null}
       <div className={parts}>
         <div className={`${part} ${streak}`} title="Click to see more stats">

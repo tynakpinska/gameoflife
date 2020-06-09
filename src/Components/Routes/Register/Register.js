@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { register } from "./Register.module.css";
+import { register} from "./Register.module.css";
 
 import { resetChallenges } from "../../../redux/actions";
 

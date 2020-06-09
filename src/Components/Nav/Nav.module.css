@@ -81,8 +81,10 @@
   width: 3vh;
   height: 3vh;
   margin-right: 10px;
-  background: #ff8139;
   border-radius: 50px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .userName {
@@ -102,7 +104,11 @@
   }
 }
 
-@media (max-width: 570) {
+@media (max-height: 400px) {
+  .userAv {
+    width: 9vh;
+    height: 9vh;
+  }
 }
 
 @keyframes onhover {

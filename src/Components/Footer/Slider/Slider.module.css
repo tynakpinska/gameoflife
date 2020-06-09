@@ -6,12 +6,9 @@
   height: 30vh;
 }
 
-/* .slider {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-} */
-
+label {
+  display: none;
+}
 .info h2 {
   color: #ffcfb3;
   padding: 15px 0;
@@ -77,7 +74,7 @@ form {
 }
 
 input {
-margin: 5px;
+  margin: 5px;
 }
 
 input:hover {
@@ -110,7 +107,6 @@ input:hover {
 }
 
 @media (max-width: 850px) {
-
   .wrapper {
     width: 70vw;
     left: 15vw;
