@@ -6,9 +6,6 @@
   height: 30vh;
 }
 
-.label {
-  display: none;
-}
 .info h2 {
   color: #ffcfb3;
   padding: 15px 0;
@@ -65,21 +62,38 @@ a:hover {
   font-weight: bold;
 }
 
-.form {
+.buttons {
   position: absolute;
   bottom: 5px;
-  width: 50%;
-  left: 25%;
+  width: 20%;
+  left: 40%;
   height: 30px;
+  display: flex;
+  justify-content: space-around;
 }
 
-input {
+.input {
+  display: none;
+}
+
+.button {
+  width: 10px;
+  height: 10px;
+  background: #ffcfb3;
+  padding: 0;
   margin: 5px;
+  border: none;
 }
 
-input:hover {
+.button:hover {
+  background: #e2783a;
   cursor: pointer;
 }
+
+.current {
+  background: #ff5c00;
+}
+
 .wrapper {
   position: absolute;
   height: 25vh;
@@ -127,5 +141,10 @@ input:hover {
   .iconLeft {
     bottom: 45vh;
     left: -0.5vw;
+  }
+
+  .buttons {
+    width: 40%;
+    left: 30%;
   }
 }

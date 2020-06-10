@@ -29,7 +29,8 @@ const Register = props => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     fetch("http://localhost:3000/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -62,7 +63,7 @@ const Register = props => {
   ) : (
     <>
       <h2>Register</h2>
-      <div className={register}>
+      <form onSubmit={handleSubmit} className={register}>
         <label htmlFor="username">Username</label>
         <input
           className="username"
@@ -88,7 +89,7 @@ const Register = props => {
           onClick={handleSubmit}
           aria-label="Register"
         ></input>
-      </div>
+      </form>
     </>
   );
 };

@@ -49,7 +49,10 @@ class App extends Component {
     if (token) {
       fetch("http://localhost:3000/signin", {
         method: "post",
-        headers: { "Content-Type": "application/json", Authorization: token },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+        },
       })
         .then(resp => resp.json())
         .then(resp => {

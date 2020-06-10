@@ -71,7 +71,7 @@ input[type="email"],
   border-radius: 10px;
   padding: 5px;
   width: 70%;
-  height: 10%;
+  height: 8%;
 }
 
 input[type="submit"] {
@@ -122,11 +122,16 @@ input:hover {
   cursor: text;
 }
 
-input:hover,
-input:focus {
-  border: 0.2rem solid #ff9c64;
+input:hover {
   box-shadow: 0 0 1rem #ff9c64;
   outline: none;
+}
+
+input:focus {
+  box-shadow: 0 0 1rem #ff9c64;
+  outline: none;
+  border: 2px solid #ff9c64;
+
 }
 
 .box {
@@ -162,6 +167,11 @@ input:focus {
   }
   .container input[type="submit"] {
     margin-top: 1rem;
+  }
+
+  label {
+    margin: 10px 0 3px 20px;
+    padding: 5px 50px 5px 10px;
   }
 
   h3 {

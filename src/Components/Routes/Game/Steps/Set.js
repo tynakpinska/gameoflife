@@ -105,22 +105,24 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
       ) : (
         <h2>What are you playing today?</h2>
       )}
-      <div className={inputContainer}>
-        <input
-          className={typeChall}
-          type="text"
-          placeholder="e.g. learn javascript"
-          onKeyUp={handleEnter}
-          onChange={handleInputChange}
-          aria-label="Challenge"
-        ></input>
-        <i
-          onMouseOver={handleOnMouseOver}
-          onMouseLeave={handleOnMouseLeave}
-          onClick={handleButtonClick}
-          className={addChallButton + " demo-icon icon-plus-circled"}
-        ></i>
-      </div>
+      {challenges.length < 5 ? (
+        <div className={inputContainer}>
+          <input
+            className={typeChall}
+            type="text"
+            placeholder="e.g. learn javascript"
+            onKeyUp={handleEnter}
+            onChange={handleInputChange}
+            aria-label="Challenge"
+          ></input>
+          <i
+            onMouseOver={handleOnMouseOver}
+            onMouseLeave={handleOnMouseLeave}
+            onClick={handleButtonClick}
+            className={addChallButton + " demo-icon icon-plus-circled"}
+          ></i>
+        </div>
+      ) : null}
       <ChallengesList />
       <p
         style={{
@@ -130,9 +132,11 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
       >
         Set challenges before starting the game!
       </p>
-      <button className={start} onClick={handleStartClick}>
-        Start the game!
-      </button>
+      {challenges.length > 2 ? (
+        <button className={start} onClick={handleStartClick}>
+          Start the game!
+        </button>
+      ) : null}
     </>
   );
 };

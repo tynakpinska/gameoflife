@@ -27,32 +27,32 @@
   height: 5vh;
 }
 
-.footer button {
+.button {
   background: none;
   border: none;
   color: #fff;
   font-size: 0.9em;
 }
 
-.footer button:hover {
+.button:hover {
   font-weight: bold;
   font-size: 1em;
   cursor: pointer;
 }
 
-.footer button:active {
+.button:active {
   outline: none;
   border: none;
   font-size: 0.9em;
 }
 
-.footer button:focus,
-.footer button:active {
+.button:focus,
+.button:active {
   outline: none;
   border: none;
 }
 
-.footer button::-moz-focus-inner {
+.button::-moz-focus-inner {
   border: 0;
 }
 

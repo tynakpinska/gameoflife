@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles, { footer, top, visible } from "./Footer.module.css";
+import styles, { footer, top, visible, button } from "./Footer.module.css";
 import Slider from "./Slider/Slider";
 import { CSSTransition } from "react-transition-group";
 
@@ -30,7 +30,7 @@ const Footer = () => {
             <i className="demo-icon icon-github-circled"></i>
           </a>
         </p>
-        <button onClick={handleAboutClick}>
+        <button className={button} onClick={handleAboutClick}>
           {about ? <i className="demo-icon icon-down"></i> : ""}
           ABOUT
         </button>

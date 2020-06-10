@@ -7,16 +7,17 @@ import styles, {
   iconLeft,
   iconRight,
   wrapper,
-  label,
-  form
+  buttons,
+  button,
+  current,
 } from "./Slider.module.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
 
-  const handleInputChange = e => {
-    setCurrentSlide(parseInt(e.target.value));
+  const handleButtonClick = e => {
+    setCurrentSlide(parseInt(e.target.id));
   };
 
   const handleChangeSlide = e => {
@@ -125,59 +126,33 @@ const Slider = () => {
           <div style={{ flex: "1" }}></div>
         )}
       </div>
-      <form className={form}>
-        <label
-          className={label}
-          htmlFor="1"
-          onClick={e => console.log(e.target.htmlFor)}
-        ></label>
-        <input
-          onChange={handleInputChange}
-          type="radio"
-          name="1"
-          aria-label="slide 1/6"
-          value="1"
-          checked={currentSlide === 1}
-        />
-        <label className={label} htmlFor="2"></label>
-        <input
-          onChange={handleInputChange}
-          type="radio"
-          name="2"
-          aria-label="slide 2/6"
-          value="2"
-          checked={currentSlide === 2}
-        />
-
-        <label className={label} htmlFor="3"></label>
-        <input
-          onChange={handleInputChange}
-          type="radio"
-          name="3"
-          aria-label="slide 3/6"
-          value="3"
-          checked={currentSlide === 3}
-        />
-
-        <label className={label} htmlFor="4"></label>
-        <input
-          onChange={handleInputChange}
-          type="radio"
-          name="4"
-          aria-label="slide 4/6"
-          value="4"
-          checked={currentSlide === 4}
-        />
-        <label className={label} htmlFor="5"></label>
-        <input
-          onChange={handleInputChange}
-          type="radio"
-          name="5"
-          aria-label="slide 5/6"
-          value="5"
-          checked={currentSlide === 5}
-        />
-      </form>
+      <div className={buttons}>
+        <button
+          className={currentSlide === 1 ? `${button} ${current}` : button}
+          id="1"
+          onClick={handleButtonClick}
+        ></button>
+        <button
+          className={currentSlide === 2 ? `${button} ${current}` : button}
+          id="2"
+          onClick={handleButtonClick}
+        ></button>
+        <button
+          className={currentSlide === 3 ? `${button} ${current}` : button}
+          id="3"
+          onClick={handleButtonClick}
+        ></button>
+        <button
+          className={currentSlide === 4 ? `${button} ${current}` : button}
+          id="4"
+          onClick={handleButtonClick}
+        ></button>
+        <button
+          className={currentSlide === 5 ? `${button} ${current}` : button}
+          id="5"
+          onClick={handleButtonClick}
+        ></button>
+      </div>
     </div>
   );
 };

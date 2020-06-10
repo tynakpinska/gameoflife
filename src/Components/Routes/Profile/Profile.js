@@ -34,6 +34,13 @@ const mapDispatchToProps = dispatch => {
 const Profile = props => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
+  const [userStreak, setUserStreak] = useState("");
+  const [mindCurrent, setMindCurrent] = useState("anxious");
+  const [mindGoal, setMindGoal] = useState("stoic");
+  const [bodyCurrent, setBodyCurrent] = useState("BMI 27");
+  const [bodyGoal, setBodyGoal] = useState("BMI 20");
+  const [bankCurrent, setBankCurrent] = useState("income 3000$");
+  const [bankGoal, setBankGoal] = useState("income 10000$");
 
   const handleImageUrlChange = e => {
     setNewImageUrl(e.target.value);
