@@ -107,11 +107,13 @@ const Challenge = ({
   };
 
   const handleEndGame = () => {
-    if (challenges.every(ch => ch.isDone)) {
-      setTimeout(() => {
-        setResult("success");
-        setStep("end");
-      }, 1000);
+    if (step === "start") {
+      if (challenges.every(ch => ch.isDone)) {
+        setTimeout(() => {
+          setResult("success");
+          setStep("end");
+        }, 1000);
+      }
     }
   };
 

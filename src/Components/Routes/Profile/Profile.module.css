@@ -56,6 +56,7 @@ i {
   width: 50%;
   height: 50%;
   transition: all 0.5s;
+  overflow: hidden;
 }
 
 .part:hover,
@@ -69,6 +70,14 @@ i {
   cursor: pointer;
 }
 
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.9rem;
+  width: 50%;
+}
+
 .streak {
   border-radius: 500px 0 0 0;
 }
@@ -79,6 +88,11 @@ i {
   position: relative;
   top: 40%;
   left: -25%;
+}
+.streak > .text {
+  position: relative;
+  top: 45%;
+  left: 25%;
 }
 
 .state {
@@ -93,6 +107,12 @@ i {
   right: -15%;
 }
 
+.state > .text {
+  position: relative;
+  top: 40%;
+  right: -20%;
+}
+
 .body {
   border-radius: 0 0 0 500px;
 }
@@ -105,6 +125,12 @@ i {
   left: -20%;
 }
 
+.body > .text {
+  position: relative;
+  top: 20%;
+  left: 30%;
+}
+
 .bank {
   border-radius: 0 0 500px 0;
 }
@@ -115,6 +141,17 @@ i {
   position: relative;
   top: 55%;
   right: -15%;
+}
+
+.bank > .text {
+  position: relative;
+  top: 15%;
+  left: 15%;
+}
+
+.span {
+  color: #572001;
+  font-weight: bolder;
 }
 
 @media (max-width: 850px) {

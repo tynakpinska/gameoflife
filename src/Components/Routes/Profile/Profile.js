@@ -13,6 +13,8 @@ import {
   state,
   body,
   bank,
+  span,
+  text,
 } from "./Profile.module.css";
 import avatar from "../../../img/user.png";
 
@@ -34,7 +36,9 @@ const mapDispatchToProps = dispatch => {
 const Profile = props => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
-  const [userStreak, setUserStreak] = useState("");
+  const [userStreak, setUserStreak] = useState(
+    "5 days"
+  );
   const [mindCurrent, setMindCurrent] = useState("anxious");
   const [mindGoal, setMindGoal] = useState("stoic");
   const [bodyCurrent, setBodyCurrent] = useState("BMI 27");
@@ -65,7 +69,7 @@ const Profile = props => {
       <h2 className={username}>{props.user.username}</h2>
       <div
         className={image}
-        style={{backgroundImage: `url(${props.user.imageUrl || avatar})`}}
+        style={{ backgroundImage: `url(${props.user.imageUrl || avatar})` }}
         alt="avatar"
         onClick={() => setImageInput(!imageInput)}
         title="Click to edit photo"
@@ -93,24 +97,45 @@ const Profile = props => {
       <div className={parts}>
         <div className={`${part} ${streak}`} title="Click to see more stats">
           <h4>Streak</h4>
+          <div className={text}>
+            <p>{userStreak}</p>
+          </div>
         </div>
         <div
           className={`${part} ${state}`}
           title="Click to edit goal in State of mind area"
         >
           <h4>State of mind</h4>
+          <div className={text}>
+            <p>{mindCurrent}</p>
+            <p>
+              <span className={span}>Goal:</span> {mindGoal}
+            </p>
+          </div>
         </div>
         <div
           className={`${part} ${body}`}
           title="Click to edit goal in Body shape area"
         >
           <h4>Body shape</h4>
+          <div className={text}>
+            <p>{bodyCurrent}</p>
+            <p>
+              <span className={span}>Goal:</span> {bodyGoal}
+            </p>
+          </div>
         </div>
         <div
           className={`${part} ${bank}`}
           title="Click to edit goal in Bank balance area"
         >
           <h4>Bank balance</h4>
+          <div className={text}>
+            <p>{bankCurrent}</p>
+            <p>
+              <span className={span}>Goal:</span> {bankGoal}
+            </p>
+          </div>
         </div>
       </div>
     </>
