@@ -9,32 +9,6 @@
   background: url("../../img/learn.jpg") center;
 }
 
-.dot1,
-.dot2,
-.dot3 {
-  background: #ff5c00;
-  border-radius: 50px;
-  margin-left: 10px;
-  display: inline-block;
-  transition: all .3s ease-in-out;
-}
-
-.dot1 {
-  width: 20px;
-  height: 20px;
-  margin-left: 15px;
-}
-
-.dot2 {
-  width: 15px;
-  height: 15px;
-}
-
-.dot3 {
-  width: 10px;
-  height: 10px;
-}
-
 @media (max-width: 850px) {
   .logo {
     margin: auto;
@@ -46,8 +20,5 @@
 @media (max-width: 570px) {
   .logo {
     width: 100%;
-  }
-  .dot1, .dot2, .dot3 {
-    display:none;
   }
 }

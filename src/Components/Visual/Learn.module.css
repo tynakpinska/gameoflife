@@ -49,6 +49,12 @@
   }
 }
 
+@media (max-width: 480px) {
+  .learn {
+    display: none;
+  }
+}
+
 
 @keyframes show {
   0% {
