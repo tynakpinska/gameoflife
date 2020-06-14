@@ -59,8 +59,6 @@ export const challenges = (state = initialState.challenges, action = {}) => {
       });
     case RESET_CHALLENGES:
       return [];
-    case LOG_IN:
-      return [];
     case LOG_OUT:
       return [];
     case GET_CHALLENGES:
@@ -74,8 +72,6 @@ export const step = (state = initialState.step, action = {}) => {
   switch (action.type) {
     case SET_STEP:
       return action.payload;
-    case LOG_IN:
-      return "set";
     case LOG_OUT:
       return "set";
     default:

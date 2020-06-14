@@ -36,15 +36,27 @@ const mapDispatchToProps = dispatch => {
 const Profile = props => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
-  const [userStreak, setUserStreak] = useState(
-    "5 days"
-  );
-  const [mindCurrent, setMindCurrent] = useState("anxious");
-  const [mindGoal, setMindGoal] = useState("stoic");
-  const [bodyCurrent, setBodyCurrent] = useState("BMI 27");
-  const [bodyGoal, setBodyGoal] = useState("BMI 20");
-  const [bankCurrent, setBankCurrent] = useState("income 3000$");
-  const [bankGoal, setBankGoal] = useState("income 10000$");
+  const [userStreak, setUserStreak] = useState("5 days");
+  const [goals, setGoals] = useState([
+    {
+      title: "State of mind",
+      current: "anxious",
+      goal: "stoic",
+      className: state,
+    },
+    {
+      title: "Body shape",
+      current: "BMI 27",
+      goal: "BMI 20",
+      className: body,
+    },
+    {
+      title: "Bank balance",
+      current: "income 3000$",
+      goal: "income 10000$",
+      className: bank,
+    },
+  ]);
 
   const handleImageUrlChange = e => {
     setNewImageUrl(e.target.value);
@@ -77,7 +89,7 @@ const Profile = props => {
       {imageInput ? (
         <form className={form} onSubmit={handleImageSubmit}>
           <label className={label} htmlFor="img">
-            To change profile picture paste url below
+            Paste image url
           </label>
           <input
             type="url"
@@ -101,42 +113,24 @@ const Profile = props => {
             <p>{userStreak}</p>
           </div>
         </div>
-        <div
-          className={`${part} ${state}`}
-          title="Click to edit goal in State of mind area"
-        >
-          <h4>State of mind</h4>
-          <div className={text}>
-            <p>{mindCurrent}</p>
-            <p>
-              <span className={span}>Goal:</span> {mindGoal}
-            </p>
-          </div>
-        </div>
-        <div
-          className={`${part} ${body}`}
-          title="Click to edit goal in Body shape area"
-        >
-          <h4>Body shape</h4>
-          <div className={text}>
-            <p>{bodyCurrent}</p>
-            <p>
-              <span className={span}>Goal:</span> {bodyGoal}
-            </p>
-          </div>
-        </div>
-        <div
-          className={`${part} ${bank}`}
-          title="Click to edit goal in Bank balance area"
-        >
-          <h4>Bank balance</h4>
-          <div className={text}>
-            <p>{bankCurrent}</p>
-            <p>
-              <span className={span}>Goal:</span> {bankGoal}
-            </p>
-          </div>
-        </div>
+
+        {goals.map(g => {
+          return (
+            <div
+              className={`${part} ${g.className}`}
+              title={`Click to edit goal in ${g.title} area`}
+              key={g.className}
+            >
+              <h4>{g.title}</h4>
+              <div className={text}>
+                <p>{g.current}</p>
+                <p>
+                  <span className={span}>Goal:</span> {g.goal}
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
   );

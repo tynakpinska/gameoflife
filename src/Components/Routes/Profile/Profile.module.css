@@ -8,11 +8,15 @@
 
 .form {
   position: absolute;
-  top: 68%;
+  top: 38%;
+  background: #ff9c64;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px #9b3800;
 }
 
 .label {
-  color: #ff9c64;
+  color: #572001;
   font-size: 0.8rem;
   border: none;
   padding: 0;
@@ -194,6 +198,18 @@ i {
     position: static;
     transform: none;
     padding: 3vh;
+  }
+
+  .text {
+    width: 100%;
+  }
+
+  .streak .text,
+  .state .text,
+  .body .text,
+  .bank .text {
+    position: static;
+    margin-bottom: 10px;
   }
 }
 

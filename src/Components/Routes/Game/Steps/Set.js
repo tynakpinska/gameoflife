@@ -124,14 +124,15 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
         </div>
       ) : null}
       <ChallengesList />
-      <p
-        style={{
-          display: startFailed ? "" : "none",
-          color: "#3E0000",
-        }}
-      >
-        Set challenges before starting the game!
-      </p>
+      {startFailed ? (
+        <p
+          style={{
+            color: "#3E0000",
+          }}
+        >
+          Set challenges before starting the game!
+        </p>
+      ) : null}
       {challenges.length > 2 ? (
         <button className={start} onClick={handleStartClick}>
           Start the game!

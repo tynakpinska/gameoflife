@@ -174,7 +174,12 @@ export const fetchChallenges = (id, token) => dispatch => {
       ) {
         console.log(resp);
       } else if (resp[0]) {
-        dispatch(setStep("start"));
+        if (resp.every(ch => ch.isDone)) {
+          dispatch(setResult("success"));
+          dispatch(setStep("end"));
+        } else {
+          dispatch(setStep("start"));
+        }
         dispatch({
           type: GET_CHALLENGES,
           payload: resp,

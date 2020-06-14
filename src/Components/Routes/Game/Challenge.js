@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles, {
   done,
   challElement,
@@ -12,12 +12,10 @@ import {
   removeChallenge,
   toggleChallenge,
   editChallenge,
-  setStep,
-  setResult,
 } from "../../../redux/actions";
 
-const mapStateToProps = ({ step, user, challenges }) => {
-  return { step, user, challenges };
+const mapStateToProps = ({ step, user }) => {
+  return { step, user };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -25,8 +23,6 @@ const mapDispatchToProps = dispatch => {
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
     toggleChallenge: key => dispatch(toggleChallenge(key)),
-    setStep: step => dispatch(setStep(step)),
-    setResult: result => dispatch(setResult(result)),
   };
 };
 
@@ -35,9 +31,6 @@ const Challenge = ({
   challenge,
   step,
   editChallenge,
-  challenges,
-  setResult,
-  setStep,
   user,
   removeChallenge,
   toggleChallenge,
@@ -45,8 +38,6 @@ const Challenge = ({
 }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [inputValue, setInputValue] = useState("");
-
-  useEffect(() => handleEndGame);
 
   const handleOnMouseOver = e => {
     if (step === "set") {
@@ -102,17 +93,6 @@ const Challenge = ({
           .catch(err => console.log(err));
       } else {
         toggleChallenge(id);
-      }
-    }
-  };
-
-  const handleEndGame = () => {
-    if (step === "start") {
-      if (challenges.every(ch => ch.isDone)) {
-        setTimeout(() => {
-          setResult("success");
-          setStep("end");
-        }, 1000);
       }
     }
   };

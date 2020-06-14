@@ -50,7 +50,11 @@
 }
 
 @media (max-width: 850px) {
+  .challElement {
+    margin: 0;
+  }
   .challenge {
     border: 1px solid #ffcfb3;
+    margin: 3px;
   }
 }
