@@ -58,6 +58,21 @@ const Profile = props => {
     },
   ]);
 
+  const handlePartClick = e => {
+    switch (e.currentTarget.classList[1]) {
+      case streak:
+        return console.log("streak");
+      case state:
+        return console.log("mind");
+      case body:
+        return console.log("body");
+      case bank:
+        return console.log("bank");
+      default:
+        console.log("default");
+    }
+  };
+
   const handleImageUrlChange = e => {
     setNewImageUrl(e.target.value);
   };
@@ -107,7 +122,11 @@ const Profile = props => {
         </form>
       ) : null}
       <div className={parts}>
-        <div className={`${part} ${streak}`} title="Click to see more stats">
+        <div
+          className={`${part} ${streak}`}
+          title="Click to see more stats"
+          onClick={handlePartClick}
+        >
           <h4>Streak</h4>
           <div className={text}>
             <p>{userStreak}</p>
@@ -120,6 +139,7 @@ const Profile = props => {
               className={`${part} ${g.className}`}
               title={`Click to edit goal in ${g.title} area`}
               key={g.className}
+              onClick={handlePartClick}
             >
               <h4>{g.title}</h4>
               <div className={text}>

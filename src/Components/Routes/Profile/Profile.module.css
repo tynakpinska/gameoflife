@@ -85,7 +85,7 @@ i {
   width: 50%;
   height: 50%;
   background: rgba(155, 56, 0, .2);
-  border: 1px solid #9b3800;
+  border: 1px solid rgba(155, 56, 0, .3);
   z-index: -3;
   border-radius: 100px;
 }
