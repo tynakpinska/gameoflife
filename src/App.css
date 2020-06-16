@@ -9,6 +9,19 @@ body {
   background: #060200;
   height: 100vh;
   overflow: hidden;
+  cursor: none;
+}
+
+.click {
+  border: 1px dashed rgb(124, 47, 2) !important;
+}
+
+.click::before {
+  border: 2px dashed #e4e4e4 !important;
+}
+
+.click::after {
+  background: rgba(173, 68, 7, 0.5) !important;
 }
 
 .container {

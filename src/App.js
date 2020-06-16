@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./App.css";
 import "./fontello/css/fontello.css";
 
+import Cursor from "./Components/Visual/Cursor";
 import Frisella from "./Components/Visual/Frisella";
 import Learn from "./Components/Visual/Learn";
 import Nav from "./Components/Nav/Nav";
@@ -14,6 +15,21 @@ import Register from "./Components/Routes/Register/Register";
 import Profile from "./Components/Routes/Profile/Profile";
 
 import { getUser, fetchChallenges } from "./redux/actions";
+
+const handleMouseMove = e => {
+  const cursor = document.querySelector(".Cursor_cursor__1-yhB");
+  cursor.style.left = `${e.pageX - 10}px`;
+  cursor.style.top = `${e.pageY - 10}px`;
+};
+
+const handleClick = e => {
+  const cursor = document.querySelector(".Cursor_cursor__1-yhB");
+  cursor.classList.add("click");
+  setTimeout(() => cursor.classList.remove("click"), 500);
+};
+
+document.addEventListener("mousemove", handleMouseMove);
+document.addEventListener("click", handleClick);
 
 const mapStateToProps = ({ route }) => {
   return { route };
@@ -51,6 +67,7 @@ class App extends Component {
   render({ route } = this.props) {
     return (
       <div basename="/gameoflife">
+        <Cursor />
         <Nav />
         <div className="box"></div>
         <Frisella />
