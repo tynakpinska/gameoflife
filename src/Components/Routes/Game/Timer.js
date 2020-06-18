@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {timer, time} from "./Timer.module.css";
+import { timer, time } from "./Timer.module.css";
 
-import { setStep, setResult } from "../../../redux/actions"
+import { setStep, setResult } from "../../../redux/actions";
+
+const mapStateToProps = ({ user }) => {
+  return { user };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     setStep: step => dispatch(setStep(step)),
-    setResult: result => dispatch(setResult(result))
+    setResult: (result, token, username) => dispatch(setResult(result, token, username)),
   };
 };
 
@@ -18,12 +22,13 @@ class Timer extends Component {
       leftParts: {
         hours: "--",
         minutes: "--",
-        seconds: "--"
-      }
+        seconds: "--",
+      },
     };
   }
 
   componentDidMount() {
+    const token = sessionStorage.getItem("token");
     this.interval = setInterval(({ leftParts } = this.state) => {
       const today = new Date();
       const tomorrow = new Date(today);
@@ -43,15 +48,15 @@ class Timer extends Component {
           seconds:
             Math.floor((left / 1000) % 60) > 9
               ? Math.floor((left / 1000) % 60)
-              : `0${Math.floor((left / 1000) % 60)}`
-        }
+              : `0${Math.floor((left / 1000) % 60)}`,
+        },
       });
       if (
         leftParts.hours === "00" &&
         leftParts.minutes === "00" &&
         leftParts.seconds === "00"
       ) {
-        this.props.setResult("failure")
+        this.props.setResult("failure", token, this.props.user.username);
         this.props.setStep("end");
       }
     }, 1000);
@@ -78,4 +83,4 @@ class Timer extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Timer);
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);

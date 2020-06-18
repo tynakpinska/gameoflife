@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   return {
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
-    toggleChallenge: key => dispatch(toggleChallenge(key)),
+    toggleChallenge: (key, token, username) => dispatch(toggleChallenge(key, token, username)),
   };
 };
 
@@ -73,6 +73,7 @@ const Challenge = ({
   };
 
   const handleChallClick = () => {
+    const token = sessionStorage.getItem("token");
     if (step === "set") {
       removeChallenge(id);
     } else {
@@ -81,7 +82,7 @@ const Challenge = ({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: sessionStorage.getItem("token"),
+            Authorization: token
           },
           body: JSON.stringify({
             user,
@@ -89,10 +90,10 @@ const Challenge = ({
           }),
         })
           .then(resp => resp.json())
-          .then(resp => toggleChallenge(resp.key))
+          .then(resp => toggleChallenge(resp.key, token, user.username))
           .catch(err => console.log(err));
       } else {
-        toggleChallenge(id);
+        toggleChallenge(id, token, user.username);
       }
     }
   };

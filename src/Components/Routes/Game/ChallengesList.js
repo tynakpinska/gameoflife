@@ -9,8 +9,8 @@ import Challenge from "./Challenge";
 
 import { setStep, setResult } from "../../../redux/actions";
 
-const mapStateToProps = ({ challenges, step }) => {
-  return { challenges, step };
+const mapStateToProps = ({ challenges, step, user }) => {
+  return { challenges, step, user };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -20,13 +20,14 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const ChallengesList = ({ challenges, setResult, setStep }) => {
+const ChallengesList = ({ challenges, user, setResult, setStep }) => {
   useEffect(() => handleEndGame);
 
   const handleEndGame = () => {
     if (challenges[0]) {
       if (challenges.every(ch => ch.isDone)) {
-        setResult("success");
+        const token = sessionStorage.getItem("token");
+        setResult("success", token, user.username);
         setStep("end");
       }
     }

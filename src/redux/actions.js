@@ -1,5 +1,3 @@
-// ACTION - AN OBJECT DESCRIBING WHAT HAPPENED
-
 import {
   LOG_IN,
   LOG_OUT,
@@ -31,7 +29,7 @@ export const editChallenge = (newChall, key) => ({
   payload: [newChall, key],
 });
 
-export const toggleChallenge = key => (dispatch, getState) => {
+export const toggleChallenge = (key, token, username) => (dispatch, getState) => {
   dispatch({
     type: TOGGLE_CHALLENGE,
     payload: key,
@@ -40,7 +38,7 @@ export const toggleChallenge = key => (dispatch, getState) => {
   if (state.challenges.every(ch => ch.isDone)) {
     setTimeout(() => {
       dispatch(setStep("end"));
-      dispatch(setResult("success"));
+      dispatch(setResult("success", token, username));
     }, 1000);
   }
 };
@@ -59,17 +57,33 @@ export const setStep = step => ({
   payload: step,
 });
 
-export const setResult = result => ({
-  type: SET_RESULT,
-  payload: result,
-});
+export const setResult = (result, token, username) => dispatch => {
+  fetch(`http://localhost:3000/setResult`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      result,
+      username
+    })
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      dispatch({
+        type: SET_RESULT,
+        payload: result,
+      })
+    })
+    .catch(console.log);
+}
 
 export const logOut = () => ({
   type: LOG_OUT,
 });
 
-export const getUser = id => dispatch => {
-  const token = sessionStorage.getItem("token");
+export const getUser = (id, token) => dispatch => {
   fetch(`http://localhost:3000/profile/${id}`, {
     method: "get",
     headers: {
@@ -151,7 +165,7 @@ export const updateProfileImage = (token, username, url) => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const fetchChallenges = (id, token) => dispatch => {
+export const fetchChallenges = (id, token, username) => dispatch => {
   const now = new Date();
   const nowStr = now.toISOString().slice(0, 10);
   fetch("http://localhost:3000/getChallenges", {
@@ -175,7 +189,10 @@ export const fetchChallenges = (id, token) => dispatch => {
         console.log(resp);
       } else if (resp[0]) {
         if (resp.every(ch => ch.isDone)) {
-          dispatch(setResult("success"));
+          dispatch({
+            type: SET_RESULT,
+            payload: "success"
+          });
           dispatch(setStep("end"));
         } else {
           dispatch(setStep("start"));

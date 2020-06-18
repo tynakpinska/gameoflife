@@ -31,14 +31,15 @@ const handleClick = e => {
 document.addEventListener("mousemove", handleMouseMove);
 document.addEventListener("click", handleClick);
 
-const mapStateToProps = ({ route }) => {
-  return { route };
+const mapStateToProps = ({ route, user }) => {
+  return { route, user };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: id => dispatch(getUser(id)),
-    fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token)),
+    getUser: (id, token) => dispatch(getUser(id, token)),
+    fetchChallenges: (id, token, username) =>
+      dispatch(fetchChallenges(id, token, username)),
   };
 };
 
@@ -56,12 +57,21 @@ class App extends Component {
         .then(resp => resp.json())
         .then(resp => {
           if (resp !== "Unauthorized") {
-            this.props.getUser(resp);
-            this.props.fetchChallenges(resp, token);
+            this.props.getUser(resp, token);
           }
         })
         .catch(err => console.log(err));
     }
+  };
+
+  componentDidUpdate = () => {
+    const token = sessionStorage.getItem("token");
+    if (token)
+      this.props.fetchChallenges(
+        this.props.user.id,
+        token,
+        this.props.user.username
+      );
   };
 
   render({ route } = this.props) {
