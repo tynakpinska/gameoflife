@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { goalsForm, buttons } from "./Goal.module.css";
+import styles, { goalsForm, buttons, title } from "./Goal.module.css";
 
-const Goal = ({ goal, setGoal, setCurrentGoalForm }) => {
+const Goal = ({ goal, setGoal, setCurrentGoalForm, image }) => {
   const [currentInput, setCurrentInput] = useState(goal.current);
   const [goalInput, setGoalInput] = useState(goal.goal);
 
@@ -22,7 +22,12 @@ const Goal = ({ goal, setGoal, setCurrentGoalForm }) => {
   };
   return (
     <>
-      <h2>{goal.title}</h2>
+    <div
+        className={styles.image}
+        style={{ backgroundImage: `url(${image})` }}
+        alt="avatar"
+      />
+      <h2 className={title}>{goal.title}</h2>
       <form className={goalsForm} onSubmit={handleSubmit}>
         <label htmlFor="current">Current state</label>
         <input

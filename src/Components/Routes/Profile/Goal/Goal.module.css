@@ -3,6 +3,21 @@
   flex-direction: column;
 }
 
+.image {
+  width: 20%;
+  height: 20%;
+  border-radius: 500px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px #9b3800;
+  position: absolute;
+  top: 2%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+  opacity: 0.5;
+}
+
 .buttons {
   display: flex;
 }
@@ -35,4 +50,41 @@
 
 .goalsForm button:hover {
   cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .image {
+    position: static;
+    margin: 20px;
+    width: 10vh;
+    height: 10vh;
+  }
+}
+
+@media (max-height: 450px) {
+  .image {
+    position: absolute;
+    top: 25vh;
+    left: 10vw;
+    width: 30vh;
+    height: 30vh;
+    margin: 2px;
+  }
+
+  .goalsForm {
+    position: absolute;
+    top: 30vh;
+  }
+
+  .title {
+    position: absolute;
+    top: 10vh;
+  }
+
+  .buttons {
+    position: relative;
+    top: -30vh;
+    left: 35vw;
+    flex-direction: column;
+  }
 }

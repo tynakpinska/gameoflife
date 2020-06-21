@@ -109,6 +109,7 @@ const Profile = props => {
       goal={goals[currentGoalForm]}
       setGoal={setGoals[currentGoalForm]}
       setCurrentGoalForm={setCurrentGoalForm}
+      image={props.user.imageUrl || avatar}
     />
   ) : (
     <>
@@ -147,7 +148,6 @@ const Profile = props => {
       <div className={parts}>
         <div
           className={`${part} ${streak}`}
-          title="Click to see more stats"
           onClick={handlePartClick}
         >
           <h4>Streak</h4>

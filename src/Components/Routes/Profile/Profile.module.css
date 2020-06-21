@@ -194,8 +194,8 @@ i {
     position: static;
   }
   .image {
-    width: 50vw;
-    height: 50vw;
+    width: 30vw;
+    height: 30vw;
     position: static;
     margin-top: 15px;
   }
@@ -212,10 +212,12 @@ i {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    height: 40vh;
   }
 
   .part {
     width: 45%;
+    height: 20vh;
     transition: all 0.5s;
     margin: 5px;
     border-radius: 0;
@@ -241,6 +243,13 @@ i {
   .bank .text {
     position: static;
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .image {
+    width: 20vh;
+    height: 20vh;
   }
 }
 
