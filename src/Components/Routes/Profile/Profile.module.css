@@ -103,6 +103,7 @@ i {
   border: 1px solid rgba(155, 56, 0, 0.3);
   z-index: -3;
   border-radius: 100px;
+  overflow: hidden;
 }
 
 .streak {

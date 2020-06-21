@@ -1,30 +1,38 @@
 .goalsForm {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .goalsForm label {
-    padding: 2px 10px;
-    margin: 2px 0 2px -50px;
-  }
-  
-  .goalsForm input,
-  .goalsForm button {
-    margin: 5px;
-    padding: 5px;
-    border-radius: 30px;
-  }
-  
-  .goalsForm input {
-    border: none;
-    background: linear-gradient(#ffcfb3, #fda06a);
-  }
-  
-  .goalsForm button {
-    width: 50%;
-    margin: 5px auto;
-  }
-  
-  .goalsForm button:hover {
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+}
+
+.goalsForm label {
+  padding: 2px 10px;
+  margin: 2px 0 2px -50px;
+}
+
+.goalsForm input,
+.goalsForm button {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.goalsForm input {
+  border: none;
+  background: linear-gradient(#ffcfb3, #fda06a);
+}
+
+.goalsForm button {
+  width: 50%;
+  margin: 5px;
+}
+
+.goalsForm button:last-child {
+  background: #5f2300;
+}
+
+.goalsForm button:hover {
+  cursor: pointer;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { goalsForm } from "./Goal.module.css";
+import { goalsForm, buttons } from "./Goal.module.css";
 
 const Goal = ({ goal, setGoal, setCurrentGoalForm }) => {
   const [currentInput, setCurrentInput] = useState(goal.current);
@@ -16,6 +16,10 @@ const Goal = ({ goal, setGoal, setCurrentGoalForm }) => {
     setGoal({ ...goal, current: currentInput, goal: goalInput });
     setCurrentGoalForm(null);
   };
+
+  const handleCancel = () => {
+    setCurrentGoalForm(null);
+  };
   return (
     <>
       <h2>{goal.title}</h2>
@@ -26,6 +30,7 @@ const Goal = ({ goal, setGoal, setCurrentGoalForm }) => {
           type="text"
           defaultValue={currentInput}
           onChange={handleInputChange}
+          maxLength="10"
         ></input>
         <label htmlFor="goal">Goal</label>
         <input
@@ -33,9 +38,12 @@ const Goal = ({ goal, setGoal, setCurrentGoalForm }) => {
           type="text"
           defaultValue={goalInput}
           onChange={handleInputChange}
+          maxLength="10"
         ></input>
+        <div className={buttons}>
         <button>Save</button>
-        <button>Cancel</button>
+        <button onClick={handleCancel}>Cancel</button>
+        </div>
       </form>
     </>
   );

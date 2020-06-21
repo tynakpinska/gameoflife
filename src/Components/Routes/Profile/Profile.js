@@ -58,8 +58,8 @@ const Profile = props => {
   });
   const [goal2, setGoal2] = useState({
     title: "Bank balance",
-    current: "income 3000$",
-    goal: "income 10000$",
+    current: "30000$",
+    goal: "1000000$",
     className: bank,
   });
   const goals = [goal0, goal1, goal2];
