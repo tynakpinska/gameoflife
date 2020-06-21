@@ -183,7 +183,7 @@ export const fetchChallenges = (id, token) => dispatch => {
     },
     body: JSON.stringify({
       id,
-      dateStr
+      dateStr,
     }),
   })
     .then(resp => resp.json())
@@ -229,9 +229,11 @@ export const getStreak = (token, username) => dispatch => {
   })
     .then(resp => resp.json())
     .then(resp => {
-      console.log(resp);
-      if (typeof resp != "object")
+      if (typeof resp != "object" && resp !== "Unable to fetch user streak") {
         dispatch({ type: SET_STREAK, payload: resp });
+      } else {
+        console.log(resp);
+      }
     })
     .catch(err => console.log(err));
 };

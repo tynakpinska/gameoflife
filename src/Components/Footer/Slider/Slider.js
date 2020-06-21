@@ -89,9 +89,8 @@ const Slider = () => {
                 5: (
                   <p>
                     <b className={textSpan}>Additionaly</b>, after a busy day,
-                    see your stats. Admire how hard have you worked during a
-                    week, a year, and see how far it got you. Try it out and see
-                    it for yourself!
+                    see your streak. Admire how hard you worked and see how
+                    far it got you. Try it out and see it for yourself!
                   </p>
                 ),
               }[currentSlide] || (

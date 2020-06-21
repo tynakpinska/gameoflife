@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import Goal from "./Goal/Goal";
 import {
   username,
   image,
   form,
   label,
   input,
+  cancel,
   i,
   parts,
   part,
@@ -41,43 +43,46 @@ const mapDispatchToProps = dispatch => {
 const Profile = props => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
-  const [goals, setGoals] = useState([
-    {
-      title: "State of mind",
-      current: "anxious",
-      goal: "stoic",
-      className: state,
-    },
-    {
-      title: "Body shape",
-      current: "BMI 27",
-      goal: "BMI 20",
-      className: body,
-    },
-    {
-      title: "Bank balance",
-      current: "income 3000$",
-      goal: "income 10000$",
-      className: bank,
-    },
-  ]);
-  useEffect(({getStreak, user} = props) => {
+  const [currentGoalForm, setCurrentGoalForm] = useState(null);
+  const [goal0, setGoal0] = useState({
+    title: "State of mind",
+    current: "anxious",
+    goal: "stoic",
+    className: state,
+  });
+  const [goal1, setGoal1] = useState({
+    title: "Body shape",
+    current: "BMI 27",
+    goal: "BMI 20",
+    className: body,
+  });
+  const [goal2, setGoal2] = useState({
+    title: "Bank balance",
+    current: "income 3000$",
+    goal: "income 10000$",
+    className: bank,
+  });
+  const goals = [goal0, goal1, goal2];
+  const setGoals = [setGoal0, setGoal1, setGoal2];
+
+  useEffect(({ getStreak, user } = props) => {
     const token = sessionStorage.getItem("token");
     getStreak(token, user.username);
   }, []);
 
   const handlePartClick = e => {
     switch (e.currentTarget.classList[1]) {
-      case streak:
-        return console.log("streak");
       case state:
-        return console.log("mind");
+        setCurrentGoalForm(0);
+        return;
       case body:
-        return console.log("body");
+        setCurrentGoalForm(1);
+        return;
       case bank:
-        return console.log("bank");
+        setCurrentGoalForm(2);
+        return;
       default:
-        console.log("default");
+        setCurrentGoalForm(null);
     }
   };
 
@@ -99,7 +104,13 @@ const Profile = props => {
     }
   };
 
-  return (
+  return currentGoalForm !== null ? (
+    <Goal
+      goal={goals[currentGoalForm]}
+      setGoal={setGoals[currentGoalForm]}
+      setCurrentGoalForm={setCurrentGoalForm}
+    />
+  ) : (
     <>
       <h2 className={username}>{props.user.username}</h2>
       <div
@@ -111,6 +122,10 @@ const Profile = props => {
       />
       {imageInput ? (
         <form className={form} onSubmit={handleImageSubmit}>
+          <i
+            className={`demo-icon icon-cancel ${cancel}`}
+            onClick={() => setImageInput(!imageInput)}
+          ></i>
           <label className={label} htmlFor="img">
             Paste image url
           </label>
@@ -136,9 +151,9 @@ const Profile = props => {
           onClick={handlePartClick}
         >
           <h4>Streak</h4>
-          <div className={text}>
-            <p>{props.streak} days</p>
-          </div>
+          <p className={text}>
+            {props.streak} {props.streak === 1 ? "day" : "days"}
+          </p>
         </div>
 
         {goals.map(g => {
@@ -152,9 +167,7 @@ const Profile = props => {
               <h4>{g.title}</h4>
               <div className={text}>
                 <p>{g.current}</p>
-                <p>
-                  <span className={span}>Goal:</span> {g.goal}
-                </p>
+                <span className={span}>Goal:</span> {g.goal}
               </div>
             </div>
           );
