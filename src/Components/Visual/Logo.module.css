@@ -7,6 +7,7 @@
 
 .name {
   background: url("../../img/learn.jpg") center;
+  letter-spacing: 3px;
 }
 
 @media (max-width: 850px) {

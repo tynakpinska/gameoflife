@@ -4,7 +4,6 @@ import styles from './LogIn.module.css'
 
 import {
     setStep,
-    setResult,
     getUser,
     fetchChallenges
 } from '../../../redux/actions'
@@ -18,7 +17,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         setStep: (step) => dispatch(setStep(step)),
-        setResult: (result) => dispatch(setResult(result)),
         getUser: (id) => dispatch(getUser(id)),
         fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token))
     }

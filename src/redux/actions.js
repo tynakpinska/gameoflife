@@ -12,6 +12,7 @@ import {
   SET_RESULT,
   SET_PROFILE_IMAGE,
   GET_PROFILE_IMAGE,
+  SET_STREAK,
 } from "./constants";
 
 export const addChallenge = (challenge, key, date) => ({
@@ -29,7 +30,10 @@ export const editChallenge = (newChall, key) => ({
   payload: [newChall, key],
 });
 
-export const toggleChallenge = (key, token, username) => (dispatch, getState) => {
+export const toggleChallenge = (key, token, username) => (
+  dispatch,
+  getState
+) => {
   dispatch({
     type: TOGGLE_CHALLENGE,
     payload: key,
@@ -58,6 +62,8 @@ export const setStep = step => ({
 });
 
 export const setResult = (result, token, username) => dispatch => {
+  const date = new Date(new Date() - 7200000);
+  const dateStr = date.toISOString().slice(0, 10);
   fetch(`http://localhost:3000/setResult`, {
     method: "post",
     headers: {
@@ -65,19 +71,20 @@ export const setResult = (result, token, username) => dispatch => {
       Authorization: token,
     },
     body: JSON.stringify({
+      dateStr,
       result,
-      username
-    })
+      username,
+    }),
   })
     .then(resp => resp.json())
     .then(resp => {
       dispatch({
         type: SET_RESULT,
         payload: result,
-      })
+      });
     })
     .catch(console.log);
-}
+};
 
 export const logOut = () => ({
   type: LOG_OUT,
@@ -165,9 +172,9 @@ export const updateProfileImage = (token, username, url) => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const fetchChallenges = (id, token, username) => dispatch => {
-  const now = new Date();
-  const nowStr = now.toISOString().slice(0, 10);
+export const fetchChallenges = (id, token) => dispatch => {
+  const date = new Date(new Date() - 7200000);
+  const dateStr = date.toISOString().slice(0, 10);
   fetch("http://localhost:3000/getChallenges", {
     method: "post",
     headers: {
@@ -176,7 +183,7 @@ export const fetchChallenges = (id, token, username) => dispatch => {
     },
     body: JSON.stringify({
       id,
-      nowStr,
+      dateStr
     }),
   })
     .then(resp => resp.json())
@@ -191,7 +198,7 @@ export const fetchChallenges = (id, token, username) => dispatch => {
         if (resp.every(ch => ch.isDone)) {
           dispatch({
             type: SET_RESULT,
-            payload: "success"
+            payload: "success",
           });
           dispatch(setStep("end"));
         } else {
@@ -202,6 +209,29 @@ export const fetchChallenges = (id, token, username) => dispatch => {
           payload: resp,
         });
       }
+    })
+    .catch(err => console.log(err));
+};
+
+export const getStreak = (token, username) => dispatch => {
+  const date = new Date(new Date() - 7200000);
+  const dateStr = date.toISOString().slice(0, 10);
+  fetch("http://localhost:3000/getStreak", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      dateStr,
+      username,
+    }),
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      console.log(resp);
+      if (typeof resp != "object")
+        dispatch({ type: SET_STREAK, payload: resp });
     })
     .catch(err => console.log(err));
 };

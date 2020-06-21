@@ -1,5 +1,3 @@
-// REDUCERS specify how the actions transform the state tree
-
 import {
   LOG_IN,
   LOG_OUT,
@@ -14,6 +12,7 @@ import {
   SET_RESULT,
   SET_PROFILE_IMAGE,
   GET_PROFILE_IMAGE,
+  SET_STREAK
 } from "./constants";
 
 const initialState = {
@@ -22,6 +21,7 @@ const initialState = {
   result: "",
   challenges: [],
   user: {},
+  streak: 0
 };
 
 export const challenges = (state = initialState.challenges, action = {}) => {
@@ -108,6 +108,15 @@ export const user = (state = initialState.user, action = false) => {
 export const result = (state = initialState.result, action = false) => {
   switch (action.type) {
     case SET_RESULT:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const  streak = (state = initialState.streak, action = 0) => {
+  switch (action.type) {
+    case SET_STREAK:
       return action.payload;
     default:
       return state;

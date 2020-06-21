@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   username,
@@ -18,10 +18,14 @@ import {
 } from "./Profile.module.css";
 import avatar from "../../../img/user.png";
 
-import { setProfileImage, updateProfileImage } from "../../../redux/actions";
+import {
+  setProfileImage,
+  updateProfileImage,
+  getStreak,
+} from "../../../redux/actions";
 
-const mapStateToProps = ({ user }) => {
-  return { user };
+const mapStateToProps = ({ user, streak }) => {
+  return { user, streak };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -30,13 +34,13 @@ const mapDispatchToProps = dispatch => {
       dispatch(setProfileImage(token, username, url)),
     updateProfileImage: (token, username, url) =>
       dispatch(updateProfileImage(token, username, url)),
+    getStreak: (token, username) => dispatch(getStreak(token, username)),
   };
 };
 
 const Profile = props => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
-  const [userStreak, setUserStreak] = useState("5 days");
   const [goals, setGoals] = useState([
     {
       title: "State of mind",
@@ -57,6 +61,10 @@ const Profile = props => {
       className: bank,
     },
   ]);
+  useEffect(({getStreak, user} = props) => {
+    const token = sessionStorage.getItem("token");
+    getStreak(token, user.username);
+  }, []);
 
   const handlePartClick = e => {
     switch (e.currentTarget.classList[1]) {
@@ -129,7 +137,7 @@ const Profile = props => {
         >
           <h4>Streak</h4>
           <div className={text}>
-            <p>{userStreak}</p>
+            <p>{props.streak} days</p>
           </div>
         </div>
 
