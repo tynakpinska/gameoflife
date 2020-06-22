@@ -12,4 +12,5 @@ export const SET_RESULT = "SET_RESULT";
 export const SET_PROFILE_IMAGE = "SET_PROFILE_IMAGE";
 export const GET_PROFILE_IMAGE = "GET_PROFILE_IMAGE";
 export const SET_STREAK = "SET_STREAK";
+export const SET_GOAL = "SET_GOAL";
 

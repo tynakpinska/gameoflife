@@ -1,7 +1,22 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import styles, { goalsForm, buttons, title } from "./Goal.module.css";
 
-const Goal = ({ goal, setGoal, setCurrentGoalForm, image }) => {
+import {
+  setGoal
+} from "../../../../redux/actions";
+
+const mapStateToProps = ({ user }) => {
+  return { user };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setGoal: (token, username, goal) => dispatch(setGoal(token, username, goal))
+  };
+};
+
+const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
   const [currentInput, setCurrentInput] = useState(goal.current);
   const [goalInput, setGoalInput] = useState(goal.goal);
 
@@ -13,7 +28,8 @@ const Goal = ({ goal, setGoal, setCurrentGoalForm, image }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setGoal({ ...goal, current: currentInput, goal: goalInput });
+    const token = sessionStorage.getItem("token");
+    setGoal(token, user.username, { ...goal, current: currentInput, goal: goalInput });
     setCurrentGoalForm(null);
   };
 
@@ -54,4 +70,4 @@ const Goal = ({ goal, setGoal, setCurrentGoalForm, image }) => {
   );
 };
 
-export default Goal;
+export default connect(mapStateToProps, mapDispatchToProps)(Goal);

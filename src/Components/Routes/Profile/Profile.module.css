@@ -106,25 +106,25 @@ i {
   overflow: hidden;
 }
 
-.streak {
+.streakpart {
   border-radius: 500px 0 0 0;
 }
 
-.streak:hover,
-.streak:focus,
-.streak:active {
+.streakpart:hover,
+.streakpart:focus,
+.streakpart:active {
   box-shadow: none;
   cursor: none;
 }
 
-.streak h4 {
+.streakpart h4 {
   transform: rotate(-50deg);
   margin: 0 auto;
   position: relative;
   top: 40%;
   left: -25%;
 }
-.streak > .text {
+.streakpart > .text {
   position: absolute;
   bottom: 40px;
   right: 40px;
@@ -212,7 +212,7 @@ i {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    height: 40vh;
+    height: 30vh;
   }
 
   .part {
@@ -224,7 +224,7 @@ i {
     background: rgba(255, 93, 0, 0.2);
   }
 
-  .streak h4,
+  .streakpart h4,
   .state h4,
   .body h4,
   .bank h4 {
@@ -237,7 +237,7 @@ i {
     width: 100%;
   }
 
-  .streak .text,
+  .streakpart .text,
   .state .text,
   .body .text,
   .bank .text {

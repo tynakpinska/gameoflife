@@ -12,8 +12,15 @@ import {
   SET_RESULT,
   SET_PROFILE_IMAGE,
   GET_PROFILE_IMAGE,
-  SET_STREAK
+  SET_STREAK,
+  SET_GOAL,
 } from "./constants";
+
+import {
+  state,
+  body,
+  bank,
+} from "../Components/Routes/Profile/Profile.module.css";
 
 const initialState = {
   route: "game",
@@ -21,7 +28,27 @@ const initialState = {
   result: "",
   challenges: [],
   user: {},
-  streak: 0
+  streak: 0,
+  goals: [
+    {
+      title: "State of mind",
+      current: "anxious",
+      goal: "stoic",
+      className: state,
+    },
+    {
+      title: "Body shape",
+      current: "BMI 27",
+      goal: "BMI 20",
+      className: body,
+    },
+    {
+      title: "Bank balance",
+      current: "30000$",
+      goal: "1000000$",
+      className: bank,
+    },
+  ],
 };
 
 export const challenges = (state = initialState.challenges, action = {}) => {
@@ -114,10 +141,21 @@ export const result = (state = initialState.result, action = false) => {
   }
 };
 
-export const  streak = (state = initialState.streak, action = 0) => {
+export const streak = (state = initialState.streak, action = 0) => {
   switch (action.type) {
     case SET_STREAK:
       return action.payload;
+    default:
+      return state;
+  }
+};
+
+export const goals = (state = initialState.goals, action = []) => {
+  switch (action.type) {
+    case SET_GOAL:
+      return state.map(g =>
+        g.title === action.payload.title ? action.payload : g
+      );
     default:
       return state;
   }

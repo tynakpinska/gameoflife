@@ -11,7 +11,7 @@ import {
   i,
   parts,
   part,
-  streak,
+  streakpart,
   state,
   body,
   bank,
@@ -23,11 +23,11 @@ import avatar from "../../../img/user.png";
 import {
   setProfileImage,
   updateProfileImage,
-  getStreak,
+  getStreak
 } from "../../../redux/actions";
 
-const mapStateToProps = ({ user, streak }) => {
-  return { user, streak };
+const mapStateToProps = ({ user, streak, goals }) => {
+  return { user, streak, goals };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -36,39 +36,19 @@ const mapDispatchToProps = dispatch => {
       dispatch(setProfileImage(token, username, url)),
     updateProfileImage: (token, username, url) =>
       dispatch(updateProfileImage(token, username, url)),
-    getStreak: (token, username) => dispatch(getStreak(token, username)),
+    getStreak: (token, username) => dispatch(getStreak(token, username))
   };
 };
 
-const Profile = props => {
+const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getStreak}) => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
   const [currentGoalForm, setCurrentGoalForm] = useState(null);
-  const [goal0, setGoal0] = useState({
-    title: "State of mind",
-    current: "anxious",
-    goal: "stoic",
-    className: state,
-  });
-  const [goal1, setGoal1] = useState({
-    title: "Body shape",
-    current: "BMI 27",
-    goal: "BMI 20",
-    className: body,
-  });
-  const [goal2, setGoal2] = useState({
-    title: "Bank balance",
-    current: "30000$",
-    goal: "1000000$",
-    className: bank,
-  });
-  const goals = [goal0, goal1, goal2];
-  const setGoals = [setGoal0, setGoal1, setGoal2];
 
-  useEffect(({ getStreak, user } = props) => {
+  useEffect(() => {
     const token = sessionStorage.getItem("token");
     getStreak(token, user.username);
-  }, []);
+  }, [streak, getStreak, user.username]);
 
   const handlePartClick = e => {
     switch (e.currentTarget.classList[1]) {
@@ -92,7 +72,6 @@ const Profile = props => {
 
   const handleImageSubmit = e => {
     e.preventDefault();
-    const { user, updateProfileImage, setProfileImage } = props;
     const { imageUrl, username } = user;
     const token = sessionStorage.getItem("token");
     if (newImageUrl) {
@@ -107,16 +86,15 @@ const Profile = props => {
   return currentGoalForm !== null ? (
     <Goal
       goal={goals[currentGoalForm]}
-      setGoal={setGoals[currentGoalForm]}
       setCurrentGoalForm={setCurrentGoalForm}
-      image={props.user.imageUrl || avatar}
+      image={user.imageUrl || avatar}
     />
   ) : (
     <>
-      <h2 className={username}>{props.user.username}</h2>
+      <h2 className={username}>{user.username}</h2>
       <div
         className={image}
-        style={{ backgroundImage: `url(${props.user.imageUrl || avatar})` }}
+        style={{ backgroundImage: `url(${user.imageUrl || avatar})` }}
         alt="avatar"
         onClick={() => setImageInput(!imageInput)}
         title="Click to edit photo"
@@ -147,12 +125,12 @@ const Profile = props => {
       ) : null}
       <div className={parts}>
         <div
-          className={`${part} ${streak}`}
+          className={`${part} ${streakpart}`}
           onClick={handlePartClick}
         >
           <h4>Streak</h4>
           <p className={text}>
-            {props.streak} {props.streak === 1 ? "day" : "days"}
+            {streak} {streak === 1 ? "day" : "days"}
           </p>
         </div>
 

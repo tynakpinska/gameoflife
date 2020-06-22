@@ -13,6 +13,7 @@ import {
   SET_PROFILE_IMAGE,
   GET_PROFILE_IMAGE,
   SET_STREAK,
+  SET_GOAL,
 } from "./constants";
 
 export const addChallenge = (challenge, key, date) => ({
@@ -231,6 +232,33 @@ export const getStreak = (token, username) => dispatch => {
     .then(resp => {
       if (typeof resp != "object" && resp !== "Unable to fetch user streak") {
         dispatch({ type: SET_STREAK, payload: resp });
+      } else {
+        console.log(resp);
+      }
+    })
+    .catch(err => console.log(err));
+};
+
+export const setGoal = (token, username, goal) => dispatch => {
+console.log(token, username, goal)
+  fetch("http://localhost:3000/setGoal", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      username,
+      goal
+    }),
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      if (typeof resp != "object" && resp !== "Unable to save goal") {
+        dispatch({
+          type: SET_GOAL,
+          payload: goal,
+        });
       } else {
         console.log(resp);
       }
