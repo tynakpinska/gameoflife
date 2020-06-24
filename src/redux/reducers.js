@@ -13,7 +13,7 @@ import {
   SET_PROFILE_IMAGE,
   GET_PROFILE_IMAGE,
   SET_STREAK,
-  SET_GOAL,
+  SET_GOAL
 } from "./constants";
 
 import {

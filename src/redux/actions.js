@@ -63,28 +63,35 @@ export const setStep = step => ({
 });
 
 export const setResult = (result, token, username) => dispatch => {
-  const date = new Date(new Date() - 7200000);
-  const dateStr = date.toISOString().slice(0, 10);
-  fetch(`http://localhost:3000/setResult`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: token,
-    },
-    body: JSON.stringify({
-      dateStr,
-      result,
-      username,
-    }),
-  })
-    .then(resp => resp.json())
-    .then(resp => {
-      dispatch({
-        type: SET_RESULT,
-        payload: result,
-      });
+  if (token && username) {
+    const date = new Date(new Date() - 7200000);
+    const dateStr = date.toISOString().slice(0, 10);
+    fetch(`http://localhost:3000/setResult`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify({
+        dateStr,
+        result,
+        username,
+      }),
     })
-    .catch(console.log);
+      .then(resp => resp.json())
+      .then(resp => {
+        dispatch({
+          type: SET_RESULT,
+          payload: result,
+        });
+      })
+      .catch(console.log);
+  } else {
+    dispatch({
+      type: SET_RESULT,
+      payload: result,
+    });
+  }
 };
 
 export const logOut = () => ({
@@ -240,7 +247,6 @@ export const getStreak = (token, username) => dispatch => {
 };
 
 export const setGoal = (token, username, goal) => dispatch => {
-console.log(token, username, goal)
   fetch("http://localhost:3000/setGoal", {
     method: "post",
     headers: {
@@ -249,15 +255,44 @@ console.log(token, username, goal)
     },
     body: JSON.stringify({
       username,
-      goal
+      goal,
     }),
   })
     .then(resp => resp.json())
     .then(resp => {
-      if (typeof resp != "object" && resp !== "Unable to save goal") {
+      if (resp !== "Unable to save goal") {
         dispatch({
           type: SET_GOAL,
-          payload: goal,
+          payload: resp[0],
+        });
+      } else {
+        console.log(resp);
+      }
+    })
+    .catch(err => console.log(err));
+};
+
+export const getGoals = (token, username) => dispatch => {
+  console.log("getgoals");
+  fetch("http://localhost:3000/getGoals", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+    body: JSON.stringify({
+      username,
+    }),
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      console.log(resp);
+      if (resp !== "Unable to fetch goals") {
+        resp.forEach(g => {
+          dispatch({
+            type: SET_GOAL,
+            payload: g,
+          });
         });
       } else {
         console.log(resp);

@@ -23,7 +23,8 @@ import avatar from "../../../img/user.png";
 import {
   setProfileImage,
   updateProfileImage,
-  getStreak
+  getStreak,
+  getGoals
 } from "../../../redux/actions";
 
 const mapStateToProps = ({ user, streak, goals }) => {
@@ -36,11 +37,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(setProfileImage(token, username, url)),
     updateProfileImage: (token, username, url) =>
       dispatch(updateProfileImage(token, username, url)),
-    getStreak: (token, username) => dispatch(getStreak(token, username))
+    getStreak: (token, username) => dispatch(getStreak(token, username)),
+    getGoals: (token, username) => dispatch(getGoals(token, username))
   };
 };
 
-const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getStreak}) => {
+const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getStreak, getGoals}) => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
   const [currentGoalForm, setCurrentGoalForm] = useState(null);
@@ -48,7 +50,8 @@ const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getS
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     getStreak(token, user.username);
-  }, [streak, getStreak, user.username]);
+    getGoals(token, user.username);
+  }, [streak, getStreak, getGoals, user.username]);
 
   const handlePartClick = e => {
     switch (e.currentTarget.classList[1]) {
