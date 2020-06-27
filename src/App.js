@@ -23,7 +23,7 @@ const handleMouseMove = e => {
 };
 
 const handleClick = e => {
-  const cursor = document.querySelector(".Cursor_cursor__1-yhB");
+  const cursor = document.querySelector(".Cursor_cursor__1mKPD");
   cursor.classList.add("click");
   setTimeout(() => cursor.classList.remove("click"), 500);
 };
