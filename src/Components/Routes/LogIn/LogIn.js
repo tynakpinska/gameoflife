@@ -28,7 +28,11 @@ const LogIn = props => {
     if (username && password) {
       fetch("https://game-of-life-api.herokuapp.com/signin", {
         method: "post",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin":
+            "https://game-of-life-api.herokuapp.com"
+        },
         body: JSON.stringify({
           username,
           password,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { register} from "./Register.module.css";
+import { register } from "./Register.module.css";
 
 import { resetChallenges } from "../../../redux/actions";
 
@@ -33,7 +33,10 @@ const Register = props => {
     e.preventDefault();
     fetch("https://game-of-life-api.herokuapp.com/register", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://game-of-life-api.herokuapp.com",
+      },
       body: JSON.stringify({
         username,
         email,
