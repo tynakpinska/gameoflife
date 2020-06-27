@@ -17,7 +17,7 @@ import Profile from "./Components/Routes/Profile/Profile";
 import { getUser, fetchChallenges } from "./redux/actions";
 
 const handleMouseMove = e => {
-  const cursor = document.querySelector(".Cursor_cursor__1-yhB");
+  const cursor = document.querySelector(".Cursor_cursor__1mKPD");
   cursor.style.left = `${e.pageX - 10}px`;
   cursor.style.top = `${e.pageY - 10}px`;
 };
