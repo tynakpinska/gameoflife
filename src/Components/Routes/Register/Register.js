@@ -35,7 +35,8 @@ const Register = props => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://tynakpinska.github.io",
+        "Access-Control-Allow-Origin":
+          "https://game-of-life-front.herokuapp.com/"
       },
       body: JSON.stringify({
         username,

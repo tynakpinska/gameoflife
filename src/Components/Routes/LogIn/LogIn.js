@@ -31,7 +31,7 @@ const LogIn = props => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin":
-            "https://tynakpinska.github.io"
+            "https://game-of-life-front.herokuapp.com/"
         },
         body: JSON.stringify({
           username,

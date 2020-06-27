@@ -60,6 +60,8 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: sessionStorage.getItem("token"),
+            "Access-Control-Allow-Origin":
+              "https://game-of-life-front.herokuapp.com/",
           },
           body: JSON.stringify({
             user,

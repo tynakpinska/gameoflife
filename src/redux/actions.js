@@ -71,6 +71,8 @@ export const setResult = (result, token, username) => dispatch => {
       headers: {
         "Content-Type": "application/json",
         Authorization: token,
+        "Access-Control-Allow-Origin":
+          "https://game-of-life-front.herokuapp.com/"
       },
       body: JSON.stringify({
         dateStr,
@@ -104,6 +106,8 @@ export const getUser = (id, token) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+      "Access-Control-Allow-Origin":
+        "https://game-of-life-front.herokuapp.com/"
     },
   })
     .then(resp => resp.json())
@@ -112,10 +116,18 @@ export const getUser = (id, token) => dispatch => {
         type: LOG_IN,
         payload: resp,
       });
-      fetch(`https://game-of-life-api.herokuapp.com/getUserImage/${resp.username}`, {
-        method: "get",
-        headers: { "Content-Type": "application/json", Authorization: token },
-      })
+      fetch(
+        `https://game-of-life-api.herokuapp.com/getUserImage/${resp.username}`,
+        {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: token,
+            "Access-Control-Allow-Origin":
+              "https://game-of-life-front.herokuapp.com/",
+          },
+        }
+      )
         .then(resp => resp.json())
         .then(resp => {
           dispatch({
@@ -134,6 +146,8 @@ export const setProfileImage = (token, username, url) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+      "Access-Control-Allow-Origin":
+        "https://game-of-life-front.herokuapp.com/",
     },
     body: JSON.stringify({
       username,
@@ -160,6 +174,8 @@ export const updateProfileImage = (token, username, url) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+      "Access-Control-Allow-Origin":
+        "https://game-of-life-front.herokuapp.com/",
     },
     body: JSON.stringify({
       username,
@@ -188,6 +204,9 @@ export const fetchChallenges = (id, token) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+
+      "Access-Control-Allow-Origin":
+        "https://game-of-life-front.herokuapp.com/",
     },
     body: JSON.stringify({
       id,
@@ -229,6 +248,8 @@ export const getStreak = (token, username) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+      "Access-Control-Allow-Origin":
+        "https://game-of-life-front.herokuapp.com/",
     },
     body: JSON.stringify({
       dateStr,
@@ -252,6 +273,8 @@ export const setGoal = (token, username, goal) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+      "Access-Control-Allow-Origin":
+        "https://game-of-life-front.herokuapp.com/",
     },
     body: JSON.stringify({
       username,
@@ -279,6 +302,8 @@ export const getGoals = (token, username) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
+      "Access-Control-Allow-Origin":
+        "https://game-of-life-front.herokuapp.com/",
     },
     body: JSON.stringify({
       username,

@@ -52,6 +52,8 @@ class App extends Component {
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
+          "Access-Control-Allow-Origin":
+            "https://game-of-life-front.herokuapp.com/"
         },
       })
         .then(resp => resp.json())
