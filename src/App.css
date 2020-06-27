@@ -228,8 +228,27 @@ input:focus {
   h2 {
     padding: 5px;
   }
+  input[type="password"],
+  input[type="email"],
+  .username {
+    height: 30px;
+  }
 }
 
+@media (max-height: 400px) {
+  body {
+    height: auto;
+    overflow: scroll;
+  }
+
+  .container {
+    padding: 1px;
+  }
+  
+  h2 {
+    padding: 2px;
+  }
+}
 
 @keyframes show {
   0% {

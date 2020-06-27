@@ -58,3 +58,9 @@
     margin: 3px;
   }
 }
+
+@media (max-height: 400px) {
+  .challenge {
+    padding: 3px;
+  }
+}

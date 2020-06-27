@@ -31,11 +31,24 @@
   background: #9b3800;
   padding: 10px;
   border-radius: 20px;
-
 }
 
 @media (max-width: 1100px) {
   .inputContainer {
     width: 95%;
+  }
+}
+
+@media (max-width: 400px) {
+  .inputContainer {
+    width: 100%;
+    margin: 0;
+  }
+
+  .typeChall {
+    min-width: 255px;
+  }
+  .addChallButton {
+    margin-left: 0;
   }
 }

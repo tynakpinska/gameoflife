@@ -72,3 +72,10 @@
     transform: scale(1);
   }
 }
+
+
+@media (max-width: 688px) {
+  .cursor {
+    display: none;
+  }
+}

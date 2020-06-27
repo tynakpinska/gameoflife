@@ -55,6 +55,11 @@
   }
 }
 
+@media (max-height: 450px) {
+  .learn {
+    display: none;
+  }
+}
 
 @keyframes show {
   0% {
