@@ -36,7 +36,7 @@ const Register = props => {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin":
-          "https://game-of-life-api.herokuapp.com/register"
+          "https://game-of-life-front.herokuapp.com"
       },
       body: JSON.stringify({
         username,
