@@ -55,7 +55,7 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
     if (challenges.length) {
       setStep("start");
       if (user.username) {
-        fetch("http://localhost:3000/saveChallenges", {
+        fetch("https://game-of-life-api.herokuapp.com/saveChallenges", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

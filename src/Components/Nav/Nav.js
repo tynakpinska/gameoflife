@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => {
 
 const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
   const handleLogOut = e => {
-    fetch("http://localhost:3000/signout", {
+    fetch("https://game-of-life-api.herokuapp.com/signout", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

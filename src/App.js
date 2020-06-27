@@ -47,7 +47,7 @@ class App extends Component {
   componentDidMount = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3000/signin", {
+      fetch("https://game-of-life-api.herokuapp.com/signin", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ class App extends Component {
       })
         .then(resp => resp.json())
         .then(resp => {
-          if (resp !== "Unauthorized") {
+          if (resp && resp !== "Unauthorized") {
             this.props.getUser(resp, token);
           }
         })

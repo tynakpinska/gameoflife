@@ -31,7 +31,7 @@ const Register = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch("http://localhost:3000/register", {
+    fetch("https://game-of-life-api.herokuapp.com/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -66,7 +66,7 @@ export const setResult = (result, token, username) => dispatch => {
   if (token && username) {
     const date = new Date(new Date() - 7200000);
     const dateStr = date.toISOString().slice(0, 10);
-    fetch(`http://localhost:3000/setResult`, {
+    fetch(`https://game-of-life-api.herokuapp.com/setResult`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -99,7 +99,7 @@ export const logOut = () => ({
 });
 
 export const getUser = (id, token) => dispatch => {
-  fetch(`http://localhost:3000/profile/${id}`, {
+  fetch(`https://game-of-life-api.herokuapp.com/profile/${id}`, {
     method: "get",
     headers: {
       "Content-Type": "application/json",
@@ -112,7 +112,7 @@ export const getUser = (id, token) => dispatch => {
         type: LOG_IN,
         payload: resp,
       });
-      fetch(`http://localhost:3000/getUserImage/${resp.username}`, {
+      fetch(`https://game-of-life-api.herokuapp.com/getUserImage/${resp.username}`, {
         method: "get",
         headers: { "Content-Type": "application/json", Authorization: token },
       })
@@ -129,7 +129,7 @@ export const getUser = (id, token) => dispatch => {
 };
 
 export const setProfileImage = (token, username, url) => dispatch => {
-  fetch("http://localhost:3000/setUserImage", {
+  fetch("https://game-of-life-api.herokuapp.com/setUserImage", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -155,7 +155,7 @@ export const setProfileImage = (token, username, url) => dispatch => {
 };
 
 export const updateProfileImage = (token, username, url) => dispatch => {
-  fetch("http://localhost:3000/updateUserImage", {
+  fetch("https://game-of-life-api.herokuapp.com/updateUserImage", {
     method: "put",
     headers: {
       "Content-Type": "application/json",
@@ -183,7 +183,7 @@ export const updateProfileImage = (token, username, url) => dispatch => {
 export const fetchChallenges = (id, token) => dispatch => {
   const date = new Date(new Date() - 7200000);
   const dateStr = date.toISOString().slice(0, 10);
-  fetch("http://localhost:3000/getChallenges", {
+  fetch("https://game-of-life-api.herokuapp.com/getChallenges", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -224,7 +224,7 @@ export const fetchChallenges = (id, token) => dispatch => {
 export const getStreak = (token, username) => dispatch => {
   const date = new Date(new Date() - 7200000);
   const dateStr = date.toISOString().slice(0, 10);
-  fetch("http://localhost:3000/getStreak", {
+  fetch("https://game-of-life-api.herokuapp.com/getStreak", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -247,7 +247,7 @@ export const getStreak = (token, username) => dispatch => {
 };
 
 export const setGoal = (token, username, goal) => dispatch => {
-  fetch("http://localhost:3000/setGoal", {
+  fetch("https://game-of-life-api.herokuapp.com/setGoal", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -274,7 +274,7 @@ export const setGoal = (token, username, goal) => dispatch => {
 
 export const getGoals = (token, username) => dispatch => {
   console.log("getgoals");
-  fetch("http://localhost:3000/getGoals", {
+  fetch("https://game-of-life-api.herokuapp.com/getGoals", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
