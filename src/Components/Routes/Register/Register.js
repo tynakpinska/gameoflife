@@ -35,7 +35,7 @@ const Register = props => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "https://tynakpinska.github.io/gameoflife/",
+        "Access-Control-Allow-Origin": "https://tynakpinska.github.io",
       },
       body: JSON.stringify({
         username,
