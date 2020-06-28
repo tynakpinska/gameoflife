@@ -94,7 +94,7 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
     if (challenge !== "") {
       const id = uuidv4();
       addChallenge(challenge, id);
-      document.querySelector(".Set_typeChall__1l0Vq").value = "";
+      document.querySelector(".Set_typeChall__1cuRv").value = "";
     }
   };
 
