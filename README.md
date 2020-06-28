@@ -1,7 +1,7 @@
 # gameoflife
 
 Live Demo
-https://tynakpinska.github.io/gameoflife/
+https://game-of-life-front.herokuapp.com/
 
 Used technologies:
 HTML,
