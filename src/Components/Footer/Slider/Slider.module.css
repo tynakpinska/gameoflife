@@ -4,6 +4,7 @@
   width: 100%;
   text-align: center;
   height: 30vh;
+  overflow: hidden;
 }
 
 .info h2 {
@@ -146,5 +147,15 @@ a:hover {
   .buttons {
     width: 40%;
     left: 30%;
+  }
+}
+
+@media (max-width: 450px) {
+  .iconRight {
+    right: -7vw;
+  }
+
+  .iconLeft {
+    left: -7vw;
   }
 }

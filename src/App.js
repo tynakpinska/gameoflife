@@ -17,13 +17,13 @@ import Profile from "./Components/Routes/Profile/Profile";
 import { getUser, fetchChallenges } from "./redux/actions";
 
 const handleMouseMove = e => {
-  const cursor = document.querySelector(".Cursor_cursor__1mKPD");
+  const cursor = document.getElementById("cursor");
   cursor.style.left = `${e.pageX - 10}px`;
   cursor.style.top = `${e.pageY - 10}px`;
 };
 
 const handleClick = e => {
-  const cursor = document.querySelector(".Cursor_cursor__1mKPD");
+  const cursor = document.getElementById("cursor");
   cursor.classList.add("click");
   setTimeout(() => cursor.classList.remove("click"), 500);
 };

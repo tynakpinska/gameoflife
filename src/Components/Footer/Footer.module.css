@@ -8,6 +8,7 @@
   background: #060200;
   color: #fff;
   z-index: 10;
+  overflow: hidden;
 }
 
 .footer i {
@@ -25,6 +26,9 @@
   justify-content: space-between;
   padding: 0 0.6rem;
   height: 5vh;
+  position: relative;
+  z-index: 3;
+  background: #060200;
 }
 
 .button {
@@ -62,20 +66,20 @@
 }
 
 .enter {
-  position:absolute;
+  position: absolute;
   bottom: -35vh;
 }
 .enterActive {
-  position:absolute;
+  position: absolute;
   bottom: 0;
   transition: all 1000ms ease-in-out;
 }
 .exit {
-  position:absolute;
+  position: absolute;
   bottom: 0;
 }
 .exitActive {
-  position:absolute;
+  position: absolute;
   bottom: -35vh;
   transition: all 1000ms ease-in-out;
 }
@@ -92,31 +96,34 @@
   }
 
   .enter {
-    position:absolute;
+    position: absolute;
     bottom: -95vh;
   }
   .enterActive {
-    position:absolute;
+    position: absolute;
     bottom: 0;
     transition: all 1000ms ease-in-out;
   }
   .exit {
-    position:absolute;
+    position: absolute;
     bottom: 0;
   }
   .exitActive {
-    position:absolute;
+    position: absolute;
     bottom: -95vh;
     transition: all 1000ms ease-in-out;
   }
 }
 
 @media (max-height: 450px) {
+
+  .top {
+    height: 8vh;
+  }
   .footer {
     position: fixed;
     bottom: -92vh;
     height: 100vh;
-    padding: 5px;
   }
   .visible {
     position: absolute;
@@ -124,22 +131,21 @@
   }
 
   .enter {
-    position:absolute;
+    position: absolute;
     bottom: -92vh;
   }
   .enterActive {
-    position:absolute;
+    position: absolute;
     bottom: 0;
     transition: all 1000ms ease-in-out;
   }
   .exit {
-    position:absolute;
+    position: absolute;
     bottom: 0;
   }
   .exitActive {
-    position:absolute;
+    position: absolute;
     bottom: -92vh;
     transition: all 1000ms ease-in-out;
   }
 }
-
