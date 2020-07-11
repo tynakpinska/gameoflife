@@ -12,7 +12,9 @@ Used technologies:
 - NodeJS,
 - express,
 - postgresql,
-- knex.js.
+- knex.js,
+- bcrypt,
+- json web token.
 
 Features:
 - register,
