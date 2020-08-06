@@ -32,6 +32,19 @@
 }
 
 .button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 45px 40px 40px 50px;
+  border-radius: 100px 0 0 0;
+  background: #ff5c00;
+  border: none;
+  color: #411b06;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.buttonClicked {
   background: none;
   border: none;
   color: #fff;
@@ -39,8 +52,8 @@
 }
 
 .button:hover {
-  font-weight: bold;
-  font-size: 1em;
+  color: #000000;
+  background: #fc6914;
   cursor: pointer;
 }
 

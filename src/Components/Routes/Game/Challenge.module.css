@@ -49,6 +49,13 @@
   height: 40px;
 }
 
+@media (max-width: 1600px) {
+  .challenge {
+    margin: 2px;
+    padding: 5px;
+  }
+}
+
 @media (max-width: 850px) {
   .challElement {
     margin: 0;

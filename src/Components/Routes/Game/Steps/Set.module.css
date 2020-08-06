@@ -33,12 +33,17 @@
   border-radius: 20px;
 }
 
+.start:hover {
+  background: #4d1d01;
+  color: #f8e4d9;
+  cursor: pointer;
+}
+
 @media (max-width: 1100px) {
   .inputContainer {
     width: 95%;
   }
 }
-
 @media (max-width: 400px) {
   .inputContainer {
     width: 100%;

@@ -115,16 +115,6 @@ label {
   border: none;
 }
 
-.container button:hover {
-  font-weight: bold;
-  letter-spacing: 0.1rem;
-  box-shadow: 0 0 1rem #ff9c64;
-}
-
-.container button:focus {
-  border: 0.2rem solid #ff9c64;
-}
-
 .container button:active {
   font-size: 0.9em;
 }

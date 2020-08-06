@@ -9,7 +9,6 @@
   width: 40%;
   max-height: 60%;
   z-index: -1;
-  animation: show 4s ease-in, slideinright 2s ease-in-out;
   display: flex;
   justify-content: flex-end;
 }
@@ -58,24 +57,5 @@
 @media (max-height: 450px) {
   .learn {
     display: none;
-  }
-}
-
-@keyframes show {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes slideinright {
-  0% {
-    transform: translate(500px);
-  }
-
-  100% {
-    transform: translate(0);
   }
 }
