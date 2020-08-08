@@ -5,7 +5,7 @@ function Learn() {
   return (
     <div className={styles.learn}>
         <p>
-          If you don't win you learn.
+          If you don't win you learn
         </p>
     </div>
   );

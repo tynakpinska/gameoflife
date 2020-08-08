@@ -13,7 +13,7 @@
   color: #ff8139;
   font-size: 0.8em;
   padding: 10px;
-  border-left: 0.1rem solid #fff;
+  border-left: 1px solid #997d6d;
   text-align: center;
   cursor: pointer;
   letter-spacing: 1px;
@@ -24,24 +24,23 @@
 }
 
 .navItem:hover {
-  animation: onhover .5s ease forwards;
+  color: #fccaad;
   cursor: pointer;
 }
 
 .navItem:focus {
-  border: 0.1rem solid #fff;
+  border: 1px solid #fff;
 }
 
 .navItemClicked {
   color: #ff8139;
   font-size: 0.8em;
   padding: 10px;
-  border-left: 0.1rem solid #fff;
+  border-left: 1px solid #ff8139;
   text-align: center;
   letter-spacing: 1px;
-  font-weight: bold;
   letter-spacing: 2px;
-  border-bottom: 1px solid #ff5c00;
+  border-bottom: 1px solid #ff8139;
   cursor: default;
 }
 
@@ -49,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 0.1rem solid #fff;
+  border-left: 1px solid #fff;
   color: #ff8139;
   font-size: 0.8em;
   text-align: center;
@@ -109,16 +108,5 @@
   .userAv {
     width: 9vh;
     height: 9vh;
-  }
-}
-
-@keyframes onhover {
-  from {
-    font-weight: normal;
-    letter-spacing: 1px;
-  }
-  to {
-    letter-spacing: 2px;
-    font-weight: bold;
   }
 }
