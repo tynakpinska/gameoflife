@@ -24,6 +24,7 @@ const LogIn = props => {
   const [loginFailed, setLoginFailed] = useState(false);
 
   const handleSubmit = e => {
+    console.log(process.env.REACT_APP_API_ORIGIN);
     e.preventDefault();
     if (username && password) {
       fetch(`${process.env.REACT_APP_API_URL}/signin`, {
@@ -31,7 +32,7 @@ const LogIn = props => {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin":
-          `${process.env.ORIGIN}`
+          `${process.env.REACT_APP_API_ORIGIN}`
         },
         body: JSON.stringify({
           username,
