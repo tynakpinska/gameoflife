@@ -66,13 +66,13 @@ export const setResult = (result, token, username) => dispatch => {
   if (token && username) {
     const date = new Date(new Date() - 7200000);
     const dateStr = date.toISOString().slice(0, 10);
-    fetch(`https://game-of-life-api.herokuapp.com/setResult`, {
+    fetch(`${process.env.REACT_APP_API_URL}/setResult`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
         Authorization: token,
         "Access-Control-Allow-Origin":
-          "https://game-of-life-front.herokuapp.com/"
+          `${process.env.REACT_APP_API_ORIGIN}`
       },
       body: JSON.stringify({
         dateStr,
@@ -101,13 +101,13 @@ export const logOut = () => ({
 });
 
 export const getUser = (id, token) => dispatch => {
-  fetch(`https://game-of-life-api.herokuapp.com/profile/${id}`, {
+  fetch(`${process.env.REACT_APP_API_URL}/profile/${id}`, {
     method: "get",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
       "Access-Control-Allow-Origin":
-        "https://game-of-life-front.herokuapp.com/"
+      `${process.env.REACT_APP_API_ORIGIN}`
     },
   })
     .then(resp => resp.json())
@@ -117,14 +117,14 @@ export const getUser = (id, token) => dispatch => {
         payload: resp,
       });
       fetch(
-        `https://game-of-life-api.herokuapp.com/getUserImage/${resp.username}`,
+        `${process.env.REACT_APP_API_URL}/getUserImage/${resp.username}`,
         {
           method: "get",
           headers: {
             "Content-Type": "application/json",
             Authorization: token,
             "Access-Control-Allow-Origin":
-              "https://game-of-life-front.herokuapp.com/",
+              `${process.env.REACT_APP_API_ORIGIN}`,
           },
         }
       )
@@ -141,13 +141,13 @@ export const getUser = (id, token) => dispatch => {
 };
 
 export const setProfileImage = (token, username, url) => dispatch => {
-  fetch("https://game-of-life-api.herokuapp.com/setUserImage", {
+  fetch(`${process.env.REACT_APP_API_URL}/setUserImage`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
       "Access-Control-Allow-Origin":
-        "https://game-of-life-front.herokuapp.com/",
+      `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,
@@ -169,13 +169,13 @@ export const setProfileImage = (token, username, url) => dispatch => {
 };
 
 export const updateProfileImage = (token, username, url) => dispatch => {
-  fetch("https://game-of-life-api.herokuapp.com/updateUserImage", {
+  fetch(`${process.env.REACT_APP_API_URL}/updateUserImage`, {
     method: "put",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
       "Access-Control-Allow-Origin":
-        "https://game-of-life-front.herokuapp.com/",
+        `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,
@@ -199,14 +199,14 @@ export const updateProfileImage = (token, username, url) => dispatch => {
 export const fetchChallenges = (id, token) => dispatch => {
   const date = new Date(new Date() - 7200000);
   const dateStr = date.toISOString().slice(0, 10);
-  fetch("https://game-of-life-api.herokuapp.com/getChallenges", {
+  fetch(`${process.env.REACT_APP_API_URL}/getChallenges`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
 
       "Access-Control-Allow-Origin":
-        "https://game-of-life-front.herokuapp.com/",
+        `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       id,
@@ -243,13 +243,13 @@ export const fetchChallenges = (id, token) => dispatch => {
 export const getStreak = (token, username) => dispatch => {
   const date = new Date(new Date() - 7200000);
   const dateStr = date.toISOString().slice(0, 10);
-  fetch("https://game-of-life-api.herokuapp.com/getStreak", {
+  fetch(`${process.env.REACT_APP_API_URL}/getStreak`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
       "Access-Control-Allow-Origin":
-        "https://game-of-life-front.herokuapp.com/",
+        `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       dateStr,
@@ -268,13 +268,13 @@ export const getStreak = (token, username) => dispatch => {
 };
 
 export const setGoal = (token, username, goal) => dispatch => {
-  fetch("https://game-of-life-api.herokuapp.com/setGoal", {
+  fetch(`${process.env.REACT_APP_API_URL}/setGoal`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
       "Access-Control-Allow-Origin":
-        "https://game-of-life-front.herokuapp.com/",
+        `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,
@@ -297,13 +297,13 @@ export const setGoal = (token, username, goal) => dispatch => {
 
 export const getGoals = (token, username) => dispatch => {
   console.log("getgoals");
-  fetch("https://game-of-life-api.herokuapp.com/getGoals", {
+  fetch(`${process.env.REACT_APP_API_URL}/getGoals`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
       "Access-Control-Allow-Origin":
-        "https://game-of-life-front.herokuapp.com/",
+        `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,

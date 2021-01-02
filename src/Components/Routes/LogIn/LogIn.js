@@ -26,12 +26,12 @@ const LogIn = props => {
   const handleSubmit = e => {
     e.preventDefault();
     if (username && password) {
-      fetch("https://game-of-life-api.herokuapp.com/signin", {
+      fetch(`${process.env.REACT_APP_API_URL}/signin`, {
         method: "post",
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin":
-            "https://game-of-life-front.herokuapp.com"
+          `${process.env.ORIGIN}`
         },
         body: JSON.stringify({
           username,

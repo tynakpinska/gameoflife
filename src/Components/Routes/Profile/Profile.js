@@ -142,7 +142,7 @@ const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getS
             <div
               className={`${part} ${g.className}`}
               title={`Click to edit goal in ${g.title} area`}
-              key={g.className}
+              key={Math.random()}
               onClick={handlePartClick}
             >
               <h4>{g.title}</h4>

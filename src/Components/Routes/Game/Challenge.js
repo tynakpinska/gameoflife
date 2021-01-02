@@ -78,7 +78,7 @@ const Challenge = ({
       removeChallenge(id);
     } else {
       if (user.username) {
-        fetch("https://game-of-life-api.herokuapp.com/toggleChallenge", {
+        fetch(`${process.env.REACT_APP_API_URL}/toggleChallenge`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

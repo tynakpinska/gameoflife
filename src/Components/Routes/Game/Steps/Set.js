@@ -55,13 +55,13 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
     if (challenges.length) {
       setStep("start");
       if (user.username) {
-        fetch("https://game-of-life-api.herokuapp.com/saveChallenges", {
+        fetch(`${process.env.REACT_APP_API_URL}/saveChallenges`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: sessionStorage.getItem("token"),
             "Access-Control-Allow-Origin":
-              "https://game-of-life-front.herokuapp.com/",
+              `${process.env.REACT_APP_API_ORIGIN}`,
           },
           body: JSON.stringify({
             user,
