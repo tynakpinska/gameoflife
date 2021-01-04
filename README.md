@@ -24,4 +24,4 @@ Features:
 - see how much time you have left till the end of the day,
 - check your streak,
 - add, edit, save your goals,
-- add, edit, save your profile picture.
+- add, edit, save your profile picture
