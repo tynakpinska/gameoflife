@@ -31,12 +31,12 @@ const Register = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch("https://game-of-life-api.herokuapp.com/register", {
+    fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "post",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin":
-          "https://game-of-life-front.herokuapp.com"
+        `${process.env.REACT_APP_API_ORIGIN}`
       },
       body: JSON.stringify({
         username,
