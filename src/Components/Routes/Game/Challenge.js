@@ -22,7 +22,8 @@ const mapDispatchToProps = dispatch => {
   return {
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
-    toggleChallenge: (key, token, username) => dispatch(toggleChallenge(key, token, username)),
+    toggleChallenge: (key, token, username) =>
+      dispatch(toggleChallenge(key, token, username)),
   };
 };
 
@@ -82,7 +83,7 @@ const Challenge = ({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: token
+            Authorization: token,
           },
           body: JSON.stringify({
             user,
@@ -100,13 +101,6 @@ const Challenge = ({
 
   return (
     <div className={isDone ? challElement + " " + done : challElement}>
-      {isDone ? (
-        <div className={styles.fist}>
-          <img src={fist} alt="fist" />
-        </div>
-      ) : (
-        <div></div>
-      )}
       {step === "set" ? (
         isEditable ? (
           <div
@@ -126,12 +120,7 @@ const Challenge = ({
               autoFocus
               aria-label="Challenge"
             ></input>
-            <i
-              onMouseOver={handleOnMouseOver}
-              onMouseLeave={handleOnMouseLeave}
-              onClick={handleEnter}
-              className={"demo-icon icon-ok"}
-            ></i>
+            <i className={"demo-icon icon-ok"}></i>
           </div>
         ) : (
           <div className={styles.challenge}>
@@ -153,19 +142,24 @@ const Challenge = ({
           </div>
         )
       ) : (
-        <div
-          className={isDone ? styles.challenge + " " + fade : styles.challenge}
-        >
-          {challenge}
-          <div className={icons}>
-            <i
-              onMouseOver={handleOnMouseOver}
-              onMouseLeave={handleOnMouseLeave}
-              onClick={handleChallClick}
-              className={isDone ? "demo-icon icon-ccw" : "demo-icon icon-ok"}
-            ></i>
+        <>
+          <div
+            className={styles.fist}
+            onMouseOver={handleOnMouseOver}
+            onMouseLeave={handleOnMouseLeave}
+            onClick={handleChallClick}
+            style={isDone ? {borderRight: 0} : null}
+          >
+            {isDone ? <img src={fist} alt="fist" /> : null}
           </div>
-        </div>
+          <div
+            className={
+              isDone ? styles.challenge + " " + fade : styles.challenge
+            }
+          >
+            {challenge}
+          </div>
+        </>
       )}
     </div>
   );
