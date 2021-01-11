@@ -39,6 +39,11 @@
   cursor: pointer;
 }
 
+.error {
+  color: #871b00;
+}
+
+
 @media (max-width: 1100px) {
   .inputContainer {
     width: 95%;

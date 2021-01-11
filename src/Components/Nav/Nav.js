@@ -7,7 +7,7 @@ import {
   userBox,
   userBoxClicked,
   userAv,
-  userName
+  userName,
 } from "./Nav.module.css";
 import userImg from "../../img/user.png";
 import Logo from "../Visual/Logo";
@@ -65,12 +65,22 @@ const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
       <Logo onClick={() => setRoute("game")} />
       {user.username ? (
         <>
+          <p className={route === "game" ? navItemClicked : navItem} onClick={() => setRoute("game")}>
+            GAME
+          </p>
           <div
             className={route === "profile" ? userBoxClicked : userBox}
             onClick={handleUserClick}
           >
-            {user.imageUrl ? <div className={userAv} style={{backgroundImage: `url(${user.imageUrl})`}} alt="avatar" />
-            : <img className={userAv} src={userImg} alt="avatar" />}
+            {user.imageUrl ? (
+              <div
+                className={userAv}
+                style={{ backgroundImage: `url(${user.imageUrl})` }}
+                alt="avatar"
+              />
+            ) : (
+              <img className={userAv} src={userImg} alt="avatar" />
+            )}
             <p className={userName}>{user.username}</p>
           </div>
           <p onClick={handleLogOut} className={navItem}>
@@ -79,6 +89,9 @@ const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
         </>
       ) : (
         <>
+          <p className={route === "game" ? navItemClicked : navItem} onClick={() => setRoute("game")}>
+            GAME
+          </p>
           <p
             onClick={() => setRoute("login")}
             className={route === "login" ? navItemClicked : navItem}

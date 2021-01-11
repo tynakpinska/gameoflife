@@ -5,6 +5,7 @@ import {
   typeChall,
   addChallButton,
   start,
+  error,
 } from "./Set.module.css";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
@@ -39,15 +40,26 @@ const mapDispatchToProps = dispatch => {
 const Set = ({ challenges, user, addChallenge, setStep }) => {
   const [startFailed, setStartFailed] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [tooMuchChallenges, setTooMuchChallenges] = useState(false);
 
   const handleEnter = e => {
     if (e.key === "Enter" && e.target.value !== "") {
-      const challenge = e.target.value;
-      const id = uuidv4();
+      const newChallenges = e.target.value.split(",");
       const date = new Date().toISOString().slice(0, 10);
-      addChallenge(challenge, id, date);
-      e.target.value = "";
-      setStartFailed(false);
+
+      if (newChallenges.length + challenges.length > 5) {
+        setTooMuchChallenges(true);
+        setStartFailed(false);
+      } else {
+        newChallenges.forEach(challenge => {
+          const id = uuidv4();
+          addChallenge(challenge, id, date);
+          setTooMuchChallenges(false);
+          setStartFailed(false);
+        });
+        e.target.value = "";
+        setStartFailed(false);
+      }
     }
   };
 
@@ -60,8 +72,7 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
           headers: {
             "Content-Type": "application/json",
             Authorization: sessionStorage.getItem("token"),
-            "Access-Control-Allow-Origin":
-              `${process.env.REACT_APP_API_ORIGIN}`,
+            "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
           },
           body: JSON.stringify({
             user,
@@ -126,15 +137,14 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
         </div>
       ) : null}
       <ChallengesList />
-      {startFailed ? (
-        <p
-          style={{
-            color: "#3E0000",
-          }}
-        >
-          Set challenges before starting the game!
-        </p>
-      ) : null}
+      <p className={error}>
+        {startFailed
+          ? "Set at least 3 challenges before starting the game!"
+          : tooMuchChallenges
+          ? "You've set too much challenges! The limit is 5."
+          : null}
+      </p>
+
       {challenges.length > 2 ? (
         <button className={start} onClick={handleStartClick}>
           Start the game!
