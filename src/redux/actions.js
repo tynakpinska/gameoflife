@@ -14,6 +14,7 @@ import {
   GET_PROFILE_IMAGE,
   SET_STREAK,
   SET_GOAL,
+  SET_LOADING
 } from "./constants";
 
 export const addChallenge = (challenge, key, date) => ({
@@ -44,6 +45,7 @@ export const toggleChallenge = (key, token, username) => (
     setTimeout(() => {
       dispatch(setStep("end"));
       dispatch(setResult("success", token, username));
+      dispatch(setLoading(false));
     }, 1000);
   }
 };
@@ -325,3 +327,8 @@ export const getGoals = (token, username) => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+export const setLoading = loading => ({
+  type: SET_LOADING,
+  payload: loading
+});

@@ -66,8 +66,13 @@
     margin: 0;
   }
   .challenge {
-    border: 1px solid #ffcfb3;
+    background: rgba(255, 92, 0, .7);
+    color: #ffcfb3;
+    border: 1px solid #ff5c00;
     margin: 3px;
+  }
+  .fist {
+    border: 2px solid #ffcfb3;
   }
 }
 

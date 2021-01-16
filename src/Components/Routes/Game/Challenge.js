@@ -6,6 +6,7 @@ import styles, {
   fade,
 } from "./Challenge.module.css";
 import fist from "../../../img/fist.png";
+import lightFist from "../../../img/fist-light.png";
 import { connect } from "react-redux";
 
 import {
@@ -120,7 +121,7 @@ const Challenge = ({
               autoFocus
               aria-label="Challenge"
             ></input>
-            <i className={"demo-icon icon-ok"}></i>
+            <i className={"demo-icon icon-ok"} onClick={handleEnter}></i>
           </div>
         ) : (
           <div className={styles.challenge}>
@@ -150,7 +151,7 @@ const Challenge = ({
             onClick={handleChallClick}
             style={isDone ? {borderRight: 0} : null}
           >
-            {isDone ? <img src={fist} alt="fist" /> : null}
+            {isDone ? <img src={window.innerWidth > "850px" ? fist : lightFist} alt="fist" /> : null}
           </div>
           <div
             className={

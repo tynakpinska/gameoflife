@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { register } from "./Register.module.css";
+import Loader from '../../Visual/Loader';
 
-import { resetChallenges } from "../../../redux/actions";
+import { resetChallenges, setLoading } from "../../../redux/actions";
+
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
     resetChallenges: () => dispatch(resetChallenges()),
+    setLoading: loading => dispatch(setLoading(loading)),
   };
 };
 
@@ -31,6 +39,7 @@ const Register = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    props.setLoading(true);
     fetch(`${process.env.REACT_APP_API_URL}/register`, {
       method: "post",
       headers: {
@@ -51,15 +60,17 @@ const Register = props => {
           resp === "Incorrect form submission"
         ) {
           setRegisterAttempt("failure");
+          props.setLoading(false);
         } else {
           props.resetChallenges();
           setRegisterAttempt("success");
+          props.setLoading(false);
         }
       })
       .catch(console.log);
   };
 
-  return registerAttempt === "success" ? (
+  return props.isLoading ? <Loader /> : registerAttempt === "success" ? (
     <div className={register}>
       <p>Account created!</p>
       <p>You may log in now.</p>
@@ -98,4 +109,4 @@ const Register = props => {
   );
 };
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

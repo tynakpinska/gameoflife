@@ -5,9 +5,9 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { challenges, step, route, user, result, streak, goals } from "./redux/reducers";
+import { challenges, step, route, user, result, streak, goals, isLoading } from "./redux/reducers";
 
-const rootReducer = combineReducers({ challenges, step, route, user, result, streak, goals });
+const rootReducer = combineReducers({ challenges, step, route, user, result, streak, goals, isLoading });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

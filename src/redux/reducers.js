@@ -13,7 +13,8 @@ import {
   SET_PROFILE_IMAGE,
   GET_PROFILE_IMAGE,
   SET_STREAK,
-  SET_GOAL
+  SET_GOAL,
+  SET_LOADING
 } from "./constants";
 
 import {
@@ -29,6 +30,7 @@ const initialState = {
   challenges: [],
   user: {},
   streak: 0,
+  isLoading: false,
   goals: [
     {
       title: "State of mind",
@@ -48,7 +50,7 @@ const initialState = {
       goal: "1000000$",
       className: bank,
     },
-  ],
+  ]
 };
 
 export const challenges = (state = initialState.challenges, action = {}) => {
@@ -160,3 +162,13 @@ export const goals = (state = initialState.goals, action = []) => {
       return state;
   }
 };
+
+export const isLoading = (state = initialState.isLoading, action) => {
+  switch (action.type) {
+    case SET_LOADING:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+

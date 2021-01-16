@@ -7,7 +7,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Challenge from "./Challenge";
 
-import { setStep, setResult } from "../../../redux/actions";
+import { setStep, setResult, setLoading } from "../../../redux/actions";
 
 const mapStateToProps = ({ challenges, step, user }) => {
   return { challenges, step, user };
@@ -17,18 +17,21 @@ const mapDispatchToProps = dispatch => {
   return {
     setStep: step => dispatch(setStep(step)),
     setResult: result => dispatch(setResult(result)),
+    setLoading: loading => dispatch(setLoading(loading)),
   };
 };
 
-const ChallengesList = ({ challenges, user, setResult, setStep }) => {
+const ChallengesList = ({ challenges, user, setResult, setStep, setLoading }) => {
   useEffect(() => handleEndGame);
 
   const handleEndGame = () => {
     if (challenges[0]) {
       if (challenges.every(ch => ch.isDone)) {
+        setLoading(true);
         const token = sessionStorage.getItem("token");
         setResult("success", token, user.username);
         setStep("end");
+        setLoading(false);
       }
     }
   };
