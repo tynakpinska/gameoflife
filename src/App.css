@@ -85,7 +85,7 @@ input[type="email"],
   height: 30px;
 }
 
-input[type="submit"] {
+.button {
   margin-top: 50px;
   background: #9b3800;
   color: #ff9c64;
@@ -95,7 +95,7 @@ input[type="submit"] {
   border-radius: 20px;
 }
 
-input[type="submit"]:hover {
+.button:hover {
   font-weight: bold;
   cursor: pointer;
 }
@@ -163,7 +163,7 @@ input:focus {
     margin-top: -22vw;
     margin-left: -22vw;
   }
-  .container input[type="submit"] {
+  .button {
     margin-top: 1rem;
   }
 
@@ -232,7 +232,7 @@ input:focus {
   .container {
     padding: 1px;
   }
-  
+
   h2 {
     padding: 2px;
   }

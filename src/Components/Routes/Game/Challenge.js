@@ -151,7 +151,7 @@ const Challenge = ({
             onClick={handleChallClick}
             style={isDone ? {borderRight: 0} : null}
           >
-            {isDone ? <img src={window.innerWidth > "850px" ? fist : lightFist} alt="fist" /> : null}
+            {isDone ? <img src={window.innerWidth > "850" ? fist : lightFist} alt="fist" /> : null}
           </div>
           <div
             className={

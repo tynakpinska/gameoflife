@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import styles from "./LogIn.module.css";
-import Loader from '../../Visual/Loader';
+import Loader from "../../Visual/Loader";
 
-import { setStep, getUser, fetchChallenges, setLoading } from "../../../redux/actions";
+import {
+  setStep,
+  getUser,
+  fetchChallenges,
+  setLoading,
+} from "../../../redux/actions";
 
 const mapStateToProps = state => {
   return {
     challenges: state.challenges,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
   };
 };
 
@@ -25,6 +30,19 @@ const LogIn = props => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
+
+  const passwordRef = useRef(null);
+  const submitRef = useRef(null);
+
+  const handleEnter = e => {
+    if (e.keyCode === 13) {
+      if (e.target.id === "username") {
+        passwordRef.current.focus();
+      } else if (e.target.id === "password") {
+        submitRef.current.focus();
+      }
+    }
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -58,9 +76,6 @@ const LogIn = props => {
           setLoginFailed(true);
           props.setLoading(false);
         });
-    } else {
-      setLoginFailed(true);
-      props.setLoading(false);
     }
   };
 
@@ -70,29 +85,30 @@ const LogIn = props => {
       {props.isLoading ? (
         <Loader />
       ) : (
-        <form className={styles.login} onSubmit={handleSubmit}>
+        <form className={styles.login}>
           <label htmlFor="username">Username</label>
           <input
             className="username"
             type="text"
             id="username"
             onChange={e => setUsername(e.target.value)}
+            onKeyUp={handleEnter}
+            autoFocus
           ></input>
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             onChange={e => setPassword(e.target.value)}
+            ref={passwordRef}
+            onKeyUp={handleEnter}
           ></input>
           <p className={!loginFailed ? "hide" : "warning"}>
             Oooops... Something went wrong. Please try again.
           </p>
-          <input
-            type="submit"
-            onClick={handleSubmit}
-            aria-label="Log in"
-            value="Log in"
-          ></input>
+          <button className="button" onClick={handleSubmit} ref={submitRef}>
+            Log in
+          </button>
         </form>
       )}
     </>
