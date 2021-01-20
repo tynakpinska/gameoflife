@@ -188,7 +188,6 @@ input:focus {
   .container {
     margin: 0;
     height: 70vh;
-    min-width: 100vw;
     position: static;
     border-radius: 0;
     background-position: top;
