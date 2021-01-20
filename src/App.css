@@ -100,6 +100,12 @@ input[type="email"],
   cursor: pointer;
 }
 
+.button:focus {
+  box-shadow: 0 0 1rem #ff9c64;
+  outline: none;
+  border: 2px solid #ff9c64;
+}
+
 label {
   align-self: start;
   margin: 10px 0 3px 60px;
@@ -107,7 +113,7 @@ label {
 }
 
 .container button {
-  margin: 5px 0 25px 0;
+  margin: 15px 0 25px 0;
   background: #9b3800;
   color: #ffcfb3;
   border: none;
@@ -151,7 +157,7 @@ input:focus {
 }
 
 .warning {
-  margin: 40px 0 0 0;
+  margin: 20px 0 0 0;
   color: #9b3800;
 }
 
@@ -220,6 +226,17 @@ input:focus {
   input[type="email"],
   .username {
     height: 30px;
+    background: #ffcfb3;
+    color: #060200;
+  }
+  input:focus, input:hover {
+    border: 3px solid #ff5d00;
+    box-shadow: none;
+  }
+  .warning {
+    margin: 20px 0 0 0;
+    color: #ffcfb3;
+    font-size: .8rem;
   }
 }
 

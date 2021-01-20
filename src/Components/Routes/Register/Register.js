@@ -24,6 +24,7 @@ const Register = props => {
   const [password, setPassword] = useState("");
   const [registerAttempt, setRegisterAttempt] = useState("");
 
+  const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
   const submitRef = useRef(null);
@@ -55,36 +56,42 @@ const Register = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    e.stopPropagation();
+    if (document.activeElement.type === "submit") {
     if (username && email && password) {
-    props.setLoading(true);
-    fetch(`${process.env.REACT_APP_API_URL}/register`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
-      },
-      body: JSON.stringify({
-        username,
-        email,
-        password,
-      }),
-    })
-      .then(resp => resp.json())
-      .then(resp => {
-        if (
-          resp === "Unable to register" ||
-          resp === "Incorrect form submission"
-        ) {
-          setRegisterAttempt("failure");
-          props.setLoading(false);
-        } else {
-          props.resetChallenges();
-          setRegisterAttempt("success");
-          props.setLoading(false);
-        }
+      props.setLoading(true);
+      fetch(`${process.env.REACT_APP_API_URL}/register`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+        }),
       })
-      .catch(console.log);
+        .then(resp => resp.json())
+        .then(resp => {
+          if (
+            resp === "Unable to register" ||
+            resp === "Incorrect form submission"
+          ) {
+            setRegisterAttempt("failure");
+            props.setLoading(false);
+          } else {
+            props.resetChallenges();
+            setRegisterAttempt("success");
+            props.setLoading(false);
+          }
+        })
+        .catch(console.log);
+    } else {
+      setRegisterAttempt("failure");
+      usernameRef.current.focus();
     }
+  }
   };
 
   return props.isLoading ? (
@@ -96,8 +103,8 @@ const Register = props => {
     </div>
   ) : (
     <>
-      <h2>Register</h2>
-      <form className={register}>
+      <h2>REGISTER</h2>
+      <form className={register} onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input
           className="username"
@@ -105,7 +112,9 @@ const Register = props => {
           id="username"
           onChange={handleInputChange}
           onKeyUp={handleEnter}
+          ref={usernameRef}
           autoFocus
+          required
         ></input>
         <label htmlFor="email">Email</label>
         <input
@@ -114,6 +123,7 @@ const Register = props => {
           onChange={handleInputChange}
           onKeyUp={handleEnter}
           ref={emailRef}
+          required
         ></input>
         <label htmlFor="password">Password</label>
         <input
@@ -122,14 +132,20 @@ const Register = props => {
           onChange={handleInputChange}
           onKeyUp={handleEnter}
           ref={passwordRef}
+          required
         ></input>
         <p className={registerAttempt === "failure" ? "warning" : "hide"}>
           Unable to register. Please try again.
         </p>
 
-        <button className="button" onClick={handleSubmit} ref={submitRef}>
-            Register
-          </button>
+        <button
+          className="button"
+          type="submit"
+          onClick={handleSubmit}
+          ref={submitRef}
+        >
+          REGISTER
+        </button>
       </form>
     </>
   );

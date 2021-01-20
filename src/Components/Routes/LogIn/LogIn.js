@@ -31,6 +31,7 @@ const LogIn = props => {
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
 
+  const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const submitRef = useRef(null);
 
@@ -46,54 +47,64 @@ const LogIn = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (username && password) {
-      props.setLoading(true);
-      fetch(`${process.env.REACT_APP_API_URL}/signin`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      })
-        .then(resp => resp.json())
-        .then(resp => {
-          if (resp === "Unable to log in" || resp === "No such user") {
+    e.stopPropagation();
+    if (document.activeElement.type === "submit") {
+      if (username && password) {
+        props.setLoading(true);
+        fetch(`${process.env.REACT_APP_API_URL}/signin`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        })
+          .then(resp => resp.json())
+          .then(resp => {
+            if (resp === "Unable to log in" || resp === "No such user") {
+              setLoginFailed(true);
+              props.setLoading(false);
+              usernameRef.current.focus();
+            } else if (resp.id) {
+              sessionStorage.setItem("token", resp.token);
+              props.getUser(resp.id);
+              props.fetchChallenges(resp.id, resp.token);
+              props.setLoading(false);
+            }
+          })
+          .catch(err => {
+            console.log(err);
             setLoginFailed(true);
             props.setLoading(false);
-          } else if (resp.id) {
-            sessionStorage.setItem("token", resp.token);
-            props.getUser(resp.id);
-            props.fetchChallenges(resp.id, resp.token);
-            props.setLoading(false);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-          setLoginFailed(true);
-          props.setLoading(false);
-        });
+            usernameRef.current.focus();
+          });
+      } else {
+        setLoginFailed(true);
+        usernameRef.current.focus();
+      }
     }
   };
 
   return (
     <>
-      <h2>Log in</h2>
+      <h2>LOGIN</h2>
       {props.isLoading ? (
         <Loader />
       ) : (
-        <form className={styles.login}>
+        <form className={styles.login} onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input
             className="username"
             type="text"
             id="username"
             onChange={e => setUsername(e.target.value)}
+            ref={usernameRef}
             onKeyUp={handleEnter}
             autoFocus
+            required
           ></input>
           <label htmlFor="password">Password</label>
           <input
@@ -102,12 +113,18 @@ const LogIn = props => {
             onChange={e => setPassword(e.target.value)}
             ref={passwordRef}
             onKeyUp={handleEnter}
+            required
           ></input>
           <p className={!loginFailed ? "hide" : "warning"}>
             Oooops... Something went wrong. Please try again.
           </p>
-          <button className="button" onClick={handleSubmit} ref={submitRef}>
-            Log in
+          <button
+            className="button"
+            type="submit"
+            onClick={handleSubmit}
+            ref={submitRef}
+          >
+            LOG IN
           </button>
         </form>
       )}

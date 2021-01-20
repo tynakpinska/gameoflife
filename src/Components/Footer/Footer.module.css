@@ -126,6 +126,17 @@
     bottom: -95vh;
     transition: all 1000ms ease-in-out;
   }
+  .button {
+    bottom: 0;
+    right: 0;
+    padding: 20px 20px 15px 30px;
+    border-radius: 100px 0 0 0;
+    background: #ff5c00;
+    border: none;
+    color: #411b06;
+    font-size: .9em;
+    font-weight: bold;
+  }
 }
 
 @media (max-height: 450px) {
