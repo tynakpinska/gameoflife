@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
-import { register } from "./Register.module.css";
+import { register, change, span } from "./Register.module.css";
 import Loader from "../../Visual/Loader";
 
-import { resetChallenges, setLoading } from "../../../redux/actions";
+import { resetChallenges, setLoading, setRoute } from "../../../redux/actions";
 
 const mapStateToProps = state => {
   return {
@@ -15,6 +15,7 @@ const mapDispatchToProps = dispatch => {
   return {
     resetChallenges: () => dispatch(resetChallenges()),
     setLoading: loading => dispatch(setLoading(loading)),
+    setRoute: route => dispatch(setRoute(route)),
   };
 };
 
@@ -58,40 +59,44 @@ const Register = props => {
     e.preventDefault();
     e.stopPropagation();
     if (document.activeElement.type === "submit") {
-    if (username && email && password) {
-      props.setLoading(true);
-      fetch(`${process.env.REACT_APP_API_URL}/register`, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
-        },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-        }),
-      })
-        .then(resp => resp.json())
-        .then(resp => {
-          if (
-            resp === "Unable to register" ||
-            resp === "Incorrect form submission"
-          ) {
-            setRegisterAttempt("failure");
-            props.setLoading(false);
-          } else {
-            props.resetChallenges();
-            setRegisterAttempt("success");
-            props.setLoading(false);
-          }
+      if (username && email && password) {
+        props.setLoading(true);
+        fetch(`${process.env.REACT_APP_API_URL}/register`, {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            password,
+          }),
         })
-        .catch(console.log);
-    } else {
-      setRegisterAttempt("failure");
-      usernameRef.current.focus();
+          .then(resp => resp.json())
+          .then(resp => {
+            if (
+              resp === "Unable to register" ||
+              resp === "Incorrect form submission"
+            ) {
+              setRegisterAttempt("failure");
+              props.setLoading(false);
+            } else {
+              props.resetChallenges();
+              setRegisterAttempt("success");
+              props.setLoading(false);
+            }
+          })
+          .catch(console.log);
+      } else {
+        setRegisterAttempt("failure");
+        usernameRef.current.focus();
+      }
     }
-  }
+  };
+
+  const handleLogInClick = () => {
+    props.setRoute("login");
   };
 
   return props.isLoading ? (
@@ -99,7 +104,7 @@ const Register = props => {
   ) : registerAttempt === "success" ? (
     <div className={register}>
       <p>Account created!</p>
-      <p>You may log in now.</p>
+      <p>You may  <span className={span} onClick={handleLogInClick}>log in</span> now.</p>
     </div>
   ) : (
     <>
@@ -134,6 +139,10 @@ const Register = props => {
           ref={passwordRef}
           required
         ></input>
+        <p className={change}>
+          Already have an account?{" "}
+          <span className={span} onClick={handleLogInClick}>Log in.</span>
+        </p>
         <p className={registerAttempt === "failure" ? "warning" : "hide"}>
           Unable to register. Please try again.
         </p>

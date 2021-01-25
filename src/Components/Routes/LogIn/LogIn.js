@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
-import styles from "./LogIn.module.css";
+import { login, change, span } from "./LogIn.module.css";
 import Loader from "../../Visual/Loader";
 
 import {
@@ -8,6 +8,7 @@ import {
   getUser,
   fetchChallenges,
   setLoading,
+  setRoute,
 } from "../../../redux/actions";
 
 const mapStateToProps = state => {
@@ -23,10 +24,11 @@ const mapDispatchToProps = dispatch => {
     getUser: id => dispatch(getUser(id)),
     fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token)),
     setLoading: loading => dispatch(setLoading(loading)),
+    setRoute: route => dispatch(setRoute(route)),
   };
 };
 
-const LogIn = props => {
+const LogIn = ({challenges, isLoading, setStep, getUser, fetchChallenges, setLoading, setRoute}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
@@ -50,7 +52,7 @@ const LogIn = props => {
     e.stopPropagation();
     if (document.activeElement.type === "submit") {
       if (username && password) {
-        props.setLoading(true);
+        setLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/signin`, {
           method: "post",
           headers: {
@@ -66,19 +68,19 @@ const LogIn = props => {
           .then(resp => {
             if (resp === "Unable to log in" || resp === "No such user") {
               setLoginFailed(true);
-              props.setLoading(false);
+              setLoading(false);
               usernameRef.current.focus();
             } else if (resp.id) {
               sessionStorage.setItem("token", resp.token);
-              props.getUser(resp.id);
-              props.fetchChallenges(resp.id, resp.token);
-              props.setLoading(false);
+              getUser(resp.id);
+              fetchChallenges(resp.id, resp.token);
+              setLoading(false);
             }
           })
           .catch(err => {
             console.log(err);
             setLoginFailed(true);
-            props.setLoading(false);
+            setLoading(false);
             usernameRef.current.focus();
           });
       } else {
@@ -87,14 +89,17 @@ const LogIn = props => {
       }
     }
   };
+  const handleRegisterClick = () => {
+    setRoute("register");
+  };
 
   return (
     <>
       <h2>LOGIN</h2>
-      {props.isLoading ? (
+      {isLoading ? (
         <Loader />
       ) : (
-        <form className={styles.login} onSubmit={handleSubmit}>
+        <form className={login} onSubmit={handleSubmit}>
           <label htmlFor="username">Username</label>
           <input
             className="username"
@@ -115,6 +120,12 @@ const LogIn = props => {
             onKeyUp={handleEnter}
             required
           ></input>
+          <p className={change}>
+            Don’t have an account yet?{" "}
+            <span className={span} onClick={handleRegisterClick}>
+              Register.
+            </span>
+          </p>
           <p className={!loginFailed ? "hide" : "warning"}>
             Oooops... Something went wrong. Please try again.
           </p>

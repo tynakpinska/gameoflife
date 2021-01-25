@@ -7,6 +7,20 @@
   align-items: center;
 }
 
+.change {
+  margin-top: 10px;
+}
+
+.span {
+  color:#672702;
+}
+
+.span:hover {
+  cursor: pointer;
+  color:#220d01;
+}
+
+
 @media (max-width: 1100px) {
   .register {
     width: 90%;
