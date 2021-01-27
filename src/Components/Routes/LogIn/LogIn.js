@@ -11,10 +11,10 @@ import {
   setRoute,
 } from "../../../redux/actions";
 
-const mapStateToProps = state => {
+const mapStateToProps = ({challenges, isLoading}) => {
   return {
-    challenges: state.challenges,
-    isLoading: state.isLoading,
+    challenges,
+    isLoading
   };
 };
 

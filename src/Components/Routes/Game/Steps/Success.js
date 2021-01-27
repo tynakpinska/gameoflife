@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import styles from "./End.module.css";
+import {end} from "./End.module.css";
 import tiger from "./../../../../img/tiger.jpg";
 
 const mapStateToProps = ({ user }) => {
@@ -9,12 +9,18 @@ const mapStateToProps = ({ user }) => {
 
 const Success = ({ user }) => {
   const { username } = user;
+  const [loading, setLoading] = useState(true);
+
+  const handleOnLoad = () => {
+    setLoading(false);
+  };
+
   return (
-    <div className={styles.end}>
+    <div className={end} hidden={loading ? true : false}>
       <h2>{username ? `${username}, you won today!` : "You won today!"}</h2>
       <p>Well done! Take a rest.</p>
       <div>
-        <img src={tiger} alt="tiger" />
+        <img src={tiger} alt="tiger" onLoad={handleOnLoad} />
       </div>
       <p>See you tomorrow!</p>
     </div>

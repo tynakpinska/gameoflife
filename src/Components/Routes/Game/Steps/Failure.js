@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import styles from "./End.module.css";
+import {end, failure} from "./End.module.css";
 import dog from "./../../../../img/dog.png";
 
 const mapStateToProps = ({ user }) => {
@@ -11,7 +11,7 @@ const mapStateToProps = ({ user }) => {
 const Failure = ({user}) => {
     const { username } = user;
     return (
-      <div className={styles.end + " " + styles.failure}>
+      <div className={end + " " + failure}>
         <h2>
             {username
               ? `${username}, you lost today!`

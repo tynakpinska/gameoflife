@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import SimpleBar from "simplebar-react";
 import styles from "./ChallengesList.module.css";
@@ -21,20 +21,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const ChallengesList = ({ challenges, user, setResult, setStep, setLoading }) => {
-  useEffect(() => handleEndGame);
-
-  const handleEndGame = () => {
-    if (challenges[0]) {
-      if (challenges.every(ch => ch.isDone)) {
-        setLoading(true);
-        const token = sessionStorage.getItem("token");
-        setResult("success", token, user.username);
-        setStep("end");
-        setLoading(false);
-      }
-    }
-  };
+const ChallengesList = ({ challenges }) => {
 
   return (
     <SimpleBar

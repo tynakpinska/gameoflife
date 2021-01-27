@@ -42,6 +42,7 @@ export const toggleChallenge = (key, token, username) => (
   });
   const state = getState();
   if (state.challenges.every(ch => ch.isDone)) {
+    dispatch(setLoading(true));
     setTimeout(() => {
       dispatch(setStep("end"));
       dispatch(setResult("success", token, username));
