@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 .change {
@@ -31,5 +32,9 @@
 @media (max-width: 850px) {
   .login {
     padding-top: 0;
+  }
+  .span {
+    color: #ff5c00;
+    font-weight: bold;
   }
 }

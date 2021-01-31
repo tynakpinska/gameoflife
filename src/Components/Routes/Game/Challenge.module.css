@@ -78,6 +78,9 @@
 }
 
 @media (max-height: 400px) {
+  .challElement {
+    margin: 8px auto;
+  }
   .challenge {
     padding: 3px;
   }

@@ -97,6 +97,8 @@
   transition: all 1000ms ease-in-out;
 }
 
+/* MEDIA QUERIES */
+
 @media (max-width: 850px) {
   .footer {
     position: fixed;

@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 
 .change {
@@ -25,5 +26,12 @@
   .register {
     width: 90%;
     height: 90%;
+  }
+}
+
+@media (max-width: 850px) {
+  .span {
+    color: #ff5c00;
+    font-weight: bold;
   }
 }
