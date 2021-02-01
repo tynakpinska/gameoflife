@@ -104,6 +104,9 @@
 }
 
 @media (max-height: 400px) {
+  .nav {
+    flex-wrap: nowrap;
+  }
   .userAv {
     width: 9vh;
     height: 9vh;

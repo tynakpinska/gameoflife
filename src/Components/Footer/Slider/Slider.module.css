@@ -151,11 +151,22 @@ a:hover {
 }
 
 @media (max-width: 450px) {
+  
   .iconRight {
     right: -7vw;
   }
 
   .iconLeft {
     left: -7vw;
+  }
+}
+
+
+@media (max-height: 450px) {
+  .info {
+    font-size: .8rem;
+  }
+  .wrapper {
+    top: 20vh;
   }
 }

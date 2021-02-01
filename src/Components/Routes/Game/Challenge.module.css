@@ -7,8 +7,7 @@
 }
 
 .challenge {
-  background: url(../../../img/challenge.png);
-  background-repeat: repeat;
+  background: #060200;
   color: rgb(199 194 194);
   font-weight: bolder;
   padding: 10px;

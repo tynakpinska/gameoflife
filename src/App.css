@@ -76,7 +76,7 @@ input[type="password"],
 input[type="email"],
 .username {
   margin: 0;
-  background: url(./img/challenge.png);
+  background: #060200;
   color: #ffcfb3;
   border: none;
   border-radius: 10px;
@@ -196,6 +196,7 @@ input:focus {
     box-shadow: none;
     position: static;
     margin-top: 20vh;
+    height: auto;
   }
 
   h1 {
@@ -208,6 +209,19 @@ input:focus {
       url("./img/mountain.jpg");
     background-size: cover;
   }
+
+  input[type="password"],
+  input[type="email"],
+  .username {
+    height: 30px;
+    background: #ffcfb3;
+    color: #060200;
+  }
+  input:focus,
+  input:hover {
+    border: 3px solid #ff5d00;
+    box-shadow: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -217,28 +231,17 @@ input:focus {
     background-size: cover;
   }
 
-  .container {
-    margin-top: 25h;
-    height: auto;
-  }
   h2 {
     padding: 5px;
   }
-  input[type="password"],
-  input[type="email"],
-  .username {
-    height: 30px;
-    background: #ffcfb3;
-    color: #060200;
-  }
-  input:focus, input:hover {
-    border: 3px solid #ff5d00;
-    box-shadow: none;
-  }
+
   .warning {
     margin: 20px 0 0 0;
     color: #ffcfb3;
-    font-size: .8rem;
+    font-size: 0.8rem;
+  }
+  label {
+    font-size: 0.8rem;
   }
 }
 
@@ -249,10 +252,10 @@ input:focus {
   }
 
   .container {
-    padding: 5vh 1px 5vh 1px;
     display: block;
     min-height: auto;
-    height:auto;
+    height: auto;
+    margin: 12vh 0 8vh 0;
   }
 
   h2 {

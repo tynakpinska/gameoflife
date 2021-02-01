@@ -13,12 +13,12 @@
 }
 
 .span {
-  color:#672702;
+  color: #672702;
 }
 
 .span:hover {
   cursor: pointer;
-  color:#220d01;
+  color: #220d01;
 }
 
 @media (max-width: 1100px) {
@@ -28,7 +28,6 @@
   }
 }
 
-
 @media (max-width: 850px) {
   .login {
     padding-top: 0;
@@ -36,5 +35,22 @@
   .span {
     color: #ff5c00;
     font-weight: bold;
+    text-shadow: 1px 1px 3px #220d01;
+  }
+}
+
+@media (max-width: 480px) {
+  .change {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-height: 400px) {
+  h2 {
+    padding: 10px 0 0 0;
+  }
+  label,
+  .change {
+    font-size: 0.8rem;
   }
 }
