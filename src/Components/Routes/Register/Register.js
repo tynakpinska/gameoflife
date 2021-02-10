@@ -1,14 +1,13 @@
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { register, change, span } from "./Register.module.css";
 import Loader from "../../Visual/Loader";
 
 import { resetChallenges, setLoading, setRoute } from "../../../redux/actions";
 
-const mapStateToProps = state => {
-  return {
-    isLoading: state.isLoading,
-  };
+const mapStateToProps = ({ isLoading }) => {
+  return { isLoading };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -104,7 +103,13 @@ const Register = props => {
   ) : registerAttempt === "success" ? (
     <div className={register}>
       <p>Account created!</p>
-      <p>You may  <span className={span} onClick={handleLogInClick}>log in</span> now.</p>
+      <p>
+        You may{" "}
+        <span className={span} onClick={handleLogInClick}>
+          log in
+        </span>{" "}
+        now.
+      </p>
     </div>
   ) : (
     <>
@@ -120,6 +125,8 @@ const Register = props => {
           ref={usernameRef}
           autoFocus
           required
+          maxLength="30"
+          minLength="2"
         ></input>
         <label htmlFor="email">Email</label>
         <input
@@ -129,6 +136,8 @@ const Register = props => {
           onKeyUp={handleEnter}
           ref={emailRef}
           required
+          maxLength="30"
+          minLength="5"
         ></input>
         <label htmlFor="password">Password</label>
         <input
@@ -138,10 +147,14 @@ const Register = props => {
           onKeyUp={handleEnter}
           ref={passwordRef}
           required
+          maxLength="30"
+          minLength="8"
         ></input>
         <p className={change}>
           Already have an account?{" "}
-          <span className={span} onClick={handleLogInClick}>Log in.</span>
+          <span className={span} onClick={handleLogInClick}>
+            Log in.
+          </span>
         </p>
         <p className={registerAttempt === "failure" ? "warning" : "hide"}>
           Unable to register. Please try again.
@@ -158,6 +171,13 @@ const Register = props => {
       </form>
     </>
   );
+};
+
+Register.propTypes = {
+  isLoading: PropTypes.bool,
+  resetChallenges: PropTypes.func,
+  setLoading: PropTypes.func,
+  setRoute: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

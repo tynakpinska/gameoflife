@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { timer, time } from "./Timer.module.css";
 
 import { setStep, setResult } from "../../../redux/actions";
@@ -11,7 +12,8 @@ const mapStateToProps = ({ user }) => {
 const mapDispatchToProps = dispatch => {
   return {
     setStep: step => dispatch(setStep(step)),
-    setResult: (result, token, username) => dispatch(setResult(result, token, username)),
+    setResult: (result, token, username) =>
+      dispatch(setResult(result, token, username)),
   };
 };
 
@@ -82,5 +84,11 @@ class Timer extends Component {
     );
   }
 }
+
+Timer.propTypes = {
+  user: PropTypes.object,
+  setStep: PropTypes.func,
+  setResult: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);

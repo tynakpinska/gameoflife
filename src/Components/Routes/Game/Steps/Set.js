@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import {
   inputContainer,
   typeChall,
@@ -152,6 +153,17 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
       ) : null}
     </>
   );
+};
+
+Set.propTypes = {
+  challenges: PropTypes.array,
+  step: PropTypes.string,
+  route: PropTypes.string,
+  user: PropTypes.object,
+  addChalleng: PropTypes.func,
+  removeChallenge: PropTypes.func,
+  setStep: PropTypes.func,
+  editChallenge: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Set);

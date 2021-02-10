@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Goal from "./Goal/Goal";
 import {
   username,
@@ -24,7 +25,7 @@ import {
   setProfileImage,
   updateProfileImage,
   getStreak,
-  getGoals
+  getGoals,
 } from "../../../redux/actions";
 
 const mapStateToProps = ({ user, streak, goals }) => {
@@ -38,11 +39,19 @@ const mapDispatchToProps = dispatch => {
     updateProfileImage: (token, username, url) =>
       dispatch(updateProfileImage(token, username, url)),
     getStreak: (token, username) => dispatch(getStreak(token, username)),
-    getGoals: (token, username) => dispatch(getGoals(token, username))
+    getGoals: (token, username) => dispatch(getGoals(token, username)),
   };
 };
 
-const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getStreak, getGoals}) => {
+const Profile = ({
+  user,
+  streak,
+  goals,
+  setProfileImage,
+  updateProfileImage,
+  getStreak,
+  getGoals,
+}) => {
   const [newImageUrl, setNewImageUrl] = useState("");
   const [imageInput, setImageInput] = useState(false);
   const [currentGoalForm, setCurrentGoalForm] = useState(null);
@@ -127,10 +136,7 @@ const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getS
         </form>
       ) : null}
       <div className={parts}>
-        <div
-          className={`${part} ${streakpart}`}
-          onClick={handlePartClick}
-        >
+        <div className={`${part} ${streakpart}`} onClick={handlePartClick}>
           <h4>Streak</h4>
           <p className={text}>
             {streak} {streak === 1 ? "day" : "days"}
@@ -156,6 +162,16 @@ const Profile = ({user, streak, goals, setProfileImage, updateProfileImage, getS
       </div>
     </>
   );
+};
+
+Profile.propTypes = {
+  user: PropTypes.object,
+  streak: PropTypes.number,
+  goals: PropTypes.array,
+  setProfileImage: PropTypes.func,
+  updateProfileImage: PropTypes.func,
+  getStreak: PropTypes.func,
+  getGoals: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import styles from "./ChallengesList.module.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
@@ -38,6 +39,15 @@ const ChallengesList = ({ challenges }) => {
       ))}
     </TransitionGroup>
   );
+};
+
+ChallengesList.propTypes = {
+  challenges: PropTypes.array,
+  step: PropTypes.string,
+  user: PropTypes.object,
+  setStep: PropTypes.func,
+  setResult: PropTypes.func,
+  setLoading: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChallengesList);

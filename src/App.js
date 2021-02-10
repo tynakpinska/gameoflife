@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import "./App.css";
 import "./fontello/css/fontello.css";
@@ -52,8 +53,7 @@ class App extends Component {
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
-          "Access-Control-Allow-Origin":
-            `${process.env.REACT_APP_API_ORIGIN}`
+          "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
         },
       })
         .then(resp => resp.json())
@@ -100,5 +100,12 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  route: PropTypes.string,
+  user: PropTypes.object,
+  getUser: PropTypes.func,
+  fetchChallenges: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

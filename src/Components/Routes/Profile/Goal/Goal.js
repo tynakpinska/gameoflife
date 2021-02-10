@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import styles, { goalsForm, buttons, title } from "./Goal.module.css";
 
-import {
-  setGoal
-} from "../../../../redux/actions";
+import { setGoal } from "../../../../redux/actions";
 
 const mapStateToProps = ({ user }) => {
   return { user };
@@ -12,7 +11,8 @@ const mapStateToProps = ({ user }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setGoal: (token, username, goal) => dispatch(setGoal(token, username, goal))
+    setGoal: (token, username, goal) =>
+      dispatch(setGoal(token, username, goal)),
   };
 };
 
@@ -29,7 +29,11 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
   const handleSubmit = e => {
     e.preventDefault();
     const token = sessionStorage.getItem("token");
-    setGoal(token, user.username, { ...goal, current: currentInput, goal: goalInput });
+    setGoal(token, user.username, {
+      ...goal,
+      current: currentInput,
+      goal: goalInput,
+    });
     setCurrentGoalForm(null);
   };
 
@@ -38,7 +42,7 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
   };
   return (
     <>
-    <div
+      <div
         className={styles.image}
         style={{ backgroundImage: `url(${image})` }}
         alt="avatar"
@@ -62,12 +66,17 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
           maxLength="10"
         ></input>
         <div className={buttons}>
-        <button>Save</button>
-        <button onClick={handleCancel}>Cancel</button>
+          <button>Save</button>
+          <button onClick={handleCancel}>Cancel</button>
         </div>
       </form>
     </>
   );
+};
+
+Goal.propTypes = {
+  user: PropTypes.object,
+  setGoal: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Goal);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {end} from "./End.module.css";
+import PropTypes from "prop-types";
+import { end } from "./End.module.css";
 import tiger from "./../../../../img/tiger.jpg";
 
 const mapStateToProps = ({ user }) => {
@@ -25,6 +26,10 @@ const Success = ({ user }) => {
       <p>See you tomorrow!</p>
     </div>
   );
+};
+
+Success.propTypes = {
+  user: PropTypes.object,
 };
 
 export default connect(mapStateToProps, null)(Success);

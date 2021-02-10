@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import {
   nav,
   navItemClicked,
@@ -65,7 +66,10 @@ const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
       <Logo onClick={() => setRoute("game")} />
       {user.username ? (
         <>
-          <p className={route === "game" ? navItemClicked : navItem} onClick={() => setRoute("game")}>
+          <p
+            className={route === "game" ? navItemClicked : navItem}
+            onClick={() => setRoute("game")}
+          >
             GAME
           </p>
           <div
@@ -89,7 +93,10 @@ const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
         </>
       ) : (
         <>
-          <p className={route === "game" ? navItemClicked : navItem} onClick={() => setRoute("game")}>
+          <p
+            className={route === "game" ? navItemClicked : navItem}
+            onClick={() => setRoute("game")}
+          >
             GAME
           </p>
           <p
@@ -108,6 +115,15 @@ const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
       )}
     </nav>
   );
+};
+
+Nav.propTypes = {
+  route: PropTypes.string,
+  user: PropTypes.object,
+  setRoute: PropTypes.func,
+  setStep: PropTypes.func,
+  logOut: PropTypes.func,
+  resetChallenges: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

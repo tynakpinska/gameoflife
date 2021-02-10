@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
 import {end, failure} from "./End.module.css";
 import dog from "./../../../../img/dog.png";
 
@@ -22,6 +23,10 @@ const Failure = ({user}) => {
         <p>See you then!</p>
       </div>
     );
+  }
+
+  Failure.propTypes = {
+    user: PropTypes.object
   }
 
   export default connect(mapStateToProps, null)(Failure);

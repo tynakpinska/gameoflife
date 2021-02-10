@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { login, change, span } from "./LogIn.module.css";
 import Loader from "../../Visual/Loader";
 
@@ -11,10 +12,10 @@ import {
   setRoute,
 } from "../../../redux/actions";
 
-const mapStateToProps = ({challenges, isLoading}) => {
+const mapStateToProps = ({ challenges, isLoading }) => {
   return {
     challenges,
-    isLoading
+    isLoading,
   };
 };
 
@@ -28,7 +29,15 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const LogIn = ({challenges, isLoading, setStep, getUser, fetchChallenges, setLoading, setRoute}) => {
+const LogIn = ({
+  challenges,
+  isLoading,
+  setStep,
+  getUser,
+  fetchChallenges,
+  setLoading,
+  setRoute,
+}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
@@ -110,6 +119,8 @@ const LogIn = ({challenges, isLoading, setStep, getUser, fetchChallenges, setLoa
             onKeyUp={handleEnter}
             autoFocus
             required
+            maxLength="30"
+            minLength="2"
           ></input>
           <label htmlFor="password">Password</label>
           <input
@@ -119,6 +130,8 @@ const LogIn = ({challenges, isLoading, setStep, getUser, fetchChallenges, setLoa
             ref={passwordRef}
             onKeyUp={handleEnter}
             required
+            maxLength="30"
+            minLength="8"
           ></input>
           <p className={change}>
             Don’t have an account yet?{" "}
@@ -141,6 +154,16 @@ const LogIn = ({challenges, isLoading, setStep, getUser, fetchChallenges, setLoa
       )}
     </>
   );
+};
+
+LogIn.propTypes = {
+  challenges: PropTypes.array,
+  isLoading: PropTypes.bool,
+  setStep: PropTypes.func,
+  getUser: PropTypes.func,
+  fetchChallenges: PropTypes.func,
+  setLoading: PropTypes.func,
+  setRoute: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

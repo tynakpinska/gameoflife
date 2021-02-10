@@ -8,6 +8,7 @@ import styles, {
 import fist from "../../../img/fist.png";
 import lightFist from "../../../img/fist-light.png";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import {
   removeChallenge,
@@ -149,9 +150,14 @@ const Challenge = ({
             onMouseOver={handleOnMouseOver}
             onMouseLeave={handleOnMouseLeave}
             onClick={handleChallClick}
-            style={isDone ? {borderRight: 0} : null}
+            style={isDone ? { borderRight: 0 } : null}
           >
-            {isDone ? <img src={window.innerWidth > "850" ? fist : lightFist} alt="fist" /> : null}
+            {isDone ? (
+              <img
+                src={window.innerWidth > "850" ? fist : lightFist}
+                alt="fist"
+              />
+            ) : null}
           </div>
           <div
             className={
@@ -164,6 +170,14 @@ const Challenge = ({
       )}
     </div>
   );
+};
+
+Challenge.propTypes = {
+  step: PropTypes.string,
+  user: PropTypes.object,
+  removeChallenge: PropTypes.func,
+  toggleChallenge: PropTypes.func,
+  editChallenge: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Challenge);
