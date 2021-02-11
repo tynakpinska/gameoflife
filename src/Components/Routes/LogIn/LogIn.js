@@ -157,7 +157,7 @@ const LogIn = ({
 };
 
 LogIn.propTypes = {
-  challenges: PropTypes.array,
+  challenges: PropTypes.arrayOf(PropTypes.object),
   isLoading: PropTypes.bool,
   setStep: PropTypes.func,
   getUser: PropTypes.func,

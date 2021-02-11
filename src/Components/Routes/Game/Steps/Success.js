@@ -29,7 +29,13 @@ const Success = ({ user }) => {
 };
 
 Success.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.exact({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    joined: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
 };
 
 export default connect(mapStateToProps, null)(Success);

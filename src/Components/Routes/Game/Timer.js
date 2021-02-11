@@ -86,7 +86,13 @@ class Timer extends Component {
 }
 
 Timer.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.exact({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    joined: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
   setStep: PropTypes.func,
   setResult: PropTypes.func,
 };

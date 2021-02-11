@@ -299,7 +299,6 @@ export const setGoal = (token, username, goal) => dispatch => {
 };
 
 export const getGoals = (token, username) => dispatch => {
-  console.log("getgoals");
   fetch(`${process.env.REACT_APP_API_URL}/getGoals`, {
     method: "post",
     headers: {

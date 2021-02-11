@@ -66,7 +66,7 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
 
   const handleStartClick = e => {
     if (challenges.length) {
-      setStep("start");
+      
       if (user.username) {
         fetch(`${process.env.REACT_APP_API_URL}/saveChallenges`, {
           method: "POST",
@@ -80,8 +80,7 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
             challenges,
           }),
         })
-          .then(resp => resp.json())
-          .then(resp => console.log(resp))
+          .then(() => setStep("start"))
           .catch(err => console.log(err, "Unable to save challenges"));
       }
     } else {
@@ -156,7 +155,7 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
 };
 
 Set.propTypes = {
-  challenges: PropTypes.array,
+  challenges: PropTypes.arrayOf(PropTypes.object),
   step: PropTypes.string,
   route: PropTypes.string,
   user: PropTypes.object,

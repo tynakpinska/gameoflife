@@ -42,9 +42,15 @@ const ChallengesList = ({ challenges }) => {
 };
 
 ChallengesList.propTypes = {
-  challenges: PropTypes.array,
+  challenges: PropTypes.arrayOf(PropTypes.object),
   step: PropTypes.string,
-  user: PropTypes.object,
+  user: PropTypes.exact({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    joined: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
   setStep: PropTypes.func,
   setResult: PropTypes.func,
   setLoading: PropTypes.func,

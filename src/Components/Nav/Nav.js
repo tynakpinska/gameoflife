@@ -119,7 +119,13 @@ const Nav = ({ logOut, setRoute, setStep, resetChallenges, user, route }) => {
 
 Nav.propTypes = {
   route: PropTypes.string,
-  user: PropTypes.object,
+  user: PropTypes.exact({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    joined: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
   setRoute: PropTypes.func,
   setStep: PropTypes.func,
   logOut: PropTypes.func,

@@ -174,7 +174,13 @@ const Challenge = ({
 
 Challenge.propTypes = {
   step: PropTypes.string,
-  user: PropTypes.object,
+  user: PropTypes.exact({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    joined: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
   removeChallenge: PropTypes.func,
   toggleChallenge: PropTypes.func,
   editChallenge: PropTypes.func,

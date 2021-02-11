@@ -165,9 +165,15 @@ const Profile = ({
 };
 
 Profile.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.exact({
+    id: PropTypes.number,
+    username: PropTypes.string,
+    email: PropTypes.string,
+    joined: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
   streak: PropTypes.number,
-  goals: PropTypes.array,
+  goals: PropTypes.arrayOf(PropTypes.object),
   setProfileImage: PropTypes.func,
   updateProfileImage: PropTypes.func,
   getStreak: PropTypes.func,
