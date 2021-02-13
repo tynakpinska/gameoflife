@@ -47,9 +47,28 @@
   color: #060200;
 }
 
-i {
-  display: inline-block;
-  margin-left: 10px;
+.inputLabel {
+  width: 40%;
+  height: 40%;
+  border-radius: 500px;
+  margin: 0 auto;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  z-index: 20;
+  display: none;
+
+}
+
+.icon {
+  font-size: 100px;
+  color: rgba(6, 2, 0, 0.8);
+  text-shadow: 0 0 30px #ffcfb3;
+}
+
+.inputLabel:hover {
+  cursor: pointer;
+  display: block;
 }
 
 .image {
@@ -64,6 +83,10 @@ i {
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 2;
+}
+.image:hover + .inputLabel {
+  cursor: pointer;
+  display: block;
 }
 
 .parts {

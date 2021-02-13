@@ -5,11 +5,10 @@ import Goal from "./Goal/Goal";
 import {
   username,
   image,
-  form,
   label,
+  inputLabel,
   input,
-  cancel,
-  i,
+  icon,
   parts,
   part,
   streakpart,
@@ -52,8 +51,6 @@ const Profile = ({
   getStreak,
   getGoals,
 }) => {
-  const [newImageUrl, setNewImageUrl] = useState("");
-  const [imageInput, setImageInput] = useState(false);
   const [currentGoalForm, setCurrentGoalForm] = useState(null);
 
   useEffect(() => {
@@ -78,21 +75,41 @@ const Profile = ({
     }
   };
 
-  const handleImageUrlChange = e => {
-    setNewImageUrl(e.target.value);
+  const CLOUDINARY_UPLOAD_PRESET = "pgk0nz6q";
+  const CLOUDINARY_UPLOAD_URL =
+    "https://api.cloudinary.com/v1_1/tynnacloud/upload";
+
+  const uploadImage = image => {
+    const { imageUrl, username } = user;
+    const formData = new FormData();
+    formData.append("file", image);
+    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+    const options = {
+      method: "POST",
+      body: formData,
+    };
+    fetch(CLOUDINARY_UPLOAD_URL, options)
+      .then(res => res.json())
+      .then(res => {
+        const token = sessionStorage.getItem("token");
+        imageUrl
+          ? updateProfileImage(token, username, res.secure_url)
+          : setProfileImage(token, username, res.secure_url);
+      })
+      .catch(err => console.log(err));
   };
 
-  const handleImageSubmit = e => {
-    e.preventDefault();
-    const { imageUrl, username } = user;
-    const token = sessionStorage.getItem("token");
-    if (newImageUrl) {
-      imageUrl
-        ? updateProfileImage(token, username, newImageUrl)
-        : setProfileImage(token, username, newImageUrl);
-      setNewImageUrl("");
-      setImageInput(false);
-    }
+  const readFile = image => {
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onloadend = () => {
+      uploadImage(reader.result);
+    };
+  };
+
+  const handleChange = e => {
+    const image = e.target.files[0];
+    readFile(image);
   };
 
   return currentGoalForm !== null ? (
@@ -108,33 +125,20 @@ const Profile = ({
         className={image}
         style={{ backgroundImage: `url(${user.imageUrl || avatar})` }}
         alt="avatar"
-        onClick={() => setImageInput(!imageInput)}
         title="Click to edit photo"
       />
-      {imageInput ? (
-        <form className={form} onSubmit={handleImageSubmit}>
-          <i
-            className={`demo-icon icon-cancel ${cancel}`}
-            onClick={() => setImageInput(!imageInput)}
-          ></i>
-          <label className={label} htmlFor="img">
-            Paste image url
-          </label>
-          <input
-            type="url"
-            id="img"
-            name="img"
-            placeholder="e.g. image.jpg"
-            onChange={handleImageUrlChange}
-            value={newImageUrl}
-            className={input}
-          />
-          <i
-            className={`demo-icon icon-upload ${i}`}
-            onClick={handleImageSubmit}
-          ></i>
-        </form>
-      ) : null}
+
+      <label htmlFor="upload" className={inputLabel}>
+        <i className={`demo-icon icon-upload ${icon}`}></i>
+        <input
+          id="upload"
+          type="file"
+          accept="image/png, image/jpeg"
+          hidden
+          onChange={handleChange}
+        />
+      </label>
+
       <div className={parts}>
         <div className={`${part} ${streakpart}`} onClick={handlePartClick}>
           <h4>Streak</h4>
