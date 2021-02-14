@@ -32,12 +32,7 @@
 
 @media (max-width: 850px) {
   .learn {
-    position: fixed;
-    bottom: 5vh;
-    top: auto;
-    right: auto;
-    width: 100%;
-    opacity: 0.6;
+    display: none;
   }
 
   .learn p {
@@ -45,17 +40,5 @@
     padding: 30px;
     text-align: center;
     font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .learn {
-    display: none;
-  }
-}
-
-@media (max-height: 450px) {
-  .learn {
-    display: none;
   }
 }

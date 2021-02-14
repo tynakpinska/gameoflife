@@ -48,27 +48,26 @@
 }
 
 .inputLabel {
-  width: 40%;
-  height: 40%;
   border-radius: 500px;
-  margin: 0 auto;
   position: absolute;
-  top: 30%;
-  left: 30%;
   z-index: 20;
   display: none;
-
+  margin: 0 auto;
+  padding: 0;
 }
 
 .icon {
   font-size: 100px;
   color: rgba(6, 2, 0, 0.8);
   text-shadow: 0 0 30px #ffcfb3;
+  cursor: pointer;
 }
 
 .inputLabel:hover {
-  cursor: pointer;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .image {
@@ -84,9 +83,17 @@
   background-repeat: no-repeat;
   z-index: 2;
 }
+
 .image:hover + .inputLabel {
   cursor: pointer;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.image:hover {
+  cursor: pointer;
 }
 
 .parts {
@@ -221,6 +228,10 @@
     height: 30vw;
     position: static;
     margin-top: 15px;
+  }
+
+  .inputLabel {
+    top: 35vh;
   }
 
   .form {

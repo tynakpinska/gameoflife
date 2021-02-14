@@ -127,17 +127,16 @@ const Profile = ({
         alt="avatar"
         title="Click to edit photo"
       />
-
-      <label htmlFor="upload" className={inputLabel}>
-        <i className={`demo-icon icon-upload ${icon}`}></i>
-        <input
-          id="upload"
-          type="file"
-          accept="image/png, image/jpeg"
-          hidden
-          onChange={handleChange}
-        />
-      </label>
+        <label htmlFor="upload" className={inputLabel}>
+          <i className={`demo-icon icon-upload ${icon}`}></i>
+        </label>
+          <input
+            id="upload"
+            type="file"
+            accept="image/png, image/jpeg"
+            hidden
+            onChange={handleChange}
+          />
 
       <div className={parts}>
         <div className={`${part} ${streakpart}`} onClick={handlePartClick}>
