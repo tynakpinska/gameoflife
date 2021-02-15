@@ -30,11 +30,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 const LogIn = ({
-  challenges,
   isLoading,
-  setStep,
   getUser,
-  fetchChallenges,
   setLoading,
   setRoute,
 }) => {
@@ -82,7 +79,6 @@ const LogIn = ({
             } else if (resp.id) {
               sessionStorage.setItem("token", resp.token);
               getUser(resp.id);
-              fetchChallenges(resp.id, resp.token);
               setLoading(false);
             }
           })

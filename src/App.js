@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Loader from "./Components/Visual/Loader";
 
 import "./App.css";
 import "./fontello/css/fontello.css";
@@ -15,7 +16,7 @@ import LogIn from "./Components/Routes/LogIn/LogIn";
 import Register from "./Components/Routes/Register/Register";
 import Profile from "./Components/Routes/Profile/Profile";
 
-import { getUser, fetchChallenges } from "./redux/actions";
+import { getUser, fetchChallenges, setLoading } from "./redux/actions";
 
 const handleMouseMove = e => {
   const cursor = document.getElementById("cursor");
@@ -32,8 +33,8 @@ const handleClick = e => {
 document.addEventListener("mousemove", handleMouseMove);
 document.addEventListener("click", handleClick);
 
-const mapStateToProps = ({ route, user }) => {
-  return { route, user };
+const mapStateToProps = ({ route, user, challenges, isLoading }) => {
+  return { route, user, challenges, isLoading };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -41,13 +42,16 @@ const mapDispatchToProps = dispatch => {
     getUser: (id, token) => dispatch(getUser(id, token)),
     fetchChallenges: (id, token, username) =>
       dispatch(fetchChallenges(id, token, username)),
+    setLoading: loading => dispatch(setLoading(loading)),
   };
 };
 
 class App extends Component {
   componentDidMount = () => {
+    const { setLoading, getUser } = this.props;
     const token = sessionStorage.getItem("token");
     if (token) {
+      setLoading(true);
       fetch(`${process.env.REACT_APP_API_URL}/signin`, {
         method: "post",
         headers: {
@@ -59,24 +63,28 @@ class App extends Component {
         .then(resp => resp.json())
         .then(resp => {
           if (resp && resp !== "Unauthorized") {
-            this.props.getUser(resp, token);
+            getUser(resp, token);
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+          setLoading(false);
+          console.log(err);
+        });
     }
   };
 
-  componentDidUpdate = () => {
-    const token = sessionStorage.getItem("token");
-    if (token)
-      this.props.fetchChallenges(
-        this.props.user.id,
-        token,
-        this.props.user.username
-      );
-  };
+  // componentDidUpdate = () => {
+  //   const {
+  //     user: { id, username },
+  //     challenges,
+  //     fetchChallenges,
+  //   } = this.props;
+  //   const token = sessionStorage.getItem("token");
+  //   console.log(id)
+  //   if (token && !challenges[0]) fetchChallenges(id, token, username);
+  // };
 
-  render({ route } = this.props) {
+  render({ route, isLoading } = this.props) {
     return (
       <div basename="/gameoflife">
         <Cursor />
@@ -84,7 +92,9 @@ class App extends Component {
         <div className="box"></div>
         <Frisella />
         <main className="container">
-          {route === "login" ? (
+          {isLoading ? (
+            <Loader />
+          ) : route === "login" ? (
             <LogIn />
           ) : route === "register" ? (
             <Register />

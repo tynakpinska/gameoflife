@@ -14,7 +14,7 @@ import {
   GET_PROFILE_IMAGE,
   SET_STREAK,
   SET_GOAL,
-  SET_LOADING
+  SET_LOADING,
 } from "./constants";
 
 export const addChallenge = (challenge, key, date) => ({
@@ -74,8 +74,7 @@ export const setResult = (result, token, username) => dispatch => {
       headers: {
         "Content-Type": "application/json",
         Authorization: token,
-        "Access-Control-Allow-Origin":
-          `${process.env.REACT_APP_API_ORIGIN}`
+        "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
       },
       body: JSON.stringify({
         dateStr,
@@ -109,8 +108,7 @@ export const getUser = (id, token) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
-      "Access-Control-Allow-Origin":
-      `${process.env.REACT_APP_API_ORIGIN}`
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
     },
   })
     .then(resp => resp.json())
@@ -119,28 +117,33 @@ export const getUser = (id, token) => dispatch => {
         type: LOG_IN,
         payload: resp,
       });
-      fetch(
-        `${process.env.REACT_APP_API_URL}/getUserImage/${resp.username}`,
-        {
-          method: "get",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: token,
-            "Access-Control-Allow-Origin":
-              `${process.env.REACT_APP_API_ORIGIN}`,
-          },
-        }
-      )
-        .then(resp => resp.json())
-        .then(resp => {
-          dispatch({
-            type: GET_PROFILE_IMAGE,
-            payload: resp.url,
-          });
-        })
-        .catch(err => console.log(err));
+      dispatch(getUserImage(token, resp.username));
+      dispatch(fetchChallenges(resp.id, resp.token, resp.username));
+      dispatch(setLoading(false));
     })
     .catch(console.log);
+};
+
+export const getUserImage = (token, username) => dispatch => {
+  fetch(`${process.env.REACT_APP_API_URL}/getUserImage/${username}`, {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
+    },
+  })
+    .then(resp => resp.json())
+    .then(resp => {
+      dispatch({
+        type: GET_PROFILE_IMAGE,
+        payload: resp.url,
+      });
+    })
+    .catch(err => {
+      dispatch(setLoading(false));
+      console.log(err);
+    });
 };
 
 export const setProfileImage = (token, username, url) => dispatch => {
@@ -149,8 +152,7 @@ export const setProfileImage = (token, username, url) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
-      "Access-Control-Allow-Origin":
-      `${process.env.REACT_APP_API_ORIGIN}`,
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,
@@ -177,8 +179,7 @@ export const updateProfileImage = (token, username, url) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
-      "Access-Control-Allow-Origin":
-        `${process.env.REACT_APP_API_ORIGIN}`,
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,
@@ -208,8 +209,7 @@ export const fetchChallenges = (id, token) => dispatch => {
       "Content-Type": "application/json",
       Authorization: token,
 
-      "Access-Control-Allow-Origin":
-        `${process.env.REACT_APP_API_ORIGIN}`,
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       id,
@@ -251,8 +251,7 @@ export const getStreak = (token, username) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
-      "Access-Control-Allow-Origin":
-        `${process.env.REACT_APP_API_ORIGIN}`,
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       dateStr,
@@ -276,8 +275,7 @@ export const setGoal = (token, username, goal) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
-      "Access-Control-Allow-Origin":
-        `${process.env.REACT_APP_API_ORIGIN}`,
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,
@@ -304,8 +302,7 @@ export const getGoals = (token, username) => dispatch => {
     headers: {
       "Content-Type": "application/json",
       Authorization: token,
-      "Access-Control-Allow-Origin":
-        `${process.env.REACT_APP_API_ORIGIN}`,
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
     },
     body: JSON.stringify({
       username,
@@ -330,5 +327,5 @@ export const getGoals = (token, username) => dispatch => {
 
 export const setLoading = loading => ({
   type: SET_LOADING,
-  payload: loading
+  payload: loading,
 });
