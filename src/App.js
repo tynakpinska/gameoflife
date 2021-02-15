@@ -73,17 +73,6 @@ class App extends Component {
     }
   };
 
-  // componentDidUpdate = () => {
-  //   const {
-  //     user: { id, username },
-  //     challenges,
-  //     fetchChallenges,
-  //   } = this.props;
-  //   const token = sessionStorage.getItem("token");
-  //   console.log(id)
-  //   if (token && !challenges[0]) fetchChallenges(id, token, username);
-  // };
-
   render({ route, isLoading } = this.props) {
     return (
       <div basename="/gameoflife">
