@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Register = props => {
+const Register = ({isLoading, resetChallenges, setLoading, setRoute}) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,7 +59,7 @@ const Register = props => {
     e.stopPropagation();
     if (document.activeElement.type === "submit") {
       if (username && email && password) {
-        props.setLoading(true);
+        setLoading(true);
         fetch(`${process.env.REACT_APP_API_URL}/register`, {
           method: "post",
           headers: {
@@ -79,11 +79,11 @@ const Register = props => {
               resp === "Incorrect form submission"
             ) {
               setRegisterAttempt("failure");
-              props.setLoading(false);
+              setLoading(false);
             } else {
-              props.resetChallenges();
+              resetChallenges();
               setRegisterAttempt("success");
-              props.setLoading(false);
+              setLoading(false);
             }
           })
           .catch(console.log);
@@ -95,10 +95,10 @@ const Register = props => {
   };
 
   const handleLogInClick = () => {
-    props.setRoute("login");
+    setRoute("login");
   };
 
-  return props.isLoading ? (
+  return isLoading ? (
     <Loader />
   ) : registerAttempt === "success" ? (
     <div className={register}>

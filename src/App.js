@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import Loader from "./Components/Visual/Loader";
 
 import "./App.css";
 import "./fontello/css/fontello.css";
@@ -81,9 +80,7 @@ class App extends Component {
         <div className="box"></div>
         <Frisella />
         <main className="container">
-          {isLoading ? (
-            <Loader />
-          ) : route === "login" ? (
+          { route === "login" ? (
             <LogIn />
           ) : route === "register" ? (
             <Register />
