@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Goal from "./Goal/Goal";
@@ -52,12 +52,6 @@ const Profile = ({
   getGoals,
 }) => {
   const [currentGoalForm, setCurrentGoalForm] = useState(null);
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    getStreak(token, user.username);
-    getGoals(token, user.username);
-  }, [streak, getStreak, getGoals, user.username]);
 
   const handlePartClick = e => {
     switch (e.currentTarget.classList[1]) {

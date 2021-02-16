@@ -119,6 +119,8 @@ export const getUser = (id, token) => dispatch => {
       });
       dispatch(getUserImage(token, resp.username));
       dispatch(fetchChallenges(resp.id, resp.token, resp.username));
+      dispatch(getStreak(token, resp.username));
+      dispatch(getGoals(token, resp.username));
       dispatch(setLoading(false));
     })
     .catch(console.log);
@@ -310,7 +312,6 @@ export const getGoals = (token, username) => dispatch => {
   })
     .then(resp => resp.json())
     .then(resp => {
-      console.log(resp);
       if (resp !== "Unable to fetch goals") {
         resp.forEach(g => {
           dispatch({
