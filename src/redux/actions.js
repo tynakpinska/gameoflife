@@ -11,7 +11,6 @@ import {
   GET_CHALLENGES,
   SET_RESULT,
   SET_PROFILE_IMAGE,
-  GET_PROFILE_IMAGE,
   SET_STREAK,
   SET_GOAL,
   SET_LOADING,
@@ -138,7 +137,7 @@ export const getUserImage = (token, username) => dispatch => {
     .then(resp => resp.json())
     .then(resp => {
       dispatch({
-        type: GET_PROFILE_IMAGE,
+        type: SET_PROFILE_IMAGE,
         payload: resp.url,
       });
     })

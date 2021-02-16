@@ -5,6 +5,7 @@ import { register, change, span } from "./Register.module.css";
 import Loader from "../../Visual/Loader";
 
 import { resetChallenges, setLoading, setRoute } from "../../../redux/actions";
+import Warning from "../../Visual/Warning";
 
 const mapStateToProps = ({ isLoading }) => {
   return { isLoading };
@@ -18,7 +19,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Register = ({isLoading, resetChallenges, setLoading, setRoute}) => {
+const Register = ({ isLoading, resetChallenges, setLoading, setRoute }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -156,9 +157,7 @@ const Register = ({isLoading, resetChallenges, setLoading, setRoute}) => {
             Log in.
           </span>
         </p>
-        <p className={registerAttempt === "failure" ? "warning" : "hide"}>
-          Unable to register. Please try again.
-        </p>
+        {registerAttempt === "failure" ? <Warning /> : null}
 
         <button
           className="button"

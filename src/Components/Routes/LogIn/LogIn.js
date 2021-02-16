@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login, change, span } from "./LogIn.module.css";
 import Loader from "../../Visual/Loader";
+import Warning from "../../Visual/Warning";
 
 import {
   setStep,
@@ -29,12 +30,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const LogIn = ({
-  isLoading,
-  getUser,
-  setLoading,
-  setRoute,
-}) => {
+const LogIn = ({ isLoading, getUser, setLoading, setRoute }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
@@ -94,6 +90,7 @@ const LogIn = ({
       }
     }
   };
+
   const handleRegisterClick = () => {
     setRoute("register");
   };
@@ -135,9 +132,8 @@ const LogIn = ({
               Register.
             </span>
           </p>
-          <p className={!loginFailed ? "hide" : "warning"}>
-            Oooops... Something went wrong. Please try again.
-          </p>
+
+          {loginFailed ? <Warning /> : null}
           <button
             className="button"
             type="submit"

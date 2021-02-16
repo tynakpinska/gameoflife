@@ -1,0 +1,12 @@
+.warning {
+  margin: 20px 0 0 0;
+  color: #9b3800;
+}
+
+@media (max-width: 480px) {
+  .warning {
+    margin: 20px 0 0 0;
+    color: #ffcfb3;
+    font-size: 0.8rem;
+  }
+}
