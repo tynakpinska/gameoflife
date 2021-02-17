@@ -117,11 +117,13 @@ export const getUser = (id, token) => dispatch => {
         payload: resp,
       });
       dispatch(getUserImage(token, resp.username));
-      dispatch(fetchChallenges(resp.id, resp.token, resp.username));
       dispatch(getStreak(token, resp.username));
       dispatch(getGoals(token, resp.username));
-      dispatch(setLoading(false));
+      dispatch(resetChallenges());
+      dispatch(setStep("set"));
+      dispatch(fetchChallenges(resp.id, token, resp.username));
     })
+    .then(() => dispatch(setLoading(false)))
     .catch(console.log);
 };
 
@@ -329,3 +331,23 @@ export const setLoading = loading => ({
   type: SET_LOADING,
   payload: loading,
 });
+
+export const saveChallenges = (user, challenges) => dispatch => {
+  console.log(user, challenges)
+  fetch(`${process.env.REACT_APP_API_URL}/saveChallenges`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: sessionStorage.getItem("token"),
+      "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
+    },
+    body: JSON.stringify({
+      user,
+      challenges,
+    }),
+  })
+    .then(() => {
+      dispatch(setStep("start"))
+    })
+    .catch(err => console.log(err, "Unable to save challenges"));
+};

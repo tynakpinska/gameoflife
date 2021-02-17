@@ -17,6 +17,7 @@ import {
   removeChallenge,
   setStep,
   editChallenge,
+  saveChallenges,
 } from "../../../../redux/actions";
 
 const mapStateToProps = ({ challenges, step, route, user }) => {
@@ -35,10 +36,11 @@ const mapDispatchToProps = dispatch => {
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
     setStep: step => dispatch(setStep(step)),
+    saveChallenges: (user, challenges) => dispatch(saveChallenges(user, challenges))
   };
 };
 
-const Set = ({ challenges, user, addChallenge, setStep }) => {
+const Set = ({ challenges, user, addChallenge, setStep, saveChallenges }) => {
   const [startFailed, setStartFailed] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [tooMuchChallenges, setTooMuchChallenges] = useState(false);
@@ -66,22 +68,9 @@ const Set = ({ challenges, user, addChallenge, setStep }) => {
 
   const handleStartClick = e => {
     if (challenges.length) {
-      
+      setStep("start");
       if (user.username) {
-        fetch(`${process.env.REACT_APP_API_URL}/saveChallenges`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: sessionStorage.getItem("token"),
-            "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
-          },
-          body: JSON.stringify({
-            user,
-            challenges,
-          }),
-        })
-          .then(() => setStep("start"))
-          .catch(err => console.log(err, "Unable to save challenges"));
+        saveChallenges(user, challenges);
       }
     } else {
       setStartFailed(true);

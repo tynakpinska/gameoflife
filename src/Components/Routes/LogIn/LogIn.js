@@ -11,12 +11,16 @@ import {
   fetchChallenges,
   setLoading,
   setRoute,
+  resetChallenges,
+  saveChallenges,
 } from "../../../redux/actions";
 
-const mapStateToProps = ({ challenges, isLoading }) => {
+const mapStateToProps = ({ user, challenges, isLoading, step}) => {
   return {
+    user,
     challenges,
     isLoading,
+    step
   };
 };
 
@@ -27,10 +31,12 @@ const mapDispatchToProps = dispatch => {
     fetchChallenges: (id, token) => dispatch(fetchChallenges(id, token)),
     setLoading: loading => dispatch(setLoading(loading)),
     setRoute: route => dispatch(setRoute(route)),
+    resetChallenges: () => dispatch(resetChallenges()),
+    saveChallenges: (user, challenges) => dispatch(saveChallenges(user, challenges))
   };
 };
 
-const LogIn = ({ isLoading, getUser, setLoading, setRoute }) => {
+const LogIn = ({ user, challenges, isLoading, step, getUser, setLoading, setRoute, resetChallenges, saveChallenges }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
@@ -74,7 +80,7 @@ const LogIn = ({ isLoading, getUser, setLoading, setRoute }) => {
               usernameRef.current.focus();
             } else if (resp.id) {
               sessionStorage.setItem("token", resp.token);
-              getUser(resp.id);
+              getUser(resp.id, resp.token);
               setLoading(false);
             }
           })
