@@ -9,7 +9,7 @@ const mapStateToProps = ({ result }) => {
   return {result};
 };
 
-const End = props => props.result === "success" ? <Success /> : <Failure />;
+const End = props => props.result === "success" ? <Success /> : props.result === "failure" ? <Failure /> : null;
 
 End.propTypes = {
   result: PropTypes.string
