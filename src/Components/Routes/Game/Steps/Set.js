@@ -18,6 +18,7 @@ import {
   setStep,
   editChallenge,
   saveChallenges,
+  setLoading,
 } from "../../../../redux/actions";
 
 const mapStateToProps = ({ challenges, step, route, user }) => {
@@ -36,11 +37,13 @@ const mapDispatchToProps = dispatch => {
     editChallenge: (chall, key) => dispatch(editChallenge(chall, key)),
     removeChallenge: key => dispatch(removeChallenge(key)),
     setStep: step => dispatch(setStep(step)),
-    saveChallenges: (user, challenges) => dispatch(saveChallenges(user, challenges))
+    saveChallenges: (user, challenges) =>
+      dispatch(saveChallenges(user, challenges)),
+    setLoading: loading => dispatch(setLoading(loading)),
   };
 };
 
-const Set = ({ challenges, user, addChallenge, setStep, saveChallenges }) => {
+const Set = ({ challenges, user, addChallenge, setStep, saveChallenges, setLoading }) => {
   const [startFailed, setStartFailed] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [tooMuchChallenges, setTooMuchChallenges] = useState(false);
@@ -68,10 +71,11 @@ const Set = ({ challenges, user, addChallenge, setStep, saveChallenges }) => {
 
   const handleStartClick = e => {
     if (challenges.length) {
-      setStep("start");
       if (user.username) {
         saveChallenges(user, challenges);
       }
+      setLoading(true);
+      setStep("start");
     } else {
       setStartFailed(true);
     }
