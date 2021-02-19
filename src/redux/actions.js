@@ -223,11 +223,10 @@ export const fetchChallenges = (id, token) => dispatch => {
     .then(resp => {
       if (
         resp === "Invalid request" ||
-        resp === "Unable to fetch challenges" ||
-        resp === "No todays challenges"
+        resp === "Unable to fetch challenges"
       ) {
         console.log(resp);
-      } else if (resp[0]) {
+      } else if (resp[0] && resp !== "No todays challenges") {
         if (resp.every(ch => ch.isDone)) {
           dispatch({
             type: SET_RESULT,
@@ -333,7 +332,6 @@ export const setLoading = loading => ({
 });
 
 export const saveChallenges = (user, challenges) => dispatch => {
-  console.log(user, challenges)
   fetch(`${process.env.REACT_APP_API_URL}/saveChallenges`, {
     method: "POST",
     headers: {
