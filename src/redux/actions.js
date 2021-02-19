@@ -42,11 +42,34 @@ export const toggleChallenge = (key, token, username) => (
   const state = getState();
   if (state.challenges.every(ch => ch.isDone)) {
     dispatch(setLoading(true));
-    setTimeout(() => {
+    if (token && username) {
+      const date = new Date(new Date() - 7200000);
+      const dateStr = date.toISOString().slice(0, 10);
+      fetch(`${process.env.REACT_APP_API_URL}/setResult`, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token,
+          "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
+        },
+        body: JSON.stringify({
+          dateStr,
+          result: "success",
+          username,
+        }),
+      })
+        .then(resp => resp.json())
+        .then(resp => {
+          dispatch(setResult("success"));
+          dispatch(getStreak(token, resp.username));
+          dispatch(setStep("end"));
+        })
+        .catch(console.log);
+    } else {
+      dispatch(setResult("success"));
       dispatch(setStep("end"));
-      dispatch(setResult("success", token, username));
-      dispatch(setLoading(false));
-    }, 1000);
+    }
+    dispatch(setLoading(false));
   }
 };
 
@@ -64,38 +87,10 @@ export const setStep = step => ({
   payload: step,
 });
 
-export const setResult = (result, token, username) => dispatch => {
-  if (token && username) {
-    const date = new Date(new Date() - 7200000);
-    const dateStr = date.toISOString().slice(0, 10);
-    fetch(`${process.env.REACT_APP_API_URL}/setResult`, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token,
-        "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
-      },
-      body: JSON.stringify({
-        dateStr,
-        result,
-        username,
-      }),
-    })
-      .then(resp => resp.json())
-      .then(resp => {
-        dispatch({
-          type: SET_RESULT,
-          payload: result,
-        });
-      })
-      .catch(console.log);
-  } else {
-    dispatch({
-      type: SET_RESULT,
-      payload: result,
-    });
-  }
-};
+export const setResult = result => ({
+  type: SET_RESULT,
+  payload: result,
+});
 
 export const logOut = () => ({
   type: LOG_OUT,
@@ -221,10 +216,7 @@ export const fetchChallenges = (id, token) => dispatch => {
   })
     .then(resp => resp.json())
     .then(resp => {
-      if (
-        resp === "Invalid request" ||
-        resp === "Unable to fetch challenges"
-      ) {
+      if (resp === "Invalid request" || resp === "Unable to fetch challenges") {
         console.log(resp);
       } else if (resp[0] && resp !== "No todays challenges") {
         if (resp.every(ch => ch.isDone)) {
@@ -345,7 +337,7 @@ export const saveChallenges = (user, challenges) => dispatch => {
     }),
   })
     .then(() => {
-      dispatch(setStep("start"))
+      dispatch(setStep("start"));
     })
     .catch(err => console.log(err, "Unable to save challenges"));
 };

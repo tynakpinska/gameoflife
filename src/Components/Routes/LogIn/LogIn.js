@@ -74,7 +74,7 @@ const LogIn = ({ user, challenges, isLoading, step, getUser, setLoading, setRout
         })
           .then(resp => resp.json())
           .then(resp => {
-            if (resp === "Unable to log in" || resp === "No such user") {
+            if (resp === "Unable to log in" || resp === "No such user" || resp === "Unauthorized") {
               setLoginFailed(true);
               setLoading(false);
               usernameRef.current.focus();

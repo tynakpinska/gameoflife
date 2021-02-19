@@ -6,15 +6,17 @@ import ChallengesList from "../ChallengesList";
 import Timer from "../Timer";
 import Loader from "../../../Visual/Loader";
 
-import { setLoading } from "../../../../redux/actions";
+import { setLoading, setResult, setStep } from "../../../../redux/actions";
 
-const mapStateToProps = ({ isLoading }) => {
-  return { isLoading };
+const mapStateToProps = ({ isLoading, user}) => {
+  return { isLoading, user };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     setLoading: loading => dispatch(setLoading(loading)),
+    setResult: result => dispatch(setResult(result)),
+    setStep: result => dispatch(setStep(result)),
   };
 };
 
@@ -54,7 +56,31 @@ const Start = ({ isLoading, setLoading, setResult, setStep, user }) => {
       )
         setLoading(false);
       if (hours === "00" && minutes === "00" && seconds === "00") {
-        setResult("failure", token, user.username);
+        if (token && user.username) {
+          const date = new Date(new Date() - 7200000);
+          const dateStr = date.toISOString().slice(0, 10);
+          fetch(`${process.env.REACT_APP_API_URL}/setResult`, {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: token,
+              "Access-Control-Allow-Origin": `${process.env.REACT_APP_API_ORIGIN}`,
+            },
+            body: JSON.stringify({
+              dateStr,
+              result: "failure",
+              username: user.username,
+            }),
+          })
+            .then(resp => resp.json())
+            .then(resp => {
+              setResult("failure");
+            })
+            .catch(console.log);
+        } else {
+          setResult("failure");
+        }
+
         setStep("end");
       }
     }, 1000);
