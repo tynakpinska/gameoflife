@@ -19,16 +19,18 @@ import {
   text,
 } from "./Profile.module.css";
 import avatar from "../../../img/user.png";
+import Loader from "../../Visual/Loader";
 
 import {
   setProfileImage,
   updateProfileImage,
   getStreak,
   getGoals,
+  setLoading,
 } from "../../../redux/actions";
 
-const mapStateToProps = ({ user, streak, goals }) => {
-  return { user, streak, goals };
+const mapStateToProps = ({ isLoading, user, streak, goals }) => {
+  return { isLoading, user, streak, goals };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -39,6 +41,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(updateProfileImage(token, username, url)),
     getStreak: (token, username) => dispatch(getStreak(token, username)),
     getGoals: (token, username) => dispatch(getGoals(token, username)),
+    setLoading: loading => dispatch(setLoading(loading)),
   };
 };
 
@@ -48,22 +51,19 @@ const Profile = ({
   goals,
   setProfileImage,
   updateProfileImage,
-  getStreak,
-  getGoals,
+  setLoading,
+  isLoading,
 }) => {
   const [currentGoalForm, setCurrentGoalForm] = useState(null);
 
   const handlePartClick = e => {
     switch (e.currentTarget.classList[1]) {
       case state:
-        setCurrentGoalForm(0);
-        return;
+        return setCurrentGoalForm(0);
       case body:
-        setCurrentGoalForm(1);
-        return;
+        return setCurrentGoalForm(1);
       case bank:
-        setCurrentGoalForm(2);
-        return;
+        return setCurrentGoalForm(2);
       default:
         setCurrentGoalForm(null);
     }
@@ -74,6 +74,7 @@ const Profile = ({
     "https://api.cloudinary.com/v1_1/tynnacloud/upload";
 
   const uploadImage = image => {
+    setLoading(true);
     const { imageUrl, username } = user;
     const formData = new FormData();
     formData.append("file", image);
@@ -89,6 +90,8 @@ const Profile = ({
         imageUrl
           ? updateProfileImage(token, username, res.secure_url)
           : setProfileImage(token, username, res.secure_url);
+
+        setLoading(false);
       })
       .catch(err => console.log(err));
   };
@@ -112,6 +115,8 @@ const Profile = ({
       setCurrentGoalForm={setCurrentGoalForm}
       image={user.imageUrl || avatar}
     />
+  ) : isLoading ? (
+    <Loader />
   ) : (
     <>
       <h2 className={username}>{user.username}</h2>
@@ -121,16 +126,17 @@ const Profile = ({
         alt="avatar"
         title="Click to edit photo"
       />
-        <label htmlFor="upload" className={inputLabel}>
-          <i className={`demo-icon icon-upload ${icon}`}></i>
-        </label>
-          <input
-            id="upload"
-            type="file"
-            accept="image/png, image/jpeg"
-            hidden
-            onChange={handleChange}
-          />
+
+      <label htmlFor="upload" className={inputLabel}>
+        <i className={`demo-icon icon-upload ${icon}`}></i>
+      </label>
+      <input
+        id="upload"
+        type="file"
+        accept="image/png, image/jpeg"
+        hidden
+        onChange={handleChange}
+      />
 
       <div className={parts}>
         <div className={`${part} ${streakpart}`} onClick={handlePartClick}>
