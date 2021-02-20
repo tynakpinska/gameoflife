@@ -285,17 +285,44 @@
     width: 20vh;
     height: 20vh;
   }
+  h4 {
+    font-size: 0.8rem;
+    padding: 2vh;
+  }
+  .text {
+    background: none;
+    border: none;
+  }
 }
 
 @media (max-height: 400px) {
+  .username {
+    top: 20%;
+    padding: 0;
+    margin: 0 auto;
+    width: 100%;
+    position: absolute;
+  }
   .image {
     width: 20vw;
     height: 20vw;
-    z-index: 2;
+    position: fixed;
+    left: 40vw;
+    z-index: 5;
   }
   .parts {
     position: absolute;
     height: 50%;
     top: 10vh;
+    justify-content: space-between;
+  }
+  .part {
+    height: 35vh;
+    width: 40vw;
+    border-radius: 5px;
+  }
+  .text {
+    background: none;
+    border: none;
   }
 }
