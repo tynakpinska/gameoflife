@@ -103,6 +103,20 @@
   }
 }
 
+@media (max-width: 400px) {
+  .navItem, .navItemClicked, .userBox, .userBoxClicked {
+    border: none;
+  }
+  .navItemClicked{
+    font-weight: bold;
+    color: #fccaad;
+  }
+  .userAv{
+    width: 7vh;
+    height: 7vh;
+  }
+}
+
 @media (max-height: 400px) {
   .nav {
     flex-wrap: nowrap;
