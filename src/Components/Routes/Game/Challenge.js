@@ -109,10 +109,10 @@ const Challenge = ({
             style={{
               display: "flex",
               alignItems: "center",
-              minWidth: "100%",
-              margin: "auto",
+              minWidth: "100%"
             }}
           >
+            <div style={{margin: "auto", visibility: "hidden"}}></div>
             <input
               className={styles.challenge}
               type="text"
@@ -122,7 +122,7 @@ const Challenge = ({
               autoFocus
               aria-label="Challenge"
             ></input>
-            <i className={"demo-icon icon-ok"} onClick={handleEnter}></i>
+            <i className={"demo-icon icon-ok"} onClick={handleEnter} style={{marginRight: "auto"}} ></i>
           </div>
         ) : (
           <div className={styles.challenge}>
