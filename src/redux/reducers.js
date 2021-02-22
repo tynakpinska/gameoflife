@@ -13,7 +13,7 @@ import {
   SET_PROFILE_IMAGE,
   SET_STREAK,
   SET_GOAL,
-  SET_LOADING
+  SET_LOADING,
 } from "./constants";
 
 import {
@@ -49,37 +49,38 @@ const initialState = {
       goal: "1000000$",
       className: bank,
     },
-  ]
+  ],
 };
 
 export const challenges = (state = initialState.challenges, action = {}) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case ADD_CHALLENGE:
       return [
         ...state,
         {
-          challenge: `${action.payload[0]}`,
-          key: action.payload[1],
-          date: action.payload[2],
+          challenge: `${payload[0]}`,
+          key: payload[1],
+          date: payload[2],
           isDone: false,
         },
       ];
     case EDIT_CHALLENGE:
       return state.map(ch => {
-        if (ch.key === action.payload[1]) {
+        if (ch.key === payload[1]) {
           return {
             ...ch,
-            challenge: `${action.payload[0]}`,
+            challenge: `${payload[0]}`,
           };
         } else {
           return ch;
         }
       });
     case REMOVE_CHALLENGE:
-      return state.filter(ch => ch.key !== action.payload);
+      return state.filter(ch => ch.key !== payload);
     case TOGGLE_CHALLENGE:
       return state.map(ch => {
-        if (ch.key === action.payload) {
+        if (ch.key === payload) {
           return { ...ch, isDone: !ch.isDone };
         } else {
           return ch;
@@ -90,16 +91,17 @@ export const challenges = (state = initialState.challenges, action = {}) => {
     case LOG_OUT:
       return [];
     case GET_CHALLENGES:
-      return [...state, ...action.payload];
+      return [...state, ...payload];
     default:
       return state;
   }
 };
 
 export const step = (state = initialState.step, action = {}) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case SET_STEP:
-      return action.payload;
+      return payload;
     case LOG_OUT:
       return "set";
     default:
@@ -108,9 +110,10 @@ export const step = (state = initialState.step, action = {}) => {
 };
 
 export const route = (state = initialState.route, action = false) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case SET_ROUTE:
-      return action.payload;
+      return payload;
     case LOG_IN:
       return "game";
     default:
@@ -119,53 +122,55 @@ export const route = (state = initialState.route, action = false) => {
 };
 
 export const user = (state = initialState.user, action = false) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case LOG_IN:
-      return action.payload;
+      return payload;
     case LOG_OUT:
       return {};
     case SET_PROFILE_IMAGE:
-      return { ...state, imageUrl: action.payload };
+      return { ...state, imageUrl: payload };
     default:
       return state;
   }
 };
 
 export const result = (state = initialState.result, action = false) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case SET_RESULT:
-      return action.payload;
+      return payload;
     default:
       return state;
   }
 };
 
 export const streak = (state = initialState.streak, action = 0) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case SET_STREAK:
-      return action.payload;
+      return payload;
     default:
       return state;
   }
 };
 
 export const goals = (state = initialState.goals, action = []) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case SET_GOAL:
-      return state.map(g =>
-        g.title === action.payload.title ? action.payload : g
-      );
+      return state.map(g => (g.title === payload.title ? payload : g));
     default:
       return state;
   }
 };
 
 export const isLoading = (state = initialState.isLoading, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case SET_LOADING:
-      return action.payload;
+      return payload;
     default:
       return state;
   }
 };
-

@@ -31,6 +31,34 @@ export const editChallenge = (newChall, key) => ({
   payload: [newChall, key],
 });
 
+export const resetChallenges = () => ({
+  type: RESET_CHALLENGES,
+});
+
+export const setRoute = route => ({
+  type: SET_ROUTE,
+  payload: route,
+});
+
+export const setStep = step => ({
+  type: SET_STEP,
+  payload: step,
+});
+
+export const setResult = result => ({
+  type: SET_RESULT,
+  payload: result,
+});
+
+export const logOut = () => ({
+  type: LOG_OUT,
+});
+
+export const setLoading = loading => ({
+  type: SET_LOADING,
+  payload: loading,
+});
+
 export const toggleChallenge = (key, token, username) => (
   dispatch,
   getState
@@ -73,29 +101,6 @@ export const toggleChallenge = (key, token, username) => (
   }
 };
 
-export const resetChallenges = () => ({
-  type: RESET_CHALLENGES,
-});
-
-export const setRoute = route => ({
-  type: SET_ROUTE,
-  payload: route,
-});
-
-export const setStep = step => ({
-  type: SET_STEP,
-  payload: step,
-});
-
-export const setResult = result => ({
-  type: SET_RESULT,
-  payload: result,
-});
-
-export const logOut = () => ({
-  type: LOG_OUT,
-});
-
 export const getUser = (id, token) => dispatch => {
   fetch(`${process.env.REACT_APP_API_URL}/profile/${id}`, {
     method: "get",
@@ -111,12 +116,13 @@ export const getUser = (id, token) => dispatch => {
         type: LOG_IN,
         payload: resp,
       });
-      dispatch(getUserImage(token, resp.username));
-      dispatch(getStreak(token, resp.username));
-      dispatch(getGoals(token, resp.username));
+      const { username, id } = resp;
+      dispatch(getUserImage(token, username));
+      dispatch(getStreak(token, username));
+      dispatch(getGoals(token, username));
       dispatch(resetChallenges());
       dispatch(setStep("set"));
-      dispatch(fetchChallenges(resp.id, token, resp.username));
+      dispatch(fetchChallenges(id, token, username));
     })
     .then(() => dispatch(setLoading(false)))
     .catch(console.log);
@@ -317,11 +323,6 @@ export const getGoals = (token, username) => dispatch => {
     })
     .catch(err => console.log(err));
 };
-
-export const setLoading = loading => ({
-  type: SET_LOADING,
-  payload: loading,
-});
 
 export const saveChallenges = (user, challenges) => dispatch => {
   fetch(`${process.env.REACT_APP_API_URL}/saveChallenges`, {
