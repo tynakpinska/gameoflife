@@ -1,3 +1,5 @@
+@import-normalize;
+
 * {
   margin: 0;
   padding: 0;
@@ -53,6 +55,7 @@ h1 {
   mix-blend-mode: multiply;
   color: #ffcfb3;
   background: #060200;
+  margin: 0;
 }
 
 h1:hover {
