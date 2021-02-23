@@ -1,3 +1,5 @@
+// spinner by loading.io
+
 import React from "react";
 import { loader } from "./Loader.module.css";
 
