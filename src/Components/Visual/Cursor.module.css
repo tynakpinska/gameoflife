@@ -1,78 +1,13 @@
 .cursor {
-  width: 10px;
-  height: 10px;
-  border: 1px solid rgb(255, 93, 0);
-  border-radius: 50%;
-  position: absolute;
-  z-index: 100;
-  animation: grow 2s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.cursor::after {
-  content: "";
-  width: 30px;
-  height: 30px;
-  background: rgba(255, 207, 179, .5);
-  border-radius: 50%;
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  z-index: 100;
-  animation: grow1 2s ease-in-out infinite;
-}
-
-.cursor::before {
-  content: "";
   width: 20px;
   height: 20px;
-  border: 2px solid #ffcfb3;
+  background: rgba(255, 94, 0, 0.68);
+  box-shadow: 0px 0px 5px #ff5c00;
   border-radius: 50%;
   position: absolute;
-  left: -5px;
-  top: -5px;
   z-index: 100;
-  animation: grow2 2s ease-in-out infinite;
+  pointer-events: none;
 }
-
-
-
-@keyframes grow {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes grow1 {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.3);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes grow2 {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 
 @media (max-width: 688px) {
   .cursor {

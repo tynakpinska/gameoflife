@@ -18,15 +18,28 @@ body {
 }
 
 .click {
-  border: 1px dashed rgb(124, 47, 2) !important;
-}
+  content: "";
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 207, 179, .5);
+  border-radius: 50%;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  z-index: 100;
+  animation: shrink .5s ease-in-out infinite;
+} 
 
-.click::before {
-  border: 2px dashed #e4e4e4 !important;
-}
-
-.click::after {
-  background: rgba(173, 68, 7, 0.5) !important;
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.3);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .container {
