@@ -88,3 +88,29 @@
     flex-direction: column;
   }
 }
+
+@media (max-height: 400px) {
+  .image {
+    display: none;
+  }
+  .title,
+  .goalsForm,
+  .buttons {
+    position: static;
+    margin: 0 auto;
+  }
+
+
+  .goalsForm {
+    width: 50vw;
+  }
+
+  .goalsForm button {
+    width: auto;
+    padding: 5px 10px;
+  }
+
+  .goalsForm label {
+    margin: 2px 0 2px -10px;
+  }
+}
