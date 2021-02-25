@@ -7,6 +7,7 @@ import {
   addChallButton,
   start,
   error,
+  tip,
 } from "./Set.module.css";
 
 import { v4 as uuidv4 } from "uuid"; // create random keys
@@ -43,7 +44,14 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const Set = ({ challenges, user, addChallenge, setStep, saveChallenges, setLoading }) => {
+const Set = ({
+  challenges,
+  user,
+  addChallenge,
+  setStep,
+  saveChallenges,
+  setLoading,
+}) => {
   const [startFailed, setStartFailed] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [tooMuchChallenges, setTooMuchChallenges] = useState(false);
@@ -128,6 +136,9 @@ const Set = ({ challenges, user, addChallenge, setStep, saveChallenges, setLoadi
             className={addChallButton + " demo-icon icon-plus-circled"}
           ></i>
         </div>
+      ) : null}
+      {challenges.length < 3 ? (
+        <p className={tip}>Add at least 3 challenges</p>
       ) : null}
       <ChallengesList />
       <p className={error}>

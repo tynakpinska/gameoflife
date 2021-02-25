@@ -52,6 +52,10 @@
   cursor: pointer;
 }
 
+.goalsForm button:focus {
+  border: 1px solid #e25605;
+}
+
 @media (max-width: 850px) {
   .image {
     position: static;

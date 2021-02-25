@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styles, { goalsForm, buttons, title } from "./Goal.module.css";
@@ -20,6 +20,10 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
   const [currentInput, setCurrentInput] = useState(goal.current);
   const [goalInput, setGoalInput] = useState(goal.goal);
 
+  const currentRef = useRef(null);
+  const goalRef = useRef(null);
+  const submitRef = useRef(null);
+
   const handleInputChange = e => {
     e.target.name === "current"
       ? setCurrentInput(e.target.value)
@@ -28,18 +32,33 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const token = sessionStorage.getItem("token");
-    setGoal(token, user.username, {
-      ...goal,
-      current: currentInput,
-      goal: goalInput,
-    });
-    setCurrentGoalForm(null);
+
+    if (document.activeElement.type === "submit") {
+      const token = sessionStorage.getItem("token");
+      setGoal(token, user.username, {
+        ...goal,
+        current: currentInput,
+        goal: goalInput,
+      });
+      setCurrentGoalForm(null);
+    }
   };
 
   const handleCancel = () => {
     setCurrentGoalForm(null);
   };
+
+  const handleEnter = e => {
+    if (e.keyCode === 13) {
+      console.log("enter");
+      if (e.target.name === "current") {
+        goalRef.current.focus();
+      } else if (e.target.name === "goal") {
+        submitRef.current.focus();
+      }
+    }
+  };
+
   return (
     <>
       <div
@@ -56,6 +75,9 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
           defaultValue={currentInput}
           onChange={handleInputChange}
           maxLength="10"
+          ref={currentRef}
+          onKeyUp={handleEnter}
+          autoFocus
         ></input>
         <label htmlFor="goal">Goal</label>
         <input
@@ -64,9 +86,11 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
           defaultValue={goalInput}
           onChange={handleInputChange}
           maxLength="10"
+          ref={goalRef}
+          onKeyUp={handleEnter}
         ></input>
         <div className={buttons}>
-          <button>Save</button>
+          <button ref={submitRef}>Save</button>
           <button onClick={handleCancel}>Cancel</button>
         </div>
       </form>
