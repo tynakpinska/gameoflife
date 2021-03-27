@@ -4,7 +4,7 @@
 
 The goal of this app is to help you achieve success by motivating you to do something small, that closes you to fulfilling your dreams, each day. It was inspired by [Zen Jaskiniowca](https://zenjaskiniowca.pl/jak-wyrobic-nawyk-wygrywania/) podcast, that really helped me see how important everyday activities are and how powerful doing little tasks can make you feel. After some time you'll build a habit of winning and you'll start to feel extremely effective.
 
-First, decide what do you want your life to be like in three main areas (according to [Rafał Mazur](https://zenjaskiniowca.pl/o-mnie/):
+First, decide what do you want your life to be like in three main areas (according to [Rafał Mazur](https://zenjaskiniowca.pl/o-mnie/)):
 1. body shape
 2. state of mind
 3. bank balance
