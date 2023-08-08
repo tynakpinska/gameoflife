@@ -50,7 +50,6 @@ const Goal = ({ goal, user, setGoal, setCurrentGoalForm, image }) => {
 
   const handleEnter = e => {
     if (e.keyCode === 13) {
-      console.log("enter");
       if (e.target.name === "current") {
         goalRef.current.focus();
       } else if (e.target.name === "goal") {
