@@ -32,8 +32,8 @@ const handleClick = e => {
 document.addEventListener("mousemove", handleMouseMove);
 document.addEventListener("click", handleClick);
 
-const mapStateToProps = ({ route, user, challenges, isLoading }) => {
-  return { route, user, challenges, isLoading };
+const mapStateToProps = ({ route, user, challenges }) => {
+  return { route, user, challenges };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -72,7 +72,7 @@ class App extends Component {
     }
   };
 
-  render({ route, isLoading } = this.props) {
+  render({ route } = this.props) {
     return (
       <div basename="/gameoflife">
         <Cursor />
@@ -80,7 +80,7 @@ class App extends Component {
         <div className="box"></div>
         <Frisella />
         <main className="container">
-          { route === "login" ? (
+          {route === "login" ? (
             <LogIn />
           ) : route === "register" ? (
             <Register />

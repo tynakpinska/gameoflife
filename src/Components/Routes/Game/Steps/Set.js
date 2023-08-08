@@ -138,7 +138,7 @@ const Set = ({
         </div>
       ) : null}
       {challenges.length < 3 ? (
-        <p className={tip}>Add at least 3 challenges</p>
+        <p className={tip}>Type in at least 3 challenges for today</p>
       ) : null}
       <ChallengesList />
       <p className={error}>

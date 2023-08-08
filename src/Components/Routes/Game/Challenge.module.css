@@ -84,3 +84,11 @@
     padding: 3px;
   }
 }
+
+@media (max-height: 640px) and (orientation: landscape) {
+  .challenge {
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+
+}

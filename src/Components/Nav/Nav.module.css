@@ -58,7 +58,7 @@
 }
 
 .userBox:hover {
-  animation: onhover .5s ease forwards;
+  animation: onhover 0.5s ease forwards;
 }
 
 .userBoxClicked {
@@ -104,14 +104,17 @@
 }
 
 @media (max-width: 400px) {
-  .navItem, .navItemClicked, .userBox, .userBoxClicked {
+  .navItem,
+  .navItemClicked,
+  .userBox,
+  .userBoxClicked {
     border: none;
   }
-  .navItemClicked{
+  .navItemClicked {
     font-weight: bold;
     color: #fccaad;
   }
-  .userAv{
+  .userAv {
     width: 7vh;
     height: 7vh;
   }
@@ -124,5 +127,12 @@
   .userAv {
     width: 9vh;
     height: 9vh;
+  }
+}
+
+@media (max-height: 640px) and (orientation: landscape) {
+  .userAv {
+    width: 7vh;
+    height: 7vh;
   }
 }

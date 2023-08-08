@@ -175,3 +175,10 @@
     transition: all 1000ms ease-in-out;
   }
 }
+
+@media (max-height: 640px) and (orientation: landscape) {
+  
+  .button {
+    padding: 30px 25px 25px 35px;
+  }
+}

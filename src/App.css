@@ -21,14 +21,14 @@ body {
   content: "";
   width: 30px;
   height: 30px;
-  background: rgba(255, 207, 179, .5);
+  background: rgba(255, 207, 179, 0.5);
   border-radius: 50%;
   position: absolute;
   left: -10px;
   top: -10px;
   z-index: 100;
-  animation: shrink .5s ease-in-out infinite;
-} 
+  animation: shrink 0.5s ease-in-out infinite;
+}
 
 @keyframes shrink {
   0% {
@@ -210,7 +210,7 @@ input:focus {
     animation: null;
     box-shadow: none;
     position: static;
-    margin-top: 20vh;
+    margin-top: 10vh;
     height: auto;
   }
 
@@ -236,6 +236,12 @@ input:focus {
   input:hover {
     border: 3px solid #ff5d00;
     box-shadow: none;
+  }
+}
+
+@media (max-width: 570px) {
+  .container {
+    margin-top: 13vh;
   }
 }
 
@@ -271,6 +277,19 @@ input:focus {
   h2 {
     padding: 10px 0;
     line-height: 30px;
+  }
+}
+
+@media (max-height: 640px) and (orientation: landscape) {
+  .container {
+    min-width: 38vw;
+    min-height: 38vw;
+    height: 38vw;
+    margin-top: -19vw;
+  }
+  h2 {
+    width: 80%;
+    padding: 10px 0;
   }
 }
 

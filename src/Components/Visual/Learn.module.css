@@ -42,3 +42,13 @@
     font-size: 2rem;
   }
 }
+
+@media (max-height: 640px) and (orientation: landscape) {
+  .learn {
+    max-height: 100%;
+  }
+
+  .learn p {
+    padding: 10% 5% 0 25%;
+  }
+}

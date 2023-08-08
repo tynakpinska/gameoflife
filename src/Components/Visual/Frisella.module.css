@@ -45,3 +45,10 @@ h3 {
     line-height: 1.5rem;
   }
 }
+
+@media (max-height: 640px) and (orientation: landscape) {
+  .frisella {
+    display: none;
+  }
+}
+
