@@ -15,7 +15,6 @@
   padding: 10px;
   border-left: 1px solid #997d6d;
   text-align: center;
-  cursor: pointer;
   letter-spacing: 1px;
 }
 
@@ -25,7 +24,6 @@
 
 .navItem:hover {
   color: #fccaad;
-  cursor: pointer;
 }
 
 .navItem:focus {
@@ -52,7 +50,6 @@
   color: #ff8139;
   font-size: 0.8em;
   text-align: center;
-  cursor: pointer;
   letter-spacing: 1px;
   padding-left: 10px;
 }

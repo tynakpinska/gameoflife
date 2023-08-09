@@ -19,10 +19,6 @@
   font-size: 2rem;
 }
 
-.addChallButton:hover {
-  cursor: pointer;
-}
-
 .addChallButton:active {
   font-size: 1.8rem;
 }
@@ -36,7 +32,6 @@
 .start:hover {
   background: #4d1d01;
   color: #f8e4d9;
-  cursor: pointer;
 }
 
 .error {

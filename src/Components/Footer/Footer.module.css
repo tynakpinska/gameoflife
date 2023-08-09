@@ -51,10 +51,14 @@
   font-size: 0.9em;
 }
 
+.buttonClicked:hover {
+  color: #f85b00;
+
+}
+
 .button:hover {
-  color: #000000;
-  background: #fc6914;
-  cursor: pointer;
+  color: #a83d00;
+  background: #ffcfb3;
 }
 
 .button:active {

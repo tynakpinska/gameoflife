@@ -20,9 +20,6 @@
   border-radius: 7px;
 }
 
-.challenge i:hover {
-  cursor: pointer;
-}
 
 .challenge input {
   margin: 0;

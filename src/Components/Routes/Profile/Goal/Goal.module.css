@@ -49,7 +49,7 @@
 }
 
 .goalsForm button:hover {
-  cursor: pointer;
+  background: #000;
 }
 
 .goalsForm button:focus {

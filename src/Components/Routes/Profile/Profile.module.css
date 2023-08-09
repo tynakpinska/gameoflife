@@ -22,9 +22,6 @@
   left: 10px;
 }
 
-.cancel:hover {
-  cursor: pointer;
-}
 
 .label {
   color: #ffcfb3;
@@ -60,7 +57,6 @@
   font-size: 100px;
   color: rgba(6, 2, 0, 0.8);
   text-shadow: 0 0 30px #ffcfb3;
-  cursor: pointer;
 }
 
 .inputLabel:hover {
@@ -85,15 +81,10 @@
 }
 
 .image:hover + .inputLabel {
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-}
-
-.image:hover {
-  cursor: pointer;
 }
 
 .parts {
@@ -114,12 +105,10 @@
 .part:hover,
 .part:focus {
   box-shadow: 0 0 20px #9b3800;
-  cursor: pointer;
 }
 
 .part:active {
   box-shadow: 0 0 10px #9b3800;
-  cursor: pointer;
 }
 
 .text {

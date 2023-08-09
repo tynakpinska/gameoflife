@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Noto Sans", sans-serif;
+  cursor: none;
 }
 
 html {
@@ -75,10 +76,6 @@ h1 {
   margin: 0;
 }
 
-h1:hover {
-  cursor: pointer;
-}
-
 h1:focus {
   text-decoration: underline;
 }
@@ -117,7 +114,6 @@ input[type="email"],
 
 .button:hover {
   font-weight: bold;
-  cursor: pointer;
 }
 
 .button:focus {
@@ -245,7 +241,7 @@ input:focus {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) and (orientation: portrait) {
   .box {
     background: linear-gradient(to top, rgba(0 0 0 / 0), rgba(0 0 0 / 1)),
       url("./img/mountain-small.jpg");
@@ -261,35 +257,19 @@ input:focus {
   }
 }
 
-@media (max-height: 400px) {
-  body {
-    /* height: auto; */
-    overflow: scroll;
-  }
-
-  .container {
-    display: block;
-    min-height: auto;
-    height: auto;
-    margin: 12vh 0 8vh 0;
-  }
-
-  h2 {
-    padding: 10px 0;
-    line-height: 30px;
-  }
-}
-
-@media (max-height: 640px) and (orientation: landscape) {
+@media (max-height: 700px) and (orientation: landscape) {
   .container {
     min-width: 38vw;
     min-height: 38vw;
+    width: 38vw;
     height: 38vw;
     margin-top: -19vw;
+    margin-left: -20vw;
+    position: fixed;
   }
+
   h2 {
-    width: 80%;
-    padding: 10px 0;
+    width: 90%;
   }
 }
 
