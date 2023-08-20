@@ -15,12 +15,12 @@ import {
   saveChallenges,
 } from "../../../redux/actions";
 
-const mapStateToProps = ({ user, challenges, isLoading, step}) => {
+const mapStateToProps = ({ user, challenges, isLoading, step }) => {
   return {
     user,
     challenges,
     isLoading,
-    step
+    step,
   };
 };
 
@@ -32,11 +32,12 @@ const mapDispatchToProps = dispatch => {
     setLoading: loading => dispatch(setLoading(loading)),
     setRoute: route => dispatch(setRoute(route)),
     resetChallenges: () => dispatch(resetChallenges()),
-    saveChallenges: (user, challenges) => dispatch(saveChallenges(user, challenges))
+    saveChallenges: (user, challenges) =>
+      dispatch(saveChallenges(user, challenges)),
   };
 };
 
-const LogIn = ({ user, challenges, isLoading, step, getUser, setLoading, setRoute, resetChallenges, saveChallenges }) => {
+const LogIn = ({ isLoading, getUser, setLoading, setRoute }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false);
@@ -74,7 +75,11 @@ const LogIn = ({ user, challenges, isLoading, step, getUser, setLoading, setRout
         })
           .then(resp => resp.json())
           .then(resp => {
-            if (resp === "Unable to log in" || resp === "No such user" || resp === "Unauthorized") {
+            if (
+              resp === "Unable to log in" ||
+              resp === "No such user" ||
+              resp === "Unauthorized"
+            ) {
               setLoginFailed(true);
               setLoading(false);
               usernameRef.current.focus();
