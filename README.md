@@ -27,7 +27,7 @@ In a world where success often seems out of reach, Game of Life stands out as a 
 
 Explore the Game of Life firsthand and witness its transformative potential. With a seamless user interface and intuitive features, this demo showcases the app's capabilities in real time.
 
-[Launch Live Demo](#)
+[Launch Live Demo](https://gameoflife.onrender.com/)
 
 ## Technologies Driving Innovation 🛠️
 
